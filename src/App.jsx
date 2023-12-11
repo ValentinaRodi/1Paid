@@ -10,7 +10,7 @@ import ReturnFunds from "./components/returnFunds/ReturnFunds";
 import OrderСonfirm from "./components/orderСonfirm/OrderСonfirm";
 import AddBalance from "./components/addBalance/AddBalance";
 import OutputFunds from "./components/outputFunds/OutputFunds";
-import AddProduct from "./components/addProduct/addProduct";
+import AddProduct from "./components/addProduct/AddProduct";
 import MakeBuy from "./components/makeBuy/MakeBuy";
 
 function App() {
