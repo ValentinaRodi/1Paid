@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import LendingPage from "./components/lending/Lending";
 import Registration from "./components/registration/Registration";
-import Newpass from "./components/newpass/newpass";
+import Newpass from "./components/newpass/Newpass";
 import Newnik from "./components/newnik/Newnik";
 import Recpass from "./components/recpass/Recpass";
 import Authorization from "./components/authorization/Authorization";
