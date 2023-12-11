@@ -1,0 +1,18 @@
+.wrapper {
+  max-width: 1293px;
+  width: 90%;
+}
+
+.vk {
+  background-image: url(../../assets/images/vk.svg);
+  }
+  
+  .vk:hover {
+  box-shadow: 0px 4px 35px 0px rgba(51,	156,	252, 0.45);
+  }
+
+@media (max-width: 768px) {
+  .wrapper {
+    max-width: 334px;
+  }
+}
