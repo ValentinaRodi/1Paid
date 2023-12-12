@@ -45,6 +45,7 @@
 
 .vk {
   background-image: url(../../assets/images/vk.svg);
+  background-size: 87px 87px !important;
 }
 
 .vk:hover {
