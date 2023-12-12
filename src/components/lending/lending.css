@@ -1,110 +1,61 @@
 .wrapper {
-max-width: 1293px;
-width: 90%;
-}
-
-.navs-link {
-position: relative;
-}
-
-.navs-link::after {
-content: "";
-position: absolute;
-top: calc(100% + 4px);
-left: 0;
-width: 100%;
-height: 1px;
-background: linear-gradient(37deg, #339CFC 0%, #0046D6 100%) !important;
-background: linear-gradient(37deg, var(--color-primary-gradient-1) 0%, var(--color-primary-gradient-2) 100%);
-opacity: 0;
--webkit-box-shadow: 0px 2px 13px 0px rgba(51, 156, 252,0.71);
-box-shadow: 0px 2px 13px 0px rgba(51, 156, 252, 0.71) !important;
--webkit-box-shadow: 0px 2px 13px 0px rgba(var(--color-primary-gradient-1-rgb)/71%);
-box-shadow: 0px 2px 13px 0px rgba(var(--color-primary-gradient-1-rgb)/71%);
--webkit-transition: 0.2s;
-transition: 0.2s;
-}
-
-.navs-link:hover {
-color: #fff;
-}
-
-.navs-link:hover::after {
-opacity: 1;
-}
-
-.h-btn:hover {
-background: linear-gradient(36.87deg, #1c70be 18.57%, #013294 80.26%);
-box-shadow: 0px 4px 35px 0px rgba(51,	156,	252, 0.45);
+  max-width: 1293px;
+  width: 90%;
 }
 
 .font-h1 {
-font-family: 'TTNorms-bold';
+  font-family: "TTNorms-bold";
 }
 
 .main_btn {
-background: linear-gradient(36.87deg, #339CFC 18.57%, #0046D6 80.26%);
-box-shadow: 0px 4px 35px 0px rgba(51,	156,	252, 0.45);
+  background: linear-gradient(36.87deg, #339cfc 18.57%, #0046d6 80.26%);
+  box-shadow: 0px 4px 35px 0px rgba(51, 156, 252, 0.45);
 }
 
 .main_btn:hover {
-background: linear-gradient(36.87deg, #1c70be 18.57%, #013294 80.26%);
+  background: linear-gradient(36.87deg, #1c70be 18.57%, #013294 80.26%);
 }
 
 .dash {
-background-color: rgba(136, 136, 148, 1);
+  background-color: rgba(136, 136, 148, 1);
 }
 
 .info__item {
-background: #151022B5;
+  background: #151022b5;
 }
 
 .footer_text {
-color: #FFFFFF4D;
+  color: #ffffff4d;
 }
 
 .layout_grid_3 {
-min-height: 100vh;
-display: grid;
-grid-template-rows: 10% 1fr 9%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 10% 1fr 9%;
 }
 
-
-
 .menu-open {
-display: none;
+  display: none;
 }
 
 @media (max-width: 768px) {
-body {
+  body {
     min-width: 100vw !important;
-}
+  }
 
-.widht {
+  .widht {
     width: 100vw;
-}
+  }
 
-.layout_img {
+  .layout_img {
     width: 100vw;
-}
+  }
 
-.wrapper {
+  .wrapper {
     max-width: 334px;
-}
+  }
 
-.main {
+  .main {
     flex-direction: column;
-}
-
-.navs {
-    display: none !important;
-}
-
-.h-screen {
-    height: 100% !important;
-}
-
-.menu-open {
-    display: flex;
-}
+  }
 }

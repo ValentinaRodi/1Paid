@@ -6,7 +6,7 @@ function LendingPage() {
  
   return (
     <>
-        <div className="bg-[url('/src/assets/images/lending_bg.png')] bg-no-repeat bg-cover bg-top h-screen layout_grid_3 w-screen">   
+        <div className="bg-[url('/src/assets/images/lending_bg.png')] bg-no-repeat bg-cover bg-top h-full layout_grid_3 w-screen">   
         <Header/>
         <section className="wrapper m-auto flex flex-wrap gap-10 justify-between pb-6 pt-6 md:pt-0">
             <div className="main-prim max-w-lg">
