@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import MainPage from "./pages/MainPage";
 import LendingPage from "./components/lending/Lending";
 import Registration from "./components/registration/Registration";
 import Newpass from "./components/newpass/Newpass";
@@ -17,7 +18,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<LendingPage />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="Lending" element={<LendingPage />} />
         <Route path="Registration" element={<Registration />} />
         <Route path="Newpass" element={<Newpass />} />
         <Route path="Newnik" element={<Newnik />} />

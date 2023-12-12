@@ -69,7 +69,9 @@ function Header() {
         </a>
       </nav>
       <div className="flex items-center">
-        <button className="vk bg-inherit bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-4 md:mr-5"></button>
+        <button className="vk bg-inherit bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-4 md:mr-5">
+          
+        </button>
         <button className="bg-[#E1E1F1] h-btn hover:text-white mr-0 xl:mr-3 h-9 md:h-11 w-18 lg:w-24 lg:w-28 rounded-xl uppercase text-xs md:text-base font-bold text-slate-700">
           Войти
         </button>
