@@ -783,7 +783,7 @@ function MainPage() {
                         </svg>
                       </div>
                     </button>
-                    <div className="notif-content rounded-xl bg-white w-[290px] py-6">
+                    <div className="notif-content hidden rounded-xl bg-white w-[290px] py-6">
                       <div className="notif-h px-3 flex items-center justify-between flex-wrap gap-2.5 font-secondary-bold text-sm">
                         <div className="notif-heading text-black">
                           <span>
@@ -989,7 +989,7 @@ function MainPage() {
                       </svg>
                     </div>
                   </div>
-                  <div className="h-profile-content rounded-[22px] min-w-[290px] py-3 bg-white shadow-sm overflow-hidden">
+                  <div className="h-profile-content hidden rounded-[22px] min-w-[290px] py-3 bg-white shadow-sm overflow-hidden">
                     <div className="np">
                       <nav className="np-nav">
                         <a
@@ -1561,7 +1561,7 @@ function MainPage() {
                       />
                     </svg>
                   </button>
-                  <div className="hm-profile-content rounded-xl bg-white w-[290px] py-3 lg:w-[320px]">
+                  <div className="hm-profile-content hidden rounded-xl bg-white w-[290px] py-3 lg:w-[320px]">
                     <div className="pmc h-14 rounded-full px-3 flex items-center gap-x-3 bg-white lg:mx-3 lg:bg-[#f6f9ff] lg:h-auto lg:min-h-[50px] lg:py-2">
                       <div className="pmc-avatar flex-shrink-0 rounded-full w-8 h-8 lg:w-10 lg:h-10">
                         <img
@@ -2215,7 +2215,7 @@ function MainPage() {
                     </div>
                   </div>
                 </div>
-                <div className="swiper-slide">
+                <div className="swiper-slide hidden">
                   <div className="prsl-item flex items-center justify-between gap-4 flex-wrap 2md:flex-col 2md:gap-2">
                     <div className="prsl-item-inf flex justify-center items-center gap-4 xl:gap-2 2md:flex-wrap">
                       <div className="prsl-item-pic w-[180px] flex justify-center items-center 3xl:w-[140px] xl:w-[120px] sm:w-[100px]">
@@ -2441,7 +2441,7 @@ function MainPage() {
                                 strokeLinecap="round"
                                 strokeDashoffset={70}
                                 fill="transparent"
-                                strokedasharray="94.2"
+                                strokeDasharray="94.2"
                               />
                               <defs>
                                 <linearGradient
@@ -2482,7 +2482,7 @@ function MainPage() {
                     </div>
                   </div>
                 </div>
-                <div className="swiper-slide">
+                <div className="swiper-slide hidden">
                   <div className="prsl-item flex items-center justify-between gap-4 flex-wrap 2md:flex-col 2md:gap-2">
                     <div className="prsl-item-inf flex justify-center items-center gap-4 xl:gap-2 2md:flex-wrap">
                       <div className="prsl-item-pic w-[180px] flex justify-center items-center 3xl:w-[140px] xl:w-[120px] sm:w-[100px]">
@@ -2749,7 +2749,7 @@ function MainPage() {
                     </div>
                   </div>
                 </div>
-                <div className="swiper-slide">
+                <div className="swiper-slide hidden">
                   <div className="prsl-item flex items-center justify-between gap-4 flex-wrap 2md:flex-col 2md:gap-2">
                     <div className="prsl-item-inf flex justify-center items-center gap-4 xl:gap-2 2md:flex-wrap">
                       <div className="prsl-item-pic w-[180px] flex justify-center items-center 3xl:w-[140px] xl:w-[120px] sm:w-[100px]">
@@ -4650,13 +4650,6 @@ function MainPage() {
         </a>
       </div>
       <div className="footer-soc flex gap-5 2md:flex-wrap 2md:justify-center">
-        <a className="shrink-0 leading-none duration-200" href="#">
-          <img
-            className="footer-soc-icon"
-            src={instagram}
-            alt="instagram"
-          />
-        </a>
         <a className="shrink-0 leading-none duration-200" href="#">
           <img
             className="footer-soc-icon"

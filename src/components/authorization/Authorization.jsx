@@ -1,12 +1,13 @@
+/* eslint-disable react/prop-types */
 import  './authorization.css';
 
-function Authorization() {
+function Authorization(props) {
  
   return (
-    <div className='absolute inset-0 bg-[rgba(6,9,18,0.8)] w-full h-full'>
-        <div className='absolute inset-x-2/4 translate-x-[-50%] translate-y-[30%] w-full sm:w-[540px] bg-[#F7F7FC] rounded-3xl px-10 pb-10 pt-5'>
+    <div >
+        <div className='absolute inset-x-2/4 translate-x-[-50%] translate-y-[30%] w-screen sm:w-[540px] bg-[#F7F7FC] rounded-3xl px-10 pb-10 pt-5'>
             <div className='flex justify-end'>
-                <button className='p-0 hover:bg-[rgba(241,245,249,1)] rounded-full'>
+                <button onClick={props.closeAuthorization} className='p-0 hover:bg-[rgba(241,245,249,1)] rounded-full'>
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1" y="1" width="38" height="38" rx="19" stroke="#DDE1F3" strokeWidth="2"/>
                         <path d="M13.2754 26.7246C12.9082 26.3551 12.9082 25.7584 13.2754 25.389L25.3333 13.3311C25.5648 13.0608 25.9283 12.9431 26.2743 13.0263C26.6203 13.1095 26.8905 13.3797 26.9737 13.7257C27.0569 14.0717 26.9392 14.4352 26.6689 14.6667L14.611 26.7246C14.2416 27.0918 13.6449 27.0918 13.2754 26.7246Z" fill="#DDE1F3"/>
@@ -45,8 +46,8 @@ function Authorization() {
                     </div>
                     <a className='text-check cursor-pointer hover:text-[#0046D6] text-center mb-2.5'>Забыли пароль?</a>
                 </div>
-                <div className='flex justify-between gap-1 items-center'>
-                    <button className="main_btn flex justify-center items-center gap-3  px-0 text-xs md:text-base rounded-xl xs:rounded-lg w-[230px] h-14 sm:h-[70px] text-white uppercase">
+                <div className='flex justify-between gap-2 items-center'>
+                    <button className="main_btn flex justify-center items-center gap-3 px-0 text-xs md:text-base rounded-xl xs:rounded-lg w-[230px] h-14 sm:h-[70px] text-white uppercase">
                         войти
                         <svg className='mb-2' width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M19.5 5.72727H7.5V2.86364C7.5 1.28209 6.15685 0 4.5 0H1.5C0.947715 0 0.5 0.427365 0.5 0.954545C0.5 1.48173 0.947715 1.90909 1.5 1.90909H4.5C5.05228 1.90909 5.5 2.33646 5.5 2.86364V5.72727H3.5C1.84315 5.72727 0.5 7.00937 0.5 8.59091V18.1364C0.5 19.7179 1.84315 21 3.5 21H19.5C21.1569 21 22.5 19.7179 22.5 18.1364V8.59091C22.5 7.00937 21.1569 5.72727 19.5 5.72727ZM20.5 18.1364C20.5 18.6636 20.0523 19.091 19.5 19.091H3.5C2.94772 19.091 2.5 18.6636 2.5 18.1364V8.59095C2.5 8.06377 2.94772 7.63641 3.5 7.63641H19.5C20.0523 7.63641 20.5 8.06377 20.5 8.59095V18.1364Z" fill="white"/>

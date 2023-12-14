@@ -1,12 +1,19 @@
 import "./header.css";
 import logo from "../../assets/images/logo.svg";
 import { useState} from 'react';
+import { useNavigate } from "react-router-dom";
+import Authorization from "../authorization/Authorization";
 
 
 function Header() {
   const [displayMenu, setClickedDisplayMenu] = useState('display');
   const [fonMenu, setClickedFonMenu] = useState('');
+  const navigate = useNavigate();
 
+  const openMainPage = () =>{
+    navigate('./MainPage', {replace: true})
+  }
+  
   const openBurgerMenu = () => {
     setClickedDisplayMenu('');
     setClickedFonMenu('header_fon');
@@ -17,8 +24,18 @@ function Header() {
     setClickedFonMenu('');
   }
 
+  const [authorization, setClickedAuthorization] = useState(null);
+
+  const openAuthorization = () =>{
+    setClickedAuthorization(true);
+  }
+
+  const closeAuthorization = () =>{
+    setClickedAuthorization(false);
+  }
+
   return (
-    <header className={fonMenu || "relative pt-4 wrapper flex items-center justify-between m-auto"}>
+    <header className={fonMenu || "relative pt-4 wrapper flex items-center justify-between m-auto mb-10 lg:mb-40 xl:mb-52 pt-[2%]"}>
       <div>
         <div className="logo 3xl:w-[150px] xl:w-[188px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
           <img className="logo-pic" src={logo} alt="1paid.ru" />
@@ -27,13 +44,14 @@ function Header() {
       <nav className="navs bg-[#FFFFFF0F] gap-7 flex flex-wrap px-8 py-3 mt-1 rounded-xl mr-6">
         <a
           className="navs-link text-[#78717e] font-medium text-sm uppercase"
-          href="#"
+          href='#'
+          onClick={openMainPage}
         >
           Главная
         </a>
         <a
           className="navs-link text-[#78717e] font-medium text-sm uppercase"
-          href="#"
+          href='#'
         >
           Каталог
         </a>
@@ -72,7 +90,7 @@ function Header() {
         <button className="vk bg-inherit bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-4 md:mr-5">
           
         </button>
-        <button className="bg-[#E1E1F1] h-btn hover:text-white mr-0 xl:mr-3 h-9 md:h-11 w-18 lg:w-24 lg:w-28 rounded-xl uppercase text-xs md:text-base font-bold text-slate-700">
+        <button onClick={openAuthorization} className="bg-[#E1E1F1] h-btn hover:text-white mr-0 xl:mr-3 h-9 md:h-11 w-18 lg:w-24 lg:w-28 rounded-xl uppercase text-xs md:text-base font-bold text-slate-700">
           Войти
         </button>
       </div>
@@ -126,7 +144,7 @@ function Header() {
           </a>
         </nav>
         <div className="pt-8">
-          <bitton onClick={closeBurgerMenu}>
+          <button onClick={closeBurgerMenu}>
             <svg
               width="20"
               height="21"
@@ -145,9 +163,10 @@ function Header() {
                 />
               </g>
             </svg>
-          </bitton>
+          </button>
         </div>
       </div>
+      {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization}/>}
     </header>
   );
 }

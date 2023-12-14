@@ -1,9 +1,9 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
-import LendingPage from "./components/lending/Lending";
+import LendingPage from "./pages/lending/Lending";
 import Registration from "./components/registration/Registration";
-import Newpass from "./components/newpass/Newpass";
+import Newpass from "./components/newpass/newpass";
 import Newnik from "./components/newnik/Newnik";
 import Recpass from "./components/recpass/Recpass";
 import Authorization from "./components/authorization/Authorization";
@@ -18,8 +18,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="Lending" element={<LendingPage />} />
+        <Route path="/" element={<LendingPage />} />
+        <Route path="MainPage" element={<MainPage />} />
         <Route path="Registration" element={<Registration />} />
         <Route path="Newpass" element={<Newpass />} />
         <Route path="Newnik" element={<Newnik />} />
