@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./header.css";
 import logo from "../../assets/images/logo.svg";
 import { useState} from 'react';
@@ -5,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Authorization from "../authorization/Authorization";
 
 
-function Header() {
+function Header(props) {
   const [displayMenu, setClickedDisplayMenu] = useState('display');
   const [fonMenu, setClickedFonMenu] = useState('');
   const navigate = useNavigate();
@@ -28,14 +29,16 @@ function Header() {
 
   const openAuthorization = () =>{
     setClickedAuthorization(true);
+    props.addFon();
   }
 
   const closeAuthorization = () =>{
     setClickedAuthorization(false);
+    props.addFon();
   }
 
   return (
-    <header className={fonMenu || "relative pt-4 wrapper flex items-center justify-between m-auto mb-10 lg:mb-40 xl:mb-52 pt-[2%]"}>
+    <header className={fonMenu || "relative pt-4 wrapper flex items-center justify-between m-auto mb-10 lg:mb-40 xl:mb-52 pt-[10%] md:pt-[2%]"}>
       <div>
         <div className="logo 3xl:w-[150px] xl:w-[188px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
           <img className="logo-pic" src={logo} alt="1paid.ru" />
