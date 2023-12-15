@@ -99,12 +99,13 @@ function Header(props) {
         <span className="w-[30px] h-[3px] bg-white rounded-full"></span>
         <span className="w-[30px] h-[3px] bg-white rounded-full"></span>
       </button>
-      <div className={displayMenu || "absolute inset-0 z-10 flex justify-center mt-9"}>
+      <div className={displayMenu || "absolute inset-0 w-[110%] z-10 flex justify-center mt-9"}>
         <div className="wrapper flex justify-between">
         <nav className="gap-7 flex flex-col pt-11 rounded-xl">
           <a
             className="navs-link text-[#78717e] w-[40%] font-medium text-base uppercase"
             href="#"
+            onClick={openMainPage}
           >
             Главная
           </a>
