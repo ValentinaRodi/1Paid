@@ -30,7 +30,7 @@ function App() {
         <Route path="AddBalance" element={<AddBalance />} />
         <Route path="OutputFunds" element={<OutputFunds />} />
         <Route path="AddProduct" element={<AddProduct />} />
-        <Route path="MakeBuy" element={<MakeBuy />} />
+        <Route path="/MakeBuy" element={<MakeBuy />} />
       </Routes>
     </div>
   );
