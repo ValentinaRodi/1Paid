@@ -1,0 +1,85 @@
+.family-bold {
+    font-family: "TTNorms-bold";
+}
+
+.custom-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.custom-checkbox+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+  }
+  .custom-checkbox+label::before {
+    content: '';
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 2px solid #9595AE;
+    border-radius: 3px;
+    margin-right: 15px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+.custom-checkbox:checked+label::before {
+    border-color: #0B0C10;
+    background-color: #0B0C10;
+    background-image: url("../../assets/images/check.svg");
+}
+
+.inst {
+    background-image: url(../../assets/images/ins.svg);
+    box-shadow: 0px 5px 15px 0px rgba(51,	156,	252, 0.45);
+    background-size: 80px 80px !important;
+}
+
+.gmail {
+    background-image: url(../../assets/images/gmail.svg);
+    background-size: 80px 80px !important;
+}
+
+.p-vk {
+    background-image: url(../../assets/images/p-vk.svg);
+    background-size: 80px 80px !important;
+}
+
+
+.input-wrapper {
+    position:relative;
+}
+  
+.input-label {
+    display: block;
+}
+  
+  
+.label {
+    position: absolute;
+    transition: all .2s ease;
+    bottom: 25px;
+    pointer-events: none;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.check {
+    line-height: 20px !important;
+}
+
+.input-wrapper .input:not(:placeholder-shown)+.label,
+.input-wrapper .input:focus+.label{
+    bottom: 55%;
+    font-size: 12px;
+    text-transform: none;
+}

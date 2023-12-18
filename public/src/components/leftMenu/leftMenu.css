@@ -1,0 +1,7 @@
+.cm-h {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    height: 150px;
+    background: transparent url(../../assets/images/header-shape.bc505478.svg) no-repeat;
+    background-size: cover;
+}
