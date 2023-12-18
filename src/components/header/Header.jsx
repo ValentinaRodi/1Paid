@@ -3,7 +3,7 @@ import "./header.css";
 import logo from "../../assets/images/logo.svg";
 import { useState} from 'react';
 import { useNavigate } from "react-router-dom";
-import Authorization from "../authorization/Authorization";
+
 
 
 function Header(props) {
@@ -25,20 +25,12 @@ function Header(props) {
     setClickedFonMenu('');
   }
 
-  const [authorization, setClickedAuthorization] = useState(null);
+  
 
-  const openAuthorization = () =>{
-    setClickedAuthorization(true);
-    props.addFon();
-  }
-
-  const closeAuthorization = () =>{
-    setClickedAuthorization(false);
-    props.addFon();
-  }
+ 
 
   return (
-    <header className={fonMenu || "relative wrapper flex items-center justify-between m-auto mb-10 lg:mb-40 xl:mb-52 pt-[10%] md:pt-[2%]"}>
+    <header className={fonMenu || "relative wrapper flex h-[120px] md:h-[13%] mb-[2%] md:mb-0 items-center justify-between self-center"}>
       <div>
         <div className="logo 3xl:w-[150px] xl:w-[188px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
           <img className="logo-pic" src={logo} alt="1paid.ru" />
@@ -91,7 +83,7 @@ function Header(props) {
       </nav>
       <div className="flex items-center">
         <button className="vk bg-inherit bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-4 md:mr-5"></button>
-        <button onClick={openAuthorization} className="bg-[#E1E1F1] h-btn hover:text-white mr-0 xl:mr-3 h-9 md:h-11 w-18 lg:w-24 lg:w-28 rounded-xl uppercase text-xs md:text-base font-bold text-slate-700">
+        <button onClick={props.openAuthorization} className="bg-[#E1E1F1] h-btn hover:text-white mr-0 xl:mr-3 h-9 md:h-11 w-18 lg:w-24 lg:w-28 rounded-xl uppercase text-xs md:text-base font-bold text-slate-700">
           Войти
         </button>
       </div>
@@ -170,7 +162,6 @@ function Header(props) {
         </div>
         </div>
       </div>
-      {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization}/>}
     </header>
   );
 }
