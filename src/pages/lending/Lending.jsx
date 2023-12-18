@@ -4,11 +4,13 @@ import Footer from '../../components/footer/Footer';
 import Registration from '../../components/registration/Registration';
 import { useState} from 'react';
 import Authorization from "../../components/authorization/Authorization";
+import RecPass from '../../components/recpass/Recpass';
 
 function LendingPage() {
     const [registration, setClickedRegistration] = useState(false);
     const [fon, setAddFon] = useState(false);
     const [authorization, setClickedAuthorization] = useState(null);
+    const [recPass, setClickedRecovery] = useState(null);
 
     const addFon = () =>{
         if(!fon) {
@@ -16,7 +18,7 @@ function LendingPage() {
         } else {
             setAddFon(false);
         }
-    }
+    };
 
     const openRegistration = () =>{
         setClickedRegistration(true);
@@ -26,17 +28,27 @@ function LendingPage() {
     const closeRegistration = () =>{
         setClickedRegistration(false);
         setAddFon(false);
-    }
+    };
 
     const openAuthorization = () =>{
         setClickedAuthorization(true);
-        addFon();
-      }
+        addFon(true);
+    };
     
-      const closeAuthorization = () =>{
+    const closeAuthorization = () =>{
         setClickedAuthorization(false);
-        addFon();
-      }
+        addFon(false);
+    };
+
+    const openRecoveryPassword = () =>{
+        setClickedAuthorization(false);
+        setClickedRecovery(true);
+    };
+
+    const closeRecPass = () =>{
+        setClickedRecovery(false);
+        addFon(false);
+    };
 
     return (
     <>
@@ -127,7 +139,8 @@ function LendingPage() {
         </div>
         {(!fon) ? null : <div className='absolute h-full w-full z-10 inset-0 bg-[rgba(6,9,18,0.8)]'></div>}
         {(!registration) ? null : <Registration closeRegistration={closeRegistration}/>}
-        {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization}/>}
+        {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization} openRecoveryPassword={openRecoveryPassword} />}
+        {(!recPass) ? null : <RecPass closeRecPass={closeRecPass}/>}
     </>
   );
 }
