@@ -4,7 +4,7 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import  './authorization.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function Authorization(props) {
   const [email, setEmail] = useState('');
@@ -77,9 +77,9 @@ function Authorization(props) {
     }
 
     const formData = {
-      email,
-      password,
-      remember: remember ? 1 : 0
+      'email': email,
+      'password': password,
+      'remember': remember ? 1 : 0
     };
     
     fetch('/login', {
@@ -108,7 +108,7 @@ function Authorization(props) {
 
   return (
     <div className='absolute inset-x-0 inset-y-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0'>
-        <div className='z-20  bg-[#F7F7FC] w-screen min-[540px]:w-[540px] rounded-3xl px-10 pb-10 pt-5'>
+        <div className='z-20 bg-[#F7F7FC] w-screen min-[540px]:w-[540px] rounded-3xl px-10 pb-10 pt-5'>
             <div className='flex justify-end'>
                 <button onClick={props.closeAuthorization} className='p-0 hover:bg-[rgba(241,245,249,1)] rounded-full'>
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -121,7 +121,7 @@ function Authorization(props) {
             <form className='mt-[-10px] mb-6'>
                 <h1 className='family-bold text-black font-bold text-[28px] mb-11'>Авторизация</h1>
                 <div className={`${errorEmail} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6`}>
-                    <input onChange={handleEmailChange} value={email} type="text" name="name" id='name' placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
+                    <input onChange={handleEmailChange} value={email} type="email" name="name" id='name' placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
                     <label htmlFor="name" className='label input-label text-grey'>Email</label>
                 </div>
                 <div className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6 flex items-center justify-between`}>
@@ -145,7 +145,7 @@ function Authorization(props) {
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clipPath="url(#clip0_160_2460)">
                         <path d="M14.2872 8.87019L14.6162 8.81033C14.3648 7.83509 13.8993 6.92569 13.2513 6.14929L12.9585 5.79847L13.2816 5.47536L14.3634 4.39358L14.1273 4.15743L13.0455 5.23971L12.7225 5.56292L12.3716 5.27017C11.7727 4.77053 11.0926 4.37723 10.3609 4.10735L9.93294 3.94953L10.0509 3.50895L10.4463 2.03192L10.1247 1.94584L9.72882 3.42302L9.61079 3.86339L9.16142 3.78639C8.39222 3.65458 7.60619 3.65458 6.83698 3.78639L6.38762 3.86339L6.26958 3.42302L5.87372 1.94608L5.55213 2.03235L5.94752 3.50891L6.06551 3.94952L5.63755 4.10735C4.9058 4.37723 4.22572 4.77053 3.62685 5.27017L3.27596 5.56292L2.9529 5.23971L1.87112 4.15743L1.63506 4.39349L2.71734 5.47527L3.04068 5.79846L2.74767 6.14937C2.09955 6.92559 1.63394 7.83482 1.38224 8.80993L1.7113 8.86996C2.44227 6.08017 4.97971 4.02158 7.9992 4.02158C11.0181 4.02158 13.5562 6.08026 14.2872 8.87019Z" stroke="#9595AE"/>
-                        <path d="M8 10.9268C9.10457 10.9268 10 10.0313 10 8.92676C10 7.82219 9.10457 6.92676 8 6.92676C6.89543 6.92676 6 7.82219 6 8.92676C6 10.0313 6.89543 10.9268 8 10.9268Z" stroke="#9595AE" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 10.9268C9.10457 10.9268 10 10.0313 10 8.92676C10 7.82219 9.10457 6.92676 8 6.92676C6.89543 6.92676 6 7.82219 6 8.92676C6 10.0313 6.89543 10.9268 8 10.9268Z" stroke="#9595AE" strokeLinecap="round" strokeLinejoin="round"/>
                         </g>
                         <defs>
                         <clipPath id="clip0_160_2460">
@@ -160,7 +160,7 @@ function Authorization(props) {
                         <input onChange={handleRememberChange} value={remember} type="checkbox" id="assent" name="assent" className='custom-checkbox'/>
                         <label htmlFor="assent" className='check text-sm sm:text-base text-check'>Запомнить меня</label>
                     </div>
-                    <button onClick={()=>{props.closeAuthorization()}} className='text-check cursor-pointer hover:text-[#0046D6] text-center p-0 h-[20px] text-sm sm:text-base'>Забыли пароль?</button>
+                    <button onClick={()=>{props.openRecoveryPassword()}} className='text-check cursor-pointer hover:text-[#0046D6] text-center p-0 h-[20px] text-sm sm:text-base'>Забыли пароль?</button>
                 </div>
                 <div className='flex justify-between gap-2 items-center'>
                     <button onClick={handleSubmit} className="main_btn flex justify-center items-center gap-3 px-0 text-xs md:text-base rounded-xl xs:rounded-lg w-[230px] h-14 sm:h-[70px] text-white uppercase">
