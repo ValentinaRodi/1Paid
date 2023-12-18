@@ -4,7 +4,7 @@ import  './registration.css';
 function Registration(props) {
     return (
     <div>
-        <div className='absolute z-20 inset-x-2/4 translate-x-[-50%] translate-y-[-110%] md:translate-y-[-85%] w-full sm:w-[540px] bg-[#F7F7FC] rounded-3xl px-10 pb-10 pt-5'>
+        <div className='absolute z-20 inset-x-2/4 translate-x-[-50%] top-[8%] w-full sm:w-[540px] bg-[#F7F7FC] rounded-3xl px-10 pb-10 pt-5'>
             <div className='flex justify-end'>
                 <button onClick={props.closeRegistration} className='p-0 hover:bg-[rgba(241,245,249,1)] rounded-full'>
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
