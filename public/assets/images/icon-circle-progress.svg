@@ -1,0 +1,16 @@
+<svg class="svg" width="50" height="50" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg)">
+<circle class="placeholder" r="15" cx="25" cy="25" fill="transparent" stroke=#ffffff opacity=0.25 stroke-width=3 stroke-dasharray="94.2" stroke-dashoffset="0">
+</circle>
+<circle class="progress" r="15" cx="25" cy="25" stroke="url(#primary)" stroke-width=4 stroke-linecap="round" stroke-dashoffset="70" fill="transparent" stroke-dasharray="94.2">
+</circle>
+<defs>
+<linearGradient id="primary" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+<stop stop-color="#339CFC"/>
+<stop offset="1" stop-color="#0046D6"/>
+</linearGradient>
+<linearGradient id="secondary" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+<stop stop-color="#8CD23C"/>
+<stop offset="1" stop-color="#417A00"/>
+</linearGradient>
+</defs>
+</svg>
