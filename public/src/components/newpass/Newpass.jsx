@@ -34,3 +34,4 @@ function NewPass() {
 }
 
 export default NewPass;
+

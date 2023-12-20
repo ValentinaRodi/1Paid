@@ -5,7 +5,6 @@ import Registration from '../../components/registration/Registration';
 import { useState} from 'react';
 import Authorization from "../../components/authorization/Authorization";
 import RecPass from '../../components/recpass/Recpass';
-import iconStar from "../../assets/images/icon-star.svg";
 
 function LendingPage() {
     const [registration, setClickedRegistration] = useState(false);
@@ -35,7 +34,7 @@ function LendingPage() {
         setClickedAuthorization(true);
         addFon(true);
     };
-
+    
     const closeAuthorization = () =>{
         setClickedAuthorization(false);
         addFon(false);
@@ -53,7 +52,7 @@ function LendingPage() {
 
     return (
     <>
-        <div className="relative flex h-screen flex-col justify-between bg-[url('/src/assets/images/lending_bg.png')] bg-no-repeat bg-cover bg-top w-screen">
+        <div className="relative flex h-screen flex-col justify-between bg-[url('/src/assets/images/lending_bg.png')] bg-no-repeat bg-cover bg-top w-screen">        
             <Header addFon={addFon} openAuthorization={openAuthorization}/>
             <section className="wrapper h-[80%] items-center self-center flex justify-between ">
                 <div className='w-full flex flex-wrap gap-14 justify-between '>
@@ -69,7 +68,20 @@ function LendingPage() {
                         <h3 className="mb-4 md:mb-12 uppercase tracking-wide text-lg lg:text-2xl xl:text-[27px] text-white font-bold">Почему стоит выбрать нас</h3>
                         <div className="info__item mb-4 md:mb-9 h-28 p-6 flex rounded-lg md:rounded-3xl items-center gap-5">
                         <div>
-                            <img src={iconStar} alt="star"/>
+                            <svg className="w-[40px] h-[38px] xl:w-[69px] xl:h-[66px]" width="69" height="66" viewBox="0 0 69 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.1" d="M34.5004 3.13805L40.8347 22.6798C41.4668 24.63 43.2835 25.9509 45.3336 25.9509L65.8439 25.9509L49.241 38.0425C47.5874 39.2468 46.8955 41.3778 47.5263 43.3238L53.8657 62.8813L37.2846 50.8055C35.6252 49.597 33.3756 49.597 31.7161 50.8055L15.135 62.8813L21.4744 43.3238C22.1052 41.3778 21.4133 39.2468 19.7597 38.0425L3.15682 25.9509H23.6671C25.7172 25.9509 27.5339 24.63 28.1661 22.6798L34.5004 3.13805Z" stroke="url(#paint0_linear_1400_31568)" strokeWidth="4.72941"/>
+                                <path d="M33.748 23.3943C33.9792 22.6582 35.0208 22.6582 35.252 23.3943L37.5821 30.8127C37.6852 31.1412 37.9897 31.3647 38.3341 31.3647H45.9296C46.6867 31.3647 47.0084 32.3282 46.4032 32.7831L40.2128 37.4358C39.9459 37.6364 39.8343 37.9835 39.9344 38.3021L42.288 45.7954C42.5176 46.5264 41.6748 47.1221 41.0624 46.6617L34.9736 42.0854C34.6931 41.8746 34.3069 41.8746 34.0264 42.0854L27.9376 46.6617C27.3252 47.1221 26.4824 46.5264 26.712 45.7954L29.0656 38.3021C29.1657 37.9835 29.0541 37.6364 28.7872 37.4358L22.5968 32.7831C21.9916 32.3282 22.3133 31.3647 23.0704 31.3647H30.6659C31.0103 31.3647 31.3148 31.1412 31.4179 30.8127L33.748 23.3943Z" stroke="url(#paint1_linear_1400_31568)" strokeWidth="2.36471"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_1400_31568" x1="12.3581" y1="64.2745" x2="54.5573" y2="8.14337" gradientUnits="userSpaceOnUse">
+                                <stop stopColor="#B139FE"/>
+                                <stop offset="1" stopColor="#1E61EB"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_1400_31568" x1="26.5909" y1="46.3636" x2="42.2763" y2="26.1469" gradientUnits="userSpaceOnUse">
+                                <stop stopColor="#B139FE"/>
+                                <stop offset="1" stopColor="#1E61EB"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>                
                         </div>
                         <div>
                         <p className="text-white text-base xl:text-xl mb-2">Гарантия безопасной сделки</p>
@@ -78,7 +90,20 @@ function LendingPage() {
                         </div>
                         <div className="info__item h-28  mb-4 md:mb-9 p-6 flex rounded-lg md:rounded-3xl items-center gap-5">
                             <div>
-                                <img src={iconStar} alt="star"/>
+                                <svg  className="w-[40px] h-[38px] xl:w-[69px] xl:h-[66px]" width="69" height="66" viewBox="0 0 69 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.1" d="M34.5004 3.13805L40.8347 22.6798C41.4668 24.63 43.2835 25.9509 45.3336 25.9509L65.8439 25.9509L49.241 38.0425C47.5874 39.2468 46.8955 41.3778 47.5263 43.3238L53.8657 62.8813L37.2846 50.8055C35.6252 49.597 33.3756 49.597 31.7161 50.8055L15.135 62.8813L21.4744 43.3238C22.1052 41.3778 21.4133 39.2468 19.7597 38.0425L3.15682 25.9509H23.6671C25.7172 25.9509 27.5339 24.63 28.1661 22.6798L34.5004 3.13805Z" stroke="url(#paint0_linear_1400_31568)" strokeWidth="4.72941"/>
+                                    <path d="M33.748 23.3943C33.9792 22.6582 35.0208 22.6582 35.252 23.3943L37.5821 30.8127C37.6852 31.1412 37.9897 31.3647 38.3341 31.3647H45.9296C46.6867 31.3647 47.0084 32.3282 46.4032 32.7831L40.2128 37.4358C39.9459 37.6364 39.8343 37.9835 39.9344 38.3021L42.288 45.7954C42.5176 46.5264 41.6748 47.1221 41.0624 46.6617L34.9736 42.0854C34.6931 41.8746 34.3069 41.8746 34.0264 42.0854L27.9376 46.6617C27.3252 47.1221 26.4824 46.5264 26.712 45.7954L29.0656 38.3021C29.1657 37.9835 29.0541 37.6364 28.7872 37.4358L22.5968 32.7831C21.9916 32.3282 22.3133 31.3647 23.0704 31.3647H30.6659C31.0103 31.3647 31.3148 31.1412 31.4179 30.8127L33.748 23.3943Z" stroke="url(#paint1_linear_1400_31568)" strokeWidth="2.36471"/>
+                                    <defs>
+                                    <linearGradient id="paint0_linear_1400_31568" x1="12.3581" y1="64.2745" x2="54.5573" y2="8.14337" gradientUnits="userSpaceOnUse">
+                                    <stop stopColor="#B139FE"/>
+                                    <stop offset="1" stopColor="#1E61EB"/>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_1400_31568" x1="26.5909" y1="46.3636" x2="42.2763" y2="26.1469" gradientUnits="userSpaceOnUse">
+                                    <stop stopColor="#B139FE"/>
+                                    <stop offset="1" stopColor="#1E61EB"/>
+                                    </linearGradient>
+                                    </defs>
+                                </svg>                
                             </div>
                             <div>
                             <p className="text-white text-base md:text-xl mb-2">Розыгрыши</p>
@@ -87,7 +112,20 @@ function LendingPage() {
                         </div>
                         <div className="info__item h-28 p-6 flex rounded-lg md:rounded-3xl items-center gap-5">
                             <div>
-                                <img src={iconStar} alt="star"/>
+                            <svg  className="w-[40px] h-[38px] xl:w-[69px] xl:h-[66px]" width="69" height="66" viewBox="0 0 69 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.1" d="M34.5004 3.13805L40.8347 22.6798C41.4668 24.63 43.2835 25.9509 45.3336 25.9509L65.8439 25.9509L49.241 38.0425C47.5874 39.2468 46.8955 41.3778 47.5263 43.3238L53.8657 62.8813L37.2846 50.8055C35.6252 49.597 33.3756 49.597 31.7161 50.8055L15.135 62.8813L21.4744 43.3238C22.1052 41.3778 21.4133 39.2468 19.7597 38.0425L3.15682 25.9509H23.6671C25.7172 25.9509 27.5339 24.63 28.1661 22.6798L34.5004 3.13805Z" stroke="url(#paint0_linear_1400_31568)" strokeWidth="4.72941"/>
+                                <path d="M33.748 23.3943C33.9792 22.6582 35.0208 22.6582 35.252 23.3943L37.5821 30.8127C37.6852 31.1412 37.9897 31.3647 38.3341 31.3647H45.9296C46.6867 31.3647 47.0084 32.3282 46.4032 32.7831L40.2128 37.4358C39.9459 37.6364 39.8343 37.9835 39.9344 38.3021L42.288 45.7954C42.5176 46.5264 41.6748 47.1221 41.0624 46.6617L34.9736 42.0854C34.6931 41.8746 34.3069 41.8746 34.0264 42.0854L27.9376 46.6617C27.3252 47.1221 26.4824 46.5264 26.712 45.7954L29.0656 38.3021C29.1657 37.9835 29.0541 37.6364 28.7872 37.4358L22.5968 32.7831C21.9916 32.3282 22.3133 31.3647 23.0704 31.3647H30.6659C31.0103 31.3647 31.3148 31.1412 31.4179 30.8127L33.748 23.3943Z" stroke="url(#paint1_linear_1400_31568)" strokeWidth="2.36471"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_1400_31568" x1="12.3581" y1="64.2745" x2="54.5573" y2="8.14337" gradientUnits="userSpaceOnUse">
+                                <stop stopColor="#B139FE"/>
+                                <stop offset="1" stopColor="#1E61EB"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_1400_31568" x1="26.5909" y1="46.3636" x2="42.2763" y2="26.1469" gradientUnits="userSpaceOnUse">
+                                <stop stopColor="#B139FE"/>
+                                <stop offset="1" stopColor="#1E61EB"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>                
                             </div>
                             <div>
                                 <p className="text-white text-base md:text-xl mb-2">Полезная информация</p>
@@ -97,7 +135,7 @@ function LendingPage() {
                     </div>
                 </div>
             </section>
-            <Footer />
+            <Footer />  
         </div>
         {(!fon) ? null : <div className='absolute h-full w-full z-10 inset-0 bg-[rgba(6,9,18,0.8)]'></div>}
         {(!registration) ? null : <Registration closeRegistration={closeRegistration}/>}
@@ -108,3 +146,4 @@ function LendingPage() {
 }
 
 export default LendingPage;
+
