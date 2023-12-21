@@ -15,4 +15,8 @@ class MainController extends Controller
         return view('index');
     }
 
+    function landing() {
+        return view('landing');
+    }
+
 }
