@@ -6,6 +6,9 @@ module.exports = {
         main: [
             path.resolve(__dirname, "../js/index.jsx")
         ],
+        landing: [
+            path.resolve(__dirname, "../js/landing.jsx")
+        ]
     },
     mode: "development",
     output: {

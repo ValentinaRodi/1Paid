@@ -7,8 +7,8 @@
     "test": "SET BABEL_ENV=test&&jest --config jest.config.js",
     "test:watch": "SET BABEL_ENV=test&&jest --watch",
     "webpack-dev-server": "webpack-dev-server --inline --hot --progress --watch",
-    "build": "webpack --config webpack/webpack.config.prod.js ",
-    "start:dev": "webpack --config webpack/webpack.config.js --progress --watch",
+    "build": "webpack --config webpack/webpack.config.prod.js --progress",
+    "dev": "webpack --config webpack/webpack.config.js --progress --watch",
     "start": "webpack --config webpack/webpack.config.js --progress"
   },
   "keywords": [],

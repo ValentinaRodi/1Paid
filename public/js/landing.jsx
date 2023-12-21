@@ -1,6 +1,8 @@
+import './index.less'
 import "./App.less";
-import { Routes, Route } from "react-router-dom";
-import MainPage from "./pages/MainPage";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LendingPage from "./pages/lending/Lending";
 import Registration from "./components/registration/Registration";
 import Newnik from "./components/newnik/Newnik";
@@ -17,8 +19,7 @@ function Landing() {
   return (
     <div className="Landing">
       <Routes>
-        <Route path="/" element={<LendingPage />} />
-        <Route path="MainPage" element={<MainPage />} />
+        <Route path="/landing" element={<LendingPage />} />
         <Route path="Registration" element={<Registration />} />
         <Route path="Newnik" element={<Newnik />} />
         <Route path="RecPass" element={<Recpass />} />
@@ -34,4 +35,11 @@ function Landing() {
   );
 }
 
-export default Landing;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Landing />
+    </BrowserRouter>
+  </React.StrictMode>,
+)
+
