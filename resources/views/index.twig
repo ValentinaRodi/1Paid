@@ -8,8 +8,7 @@
         <link rel="icon" href="favicon.png">
     </head>
     <body>
-        <div id="root">
-            <div class="layout">
+            <div class="layout w-screen">
                 <div class="layout-grid">
                     {% include 'left-menu.twig' %}
                     <!-- PAGE -->
@@ -164,23 +163,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="layout-h px-9 pt-6 3xl:px-4 3xl:pt-4 lg:p-0">
+                        <div class="layout-h">
                             <div class="h-wrapper">
                                 <header class="h">
                                     <a class="h-backlink" href="#">
                                         <img src="/img/icon-btn-icon.svg" alt="btn-icon">
                                     </a>
-                                    <nav class="nav flex gap-x-5 gap-y-5 flex-wrap mx-4 3xl:gap-x-2.5 lg:flex-col lg:items-start lg:gap-y-8">
-                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30" href="#">Главная</a>
-                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30" href="#">Каталог</a>
-                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30" href="#">Топ юзеров</a>
-                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30" href="#">Отзывы</a>
-                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30" href="#">Гарантии</a>
-                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30" href="#">Случайные предметы</a>
-                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30" href="#">Форум</a>
+                                    <nav class="hnav flex gap-x-5 gap-y-5 flex-wrap mx-4">
+                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Главная</a>
+                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Каталог</a>
+                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Топ юзеров</a>
+                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Отзывы</a>
+                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Гарантии</a>
+                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Случайные предметы</a>
+                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Форум</a>
                                     </nav>
                                     <div class="h-bar ml-auto flex items-center gap-x-3">
-                                        <button class="h-openmenu menu-open">
+                                        <button class="h-openmenu menu-open menu-open-btn">
                                             <span>
                                             </span>
                                             <span>
@@ -265,7 +264,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="h-profile min-w-[300px]">
+                                        <div class="h-profile w-[320px]">
                                             <div class="pmc h-14 rounded-full px-3 flex items-center gap-x-3 bg-white lg:mx-3 lg:bg-[#f6f9ff] lg:h-auto lg:min-h-[50px] lg:py-2">
                                                 <div class="pmc-avatar flex-shrink-0 rounded-full w-8 h-8 lg:w-10 lg:h-10">
                                                     <img class="w-full h-full object-cover" src="/img/avatar-example-2.9f0c98b7.png" alt="user avatar">
@@ -279,7 +278,7 @@
                                                         <img class="pmc-chip-icon w-4 h-4" src="/img/icon-plus-blue.a12eb4f0.svg" alt="picture">
                                                     </a>
                                                 </div>
-                                                <div class="pmc-card-arrow h-profile-btn-open ml-auto text-[#D6D9EA] cursor-pointer hover:text-black lg:hidden">
+                                                <div class="pmc-card-arrow h-profile-btn-open ml-auto text-[#D6D9EA] cursor-pointer hover:text-black">
                                                     <img src="/img/icon-pmc-card-arrow.svg" alt="navpin-plate-icon">
                                                 </div>
                                             </div>
@@ -517,166 +516,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="layout-b pb-4 px-9 3xl:px-4 min-w-0 sm:px-3">
+                        <div class="layout-b pb-4 px-4 xl:px-9 min-w-0">
                             <div class="prsl my-6 rounded-md min-h-[100px] py-3 3sm:pb-6 sm:my-3">
                                 <div class="swiper prsl-slider w-full h-full">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="prsl-item flex items-center justify-between gap-4 flex-wrap 2md:flex-col 2md:gap-2">
-                                                <div class="prsl-item-inf flex justify-center items-center gap-4 xl:gap-2 2md:flex-wrap">
-                                                    <div class="prsl-item-pic w-[180px] flex justify-center items-center 3xl:w-[140px] xl:w-[120px] sm:w-[100px]">
-                                                        <img class="w-full" src="/img/raffle.161f3412.png" alt="raffle">
-                                                    </div>
-                                                    <div class="prsl-item-award flex items-center gap-2 sm:gap-1">
-                                                        <div class="prsl-item-award-pic flex-shrink-0 w-16 h-16 flex justify-center items-center 3md:w-12 3md:h-12">
-                                                            <img class="max-w-full max-h-full" src="/img/icon-game-rank-1.476389b0.svg" alt="award">
-                                                        </div>
-                                                        <div class="prsl-item-award-inf">
-                                                            <div class="prsl-item-award-title font-secondary-bold text-base text-white 3md:text-sm sm:text-xs">Аккаунт Warface</div>
-                                                            <div class="prsl-item-award-subtitle mt-1.5 font-secondary-bold text-sm text-white/40 3md:mt-0 3md:text-xs sm:text-[10px]">25 Ранг</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="prsl-item-bar flex justify-center items-center gap-6 3xl:gap-3 2md:flex-row-reverse 3sm:gap-1">
-                                                    <a class="prsl-item-btn btn btn-primary rounded w-[180px] h-10 justify-center px-1 3xl:w-[150px] sm:max-w-[130px] sm:w-full sm:h-8 sm:px-2" href="#">
-                                                        <div class="btn-text font-secondary-med text-[15px] text-white 3xl:text-sm 3sm:text-xs">Присоединиться</div>
-                                                    </a>
-                                                    <div class="timer flex items-center gap-1">
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
-                                                            <div class="circle-progress" data-percent="80" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
-                                                            </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
-                                                                <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">24</div>
-                                                                <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">часа</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
-                                                            <div class="circle-progress" data-percent="60" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
-                                                            </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
-                                                                <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">44</div>
-                                                                <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">минуты</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
-                                                            <div class="circle-progress" data-percent="5" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
-                                                            </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
-                                                                <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">05</div>
-                                                                <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">секунд</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="prsl-item flex items-center justify-between gap-4 flex-wrap 2md:flex-col 2md:gap-2">
-                                                <div class="prsl-item-inf flex justify-center items-center gap-4 xl:gap-2 2md:flex-wrap">
-                                                    <div class="prsl-item-pic w-[180px] flex justify-center items-center 3xl:w-[140px] xl:w-[120px] sm:w-[100px]">
-                                                        <img class="w-full" src="/img/raffle.161f3412.png" alt="raffle">
-                                                    </div>
-                                                    <div class="prsl-item-award flex items-center gap-2 sm:gap-1">
-                                                        <div class="prsl-item-award-pic flex-shrink-0 w-16 h-16 flex justify-center items-center 3md:w-12 3md:h-12">
-                                                            <img class="max-w-full max-h-full" src="/img/icon-game-rank-1.476389b0.svg" alt="award">
-                                                        </div>
-                                                        <div class="prsl-item-award-inf">
-                                                            <div class="prsl-item-award-title font-secondary-bold text-base text-white 3md:text-sm sm:text-xs">Аккаунт Warface</div>
-                                                            <div class="prsl-item-award-subtitle mt-1.5 font-secondary-bold text-sm text-white/40 3md:mt-0 3md:text-xs sm:text-[10px]">25 Ранг</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="prsl-item-bar flex justify-center items-center gap-6 3xl:gap-3 2md:flex-row-reverse 3sm:gap-1">
-                                                    <a class="prsl-item-btn btn btn-primary rounded w-[180px] h-10 justify-center px-1 3xl:w-[150px] sm:max-w-[130px] sm:w-full sm:h-8 sm:px-2" href="#">
-                                                        <div class="btn-text font-secondary-med text-[15px] text-white 3xl:text-sm 3sm:text-xs">Присоединиться</div>
-                                                    </a>
-                                                    <div class="timer flex items-center gap-1">
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
-                                                            <div class="circle-progress" data-percent="80" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
-                                                            </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
-                                                                <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">24</div>
-                                                                <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">часа</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
-                                                            <div class="circle-progress" data-percent="60" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
-                                                            </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
-                                                                <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">44</div>
-                                                                <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">минуты</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
-                                                            <div class="circle-progress" data-percent="5" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
-                                                            </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
-                                                                <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">05</div>
-                                                                <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">секунд</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="prsl-item flex items-center justify-between gap-4 flex-wrap 2md:flex-col 2md:gap-2">
-                                                <div class="prsl-item-inf flex justify-center items-center gap-4 xl:gap-2 2md:flex-wrap">
-                                                    <div class="prsl-item-pic w-[180px] flex justify-center items-center 3xl:w-[140px] xl:w-[120px] sm:w-[100px]">
-                                                        <img class="w-full" src="/img/raffle.161f3412.png" alt="raffle">
-                                                    </div>
-                                                    <div class="prsl-item-award flex items-center gap-2 sm:gap-1">
-                                                        <div class="prsl-item-award-pic flex-shrink-0 w-16 h-16 flex justify-center items-center 3md:w-12 3md:h-12">
-                                                            <img class="max-w-full max-h-full" src="/img/icon-game-rank-1.476389b0.svg" alt="award">
-                                                        </div>
-                                                        <div class="prsl-item-award-inf">
-                                                            <div class="prsl-item-award-title font-secondary-bold text-base text-white 3md:text-sm sm:text-xs">Аккаунт Warface</div>
-                                                            <div class="prsl-item-award-subtitle mt-1.5 font-secondary-bold text-sm text-white/40 3md:mt-0 3md:text-xs sm:text-[10px]">25 Ранг</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="prsl-item-bar flex justify-center items-center gap-6 3xl:gap-3 2md:flex-row-reverse 3sm:gap-1">
-                                                    <a class="prsl-item-btn btn btn-primary rounded w-[180px] h-10 justify-center px-1 3xl:w-[150px] sm:max-w-[130px] sm:w-full sm:h-8 sm:px-2" href="#">
-                                                        <div class="btn-text font-secondary-med text-[15px] text-white 3xl:text-sm 3sm:text-xs">Присоединиться</div>
-                                                    </a>
-                                                    <div class="timer flex items-center gap-1">
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
-                                                            <div class="circle-progress" data-percent="80" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
-                                                            </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
-                                                                <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">24</div>
-                                                                <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">часа</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
-                                                            <div class="circle-progress" data-percent="60" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
-                                                            </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
-                                                                <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">44</div>
-                                                                <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">минуты</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
-                                                            <div class="circle-progress" data-percent="5" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
-                                                            </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
-                                                                <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">05</div>
-                                                                <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">секунд</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="swiper-slide">
                                             <div class="prsl-item flex items-center justify-between gap-4 flex-wrap 2md:flex-col 2md:gap-2">
                                                 <div class="prsl-item-inf flex justify-center items-center gap-4 xl:gap-2 2md:flex-wrap">
@@ -1191,6 +1034,7 @@
                         </div>
                     </div>
                 </div>
+                <div id="root"></div>
                 <footer class="footer flex justify-between items-center flex-wrap gap-8 text-sm py-10 px-20 3xl:px-10 2md:flex-col 2md:p-5 2md:gap-4 2md:text-center">
                     <div class="footer-copy max-w-sm 2md:max-w-none 2md:order-1 2md:text-xs ">1paid.ru — Маркетплейс по продажам цифровых товаров. © 2023, Все права защищены.</div>
                     <div class="footer-list flex flex-wrap gap-x-8 gap-y-2.5 2md:flex-col">
@@ -1281,7 +1125,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </body>
     <script type="module" src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script type="module" src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>

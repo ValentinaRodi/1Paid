@@ -30,7 +30,7 @@ function LendingPage() {
         setClickedAuthorization(true);
         addFon(true);
     };
-    
+
     const closeAuthorization = () =>{
         setClickedAuthorization(false);
         addFon(false);
@@ -48,12 +48,12 @@ function LendingPage() {
 
     return (
     <>
-        <div className="relative flex h-screen flex-col justify-between bg-[url('/img/lending_bg.png')] bg-no-repeat bg-cover bg-top w-screen">        
+        <div className="relative flex h-screen flex-col justify-between bg-[url('/img/lending_bg.png')] bg-no-repeat bg-cover bg-top w-screen">
             <Header addFon={addFon} openAuthorization={openAuthorization}/>
             <section className="wrapper h-[80%] items-center self-center flex justify-between ">
                 <div className='w-full flex flex-wrap gap-14 justify-between '>
                     <div className="main-prim ">
-                        <h3 className="text-lg lg:text-2xl xl:text-[27px] uppercase tracking-wide text-green font-bold md:mb-3">покупай и продавай онлайн</h3>
+                        <h3 className="text-lg lg:text-2xl xl:text-[27px] uppercase tracking-wide text-[#5CA514] font-bold md:mb-3">покупай и продавай онлайн</h3>
                         <h1 className="font-h1 text-5xl lg:text-7xl xl:text-[84px] text-white font-extrabold leading-tight mb-3 md:mb-6">1paid.ru</h1>
                         <h2 className="text-2xl lg:text-4xl xl:text-[42px] mb-5 md:mb-8 text-white font-bold">Совершайте безопасную <br/>сделку сейчас!</h2>
                         <div className="dash mb-4 md:mb-7 w-32 md:w-40 lg:w-52 xl:w-64 h-1 md:h-1.5"></div>
@@ -77,7 +77,7 @@ function LendingPage() {
                                 <stop offset="1" stopColor="#1E61EB"/>
                                 </linearGradient>
                                 </defs>
-                            </svg>                
+                            </svg>
                         </div>
                         <div>
                         <p className="text-white text-base xl:text-xl mb-2">Гарантия безопасной сделки</p>
@@ -99,7 +99,7 @@ function LendingPage() {
                                     <stop offset="1" stopColor="#1E61EB"/>
                                     </linearGradient>
                                     </defs>
-                                </svg>                
+                                </svg>
                             </div>
                             <div>
                             <p className="text-white text-base md:text-xl mb-2">Розыгрыши</p>
@@ -121,7 +121,7 @@ function LendingPage() {
                                 <stop offset="1" stopColor="#1E61EB"/>
                                 </linearGradient>
                                 </defs>
-                            </svg>                
+                            </svg>
                             </div>
                             <div>
                                 <p className="text-white text-base md:text-xl mb-2">Полезная информация</p>
@@ -131,7 +131,7 @@ function LendingPage() {
                     </div>
                 </div>
             </section>
-            <Footer />  
+            <Footer />
         </div>
         {(!fon) ? null : <div className='absolute h-full w-full z-10 inset-0 bg-[rgba(6,9,18,0.8)]'></div>}
         {(!registration) ? null : <Registration closeRegistration={closeRegistration}/>}
