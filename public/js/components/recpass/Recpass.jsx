@@ -10,9 +10,9 @@ function RecPass(props) {
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [showMessage, setShowMessage] = useState('hidden');
-   
+
     const handleEmailChange = (e) => {
-        setEmail(e.target.value);  
+        setEmail(e.target.value);
     };
 
     const validateEmail = (email) => {
@@ -22,18 +22,18 @@ function RecPass(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         setErrorEmail('');
-    
+
         if (!validateEmail(email)) {
-          setErrorEmail('border-red-error border-[1px] border-solid');
+          setErrorEmail('border-[#FF5343] border-[1px] border-solid');
           return;
         }
-    
+
         const formData = {
           'email': email,
         };
-        
+
         ajax('/recover', {
           method: 'POST',
           headers: {
@@ -55,8 +55,8 @@ function RecPass(props) {
           .catch((error) => {
             console.log(error);
             setErrorMessage('An error occurred');
-          }); 
-      }; 
+          });
+      };
 
     return (
         <div className='z-20 absolute inset-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0'>
@@ -70,7 +70,7 @@ function RecPass(props) {
                     <h1 className='family-bold text-black fontt-bold text-[28px] mb-11'>Восстановление пароля </h1>
                     <div className={`${errorEmail} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-10`}>
                         <input onChange={handleEmailChange} value={email} type="email" name="email" id='email' placeholder='' className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
-                        <label htmlFor="email" className='label input-label text-grey'>Введите эл.почту от аккаунта</label>
+                        <label htmlFor="email" className='label input-label text-[#CFD2EA]'>Введите эл.почту от аккаунта</label>
                     </div>
                     <div className='flex justify-between gap-1 items-center'>
                         <button onClick={handleSubmit} className="p-btn px-0 text-base rounded-lg w-48 h-[70px] text-white uppercase">сохранить</button>
