@@ -12,9 +12,9 @@
                 <div class="layout-grid">
                     {% include 'left-menu.twig' %}
                     <!-- PAGE -->
-                    <div class="layout-page">
+                    <div class="layout-page _lf-row">
                         <div class="layout-lf">
-                            <div class="lf">
+                            <div class="lf _lf-row">
                                 <div class="lf-h">
                                     <div class="lf-bar">
                                         <div class="lf-inf">
@@ -35,7 +35,7 @@
                                             <input type="radio" name="lf_type" value="1" checked>
                                             <div class="lf-change-btn">
                                                 <div class="lf-change-icon">
-                                                    <img src="/img/icon-lf-change-icon.svg" alt="lf-change-icon">
+                                                    <img src="/img/icon-tsc-item-btn-2.svg" alt="lf-change-icon">
                                                 </div>
                                             </div>
                                         </label>
@@ -165,20 +165,30 @@
                         </div>
                         <div class="layout-h">
                             <div class="h-wrapper">
-                                <header class="h">
+                                <header class="h justify-between">
                                     <a class="h-backlink" href="#">
-                                        <img src="/img/icon-btn-icon.svg" alt="btn-icon">
+                                        <img src="/img/icon-btn-12.svg" alt="btn-icon">
                                     </a>
-                                    <nav class="hnav flex gap-x-5 gap-y-5 flex-wrap mx-4">
-                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Главная</a>
-                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Каталог</a>
-                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Топ юзеров</a>
-                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Отзывы</a>
-                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Гарантии</a>
-                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Случайные предметы</a>
-                                        <a class="hnav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Форум</a>
+                                    <nav class="nav flex ml-4 justify-between gap-x-5 gap-y-5 flex-wrap mr-10 ">
+                                        <a class="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Главная</a>
+                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Каталог</a>
+                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Топ юзеров</a>
+                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Отзывы</a>
+                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Гарантии</a>
+                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Случайные предметы</a>
+                                        <a class="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Форум</a>
                                     </nav>
-                                    <div class="h-bar ml-auto flex items-center gap-x-3">
+                                    <div class="flex gap-4">
+                                        <button class="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer lg:w-[50px] lg:h-[50px]">
+                                            <div class="btn-icon">
+                                                <img src="/img/icon-vk.svg" alt="btn-vk">
+                                            </div>
+                                        </button>
+                                        <button class="btn btn-secondary notif-btn notif-btn-a text-white rounded-full w-[160px] h-[55px] justify-center cursor-pointer">
+                                            ВОЙТИ
+                                        </button>
+                                    </div>
+                                    <div class="h-bar ml-auto flex items-center gap-x-3 hidden">
                                         <button class="h-openmenu menu-open menu-open-btn">
                                             <span>
                                             </span>
@@ -283,7 +293,7 @@
                                                 </div>
                                             </div>
                                             <div class="h-profile-content rounded-[22px] min-w-[290px] py-3 bg-white shadow-sm overflow-hidden">
-                                                <div class="np">
+                                                <div class="np hidden">
                                                     <nav class="np-nav">
                                                         <a class="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
                                                             <div class="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -428,7 +438,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="hm-profile flex-shrink-0">
+                                        <div class="hm-profile flex-shrink-0 hidden">
                                             <button class="btn btn-orange hm-profile-btn flex-shrink-0 rounded-full w-[50px] h-[50px] flex items-center justify-center text-white">
                                                 <img src="/img/btn-orange.svg" alt="btn-orange">
                                             </button>
@@ -452,7 +462,7 @@
                                                 </div>
                                                 <div class="mt-3">
                                                 </div>
-                                                <div class="np">
+                                                <div class="np hidden">
                                                     <nav class="np-nav">
                                                         <a class="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
                                                             <div class="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -517,53 +527,53 @@
                             </div>
                         </div>
                         <div class="layout-b pb-4 px-4 xl:px-9 min-w-0">
-                            <div class="prsl my-6 rounded-md min-h-[100px] py-3 3sm:pb-6 sm:my-3">
-                                <div class="swiper prsl-slider w-full h-full">
+                            <div class="prsl my-6 rounded-md min-h-[100px] flex justify-between items-center">
+                                <div class="swiper prsl-slider w-full h-full px-4">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="prsl-item flex items-center justify-between gap-4 flex-wrap 2md:flex-col 2md:gap-2">
-                                                <div class="prsl-item-inf flex justify-center items-center gap-4 xl:gap-2 2md:flex-wrap">
-                                                    <div class="prsl-item-pic w-[180px] flex justify-center items-center 3xl:w-[140px] xl:w-[120px] sm:w-[100px]">
-                                                        <img class="w-full" src="/img/raffle.161f3412.png" alt="raffle">
+                                                <div class="prsl-item-inf flex justify-center items-center gap-6">
+                                                    <div class="prsl-item-pic w-[180px] flex justify-center items-center ml-6">
+                                                        <img class="w-full img-r" src="/img/raffle.161f3412.png" alt="raffle">
                                                     </div>
                                                     <div class="prsl-item-award flex items-center gap-2 sm:gap-1">
-                                                        <div class="prsl-item-award-pic flex-shrink-0 w-16 h-16 flex justify-center items-center 3md:w-12 3md:h-12">
-                                                            <img class="max-w-full max-h-full" src="/img/icon-game-rank-1.476389b0.svg" alt="award">
+                                                        <div class="prsl-item-award-pic flex-shrink-0 w-17 h-17 flex justify-center items-center">
+                                                            <img class="w-full h-full" src="/img/icon-game-rank-1.476389b0.svg" alt="award">
                                                         </div>
                                                         <div class="prsl-item-award-inf">
-                                                            <div class="prsl-item-award-title font-secondary-bold text-base text-white 3md:text-sm sm:text-xs">Аккаунт Warface</div>
-                                                            <div class="prsl-item-award-subtitle mt-1.5 font-secondary-bold text-sm text-white/40 3md:mt-0 3md:text-xs sm:text-[10px]">25 Ранг</div>
+                                                            <div class="prsl-item-award-title font-secondary-bold text-base text-white">Аккаунт Warface</div>
+                                                            <div class="prsl-item-award-subtitle mt-1.5 font-secondary-bold text-sm text-white/40">25 Ранг</div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="prsl-item-bar flex justify-center items-center gap-6 3xl:gap-3 2md:flex-row-reverse 3sm:gap-1">
-                                                    <a class="prsl-item-btn btn btn-primary rounded w-[180px] h-10 justify-center px-1 3xl:w-[150px] sm:max-w-[130px] sm:w-full sm:h-8 sm:px-2" href="#">
-                                                        <div class="btn-text font-secondary-med text-[15px] text-white 3xl:text-sm 3sm:text-xs">Присоединиться</div>
+                                                <div class="prsl-item-bar flex justify-center items-center gap-4 ">
+                                                    <a class="prsl-item-btn  btn-primary rounded w-[180px] h-10 justify-center items-center flex " href="#">
+                                                        <div class="font-secondary-med text-w text-[15px] text-white">Присоединиться</div>
                                                     </a>
                                                     <div class="timer flex items-center gap-1">
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
+                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px]">
                                                             <div class="circle-progress" data-percent="80" data-measure="67" data-measure-640="44">
                                                                 <img src="/img/icon-circle-progress.svg" alt="circle-progress">
                                                             </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
+                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
                                                                 <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">24</div>
                                                                 <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">часа</div>
                                                             </div>
                                                         </div>
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
-                                                            <div class="circle-progress" data-percent="60" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
+                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px]">
+                                                            <div class="circle-progress mt-4" data-percent="60" data-measure="67" data-measure-640="44">
+                                                                <img src="/img/icon-circle-progress-2.svg" alt="circle-progress">
                                                             </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
+                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
                                                                 <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">44</div>
                                                                 <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">минуты</div>
                                                             </div>
                                                         </div>
-                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px] 3sm:w-11 3sm:h-11">
+                                                        <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px]">
                                                             <div class="circle-progress" data-percent="5" data-measure="67" data-measure-640="44">
-                                                                <img src="/img/icon-circle-progress.svg" alt="circle-progress">
+                                                                <img src="/img/icon-circle-progress-3.svg" alt="circle-progress">
                                                             </div>
-                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center top-0 left-0 w-full h-full z-[1]">
+                                                            <div class="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
                                                                 <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">05</div>
                                                                 <div class="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">секунд</div>
                                                             </div>
@@ -575,6 +585,9 @@
                                     </div>
                                 </div>
                                 <div class="swiper-pagination prsl-pag">
+                                    <div class="prsl-pag-item"></div>
+                                    <div class="prsl-pag-item prsl-pag-item-active"></div>
+                                    <div class="prsl-pag-item"></div>
                                 </div>
                                 <div class="prsl-btn prsl-btn-prev">
                                     <div class="btn-icon">
@@ -587,15 +600,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="sh flex justify-between items-center gap-x-3 2md:flex-col-reverse 2md:items-start 2md:gap-y-5">
-                                <div class="sh-title">
-                                    <h2 class="sh-title-text font-secondary-bold text-2xl text-black 2md:text-xl">Выбор игр</h2>
-                                    <div class="sh-title-line mt-3 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
+                            <div class="sh flex justify-between items-center gap-x-3 mt-10 mb-10">
+                                <div class="img-hid">
+                                    <img src="/img/icon-btn-13.svg" alt="btn-icon">
+                                </div>
+                                <div class="sh-title flex flex-col justify-center items-center">
+                                    <h2 class="sh-title-text font-secondary-bold text-bold text-2xl text-black">Выбор игры</h2>
+                                    <div class="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
                                     </div>
                                 </div>
                                 <div class="sh-bar flex items-center gap-2 2md:w-full 2md:flex-row-reverse">
                                     <div class="sh-search rounded-full h-[50px] px-6 max-w-[270px] w-full flex items-center bg-[#E8EAF7] 2md:max-w-none 2md:flex-grow 2md:h-10 2md:px-3">
-                                        <button class="sh-search-icon flex-shrink-0 w-4 h-full [&amp;_svg]:w-full flex justify-center items-center text-[#B8BACF] duration-100 hover:text-black">
+                                        <button class="sh-search-icon bg-inherit flex-shrink-0 w-4 h-full [&amp;_svg]:w-full flex justify-center items-center text-[#B8BACF] duration-100 hover:text-black">
                                             <img src="/img/icon-sh-search-icon.svg" alt="sh-search-icon">
                                         </button>
                                         <input class="sh-search-input flex-grow ml-2.5 w-full h-full bg-transparent font-primary-med text-base text-black 2md:text-sm" placeholder="Поиск">
@@ -604,7 +620,7 @@
                             </div>
                             <div class="sgc mt-10 md:mt-5">
                                 <div class="sgc-grid grid grid-cols-2 gap-[30px] 3xl:gap-5 2sm:grid-cols-1">
-                                    <div class="gc relative overflow-hidden rounded-lg p-5 md:p-3">
+                                    <div class="gc relative overflow-hidden rounded-lg p-5">
                                         <div class="gc-bg absolute z-[1] top-0 left-0 w-full h-full">
                                             <img class="relative z-[1] w-full h-full object-cover object-center" src="/img/game-card-bg-warface.9e636275.png" alt="picture">
                                         </div>
@@ -626,26 +642,26 @@
                                         </div>
                                         <div class="gc-tags-wrap">
                                             <div class="gc-tags">
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Аккаунты</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Пин-коды</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Буст РМ</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Спецоперации</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Статистика</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Кредиты</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Достижения</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Прочее</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">Аккаунты</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">Пин-коды</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">Буст РМ</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">Спецоперации</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">Статистика</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">Кредиты</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">Достижения</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">Прочее</a>
                                             </div>
                                         </div>
-                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer md:w-full md:h-9">
+                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer ">
                                             <div class="gc-btn-label flex-grow px-2 font-secondary-bold text-center text-xs text-white">Перейти</div>
-                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center md:w-9 md:h-9">
+                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
                                                 <div class="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
                                                     <img src="/img/icon-btn-icon-11.svg" alt="btn-icon">
                                                 </div>
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="gc relative overflow-hidden rounded-lg p-5 md:p-3">
+                                    <div class="gc relative overflow-hidden rounded-lg p-5">
                                         <div class="gc-bg absolute z-[1] top-0 left-0 w-full h-full">
                                             <img class="relative z-[1] w-full h-full object-cover object-center" src="/img/game-card-bg-dota2.badc2a3f.png" alt="picture">
                                         </div>
@@ -659,7 +675,7 @@
                                         </div>
                                         <div class="gc-badges">
                                             <div class="gc-badge-bar flex justify-end items-start flex-wrap gap-2">
-                                                <div class="gc-badge rounded-full py-2 px-5 h-auto inline-flex justify-center items-center font-secondary-bold text-xs text-white md:py-1 md:px-2 md:text-[10px] bg-gradient-primary">new</div>
+                                                <div class="gc-badge rounded-full py-2 px-5 h-auto inline-flex justify-center items-center font-secondary-bold text-xs text-white bg-gradient-primary">new</div>
                                             </div>
                                         </div>
                                         <div class="gc-vplay cursor-pointer flex flex-col items-center">
@@ -670,31 +686,31 @@
                                         </div>
                                         <div class="gc-tags-wrap">
                                             <div class="gc-tags">
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Аккаунты</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Привязки VHS</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Предметы</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Буст MMR</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Калибровка</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Отмыв ЛП</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Обучение</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Услуги Dota+</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Боевой пропуск</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Прочее</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Отмыв ЛП</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Обучение</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Ещё...</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Аккаунты</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Привязки VHS</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Предметы</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Буст MMR</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Калибровка</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Отмыв ЛП</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Обучение</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Услуги Dota+</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Боевой пропуск</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Прочее</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Отмыв ЛП</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Обучение</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Ещё...</a>
                                             </div>
                                         </div>
-                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer md:w-full md:h-9">
+                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer">
                                             <div class="gc-btn-label flex-grow px-2 font-secondary-bold text-center text-xs text-white">Перейти</div>
-                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center md:w-9 md:h-9">
+                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center ">
                                                 <div class="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
                                                     <img src="/img/icon-btn-icon-11.svg" alt="btn-icon">
                                                 </div>
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="gc relative overflow-hidden rounded-lg p-5 md:p-3">
+                                    <div class="gc relative overflow-hidden rounded-lg p-5">
                                         <div class="gc-bg absolute z-[1] top-0 left-0 w-full h-full">
                                             <img class="relative z-[1] w-full h-full object-cover object-center" src="/img/game-card-bg-csgo.6235c5a2.png" alt="picture">
                                         </div>
@@ -708,7 +724,7 @@
                                         </div>
                                         <div class="gc-badges">
                                             <div class="gc-badge-bar flex justify-end items-start flex-wrap gap-2">
-                                                <div class="gc-badge rounded-full py-2 px-5 h-auto inline-flex justify-center items-center font-secondary-bold text-xs text-white md:py-1 md:px-2 md:text-[10px] bg-gradient-primary">new</div>
+                                                <div class="gc-badge rounded-full py-2 px-5 h-auto inline-flex justify-center items-center font-secondary-bold text-xs text-white bg-gradient-primary">new</div>
                                             </div>
                                         </div>
                                         <div class="gc-vplay cursor-pointer flex flex-col items-center">
@@ -719,24 +735,24 @@
                                         </div>
                                         <div class="gc-tags-wrap">
                                             <div class="gc-tags">
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Аккаунты</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Prime</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Скины</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Буст</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Обучение</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Прочее</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Аккаунты</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Prime</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Скины</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Буст</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Обучение</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Прочее</a>
                                             </div>
                                         </div>
-                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer md:w-full md:h-9">
+                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer ">
                                             <div class="gc-btn-label flex-grow px-2 font-secondary-bold text-center text-xs text-white">Перейти</div>
-                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center md:w-9 md:h-9">
+                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
                                                 <div class="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
                                                     <img src="/img/icon-btn-icon-11.svg" alt="btn-icon">
                                                 </div>
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="gc relative overflow-hidden rounded-lg p-5 md:p-3">
+                                    <div class="gc relative overflow-hidden rounded-lg p-5">
                                         <div class="gc-bg absolute z-[1] top-0 left-0 w-full h-full">
                                             <img class="relative z-[1] w-full h-full object-cover object-center" src="/img/game-card-bg-gta5.99ca99e5.png" alt="picture">
                                         </div>
@@ -750,7 +766,7 @@
                                         </div>
                                         <div class="gc-badges">
                                             <div class="gc-badge-bar flex justify-end items-start flex-wrap gap-2">
-                                                <div class="gc-badge rounded-full py-2 px-5 h-auto inline-flex justify-center items-center font-secondary-bold text-xs text-white md:py-1 md:px-2 md:text-[10px] bg-gradient-primary">new</div>
+                                                <div class="gc-badge rounded-full py-2 px-5 h-auto inline-flex justify-center items-center font-secondary-bold text-xs text-white bg-gradient-primary">new</div>
                                             </div>
                                         </div>
                                         <div class="gc-vplay cursor-pointer flex flex-col items-center">
@@ -761,23 +777,23 @@
                                         </div>
                                         <div class="gc-tags-wrap">
                                             <div class="gc-tags">
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Аккаунты</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Деньги</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Ключи</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Услуги</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Прочее</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Аккаунты</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Деньги</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Ключи</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Услуги</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Прочее</a>
                                             </div>
                                         </div>
-                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer md:w-full md:h-9">
+                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer ">
                                             <div class="gc-btn-label flex-grow px-2 font-secondary-bold text-center text-xs text-white">Перейти</div>
-                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center md:w-9 md:h-9">
+                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
                                                 <div class="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
                                                     <img src="/img/icon-btn-icon-11.svg" alt="btn-icon">
                                                 </div>
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="gc relative overflow-hidden rounded-lg p-5 md:p-3">
+                                    <div class="gc relative overflow-hidden rounded-lg p-5">
                                         <div class="gc-bg absolute z-[1] top-0 left-0 w-full h-full">
                                             <img class="relative z-[1] w-full h-full object-cover object-center" src="/img/game-card-bg-fortnite.6a6e51b5.png" alt="picture">
                                         </div>
@@ -791,7 +807,7 @@
                                         </div>
                                         <div class="gc-badges">
                                             <div class="gc-badge-bar flex justify-end items-start flex-wrap gap-2">
-                                                <div class="gc-badge rounded-full py-2 px-5 h-auto inline-flex justify-center items-center font-secondary-bold text-xs text-white md:py-1 md:px-2 md:text-[10px] bg-gradient-primary">new</div>
+                                                <div class="gc-badge rounded-full py-2 px-5 h-auto inline-flex justify-center items-center font-secondary-bold text-xs text-white bg-gradient-primary">new</div>
                                             </div>
                                         </div>
                                         <div class="gc-vplay cursor-pointer flex flex-col items-center">
@@ -802,24 +818,24 @@
                                         </div>
                                         <div class="gc-tags-wrap">
                                             <div class="gc-tags">
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Аккаунты</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Предметы</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Услуги</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">B-баксы</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Донат</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Прочее</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Аккаунты</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Предметы</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Услуги</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">B-баксы</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Донат</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Прочее</a>
                                             </div>
                                         </div>
-                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer md:w-full md:h-9">
+                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer ">
                                             <div class="gc-btn-label flex-grow px-2 font-secondary-bold text-center text-xs text-white">Перейти</div>
-                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center md:w-9 md:h-9">
+                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
                                                 <div class="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
                                                     <img src="/img/icon-btn-icon-11.svg" alt="btn-icon">
                                                 </div>
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="gc relative overflow-hidden rounded-lg p-5 md:p-3">
+                                    <div class="gc relative overflow-hidden rounded-lg p-5">
                                         <div class="gc-bg absolute z-[1] top-0 left-0 w-full h-full">
                                             <img class="relative z-[1] w-full h-full object-cover object-center" src="/img/game-card-bg-wot.f2291c2b.png" alt="picture">
                                         </div>
@@ -833,7 +849,7 @@
                                         </div>
                                         <div class="gc-badges">
                                             <div class="gc-badge-bar flex justify-end items-start flex-wrap gap-2">
-                                                <div class="gc-badge rounded-full py-2 px-5 h-auto inline-flex justify-center items-center font-secondary-bold text-xs text-white md:py-1 md:px-2 md:text-[10px] bg-gradient-primary">new</div>
+                                                <div class="gc-badge rounded-full py-2 px-5 h-auto inline-flex justify-center items-center font-secondary-bold text-xs text-white bg-gradient-primary">new</div>
                                             </div>
                                         </div>
                                         <div class="gc-vplay cursor-pointer flex flex-col items-center">
@@ -844,21 +860,21 @@
                                         </div>
                                         <div class="gc-tags-wrap">
                                             <div class="gc-tags">
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Аккаунты</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Бонус-коды</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Буст</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Фарм серебра</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Выполнение ЛБЗ</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Обучение</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Золото</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Кланы</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Донат</a>
-                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 md:text-xs" href="#">Прочее</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Аккаунты</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Бонус-коды</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Буст</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Фарм серебра</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Выполнение ЛБЗ</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Обучение</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Золото</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Кланы</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Донат</a>
+                                                <a class="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75" href="#">Прочее</a>
                                             </div>
                                         </div>
-                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer md:w-full md:h-9">
+                                        <div class="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer ">
                                             <div class="gc-btn-label flex-grow px-2 font-secondary-bold text-center text-xs text-white">Перейти</div>
-                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center md:w-9 md:h-9">
+                                            <button class="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
                                                 <div class="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
                                                     <img src="/img/icon-btn-icon-11.svg" alt="btn-icon">
                                                 </div>
@@ -866,15 +882,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="sgc-f flex justify-center mt-10 lg:mt-5">
-                                    <button class="sgc-btn-more rounded-full h-[60px] flex items-center justify-center px-12 bg-[#E3E9F5] duration-200 hover:bg-[#d3d7e0] lg:h-10 lg:px-5">
-                                        <div class="btn-text font-secondary-bold text-base text-[#B9C3D6] lg:text-sm">Показать еще 25</div>
+                                <div class="sgc-f flex justify-center mt-10 ">
+                                    <button class="sgc-btn-more rounded-full h-[60px] flex items-center justify-center px-12 bg-[#E3E9F5] duration-200 hover:bg-[#d3d7e0]">
+                                        <div class="btn-text font-secondary-bold text-base text-[#B9C3D6]">Показать еще 25</div>
                                     </button>
                                 </div>
                             </div>
-                            <div class="layout-b-f flex justify-between mt-6 3sm:mt-3">
+                            <div class="layout-b-f flex justify-between mt-6 mb-6">
                                 <button class="layout-btn-totop scroll-to-top rounded-full w-16 h-16 flex items-center justify-center bg-[#D7DFF5] hover:bg-[#d0d8f3] shadow-2xl 3sm:w-11 3sm:h-11">
-                                    <div class="btn-icon text-[#BDC6E0] w-1/2 h-1/2 [&amp;_svg]:w-full [&amp;_svg]:h-full">
+                                    <div class=" flex items-center ">
                                         <img src="/img/icon-btn-icon-12.svg" alt="btn-icon">
                                     </div>
                                 </button>
