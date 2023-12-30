@@ -10,7 +10,6 @@ import btnIcon2 from "../../../img/icon-btn-icon-pr2.svg";
 function Profile() {
 
     return (
-
         <div class="layout-b pb-4 px-9 3xl:px-4 min-w-0 sm:px-3">
             <div class="spf mt-11 2md:mt-5">
                 <div class="sh flex justify-between items-center gap-x-3 2md:flex-col-reverse 2md:items-start 2md:gap-y-5 spf-title">
