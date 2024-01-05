@@ -4,15 +4,13 @@ import './index.less'
 
 import "./App.less";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NullMain from './pages/nullMain/NullMain';
-import Profile from './pages/profile/Profile';
+import HeaderMain from './components/headerMain/HeaderMain';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<NullMain />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={<HeaderMain />} />
       </Routes>
     </div>
   );

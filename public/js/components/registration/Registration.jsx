@@ -2,6 +2,7 @@
 import  './registration.less';
 
 function Registration(props) {
+    
     return (
     <div>
         <div className='absolute z-20 inset-x-2/4 translate-x-[-50%] top-[8%] w-full sm:w-[540px] bg-[#F7F7FC] rounded-3xl px-10 pb-10 pt-5'>
@@ -18,31 +19,31 @@ function Registration(props) {
                 <h1 className='family-bold text-black font-bold text-[28px] mb-11'>Регистрация</h1>
                 <div className='input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6'>
                     <input type="text" name="name" id='name' placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
-                    <label htmlFor="name" className='label input-label text-grey'>Имя пользователя</label>
+                    <label htmlFor="name" className='label input-label text-[#CFD2EA]'>Имя пользователя</label>
                 </div>
                 <div className='input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6'>
                     <input type="email" name="email" id='email'  placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
-                    <label htmlFor="email" className='label input-label text-grey'>Эл. почта</label>
+                    <label htmlFor="email" className='label input-label text-[#CFD2EA]'>Эл. почта</label>
                 </div>
                 <div className='input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6'>
                     <input type="password" name="password" id='password'  placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
-                    <label htmlFor="password" className='label input-label text-grey'>Придумайте пароль</label>
+                    <label htmlFor="password" className='label input-label text-[#CFD2EA]'>Придумайте пароль</label>
                 </div>
                 <div className='input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6'>
                     <input type="password" name="repeatPassword" id='repeatPassword'  placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
-                    <label htmlFor="repeatPassword" className='label input-label text-grey'>Повторите пароль</label>
+                    <label htmlFor="repeatPassword" className='label input-label text-[#CFD2EA]'>Повторите пароль</label>
                 </div>
                 <div className="input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6">
                     <input type="text" name="secretWorld" id="secretWorld" placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
-                    <label htmlFor="secretWorld" className='label input-label text-grey'>Секретное слово (мин. 8 букв)</label>  
+                    <label htmlFor="secretWorld" className='label input-label text-[#CFD2EA]'>Секретное слово (мин. 8 букв)</label>
                 </div>
                 <div className='flex gap-2 mb-8'>
                     <input type="checkbox" id="assent" name="assent" className='custom-checkbox'/>
-                    <label htmlFor="assent" className='check text-sm sm:text-base text-check'>Я подтверждаю, что ознакомлен справилами сайта и пользовательским соглашением</label>
+                    <label htmlFor="assent" className='check text-sm sm:text-base text-[#9595AE]'>Я подтверждаю, что ознакомлен справилами сайта и пользовательским соглашением</label>
                 </div>
                 <div className='flex justify-between gap-1 items-center'>
                     <button className="main_btn px-0 text-xs md:text-base rounded-xl xs:rounded-lg w-[230px] h-14 sm:h-[70px] text-white uppercase">Создать аккаунт</button>
-                    <p className='family-bold text-xs sm:text-sm font-bold text-grey uppercase'>или</p>
+                    <p className='family-bold text-xs sm:text-sm font-bold text-[#CFD2EA] uppercase'>или</p>
                     <div className='flex'>
                         <button className='inst shadow-[0px_4px_15px_2px_rgba(249,181,68,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-1'></button>
                         <button className='gmail shadow-[0px_4px_15px_2px_rgba(255,138,128,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-1'></button>
