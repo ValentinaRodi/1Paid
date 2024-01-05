@@ -5,7 +5,6 @@ import Registration from '../../components/registration/Registration';
 import { useState} from 'react';
 import Authorization from "../../components/authorization/Authorization";
 import RecPass from '../../components/recpass/Recpass';
-import AddProduct from '../../components/addProduct/AddProduct';
 
 function LendingPage() {
     const [registration, setClickedRegistration] = useState(false);
@@ -138,7 +137,6 @@ function LendingPage() {
         {(!registration) ? null : <Registration closeRegistration={closeRegistration}/>}
         {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization} openRecoveryPassword={openRecoveryPassword} />}
         {(!recPass) ? null : <RecPass closeRecPass={closeRecPass}/>}
-        <AddProduct/>
     </>
   );
 }
