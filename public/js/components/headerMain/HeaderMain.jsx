@@ -34,7 +34,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function HeaderMain() {
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
     const [registration, setClickedRegistration] = useState(false);
     const [fon, setAddFon] = useState(false);
     const [authorization, setClickedAuthorization] = useState(null);
@@ -92,7 +92,7 @@ function HeaderMain() {
 
     return (
         <>
-        <div class="layout-h">
+        <div className="layout-h">
         <div className="h-wrapper">
         <header className="h justify-between">
                 <a className="h-backlink" href="#">
