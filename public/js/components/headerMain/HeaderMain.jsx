@@ -89,6 +89,11 @@ function HeaderMain() {
         (hedMenu === 'hidden') ? setOpenHedMenu('') : setOpenHedMenu('hidden');
     };
 
+    const transAuth = () =>{
+        setClickedRegistration(false);
+        setClickedAuthorization(true);
+    };
+
 
     return (
         <>
@@ -546,7 +551,7 @@ function HeaderMain() {
                 </div>
             </div>
             {(!fon) ? null : <div className='absolute h-full w-screen z-[10] inset-0 bg-[rgba(6,9,18,0.8)]'></div>}
-            {(!registration) ? null : <Registration closeRegistration={closeRegistration}/>}
+            {(!registration) ? null : <Registration closeRegistration={closeRegistration} transAuth={transAuth}/>}
             {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization} openRecoveryPassword={openRecoveryPassword} openRegistration={openRegistration}/>}
             {(!recPass) ? null : <RecPass closeRecPass={closeRecPass}/>}
         </>

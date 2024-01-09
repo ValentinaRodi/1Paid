@@ -6,6 +6,7 @@ function Registration(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [password2, setPassword2] = useState('');
     const [secretWord, setSecretWord] = useState('');
     const [remember, setRemember] = useState(false);
     const [errorName, setErrorName] = useState('');
@@ -44,8 +45,12 @@ function Registration(props) {
         setPassword(e.target.value);
     };
 
+    const handlePassword2Change = (e) => {
+        setPassword2(e.target.value);
+    };
+
     const handleSecretWordChange = (e) => {
-        setName(e.target.value);
+        setSecretWord(e.target.value);
     };
 
     const handleRememberChange = (e) => {
@@ -80,6 +85,11 @@ function Registration(props) {
             setErrorEmail('border-[#FF5343] border-[1px] border-solid');
             setErrorPassword('border-[#FF5343] border-[1px] border-solid');
             setErrorSecretWord('border-[#FF5343] border-[1px] border-solid');
+            return;
+        };
+
+        if (password !== password2) {
+            setErrorPassword('border-[#FF5343] border-[1px] border-solid');
             return;
         };
 
@@ -134,6 +144,8 @@ function Registration(props) {
         });
     };
 
+    console.log(props)
+
     return (
     <div>
         <div className='absolute z-20 inset-x-2/4 translate-x-[-50%] top-[8%] w-full sm:w-[540px] bg-[#F7F7FC] rounded-3xl px-10 pb-10 pt-5'>
@@ -158,7 +170,7 @@ function Registration(props) {
                 </div>
                 <div className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6 flex items-center justify-between`}>
                     <div className='w-full'>
-                        <input onChange={handlePasswordChange} value={password} type={passwordShown ? "text" : "password"} name="password" id='password'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
+                        <input onChange={handlePasswordChange} value={password} type={passwordShown ? "text" : "new-password"} name="password" id='password'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
                         <label htmlFor="password" className='label input-label text-[#CFD2EA]'>Придумайте пароль</label>
                     </div>
                     <button onClick={togglePasswordVisiblity} className={`${visible} p-0 bg-inherit mb-4`}>
@@ -189,7 +201,7 @@ function Registration(props) {
                 </div>
                 <div className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6 flex items-center justify-between`}>
                     <div className='w-full'>
-                        <input onChange={handlePasswordChange} value={password} type={passwordShown ? "text" : "password"} name="password2" id='password2'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
+                        <input onChange={handlePassword2Change} value={password2} type={passwordShown ? "text" : "new-password"} name="password2" id='password2'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
                         <label htmlFor="password2" className='label input-label text-[#CFD2EA]'>Повторите пароль</label>
                     </div>
                     <button onClick={togglePasswordVisiblity} className={`${visible} p-0 bg-inherit mb-4`}>
