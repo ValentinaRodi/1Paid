@@ -14,3 +14,10 @@ use App\Http\Controllers\MainController;
 */
 
 Route::get('/', [MainController::class, 'index']);
+Route::get('/landing', [MainController::class, 'landing']);
+Route::group(['middleware' => 'auth'], function () {
+    //echo '<pre>' . var_dump(Auth::check()) . '</pre>';
+    if (Auth::check()) {
+        Route::get('/profile', [MainController::class, 'index']);
+    }
+});

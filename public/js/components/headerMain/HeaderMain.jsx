@@ -31,7 +31,7 @@ import RecPass from '../../components/recpass/Recpass';
 import { useState} from 'react';
 
 function HeaderMain() {
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
     const [registration, setClickedRegistration] = useState(false);
     const [fon, setAddFon] = useState(false);
     const [authorization, setClickedAuthorization] = useState(null);

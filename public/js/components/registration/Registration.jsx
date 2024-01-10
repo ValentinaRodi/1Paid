@@ -201,7 +201,7 @@ function Registration(props) {
                 </div>
                 <div className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6 flex items-center justify-between`}>
                     <div className='w-full'>
-                        <input onChange={handlePassword2Change} value={password2} type={passwordShown ? "text" : "new-password"} name="password2" id='password2'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
+                        <input onChange={handlePassword2Change} value={password2} type={passwordShown ? "text" : "new-password"} name="password_confirmation " id='password2'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
                         <label htmlFor="password2" className='label input-label text-[#CFD2EA]'>Повторите пароль</label>
                     </div>
                     <button onClick={togglePasswordVisiblity} className={`${visible} p-0 bg-inherit mb-4`}>
@@ -231,7 +231,7 @@ function Registration(props) {
                     </button>
                 </div>
                 <div className={`${errorSecretWord} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6`}>
-                    <input onChange={handleSecretWordChange} value={secretWord} type="text" name="secretWorld" id="secretWorld" placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
+                    <input onChange={handleSecretWordChange} value={secretWord} type="text" name="secret_word" id="secretWorld" placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
                     <label htmlFor="secretWorld" className='label input-label text-[#CFD2EA]'>Секретное слово (мин. 8 букв)</label>
                 </div>
                 <div className='flex gap-2 mb-8'>
