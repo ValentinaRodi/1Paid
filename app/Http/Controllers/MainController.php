@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use App\Controllers\Controller as Controller;
+use App\Http\Controllers\Controller as Controller;
 //use Illuminate\View\View;
 
 class MainController extends Controller

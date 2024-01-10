@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Controllers\MainController;
-
+use App\Http\Controllers\MainController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +14,3 @@ use App\Controllers\MainController;
 */
 
 Route::get('/', [MainController::class, 'index']);
-Route::get('/landing', [MainController::class, 'landing']);
