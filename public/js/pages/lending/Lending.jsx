@@ -17,6 +17,7 @@ function LendingPage() {
     };
 
     const openRegistration = () =>{
+        setClickedAuthorization(false);
         setClickedRegistration(true);
         setAddFon(true)
     }
@@ -44,6 +45,11 @@ function LendingPage() {
     const closeRecPass = () =>{
         setClickedRecovery(false);
         addFon(false);
+    };
+
+    const transAuth = () =>{
+        setClickedRegistration(false);
+        setAddFon(false);
     };
 
     return (
@@ -134,8 +140,8 @@ function LendingPage() {
             <Footer />
         </div>
         {(!fon) ? null : <div className='absolute h-full w-full z-10 inset-0 bg-[rgba(6,9,18,0.8)]'></div>}
-        {(!registration) ? null : <Registration closeRegistration={closeRegistration}/>}
-        {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization} openRecoveryPassword={openRecoveryPassword} />}
+        {(!registration) ? null : <Registration closeRegistration={closeRegistration} transAuth={transAuth}/>}
+        {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization} openRecoveryPassword={openRecoveryPassword} openRegistration={openRegistration} />}
         {(!recPass) ? null : <RecPass closeRecPass={closeRecPass}/>}
     </>
   );

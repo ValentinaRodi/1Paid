@@ -33,13 +33,13 @@ function Authorization(props) {
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);  
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  
+
   const handleRememberChange = (e) => {
     setRemember(e.target.checked);
   };
@@ -56,23 +56,23 @@ function Authorization(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     setErrorEmail('');
     setErrorPassword('');
 
     if (!validateEmail(email) && !validatePassword(password)) {
-      setErrorEmail('border-red-error border-[1px] border-solid');
-      setErrorPassword('border-red-error border-[1px] border-solid');
+      setErrorEmail('border-[#FF5343] border-[1px] border-solid');
+      setErrorPassword('border-[#FF5343] border-[1px] border-solid');
       return;
     }
 
     if (!validateEmail(email)) {
-      setErrorEmail('border-red-error border-[1px] border-solid');
+      setErrorEmail('border-[#FF5343] border-[1px] border-solid');
       return;
     }
-    
+
     if (!validatePassword(password)) {
-      setErrorPassword('border-red-error border-[1px] border-solid');
+      setErrorPassword('border-[#FF5343] border-[1px] border-solid');
       return;
     }
 
@@ -81,7 +81,7 @@ function Authorization(props) {
       password,
       remember: remember ? 1 : 0
     };
-    
+
     fetch('/login', {
       method: 'POST',
       headers: {
@@ -103,8 +103,8 @@ function Authorization(props) {
       .catch((error) => {
         console.log(error);
         setErrorMessage('An error occurred');
-      }); 
-  }; 
+      });
+  };
 
   return (
     <div className='absolute inset-x-0 inset-y-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0'>
@@ -122,12 +122,12 @@ function Authorization(props) {
                 <h1 className='family-bold text-black font-bold text-[28px] mb-11'>Авторизация</h1>
                 <div className={`${errorEmail} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6`}>
                     <input onChange={handleEmailChange} value={email} type="email" name="name" id='name' placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
-                    <label htmlFor="name" className='label input-label text-grey'>Email</label>
+                    <label htmlFor="name" className='label input-label text-[#CFD2EA]'>Email</label>
                 </div>
                 <div className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6 flex items-center justify-between`}>
                     <div className='w-full'>
                         <input onChange={handlePasswordChange} value={password} type={passwordShown ? "text" : "password"} name="password" id='password'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
-                        <label htmlFor="password" className='label input-label text-grey'>Пароль</label>
+                        <label htmlFor="password" className='label input-label text-[#CFD2EA]'>Пароль</label>
                     </div>
                     <button onClick={togglePasswordVisiblity} className={`${visible} p-0 bg-inherit mb-4`}>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -158,9 +158,9 @@ function Authorization(props) {
                 <div className='flex justify-between mb-8'>
                     <div className='flex gap-2 '>
                         <input onChange={handleRememberChange} value={remember} type="checkbox" id="assent" name="assent" className='custom-checkbox'/>
-                        <label htmlFor="assent" className='check text-sm sm:text-base text-check'>Запомнить меня</label>
+                        <label htmlFor="assent" className='check text-sm sm:text-base text-[#9595AE]'>Запомнить меня</label>
                     </div>
-                    <button onClick={()=>{props.openRecoveryPassword()}} className='text-check cursor-pointer hover:text-[#0046D6] text-center p-0 h-[20px] text-sm sm:text-base'>Забыли пароль?</button>
+                    <button onClick={()=>{props.openRecoveryPassword()}} className='text-[#9595AE] cursor-pointer hover:text-[#0046D6] text-center p-0 h-[20px] text-sm sm:text-base'>Забыли пароль?</button>
                 </div>
                 <div className='flex justify-between gap-2 items-center'>
                     <button onClick={handleSubmit} className="main_btn flex justify-center items-center gap-3 px-0 text-xs md:text-base rounded-xl xs:rounded-lg w-[230px] h-14 sm:h-[70px] text-white uppercase">
@@ -170,7 +170,7 @@ function Authorization(props) {
                             <path fillRule="evenodd" clipRule="evenodd" d="M11.4436 9C10.2734 9.01026 9.28114 9.86309 9.09516 11.0185C8.90918 12.1739 9.58369 13.295 10.6916 13.672C10.6871 13.7145 10.6871 13.7575 10.6916 13.8V17.2004C10.6916 17.6422 11.0498 18 11.4916 18C11.9334 18 12.2916 17.6422 12.2916 17.2004V13.8C12.2962 13.7494 12.2962 13.6986 12.2916 13.648C13.3722 13.2445 14.0128 12.1293 13.8172 10.9926C13.6215 9.85584 12.6449 9.01906 11.4916 9H11.4436ZM11.4437 10.6C11.8855 10.6 12.2437 10.9582 12.2437 11.4C12.2437 11.8418 11.8855 12.2 11.4437 12.2C11.0018 12.2 10.6437 11.8418 10.6437 11.4C10.6437 10.9582 11.0018 10.6 11.4437 10.6Z" fill="white"/>
                         </svg>
                     </button>
-                    <p className='family-bold text-xs sm:text-sm font-bold text-grey uppercase'>или</p>
+                    <p className='family-bold text-xs sm:text-sm font-bold text-[#CFD2EA] uppercase'>или</p>
                     <div className='flex'>
                         <button className='inst shadow-[0px_4px_15px_2px_rgba(249,181,68,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-1'></button>
                         <button className='gmail shadow-[0px_4px_15px_2px_rgba(255,138,128,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-1'></button>
@@ -180,10 +180,10 @@ function Authorization(props) {
             </form>
             <div className='h-px w-full bg-[#E1E1EF] mb-3.5'></div>
             <p className='text-[#CFD2EA] text-center mb-2.5'>Еще нет аккаунта?</p>
-            <button onClick={()=>{props.closeAuthorization()}} className='w-full h-[70px] bg-[#ECECF7] hover:bg-[rgba(208,216,243,1)] rounded-xl text-base text-[#9595AE] uppercase'>Создать аккаунт</button>
+            <button onClick={()=>{props.openRegistration()}} className='w-full h-[70px] bg-[#ECECF7] hover:bg-[rgba(208,216,243,1)] rounded-xl text-base text-[#9595AE] uppercase'>Создать аккаунт</button>
         </div>
     </div>
-        
+
   );
 }
 
