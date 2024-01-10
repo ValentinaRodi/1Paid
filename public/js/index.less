@@ -9918,9 +9918,7 @@ textarea {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
 }
-.layout-page._lf-row .layout-h {
-    grid-column: 1/2;
-}
+
 
 .layout-page._lf-row .layout-b {
     grid-column: 1/2;
@@ -9929,10 +9927,7 @@ textarea {
     grid-column: 1/2;
     grid-row: 1/-1;
 }
-.layout-h {
-    grid-column: 2/3;
-    grid-row: 1/2;
-}
+
 .layout-b {
     grid-column: 2/3;
     grid-row: -1/-2;
@@ -12238,9 +12233,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
 }
-.layout-page._lf-row .layout-h {
-    grid-column: 1/2;
-}
+
 
 .layout-page._lf-row .layout-b {
     grid-column: 1/2;
@@ -12249,10 +12242,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     grid-column: 1/2;
     grid-row: 1/-1;
 }
-.layout-h {
-    grid-column: 2/3;
-    grid-row: 1/2;
-}
+
 .layout-b {
     grid-column: 2/3;
     grid-row: -1/-2;
@@ -12279,6 +12269,10 @@ input[type="range"]::-webkit-slider-runnable-track {
     .layout-sidebar._hide {
         width: 320px;
         transform: translateX(0px);
+    }
+
+    .layout-h {
+        display: none
     }
 }
 .np-nav-item:hover ._to-gradient {

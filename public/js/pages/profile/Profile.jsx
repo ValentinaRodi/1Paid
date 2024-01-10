@@ -266,18 +266,6 @@ function Profile() {
                 </div>
                 </div>
             </div>
-            <div className="layout-b-f flex justify-between mt-6 3sm:mt-3">
-                <button className="layout-btn-totop scroll-to-top rounded-full w-16 h-16 flex items-center justify-center bg-[#D7DFF5] hover:bg-[#d0d8f3] shadow-2xl 3sm:w-11 3sm:h-11">
-                <div className="btn-icon text-[#BDC6E0] w-1/2 h-1/2 [&amp;_svg]:w-full [&amp;_svg]:h-full">
-                    <img className="fbc-avatar-pic w-full h-full object-cover" src={btnIcon} alt="btn-Icon" />
-                </div>
-                </button>
-                <button className="layout-btn-openchat open-fast-chat rounded-full rounded-br-none w-[65px] h-[65px] flex items-center justify-center bg-gradient-primary shadow-2xl 3sm:w-11 3sm:h-11">
-                <div className="btn-icon text-[#BDC6E0] w-[22px] h-[19px] [&amp;_svg]:w-full [&amp;_svg]:h-full text-white">
-                    <img className="fbc-avatar-pic w-full h-full object-cover" src={btnIcon2} alt="btn-Icon" />
-                </div>
-                </button>
-            </div>
         </div>
     )
 }

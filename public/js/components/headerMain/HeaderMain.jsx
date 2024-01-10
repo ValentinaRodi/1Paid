@@ -116,7 +116,7 @@ function HeaderMain() {
                                 <img src={vk} alt="btn-vk"/>
                             </div>
                         </button>
-                        <button onClick={openAuthorization} className="btn btn-secondary notif-btn notif-btn-a text-white rounded-full w-[160px] h-[55px] justify-center cursor-pointer">
+                        <button onClick={openAuthorization} className="btn btn-secondary notif-btn notif-btn-a text-white rounded-full w-[140px] h-[45px] lg:w-[160px] lg:h-[55px] justify-center cursor-pointer">
                             ВОЙТИ
                         </button>
                     </div>
@@ -306,7 +306,7 @@ function HeaderMain() {
                                 <img src={vk} alt="btn-vk"/>
                             </div>
                         </button>
-                        <button onClick={openAuthorization} className="btn btn-secondary notif-btn notif-btn-a text-white rounded-full w-[160px] h-[55px] justify-center cursor-pointer">
+                        <button onClick={openAuthorization} className="btn btn-secondary notif-btn notif-btn-a text-white rounded-full w-[140px] h-[45px] lg:w-[160px] lg:h-[55px] justify-center cursor-pointer">
                             ВОЙТИ
                         </button>
                     </div>
@@ -547,7 +547,7 @@ function HeaderMain() {
                     </div>
                 </div>
             </div>
-            {(!fon) ? null : <div className='absolute h-full w-screen z-[10] inset-0 bg-[rgba(6,9,18,0.8)]'></div>}
+            {(!fon) ? null : <div className='absolute h-screen w-screen z-[10] inset-0 bg-[rgba(6,9,18,0.8)]'></div>}
             {(!registration) ? null : <Registration closeRegistration={closeRegistration}/>}
             {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization} openRecoveryPassword={openRecoveryPassword} openRegistration={openRegistration}/>}
             {(!recPass) ? null : <RecPass closeRecPass={closeRecPass}/>}
