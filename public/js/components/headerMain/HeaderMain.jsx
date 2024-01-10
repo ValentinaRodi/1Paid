@@ -29,17 +29,15 @@ import Registration from '../../components/registration/Registration';
 import Authorization from "../../components/authorization/Authorization";
 import RecPass from '../../components/recpass/Recpass';
 import { useState} from 'react';
-import { useNavigate } from "react-router-dom";
-
-
 
 function HeaderMain() {
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(true);
     const [registration, setClickedRegistration] = useState(false);
     const [fon, setAddFon] = useState(false);
     const [authorization, setClickedAuthorization] = useState(null);
     const [recPass, setClickedRecovery] = useState(null);
     const [menu, setOpenMenu] = useState('');
+    const [notif, setOpenNotif] = useState('hidden');
     const [hedMenu, setOpenHedMenu] = useState('hidden');
 
     const addFon = () =>{
@@ -89,9 +87,8 @@ function HeaderMain() {
         (hedMenu === 'hidden') ? setOpenHedMenu('') : setOpenHedMenu('hidden');
     };
 
-    const transAuth = () =>{
-        setClickedRegistration(false);
-        setClickedAuthorization(true);
+    const openNotif = () =>{
+        (notif === 'hidden') ? setOpenNotif('') : setOpenNotif('hidden');
     };
 
 
@@ -126,19 +123,19 @@ function HeaderMain() {
                 ) : (
                     <div className="flex justify-between items-center gap-2">
                         <div className="h-notif flex-shrink-0">
-                            <div className="notif">
-                                <button className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer">
+                            <div className="notif relative">
+                                <button onClick={openNotif} className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer">
                                     <div className="btn-icon text-white">
                                         <img src={btnIcon2} alt="btn-icon"/>
                                     </div>
                                 </button>
-                                <div className="notif-content rounded-xl bg-white w-[290px] py-6">
+                                <div className={`${notif} absolute top-[62px] right-[-97px] z-[100] rounded-xl bg-white w-[290px] py-6`}>
                                     <div className="notif-h px-3 flex items-center justify-between flex-wrap gap-2.5 font-secondary-bold text-sm">
                                         <div className="notif-heading text-black">
-                                            <span>Уведомления <span className="extra text-[color:var(--color-green-main)]">(+4)</span>
+                                            <span className="font-bold font-primary-bold">Уведомления <span className="extra font-bold font-primary-bold text-[color:var(--color-green-main)]">(+4)</span>
                                             </span>
                                         </div>
-                                        <div className="notif-total text-[#C8D5ED]">(43)</div>
+                                        <div className="notif-total font-bold font-primary-bold text-[#C8D5ED]">(43)</div>
                                     </div>
                                     <div className="notif-b mt-6">
                                         <div className="notif-item p-3 flex items-center gap-2 cursor-pointer duration-200 hover:bg-[#F6F9FF]">
@@ -149,7 +146,7 @@ function HeaderMain() {
                                             </div>
                                             <div className="notif-item-inf flex-grow">
                                                 <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-secondary-bold text-black">Стол заказа!</div>
+                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
                                                     <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
                                                 </div>
                                                 <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
@@ -163,7 +160,7 @@ function HeaderMain() {
                                             </div>
                                             <div className="notif-item-inf flex-grow">
                                                 <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-secondary-bold text-black">Стол заказа!</div>
+                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
                                                     <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
                                                 </div>
                                                 <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
@@ -177,7 +174,7 @@ function HeaderMain() {
                                             </div>
                                             <div className="notif-item-inf flex-grow">
                                                 <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-secondary-bold text-black">Стол заказа!</div>
+                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
                                                     <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
                                                 </div>
                                                 <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
@@ -191,7 +188,7 @@ function HeaderMain() {
                                             </div>
                                             <div className="notif-item-inf flex-grow">
                                                 <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-secondary-bold text-black">Стол заказа!</div>
+                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
                                                     <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
                                                 </div>
                                                 <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
@@ -316,19 +313,19 @@ function HeaderMain() {
                 ) : (
                     <div className="flex justify-between items-center gap-2">
                         <div className="h-notif flex-shrink-0">
-                            <div className="notif">
-                                <button className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer">
+                            <div className="notif relative">
+                                <button onClick={openNotif} className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer">
                                     <div className="btn-icon text-white">
                                         <img src={btnIcon2} alt="btn-icon"/>
                                     </div>
                                 </button>
-                                <div className="notif-content rounded-xl bg-white w-[290px] py-6">
+                                <div className={`${notif} absolute z-[100] top-[62px] right-[-97px] rounded-xl bg-white w-[290px] py-6`}>
                                     <div className="notif-h px-3 flex items-center justify-between flex-wrap gap-2.5 font-secondary-bold text-sm">
                                         <div className="notif-heading text-black">
-                                            <span>Уведомления <span className="extra text-[color:var(--color-green-main)]">(+4)</span>
+                                            <span className="font-bold font-primary-bold">Уведомления <span className="font-bold font-primary-bold extra text-[color:var(--color-green-main)]">(+4)</span>
                                             </span>
                                         </div>
-                                        <div className="notif-total text-[#C8D5ED]">(43)</div>
+                                        <div className="font-bold font-primary-bold notif-total text-[#C8D5ED]">(43)</div>
                                     </div>
                                     <div className="notif-b mt-6">
                                         <div className="notif-item p-3 flex items-center gap-2 cursor-pointer duration-200 hover:bg-[#F6F9FF]">
@@ -339,7 +336,7 @@ function HeaderMain() {
                                             </div>
                                             <div className="notif-item-inf flex-grow">
                                                 <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-secondary-bold text-black">Стол заказа!</div>
+                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
                                                     <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
                                                 </div>
                                                 <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
@@ -353,7 +350,7 @@ function HeaderMain() {
                                             </div>
                                             <div className="notif-item-inf flex-grow">
                                                 <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-secondary-bold text-black">Стол заказа!</div>
+                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
                                                     <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
                                                 </div>
                                                 <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
@@ -367,7 +364,7 @@ function HeaderMain() {
                                             </div>
                                             <div className="notif-item-inf flex-grow">
                                                 <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-secondary-bold text-black">Стол заказа!</div>
+                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
                                                     <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
                                                 </div>
                                                 <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
@@ -381,7 +378,7 @@ function HeaderMain() {
                                             </div>
                                             <div className="notif-item-inf flex-grow">
                                                 <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-secondary-bold text-black">Стол заказа!</div>
+                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
                                                     <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
                                                 </div>
                                                 <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
@@ -551,7 +548,7 @@ function HeaderMain() {
                 </div>
             </div>
             {(!fon) ? null : <div className='absolute h-full w-screen z-[10] inset-0 bg-[rgba(6,9,18,0.8)]'></div>}
-            {(!registration) ? null : <Registration closeRegistration={closeRegistration} transAuth={transAuth}/>}
+            {(!registration) ? null : <Registration closeRegistration={closeRegistration}/>}
             {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization} openRecoveryPassword={openRecoveryPassword} openRegistration={openRegistration}/>}
             {(!recPass) ? null : <RecPass closeRecPass={closeRecPass}/>}
         </>
