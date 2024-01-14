@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lang', function (Blueprint $table) {
+        Schema::create('file', function (Blueprint $table) {
             $table->id();
-            $table->string('russian', 190)->nullable();
-            $table->string('english', 190)->nullable();
+            $table->string('original_name', 190);
+            $table->string('hashed_name', 190);
+            $table->string('extension', 190);
+            $table->integer('user_id')->index();
+            $table->integer('size')->index();
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lang');
+        Schema::dropIfExists('file');
     }
 };

@@ -21,7 +21,12 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return response()->json(
+                            array_merge(
+                                    Auth::guard($guard)->user()->toArray(),
+                                    ['logged' => Auth::guard($guard)->check(), 'guard' => $guard]
+                            )
+                        );//redirect(RouteServiceProvider::HOME);
             }
         }
 

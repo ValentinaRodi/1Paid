@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lang', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->id();
-            $table->string('russian', 190)->nullable();
-            $table->string('english', 190)->nullable();
+            $table->integer('game_id')->index();
+            $table->integer('lang_id')->index();
+            $table->string('name', 190); // ?
+            $table->integer('sort')->index()->default(0);
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lang');
+        Schema::dropIfExists('category');
     }
 };

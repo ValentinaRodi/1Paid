@@ -1,7 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MainController;
+use Illuminate\Support\Facades\{
+    Auth,
+    Route
+};
+use App\Http\Controllers\{
+    CategoryController,
+    ItemController,
+    MainController
+};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +23,17 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [MainController::class, 'index']);
 Route::get('/landing', [MainController::class, 'landing']);
+echo '<pre>' . print_r(Auth::guard('web')->check(), true) . '</pre>';
 Route::group(['middleware' => 'auth'], function () {
-    //echo '<pre>' . var_dump(Auth::check()) . '</pre>';
-    if (Auth::check()) {
-        Route::get('/profile', [MainController::class, 'index']);
-    }
+//    if (auth()->check()) {
+//    }
+    Route::get('/profile', [MainController::class, 'index']);
 });
+
+Route::get('/item', [ItemController::class, 'get']);
+Route::get('/item/{id}', [ItemController::class, 'getOne']);
+Route::post('/item', [ItemController::class, 'post']);
+
+Route::get('/game/{id}', [CategoryController::class, 'get']);
+Route::get('/category/{id}', [CategoryController::class, 'getOne']);
+Route::post('/category', [CategoryController::class, 'post']);

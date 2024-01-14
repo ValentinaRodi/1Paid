@@ -34,6 +34,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'secret_word',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
     ];
 
     /**
@@ -45,4 +48,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+/*
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }*/
 }
