@@ -6,13 +6,13 @@ function Registration(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [password2, setPassword2] = useState('');
-    const [secretWord, setSecretWord] = useState('');
+    const [password_confirmation, setpassword_confirmation] = useState('');
+    const [secret_word, setsecret_word] = useState('');
     const [remember, setRemember] = useState(false);
     const [errorName, setErrorName] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
-    const [errorSecretWord, setErrorSecretWord] = useState('');
+    const [errorsecret_word, setErrorsecret_word] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [passwordShown, setPasswordShown] = useState(false);
@@ -45,12 +45,12 @@ function Registration(props) {
         setPassword(e.target.value);
     };
 
-    const handlePassword2Change = (e) => {
-        setPassword2(e.target.value);
+    const handlepassword_confirmationChange = (e) => {
+        setpassword_confirmation(e.target.value);
     };
 
-    const handleSecretWordChange = (e) => {
-        setSecretWord(e.target.value);
+    const handlesecret_wordChange = (e) => {
+        setsecret_word(e.target.value);
     };
 
     const handleRememberChange = (e) => {
@@ -67,9 +67,9 @@ function Registration(props) {
         return regex.test(password);
     };
 
-    const validateSecretWord = (secretWord) => {
-        const regex = new RegExp("^[a-zA-Z]{8,}$");
-        return regex.test(secretWord);
+    const validatesecret_word = (secret_word) => {
+        const regex = new RegExp("^[a-zA-Z]{8,}$");// Добавить русские буквы и цифры
+        return regex.test(secret_word);
     };
 
     const handleSubmit = (e) => {
@@ -78,17 +78,17 @@ function Registration(props) {
         setErrorName('');
         setErrorEmail('');
         setErrorPassword('');
-        setErrorSecretWord('');
+        setErrorsecret_word('');
 
-        if (name.length === 0 && !validateEmail(email) && !validatePassword(password) && !validateSecretWord(secretWord)) {
+        if (name.length === 0 && !validateEmail(email) && !validatePassword(password) && !validatesecret_word(secret_word)) {
             setErrorName('border-[#FF5343] border-[1px] border-solid');
             setErrorEmail('border-[#FF5343] border-[1px] border-solid');
             setErrorPassword('border-[#FF5343] border-[1px] border-solid');
-            setErrorSecretWord('border-[#FF5343] border-[1px] border-solid');
+            setErrorsecret_word('border-[#FF5343] border-[1px] border-solid');
             return;
         };
 
-        if (password !== password2) {
+        if (password !== password_confirmation) {
             setErrorPassword('border-[#FF5343] border-[1px] border-solid');
             return;
         };
@@ -108,8 +108,8 @@ function Registration(props) {
             return;
         };
 
-        if (!validateSecretWord(secretWord)) {
-            setErrorSecretWord('border-[#FF5343] border-[1px] border-solid');
+        if (!validatesecret_word(secret_word)) {
+            setErrorsecret_word('border-[#FF5343] border-[1px] border-solid');
             return;
         };
 
@@ -117,34 +117,56 @@ function Registration(props) {
             name,
             email,
             password,
+            password_confirmation,
+            secret_word,
             remember: remember ? 1 : 0
         };
 
-        fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success === 1) {
-            setSuccessMessage(data.message);
-            console.log(successMessage);
-            // Redirect to the main page using window.location or react-router
-            window.location.href = '/';
-            } else {
-            setErrorMessage(data.message);
-            console.log(errorMessage);          }
-        })
-        .catch((error) => {
-            console.log(error);
-            setErrorMessage('An error occurred');
-        });
-    };
+        const getCSRFToken = async () => {
+            const response = await fetch("/sanctum/csrf-cookie");
 
-    console.log(props)
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            let cookieValue = document.cookie.replace(
+                /(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/,
+                "$1"
+            );
+            //console.log(document.cookie);
+
+            console.log(decodeURIComponent(cookieValue));
+            fetch("/register", {
+                method: "POST",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Content-Type": "application/json",
+                    "x-xsrf-token": decodeURIComponent(cookieValue)
+                },
+                body: JSON.stringify(formData)
+            })
+                .then((response) => {
+                    response.json();
+                })
+                .then((data) => {
+                    if (data.success === 1) {
+                        setSuccessMessage(data.message);
+                        console.log(successMessage);
+                        // Redirect to the main page using window.location or react-router
+                        window.location.href = "/";
+                    } else {
+                        setErrorMessage(data.message);
+                        console.log(errorMessage);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    setErrorMessage("An error occurred");
+                });
+        };
+
+        getCSRFToken();
+    };
 
     return (
     <div>
@@ -170,7 +192,7 @@ function Registration(props) {
                 </div>
                 <div className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6 flex items-center justify-between`}>
                     <div className='w-full'>
-                        <input onChange={handlePasswordChange} value={password} type={passwordShown ? "text" : "new-password"} name="password" id='password'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
+                        <input onChange={handlePasswordChange} value={password} type={passwordShown ? "text" : "password"} name="password" id='password'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
                         <label htmlFor="password" className='label input-label text-[#CFD2EA]'>Придумайте пароль</label>
                     </div>
                     <button onClick={togglePasswordVisiblity} className={`${visible} p-0 bg-inherit mb-4`}>
@@ -201,8 +223,8 @@ function Registration(props) {
                 </div>
                 <div className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6 flex items-center justify-between`}>
                     <div className='w-full'>
-                        <input onChange={handlePassword2Change} value={password2} type={passwordShown ? "text" : "new-password"} name="password_confirmation " id='password2'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
-                        <label htmlFor="password2" className='label input-label text-[#CFD2EA]'>Повторите пароль</label>
+                        <input onChange={handlepassword_confirmationChange} value={password_confirmation} type={passwordShown ? "text" : "password"} name="password_confirmation" id='password_confirmation'  placeholder=" " className='input w-full input-label family-bold h-full w-full outline-none text-black'/>
+                        <label htmlFor="password_confirmation" className='label input-label text-[#CFD2EA]'>Повторите пароль</label>
                     </div>
                     <button onClick={togglePasswordVisiblity} className={`${visible} p-0 bg-inherit mb-4`}>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -230,8 +252,8 @@ function Registration(props) {
                       </svg>
                     </button>
                 </div>
-                <div className={`${errorSecretWord} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6`}>
-                    <input onChange={handleSecretWordChange} value={secretWord} type="text" name="secret_word" id="secretWorld" placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
+                <div className={`${errorsecret_word} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6`}>
+                    <input onChange={handlesecret_wordChange} value={secret_word} type="text" name="secret_word" id="secretWorld" placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
                     <label htmlFor="secretWorld" className='label input-label text-[#CFD2EA]'>Секретное слово (мин. 8 букв)</label>
                 </div>
                 <div className='flex gap-2 mb-8'>
