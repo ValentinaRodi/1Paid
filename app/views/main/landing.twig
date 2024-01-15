@@ -1,0 +1,19 @@
+{{ this.beginPage() }}
+<!doctype html>
+<html lang="{{ app.language }}">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon/favicon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <title>1Paid</title>
+    </head>
+    <body>
+        {{ this.beginBody() }}
+        <div id="root"></div>
+        <script type="module" src="/js/landing.js"></script>
+        {{ this.endBody() }}
+    </body>
+</html>
+{{ this.endPage() }}
