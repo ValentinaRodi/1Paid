@@ -33,9 +33,6 @@ function InputRange(props) {
     setAvg(Math.round((maxVal + minVal) / 2));
   }, [minVal, maxVal]);
 
-  console.log(maxVal, avg, min, max, maxPercent);
-
-
     return (
         <div className="range mt-4 mb-6">
             <div

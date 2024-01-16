@@ -47,7 +47,7 @@ class MainController extends Controller
                     'index' => ['get', 'head'],
                     'landing' => ['get', 'head'],
                     'login' => ['post'],
-                    'logout' => ['post'],
+                    'logout' => ['get', 'post'],
                 ],
             ],
         ];
@@ -102,6 +102,7 @@ class MainController extends Controller
         if (!Yii::$app->user->isGuest) {
             $user = User::findIdentity(\Yii::$app->user->id);
             return $this->asJson([
+                'success' => true,
                 'name' => $user->name,
                 'avatar' => $user->getAvatar(),
                 'balance' => $user->balance,

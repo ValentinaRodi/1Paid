@@ -95,15 +95,8 @@ function Authorization(props) {
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
-/*
-            let cookieValue = document.cookie.replace(
-                /(?:(?:^|.*;\s*)\_csrf\s*\=\s*([^;]*).*$)|^.*$/,
-                "$1"
-            );*/
+
             let csrfJson = await response.json();
-//console.log('cookies');
-//console.log(decodeURIComponent(document.cookie));
-//console.log(cookieValue);
 
             fetch("/login", {
                 method: "POST",
@@ -114,15 +107,21 @@ function Authorization(props) {
                 },
                 body: JSON.stringify(formData)
             })
-                .then((response) => {
-                    response.json();
+                .then((res) => {
+                    return res.json();
                 })
                 .then((data) => {
-                    if (data.success === 1) {
+                    console.log('data', data);
+            
+                    if (data.success === true) {
                         setSuccessMessage(data.message);
-                        console.log(successMessage);
+                        console.log('data.success', data.name);
+                        //console.log(successMessage);
                         // Redirect to the main page using window.location or react-router
-                        window.location.href = "/";
+                        props.changeLogged();
+                        props.closeModal();
+                        props.changeName(data.name);
+
                     } else {
                         setErrorMessage(data.message);
                         console.log(errorMessage);
@@ -142,7 +141,7 @@ function Authorization(props) {
             <div className="z-20 bg-[#F7F7FC] w-screen min-[540px]:w-[540px] rounded-3xl px-10 pb-10 pt-5">
                 <div className="flex justify-end">
                     <button
-                        onClick={props.closeAuthorization}
+                        onClick={props.closeModal}
                         className="p-0 hover:bg-[rgba(241,245,249,1)] rounded-full"
                     >
                         <img src={arrow} alt="close" />

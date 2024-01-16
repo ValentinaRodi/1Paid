@@ -6,7 +6,6 @@ import fbcAvatar from "../../../../web/img/avatar-example-4.6cd623f4.png";
 import btnIcon from "../../../../web/img/icon-btn-icon-pr.svg";
 import btnIcon2 from "../../../../web/img/icon-btn-icon-pr2.svg";
 
-
 function Profile() {
 
     return (

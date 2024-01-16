@@ -72,6 +72,7 @@ $config = [
                 'GET,HEAD' => 'main/index',
                 'GET,HEAD csrf' => 'main/csrf',
                 'GET,HEAD landing' => 'main/landing',
+                'GET,HEAD logout' => 'main/logout',
                 'POST <action>' => 'main/<action>',
 /*
     'PUT,PATCH users/<id>' => 'user/update',

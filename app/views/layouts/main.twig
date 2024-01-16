@@ -13,14 +13,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
         <title>{{ Html.encode(this.title) }} - 1paid</title>
-        <link rel="icon" href="favicon.png">
+        <link rel="icon" href="/img/favicon.png">
         {{ void(this.head) }}
     </head>
     <body>
         {{ void(this.beginBody()) }}
         <div class="layout w-screen">
             <div class="layout-grid">
-                {% include 'left-menu.twig' %}
+                <!-- {% include 'left-menu.twig' %} -->
                 <!-- PAGE -->
                 <div class="layout-page _lf-row">
                     <div class="layout-lf">
@@ -731,8 +731,9 @@
                 </div>
             </footer>
         </div>
-        <script id="games-json" type="application/json">{"games":{"id":1,"name":"Warface","icon":"/img/icon-warface.75063d1d.png","bg_image":"/img/game-card-bg-warface.9e636275.png","categories":{"0":{"id":"1","name":"Аккаунты"},"1":{"id":"3","name":"Пин-коды"},"2":{"id":"6","name":"Буст PM"},"3":{"id":"8","name":"Спецоперации"}}},"count": 14,"offset":0}</script>
+        <script id="games-json" type="application/json">{"games":{"0":{"id":1,"name":"Warface","icon":"/img/icon-warface.75063d1d.png","bg_image":"/img/game-card-bg-warface.9e636275.png","categories":{"0":{"id":"1","name":"Аккаунты"},"1":{"id":"3","name":"Пин-коды"},"2":{"id":"6","name":"Буст PM"},"3":{"id":"8","name":"Спецоперации"}}},"1":{"id":1,"name":"Warface","icon":"/img/icon-warface.75063d1d.png","bg_image":"/img/game-card-bg-warface.9e636275.png","categories":{"0":{"id":"1","name":"Аккаунты"},"1":{"id":"3","name":"Пин-коды"},"2":{"id":"6","name":"Буст PM"},"3":{"id":"8","name":"Спецоперации"}}}},"count": 14,"offset":0}</script>
         {{ void(this.endBody()) }}
+        <div id="modal" ></div>
     </body>
     <script type="module" src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script type="module" src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>

@@ -6,15 +6,14 @@ import "./App.less";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderMain from './components/headerMain/HeaderMain';
 import Profile from './pages/profile/Profile';
-import Cards from './components/cards/Cards';
+import Content from './pages/content/Content';
 import Catalog from './components/catalog/Catalog';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        {/* <Route path="/" element={<Cards />} /> */}
-        <Route path="/" element={<Catalog />} />
+        <Route path="/" element={<Content />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
