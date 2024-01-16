@@ -62,7 +62,7 @@ function RecPass(props) {
         <div className='z-20 absolute inset-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0'>
             <div className='w-screen min-[540px]:w-[540px] bg-[#F7F7FC] rounded-3xl px-10 pb-10 pt-5'>
                 <div className='flex justify-end'>
-                    <button onClick={props.closeRecPass} className='p-0 hover:bg-[rgba(241,245,249,1)] rounded-full'>
+                    <button onClick={props.closeModal} className='p-0 hover:bg-[rgba(241,245,249,1)] rounded-full'>
                         <img src={close} alt='close'/>
                     </button>
                 </div>

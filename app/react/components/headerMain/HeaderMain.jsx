@@ -28,52 +28,29 @@ import lk from "../../../../web/img/icon-lk.svg";
 import Registration from '../../components/registration/Registration';
 import Authorization from "../../components/authorization/Authorization";
 import RecPass from '../../components/recpass/Recpass';
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
 
 function HeaderMain() {
     const [loggedIn, setLoggedIn] = useState(false);
-    const [registration, setClickedRegistration] = useState(false);
-    const [fon, setAddFon] = useState(false);
-    const [authorization, setClickedAuthorization] = useState(null);
-    const [recPass, setClickedRecovery] = useState(null);
+    const [name, setName] = useState('user403219045');
     const [menu, setOpenMenu] = useState('');
     const [notif, setOpenNotif] = useState('hidden');
     const [hedMenu, setOpenHedMenu] = useState('hidden');
-
-    const addFon = () =>{
-        setAddFon(!fon);
-    };
-
-    const openRegistration = () =>{
-        setClickedAuthorization(false);
-        setClickedRegistration(true);
-        setAddFon(true)
+    const root = createRoot(modal);
+    const notModal = <div></div>;
+   
+    const changeLogged = () => {
+        setLoggedIn(true);
     }
 
-    const closeRegistration = () =>{
-        setClickedRegistration(false);
-        setAddFon(false);
-    };
+    const changeLoggedFalse = () => {
+        setLoggedIn(false);
+    }
 
-    const openAuthorization = () =>{
-        setClickedAuthorization(true);
-        addFon(true);
-    };
-
-    const closeAuthorization = () =>{
-        setClickedAuthorization(false);
-        addFon(false);
-    };
-
-    const openRecoveryPassword = () =>{
-        setClickedAuthorization(false);
-        setClickedRecovery(true);
-    };
-
-    const closeRecPass = () =>{
-        setClickedRecovery(false);
-        addFon(false);
-    };
+    const changeName = (nameUser) => {
+        setName(nameUser);
+    }
 
     const openMenu = () =>{
         setOpenMenu('_active');
@@ -91,205 +68,236 @@ function HeaderMain() {
         (notif === 'hidden') ? setOpenNotif('') : setOpenNotif('hidden');
     };
 
+    useEffect(() => {
+        const modal = document.getElementById('modal');
+    }, []);
 
+    const openAuthorization = () => {
+        modal.classList.add('modal');
+        const authorization = <Authorization changeLogged={changeLogged} changeName={changeName} closeModal={closeModal} openRecoveryPassword={openRecoveryPassword} openRegistration={openRegistration}/>;
+        root.render(authorization);
+    };
+
+    const closeModal = () =>{
+        modal.classList.remove('modal');
+        root.render(notModal);
+    };
+
+    const openRegistration = () => {
+        modal.classList.add('modal');
+        const registration = <Registration changeLogged={changeLogged} changeName={changeName} closeModal={closeModal} openAuthorization={openAuthorization}/>;
+        root.render(registration);
+    };
+
+    const openRecoveryPassword = () =>{
+        modal.classList.add('modal');
+        const recPass = <RecPass closeModal={closeModal}/>;
+        root.render(recPass);
+    };
+
+    const openProfile = () => {
+        openHedMenu();
+        history.pushState(null, null, '/profile');
+    };
+   
     return (
         <>
-        <div className="layout-h">
-        <div className="h-wrapper">
-        <header className="h justify-between">
-                <a className="h-backlink" href="#">
-                    <img src={arrow} alt="btn-icon"/>
-                </a>
-                <nav className="nav flex ml-4 justify-between gap-x-5 gap-y-5 flex-wrap mr-10 ">
-                    <a className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Главная</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Каталог</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Топ юзеров</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Отзывы</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Гарантии</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Случайные предметы</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Форум</a>
-                </nav>
-                {!loggedIn ? (
-                    <div className="flex gap-4">
-                        <button className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer lg:w-[50px] lg:h-[50px]">
-                            <div className="btn-icon">
-                                <img src={vk} alt="btn-vk"/>
+            <div className="layout-h">
+            <div className="h-wrapper">
+                <header className="h justify-between">
+                    <a className="h-backlink" href="#">
+                        <img src={arrow} alt="btn-icon"/>
+                    </a>
+                    <nav className="nav flex ml-4 justify-between gap-x-5 gap-y-5 flex-wrap mr-10 ">
+                        <a className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Главная</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Каталог</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Топ юзеров</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Отзывы</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Гарантии</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Случайные предметы</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Форум</a>
+                    </nav>
+                    {!loggedIn ? (
+                        <div className="flex gap-4">
+                            <button className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer lg:w-[50px] lg:h-[50px]">
+                                <div className="btn-icon">
+                                    <img src={vk} alt="btn-vk"/>
+                                </div>
+                            </button>
+                            <button onClick={openAuthorization} className="btn btn-secondary notif-btn notif-btn-a text-white rounded-full w-[140px] h-[45px] lg:w-[160px] lg:h-[55px] justify-center cursor-pointer">
+                                ВОЙТИ
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="flex justify-between items-center gap-2">
+                            <div className="h-notif flex-shrink-0">
+                                <div className="notif relative">
+                                    <button onClick={openNotif} className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer">
+                                        <div className="btn-icon text-white">
+                                            <img src={btnIcon2} alt="btn-icon"/>
+                                        </div>
+                                    </button>
+                                    <div className={`${notif} absolute top-[62px] right-[-97px] z-[100] rounded-xl bg-white w-[290px] py-6`}>
+                                        <div className="notif-h px-3 flex items-center justify-between flex-wrap gap-2.5 font-secondary-bold text-sm">
+                                            <div className="notif-heading text-black">
+                                                <span className="font-bold font-primary-bold">Уведомления <span className="extra font-bold font-primary-bold text-[color:var(--color-green-main)]">(+4)</span>
+                                                </span>
+                                            </div>
+                                            <div className="notif-total font-bold font-primary-bold text-[#C8D5ED]">(43)</div>
+                                        </div>
+                                        <div className="notif-b mt-6">
+                                            <div className="notif-item p-3 flex items-center gap-2 cursor-pointer duration-200 hover:bg-[#F6F9FF]">
+                                                <div className="notif-item-pic btn btn-secondary flex-shrink-0 rounded-full w-11 h-11 justify-center text-white">
+                                                    <div className="btn-icon">
+                                                        <img src={btnIcon3} alt="btn-icon"/>
+                                                    </div>
+                                                </div>
+                                                <div className="notif-item-inf flex-grow">
+                                                    <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
+                                                        <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
+                                                        <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
+                                                    </div>
+                                                    <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
+                                                </div>
+                                            </div>
+                                            <div className="notif-item p-3 flex items-center gap-2 cursor-pointer duration-200 hover:bg-[#F6F9FF]">
+                                                <div className="notif-item-pic btn btn-secondary flex-shrink-0 rounded-full w-11 h-11 justify-center text-white">
+                                                    <div className="btn-icon">
+                                                        <img src={btnIcon3} alt="btn-icon"/>
+                                                    </div>
+                                                </div>
+                                                <div className="notif-item-inf flex-grow">
+                                                    <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
+                                                        <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
+                                                        <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
+                                                    </div>
+                                                    <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
+                                                </div>
+                                            </div>
+                                            <div className="notif-item p-3 flex items-center gap-2 cursor-pointer duration-200 hover:bg-[#F6F9FF]">
+                                                <div className="notif-item-pic btn btn-secondary flex-shrink-0 rounded-full w-11 h-11 justify-center text-white">
+                                                    <div className="btn-icon">
+                                                        <img src={btnIcon3} alt="btn-icon"/>
+                                                    </div>
+                                                </div>
+                                                <div className="notif-item-inf flex-grow">
+                                                    <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
+                                                        <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
+                                                        <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
+                                                    </div>
+                                                    <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
+                                                </div>
+                                            </div>
+                                            <div className="notif-item p-3 flex items-center gap-2 cursor-pointer duration-200 hover:bg-[#F6F9FF]">
+                                                <div className="notif-item-pic btn btn-secondary flex-shrink-0 rounded-full w-11 h-11 justify-center text-white">
+                                                    <div className="btn-icon">
+                                                        <img src={btnIcon3} alt="btn-icon"/>
+                                                    </div>
+                                                </div>
+                                                <div className="notif-item-inf flex-grow">
+                                                    <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
+                                                        <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
+                                                        <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
+                                                    </div>
+                                                    <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a className="notif-btnall mt-5 w-full border-b border-[#ECEDF7] py-1 flex justify-center duration-200 hover:bg-[#F6F9FF]" href="#">
+                                            <div className="btn-text font-primary-bold text-sm text-[#C5CFE4]">Показать все</div>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </button>
-                        <button onClick={openAuthorization} className="btn btn-secondary notif-btn notif-btn-a text-white rounded-full w-[140px] h-[45px] lg:w-[160px] lg:h-[55px] justify-center cursor-pointer">
-                            ВОЙТИ
-                        </button>
-                    </div>
-                ) : (
-                    <div className="flex justify-between items-center gap-2">
-                        <div className="h-notif flex-shrink-0">
-                            <div className="notif relative">
-                                <button onClick={openNotif} className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer">
-                                    <div className="btn-icon text-white">
-                                        <img src={btnIcon2} alt="btn-icon"/>
+                            <div className="h-profile h-[64px] w-[320px] relative">
+                                <div className="pmc py-1 h-14 rounded-full px-3 flex items-center gap-x-3 bg-white">
+                                    <div className="pmc-avatar flex-shrink-0 rounded-full w-8 h-8 lg:w-10 lg:h-10">
+                                        <img className="w-full h-full object-cover" src={avatar} alt="user avatar"/>
                                     </div>
-                                </button>
-                                <div className={`${notif} absolute top-[62px] right-[-97px] z-[100] rounded-xl bg-white w-[290px] py-6`}>
-                                    <div className="notif-h px-3 flex items-center justify-between flex-wrap gap-2.5 font-secondary-bold text-sm">
-                                        <div className="notif-heading text-black">
-                                            <span className="font-bold font-primary-bold">Уведомления <span className="extra font-bold font-primary-bold text-[color:var(--color-green-main)]">(+4)</span>
-                                            </span>
-                                        </div>
-                                        <div className="notif-total font-bold font-primary-bold text-[#C8D5ED]">(43)</div>
-                                    </div>
-                                    <div className="notif-b mt-6">
-                                        <div className="notif-item p-3 flex items-center gap-2 cursor-pointer duration-200 hover:bg-[#F6F9FF]">
-                                            <div className="notif-item-pic btn btn-secondary flex-shrink-0 rounded-full w-11 h-11 justify-center text-white">
-                                                <div className="btn-icon">
-                                                    <img src={btnIcon3} alt="btn-icon"/>
-                                                </div>
-                                            </div>
-                                            <div className="notif-item-inf flex-grow">
-                                                <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
-                                                    <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
-                                                </div>
-                                                <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
-                                            </div>
-                                        </div>
-                                        <div className="notif-item p-3 flex items-center gap-2 cursor-pointer duration-200 hover:bg-[#F6F9FF]">
-                                            <div className="notif-item-pic btn btn-secondary flex-shrink-0 rounded-full w-11 h-11 justify-center text-white">
-                                                <div className="btn-icon">
-                                                    <img src={btnIcon3} alt="btn-icon"/>
-                                                </div>
-                                            </div>
-                                            <div className="notif-item-inf flex-grow">
-                                                <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
-                                                    <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
-                                                </div>
-                                                <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
-                                            </div>
-                                        </div>
-                                        <div className="notif-item p-3 flex items-center gap-2 cursor-pointer duration-200 hover:bg-[#F6F9FF]">
-                                            <div className="notif-item-pic btn btn-secondary flex-shrink-0 rounded-full w-11 h-11 justify-center text-white">
-                                                <div className="btn-icon">
-                                                    <img src={btnIcon3} alt="btn-icon"/>
-                                                </div>
-                                            </div>
-                                            <div className="notif-item-inf flex-grow">
-                                                <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
-                                                    <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
-                                                </div>
-                                                <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
-                                            </div>
-                                        </div>
-                                        <div className="notif-item p-3 flex items-center gap-2 cursor-pointer duration-200 hover:bg-[#F6F9FF]">
-                                            <div className="notif-item-pic btn btn-secondary flex-shrink-0 rounded-full w-11 h-11 justify-center text-white">
-                                                <div className="btn-icon">
-                                                    <img src={btnIcon3} alt="btn-icon"/>
-                                                </div>
-                                            </div>
-                                            <div className="notif-item-inf flex-grow">
-                                                <div className="notif-item-h flex items-center justify-between flex-wrap gap-2 text-xs">
-                                                    <div className="notif-item-title font-bold font-primary-bold font-secondary-bold text-black">Стол заказа!</div>
-                                                    <div className="notif-item-time font-secondary-med text-[#C5CFE4]">22:15</div>
-                                                </div>
-                                                <div className="notif-item-text font-secondary-med text-[10px] text-[#A6B1C7]">Товар по вашему запросу был выставлен на продажу!</div>
-                                            </div>
+                                    <div>
+                                        <div className="font-bold font-primary-bold">{name}</div>
+                                        <div className="pmc-chip-bar flex gap-x-3 gap-y-2 items-center lg:flex-wrap lg:ml-auto">
+                                            <a className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#DCF1C4]" href="#">
+                                                <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">1 521 100PD</span>
+                                            </a>
+                                            <a className="pmc-chip border rounded-full border-[#D2DFFB] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#D2DFFB]" href="#">
+                                                <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">533 100₽</span>
+                                                <img className="pmc-chip-icon w-4 h-4" src={iconPlus} alt="picture"/>
+                                            </a>
                                         </div>
                                     </div>
-                                    <a className="notif-btnall mt-5 w-full border-b border-[#ECEDF7] py-1 flex justify-center duration-200 hover:bg-[#F6F9FF]" href="#">
-                                        <div className="btn-text font-primary-bold text-sm text-[#C5CFE4]">Показать все</div>
-                                    </a>
+                                    <button onClick={openHedMenu} className="pmc-card-arrow bg-inherit h-profile-btn-open ml-auto text-[#D6D9EA] cursor-pointer hover:text-black">
+                                        <img src={cardArrow} alt="navpin-plate-icon"/>
+                                    </button>
+                                </div>
+                                <div className={`${hedMenu} absolute top-16 z-[100] h-profile-content rounded-[22px] w-full py-3 bg-white shadow-sm overflow-hidden`}>
+                                    <div className="np">
+                                        <nav className="np-nav">
+                                            <a onClick={openProfile} className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
+                                                <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                                    <img src={npNav} alt="np-nav-icon"/>
+                                                </div>
+                                                <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Мой профиль</div>
+                                            </a>
+                                            <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
+                                                <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                                    <img src={npNav2} alt="np-nav-icon"/>
+                                                </div>
+                                                <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Мои товары</div>
+                                            </a>
+                                            <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
+                                                <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                                    <img src={npNav4} alt="np-nav-icon"/>
+                                                </div>
+                                                <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Стол заказов</div>
+                                            </a>
+                                            <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
+                                                <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                                    <img src={npNav5} alt="np-nav-icon"/>
+                                                </div>
+                                                <div className="np-nav-label font-bold font-primary-bold text-bold text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Достижения</div>
+                                            </a>
+                                            <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
+                                                <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                                    <img src={npNav6} alt="np-nav-icon"/>
+                                                </div>
+                                                <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Настройки</div>
+                                            </a>
+                                            <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
+                                                <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                                    <img src={npNav7} alt="np-nav-icon"/>
+                                                </div>
+                                                <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Пополение и вывод</div>
+                                            </a>
+                                            <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
+                                                <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                                    <img src={npNav8} alt="np-nav-icon"/>
+                                                </div>
+                                                <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Реферальная система</div>
+                                            </a>
+                                            <a onClick={changeLoggedFalse} className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
+                                                <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                                    <img src={npNav9} alt="np-nav-icon"/>
+                                                </div>
+                                                <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Выйти из аккаунта</div>
+                                            </a>
+                                        </nav>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="h-profile h-[64px] w-[320px] relative">
-                            <div className="pmc py-1 h-14 rounded-full px-3 flex items-center gap-x-3 bg-white">
-                                <div className="pmc-avatar flex-shrink-0 rounded-full w-8 h-8 lg:w-10 lg:h-10">
-                                    <img className="w-full h-full object-cover" src={avatar} alt="user avatar"/>
-                                </div>
-                                <div>
-                                    <div className="font-bold font-primary-bold">user403219045</div>
-                                    <div className="pmc-chip-bar flex gap-x-3 gap-y-2 items-center lg:flex-wrap lg:ml-auto">
-                                        <a className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#DCF1C4]" href="#">
-                                            <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">1 521 100PD</span>
-                                        </a>
-                                        <a className="pmc-chip border rounded-full border-[#D2DFFB] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#D2DFFB]" href="#">
-                                            <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">533 100₽</span>
-                                            <img className="pmc-chip-icon w-4 h-4" src={iconPlus} alt="picture"/>
-                                        </a>
-                                    </div>
-                                </div>
-                                <button onClick={openHedMenu} className="pmc-card-arrow bg-inherit h-profile-btn-open ml-auto text-[#D6D9EA] cursor-pointer hover:text-black">
-                                    <img src={cardArrow} alt="navpin-plate-icon"/>
-                                </button>
-                            </div>
-                            <div className={`${hedMenu} absolute top-16 z-[100] h-profile-content rounded-[22px] w-full py-3 bg-white shadow-sm overflow-hidden`}>
-                                <div className="np">
-                                    <nav className="np-nav">
-                                        <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
-                                            <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
-                                                <img src={npNav} alt="np-nav-icon"/>
-                                            </div>
-                                            <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Мои профиль</div>
-                                        </a>
-                                        <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
-                                            <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
-                                                <img src={npNav2} alt="np-nav-icon"/>
-                                            </div>
-                                            <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Мои товары</div>
-                                        </a>
-                                        <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
-                                            <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
-                                                <img src={npNav4} alt="np-nav-icon"/>
-                                            </div>
-                                            <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Стол заказов</div>
-                                        </a>
-                                        <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
-                                            <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
-                                                <img src={npNav5} alt="np-nav-icon"/>
-                                            </div>
-                                            <div className="np-nav-label font-bold font-primary-bold text-bold text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Достижения</div>
-                                        </a>
-                                        <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
-                                            <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
-                                                <img src={npNav6} alt="np-nav-icon"/>
-                                            </div>
-                                            <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Настройки</div>
-                                        </a>
-                                        <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
-                                            <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
-                                                <img src={npNav7} alt="np-nav-icon"/>
-                                            </div>
-                                            <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Пополение и вывод</div>
-                                        </a>
-                                        <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
-                                            <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
-                                                <img src={npNav8} alt="np-nav-icon"/>
-                                            </div>
-                                            <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Реферальная система</div>
-                                        </a>
-                                        <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
-                                            <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
-                                                <img src={npNav9} alt="np-nav-icon"/>
-                                            </div>
-                                            <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Выйти из аккаунта</div>
-                                        </a>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
+                    )}
+                    <div className="h-bar ml-auto flex items-center gap-x-3 hidden">
+                        <button className="h-openmenu menu-open menu-open-btn">
+                            <span>
+                            </span>
+                            <span>
+                            </span>
+                        </button>
                     </div>
-                )}
-                <div className="h-bar ml-auto flex items-center gap-x-3 hidden">
-                    <button className="h-openmenu menu-open menu-open-btn">
-                        <span>
-                        </span>
-                        <span>
-                        </span>
-                    </button>
-                </div>
-            </header>
-        </div>
-        </div>
+                </header>
+            </div>
+            </div>
             <div className="hm">
                 <div className="hm-inner px-5 flex items-center justify-between">
                     <div className="hm-logo">
@@ -403,7 +411,7 @@ function HeaderMain() {
                                     <img className="w-full h-full object-cover" src={avatar} alt="user avatar"/>
                                 </div>
                                 <div>
-                                    <div className="font-bold font-primary-bold">user403219045</div>
+                                    <div className="font-bold font-primary-bold">{name}</div>
                                     <div className="pmc-chip-bar flex gap-x-3 gap-y-2 items-center lg:flex-wrap lg:ml-auto">
                                         <a className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#DCF1C4]" href="#">
                                             <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">1 521 100PD</span>
@@ -417,11 +425,11 @@ function HeaderMain() {
                             </div>
                                 <div className="np">
                                     <nav className="np-nav">
-                                        <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
+                                        <a onClick={openProfile} className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
                                             <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
                                                 <img src={npNav} alt="np-nav-icon"/>
                                             </div>
-                                            <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Мои профиль</div>
+                                            <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Мой профиль</div>
                                         </a>
                                         <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
                                             <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -459,7 +467,7 @@ function HeaderMain() {
                                             </div>
                                             <div className="np-nav-label font-primary-med text-sm text-[#8A98B3] duration-200 group-hover:text-[#0C0C0C]">Реферальная система</div>
                                         </a>
-                                        <a className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
+                                        <a onClick={changeLoggedFalse} className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" href="#">
                                             <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
                                                 <img src={npNav9} alt="np-nav-icon"/>
                                             </div>
@@ -547,10 +555,6 @@ function HeaderMain() {
                     </div>
                 </div>
             </div>
-            {(!fon) ? null : <div className='absolute h-screen w-screen z-[10] inset-0 bg-[rgba(6,9,18,0.8)]'></div>}
-            {(!registration) ? null : <Registration closeRegistration={closeRegistration}/>}
-            {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization} openRecoveryPassword={openRecoveryPassword} openRegistration={openRegistration}/>}
-            {(!recPass) ? null : <RecPass closeRecPass={closeRecPass}/>}
         </>
   );
 }

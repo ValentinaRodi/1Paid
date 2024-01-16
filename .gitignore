@@ -38,3 +38,4 @@ tests/_support/_generated
 /runtime
 /node_modules
 /package-lock.json
+/web/js
