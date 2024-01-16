@@ -76,6 +76,7 @@ $config = [
                 'GET,HEAD logout' => 'main/logout',
                 'POST <action>' => 'main/<action>',
                 'POST profile/<action>' => 'profile/<action>',
+                'GET,HEAD game/get' => 'game/get-list',
 /*
     'PUT,PATCH users/<id>' => 'user/update',
     'DELETE users/<id>' => 'user/delete',

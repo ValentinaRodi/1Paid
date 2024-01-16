@@ -15,6 +15,9 @@ use Yii;
  * @property int $new
  * @property string|null $created_at
  * @property string|null $updated_at
+ * @property string $icon
+ * @property string $background
+ * @property string $lang
  */
 class Game extends \yii\db\ActiveRecord
 {
@@ -51,6 +54,7 @@ class Game extends \yii\db\ActiveRecord
             [['icon_id', 'background_id', 'lang_id', 'new'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 100],
+            [['icon', 'background', 'lang'], 'string'],
         ];
     }
 
@@ -73,22 +77,21 @@ class Game extends \yii\db\ActiveRecord
 
     public function getLang()
     {
-        $lang = $this->hasOne(Lang::class, ['lang_id' => 'id']);
+        return $lang = $this->hasOne(Lang::class, ['id' => 'lang_id']);
+/*
         return [
             'russian' => $lang->russian,
             'english' => $lang->english,
-            ];
+            ];*/
     }
 
     public function getIcon()
     {
-        $icon = $this->hasOne(File::class, ['icon_id' => 'id']);
-        return $icon->hashed_name . '.' . $icon->extension;
+        return $icon = $this->hasOne(File::class, ['icon_id' => 'id']);
     }
 
     public function getBackground()
     {
-        $background = $this->hasOne(File::class, ['background_id' => 'id']);
-        return $background->hashed_name . '.' . $background->extension;
+        return $background = $this->hasOne(File::class, ['background_id' => 'id']);
     }
 }

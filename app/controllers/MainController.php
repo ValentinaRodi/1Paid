@@ -14,6 +14,9 @@ use app\forms\{
 use app\models\{
     User
 };
+use app\services\{
+    GameService
+};
 
 class MainController extends Controller
 {
@@ -85,7 +88,8 @@ class MainController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $games = GameService::getList(0);
+        return $this->render('index', ['games' => json_encode($games)]);
     }
 
     public function actionLanding()
