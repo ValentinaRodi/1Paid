@@ -121,6 +121,9 @@ function Authorization(props) {
                         props.changeLogged();
                         props.closeModal();
                         props.changeName(data.name);
+                        localStorage.setItem('logged', true); // Запись в localStorage
+                        localStorage.setItem('name', data.name);
+                        // тут вписать остальную информацию.
 
                     } else {
                         setErrorMessage(data.message);

@@ -10,7 +10,7 @@ import Content from './pages/content/Content';
 import Catalog from './components/catalog/Catalog';
 
 function App() {
-  return (
+    return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Content />} />

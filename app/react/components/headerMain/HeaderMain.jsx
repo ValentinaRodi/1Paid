@@ -99,7 +99,7 @@ function HeaderMain() {
         openHedMenu();
         history.pushState(null, null, '/profile');
     };
-   
+
     return (
         <>
             <div className="layout-h">

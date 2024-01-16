@@ -19,7 +19,6 @@ class GameService
                 ->limit(8)
                 ->offset((int) $offset)
                 ->asArray()->all();
-//echo '<pre>' . print_r($games, true) . '</pre>';die();
         $langsIds = [];
         $filesIds = [];
         $gamesIds = [];
