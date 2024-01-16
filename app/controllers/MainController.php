@@ -116,6 +116,7 @@ class MainController extends Controller
         if ($model->login()) {
             $user = User::findIdentity(\Yii::$app->user->id);
             return $this->asJson([
+                'success' => true,
                 'name' => $user->name,
                 'avatar' => $user->getAvatar(),
                 'balance' => $user->balance,
@@ -183,6 +184,7 @@ class MainController extends Controller
             if ($user->login()) {
                 $user = User::findIdentity(\Yii::$app->user->id);
                 return $this->asJson([
+                    'success' => true,
                     'name' => $user->name,
                     'avatar' => $user->getAvatar(),
                     'balance' => $user->balance,
