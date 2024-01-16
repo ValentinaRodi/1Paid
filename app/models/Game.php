@@ -1,0 +1,94 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "game".
+ *
+ * @property int $id
+ * @property int $icon_id
+ * @property int $background_id
+ * @property string $name
+ * @property int $lang_id
+ * @property int $new
+ * @property string|null $created_at
+ * @property string|null $updated_at
+ */
+class Game extends \yii\db\ActiveRecord
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return '{{%game}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => \yii\behaviors\TimestampBehavior::class,
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['icon_id', 'background_id', 'name', 'lang_id', 'new'], 'required'],
+            [['icon_id', 'background_id', 'lang_id', 'new'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['name'], 'string', 'max' => 100],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'icon_id' => 'Icon ID',
+            'background_id' => 'Background ID',
+            'name' => 'Name',
+            'lang_id' => 'Lang ID',
+            'new' => 'New',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ];
+    }
+
+    public function getLang()
+    {
+        $lang = $this->hasOne(Lang::class, ['lang_id' => 'id']);
+        return [
+            'russian' => $lang->russian,
+            'english' => $lang->english,
+            ];
+    }
+
+    public function getIcon()
+    {
+        $icon = $this->hasOne(File::class, ['icon_id' => 'id']);
+        return $icon->hashed_name . '.' . $icon->extension;
+    }
+
+    public function getBackground()
+    {
+        $background = $this->hasOne(File::class, ['background_id' => 'id']);
+        return $background->hashed_name . '.' . $background->extension;
+    }
+}

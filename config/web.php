@@ -70,10 +70,12 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'GET,HEAD' => 'main/index',
+                'GET,HEAD profile' => 'main/profile',
                 'GET,HEAD csrf' => 'main/csrf',
                 'GET,HEAD landing' => 'main/landing',
                 'GET,HEAD logout' => 'main/logout',
                 'POST <action>' => 'main/<action>',
+                'POST profile/<action>' => 'profile/<action>',
 /*
     'PUT,PATCH users/<id>' => 'user/update',
     'DELETE users/<id>' => 'user/delete',

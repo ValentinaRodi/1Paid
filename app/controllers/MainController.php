@@ -36,7 +36,7 @@ class MainController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['login', 'register'],
+                        'actions' => ['login', 'register', 'profile'],
                         'roles' => ['?'],
                     ],
                 ],
@@ -45,9 +45,10 @@ class MainController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'index' => ['get', 'head'],
+                    'profile' => ['get', 'head'],
                     'landing' => ['get', 'head'],
                     'login' => ['post'],
-                    'logout' => ['get', 'post'],
+                    'logout' => ['get', 'post'], // не забыть поправить
                 ],
             ],
         ];
@@ -107,6 +108,7 @@ class MainController extends Controller
                 'avatar' => $user->getAvatar(),
                 'balance' => $user->balance,
                 'bonus' => $user->bonus,
+                'registerDate' => $user->created_at,
                 'logged' => !Yii::$app->user->isGuest
             ]);
         }
@@ -122,6 +124,7 @@ class MainController extends Controller
                 'avatar' => $user->getAvatar(),
                 'balance' => $user->balance,
                 'bonus' => $user->bonus,
+                'registerDate' => $user->created_at,
                 'logged' => !Yii::$app->user->isGuest,
             ]);
         }
@@ -190,6 +193,7 @@ class MainController extends Controller
                     'avatar' => $user->getAvatar(),
                     'balance' => $user->balance,
                     'bonus' => $user->bonus,
+                    'registerDate' => $user->created_at,
                     'logged' => !Yii::$app->user->isGuest,
                 ]);
             }
@@ -207,5 +211,9 @@ class MainController extends Controller
         return $this->asJson([
             '_csrf' => $csrfToken,
         ]);
+    }
+
+    public function actionProfile() {
+        return $this->render('index');
     }
 }
