@@ -7,18 +7,15 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\forms\{
-    GameForm
-};
 use app\models\{
-    Game
+    Category
 };
 use app\services\{
-    GameService,
-    LangService
+    CategoryService,
+    ItemService
 };
 
-class GameController extends Controller
+class ItemController extends Controller
 {
     public $layout = 'main.twig';
 
@@ -27,15 +24,15 @@ class GameController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return [/*
             'access' => [
                 'class' => AccessControl::class,
                 'only' => ['get'],
                 'rules' => [
                     [
-                        'actions' => ['post'],
+                        'actions' => ['logout'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['?'],
                     ],
                     [
                         'allow' => true,
@@ -43,12 +40,11 @@ class GameController extends Controller
                         'roles' => ['?'],
                     ],
                 ],
-            ],
+            ],*/
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
                     'get-list' => ['get', 'head'],
-                    'post' => ['post']
                 ],
             ],
         ];
@@ -56,27 +52,16 @@ class GameController extends Controller
 
     public function actionGetList()
     {
-        $offset = Yii::$app->request->post()['offset'];
-        $games = GameService::getList((int) $offset);
-        return $this->asJson($games);
-    }
-
-    public function actionPost()
-    {
-        $model = new GameForm();
-        foreach (Yii::$app->request->post() as $key => $value) {
-            $model->{$key} = $value;
+        $post = Yii::$app->request->post();
+//        if (isset($post['game_id']) && !empty($post['game_id'])) {
+//            $categories = CategoryService::getList((int) $post['game_id']);
+//        }
+        if (isset($post['category_id']) && !empty($post['category_id'])) {
+            $items = ItemService::getList((int) $post['category_id']);
         }
-        if ($model->validate()) {
-            return $this->asJson([
-                'success' => true,
-                'game_id' => $model->save()
-            ]);
-        } else {
-            return $this->asJson([
-                'success' => false,
-                'errors' => $model->errors
-            ]);
-        }
+        return $this->asJson([
+                //'categories' => $categories,
+                'items' => $items,
+        ]);
     }
 }

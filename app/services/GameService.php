@@ -1,14 +1,14 @@
 <?php
 
-
 namespace app\services;
 
 use Yii;
 use app\models\{
-    Category,
-    Game,
-    File,
-    Lang
+    Game
+};
+use app\services\{
+    CategoryService,
+    FileService
 };
 
 class GameService
@@ -28,30 +28,9 @@ class GameService
             $filesIds[] = $game['background_id'];
             $gamesIds[] = $game['id'];
         }
-        $categories = Category::find()
-                ->select(['id', 'game_id', 'lang_id'])
-                ->where(['in', 'game_id', $gamesIds])
-                ->orderBy(['sort' => SORT_DESC])
-                ->asArray()->all();
-        foreach ($categories as $category) {
-            $langsIds[] = $category['lang_id'];
-        }
-        $langs = Lang::find()
-                ->where(['in', 'id', $langsIds])
-                ->asArray()->all();
 
-        foreach ($categories as $key => $category) {
-            foreach ($langs as $lang) {
-                if ($category['lang_id'] === $lang['id']) {
-                    $categories[$key]['name'] = $lang['russian']; // Потом сделать выбор языка.
-                }
-            }
-            unset($categories[$key]['lang_id']);
-        }
-
-        $files = File::find()
-                ->where(['in', 'id', $filesIds])
-                ->asArray()->all();
+        $categories = CategoryService::getListOfGames($gamesIds);
+        $files = FileService::getFiles($filesIds);
 
         foreach ($games as $key => $game) {
             foreach ($langs as $lang) {
@@ -61,10 +40,10 @@ class GameService
             }
             foreach ($files as $file) {
                 if ($game['icon_id'] === $file['id']) {
-                    $games[$key]['icon'] = '/img/' . $file['hashed_name'] . '.' . $file['extension'];
+                    $games[$key]['icon'] = $file['fileName'];
                 }
                 if ($game['background_id'] === $file['id']) {
-                    $games[$key]['bg_image'] = '/img/' . $file['hashed_name'] . '.' . $file['extension'];
+                    $games[$key]['bg_image'] = $file['fileName'];
                 }
             }
             foreach ($categories as $category) {

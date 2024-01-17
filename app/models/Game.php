@@ -54,7 +54,7 @@ class Game extends \yii\db\ActiveRecord
             [['icon_id', 'background_id', 'lang_id', 'new'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 100],
-            [['icon', 'background', 'lang'], 'string'],
+            [['icon', 'background'], 'string'],
         ];
     }
 

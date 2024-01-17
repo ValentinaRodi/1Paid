@@ -77,6 +77,10 @@ $config = [
                 'POST <action>' => 'main/<action>',
                 'POST profile/<action>' => 'profile/<action>',
                 'GET,HEAD game/get' => 'game/get-list',
+                'POST game/<action>' => 'game/<action>',
+                'GET,HEAD category/get-list' => 'category/get-list',
+                'GET,HEAD category/get-one-top' => 'category/get-one-top',
+                'GET,HEAD item/get-list' => 'item/get-list',
 /*
     'PUT,PATCH users/<id>' => 'user/update',
     'DELETE users/<id>' => 'user/delete',

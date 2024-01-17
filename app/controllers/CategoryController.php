@@ -7,18 +7,14 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\forms\{
-    GameForm
-};
 use app\models\{
-    Game
+    Category
 };
 use app\services\{
-    GameService,
-    LangService
+    CategoryService
 };
 
-class GameController extends Controller
+class CategoryController extends Controller
 {
     public $layout = 'main.twig';
 
@@ -32,11 +28,11 @@ class GameController extends Controller
                 'class' => AccessControl::class,
                 'only' => ['get'],
                 'rules' => [
-                    [
-                        'actions' => ['post'],
+/*                    [
+                        'actions' => ['logout'],
                         'allow' => true,
-                        'roles' => ['@'],
-                    ],
+                        'roles' => ['?'],
+                    ],*/
                     [
                         'allow' => true,
                         'actions' => ['get-list'],
@@ -48,7 +44,6 @@ class GameController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'get-list' => ['get', 'head'],
-                    'post' => ['post']
                 ],
             ],
         ];
@@ -56,27 +51,22 @@ class GameController extends Controller
 
     public function actionGetList()
     {
-        $offset = Yii::$app->request->post()['offset'];
-        $games = GameService::getList((int) $offset);
-        return $this->asJson($games);
+        $gameId = Yii::$app->request->post()['game_id'];
+        $categories = CategoryService::getList((int) $gameId);
+        return $this->asJson($categories);
     }
 
-    public function actionPost()
+    public function actionGetOneTop()
     {
-        $model = new GameForm();
-        foreach (Yii::$app->request->post() as $key => $value) {
-            $model->{$key} = $value;
-        }
-        if ($model->validate()) {
-            return $this->asJson([
-                'success' => true,
-                'game_id' => $model->save()
-            ]);
-        } else {
-            return $this->asJson([
-                'success' => false,
-                'errors' => $model->errors
-            ]);
-        }
+        $gameId = Yii::$app->request->post()['game_id'];
+        $category = CategoryService::getOneTop((int) $gameId);
+        return $this->asJson($category);
+    }
+
+    public function actionGet()
+    {
+        $gameId = Yii::$app->request->post()['game_id'];
+        $category = CategoryService::get((int) $gameId);
+        return $this->asJson($category);
     }
 }
