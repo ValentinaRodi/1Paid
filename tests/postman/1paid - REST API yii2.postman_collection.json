@@ -367,13 +367,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/game/post",
+					"raw": "{{base_url}}/game",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"game",
-						"post"
+						"game"
 					]
 				}
 			},
@@ -381,6 +380,9 @@
 		},
 		{
 			"name": "Categories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -395,14 +397,23 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"game_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{base_url}}/item/get",
+					"raw": "{{base_url}}/category/get-list",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"item",
-						"get"
+						"category",
+						"get-list"
 					]
 				}
 			},
@@ -473,12 +484,6 @@
 					"script": {
 						"exec": [
 							"if (pm.request.method !== 'GET') {\r",
-							"    if(pm.environment.get('XSRF-TOKEN')) {\r",
-							"        pm.request.headers.upsert({\r",
-							"            key: 'x-xsrf-token',\r",
-							"            value: pm.environment.get('XSRF-TOKEN'),\r",
-							"        });\r",
-							"    } else{ \r",
 							"        let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/sanctum/csrf-cookie';\r",
 							"        pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
 							"            let xsrfCookie = cookies.one('XSRF-TOKEN');\r",
@@ -491,7 +496,6 @@
 							"                pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
 							"            }\r",
 							"        });\r",
-							"    }\r",
 							"}"
 						],
 						"type": "text/javascript"
@@ -514,7 +518,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"russian\": \"Аккаунты\",\r\n    \"english\": \"\",\r\n    \"name\": \"accwarface\",\r\n    \"game_id\": \"1\"\r\n}",
+					"raw": "{\r\n    \"lang\": {\r\n        \"russian\": \"Аккаунты\",\r\n        \"english\": \"Accounts\"\r\n    },\r\n    \"name\": \"accwarface\",\r\n    \"game_id\": \"1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
