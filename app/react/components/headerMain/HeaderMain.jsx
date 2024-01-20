@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "../../pages/lending/lending.less";
 import "./headerMain.less";
-import arrow from "../../../../web/img/icon-btn-12.svg";
+import arrow from "../../../../web/img/icon-back.png";
 import vk from "../../../../web/img/icon-vk.svg";
 import btnIcon2 from "../../../../web/img/icon-btn-icon-2.svg";
 import btnIcon3 from "../../../../web/img/icon-btn-icon-3.svg";
@@ -109,8 +109,7 @@ function HeaderMain() {
                         <img src={arrow} alt="btn-icon"/>
                     </a>
                     <nav className="nav flex ml-4 justify-between gap-x-5 gap-y-5 flex-wrap mr-10 ">
-                        <a className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Главная</a>
-                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Каталог</a>
+                        <a className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Каталог</a>
                         <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Топ юзеров</a>
                         <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Отзывы</a>
                         <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Гарантии</a>
@@ -215,7 +214,6 @@ function HeaderMain() {
                                         <img className="w-full h-full object-cover" src={avatar} alt="user avatar"/>
                                     </div>
                                     <div>
-                                        <div className="font-bold font-primary-bold">{name}</div>
                                         <div className="pmc-chip-bar flex gap-x-3 gap-y-2 items-center lg:flex-wrap lg:ml-auto">
                                             <a className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#DCF1C4]" href="#">
                                                 <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">1 521 100PD</span>

@@ -47,7 +47,7 @@ class GameForm extends Model
     public function validateLang($attribute, $params)
     {
         foreach ($this->lang as $lang) {
-echo '<pre>' . print_r(gettype($lang), true) . '</pre>';
+//echo '<pre>' . print_r(gettype($lang), true) . '</pre>';
             if (gettype($lang) != 'string' && mb_strlen($lang) < 4 && mb_strlen($lang) > 191) {
                 $this->addError($attribute, 'Lang string must be more then 4 symbols and less then 191 symbols.');
             }
@@ -79,7 +79,7 @@ echo '<pre>' . print_r(gettype($lang), true) . '</pre>';
         $game->lang_id = LangService::setLangs($this->lang);
         $game->new = $this->new;
         $game->save();
-echo '<pre>' . print_r($game->errors, true) . '</pre>';die();
+//echo '<pre>' . print_r($game->errors, true) . '</pre>';die();
         return $game->id;
     }
 }

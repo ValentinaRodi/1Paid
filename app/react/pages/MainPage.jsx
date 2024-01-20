@@ -6,7 +6,7 @@ import dots from "../../img/dots-1.82560447.svg";
 import avatar from "../../img/avatar-example-2.9f0c98b7.png";
 import picture from "../../img/icon-plus-blue.a12eb4f0.svg";
 import raffle from "../../img/raffle.161f3412.png";
-import award from "../../img/icon-game-rank-1.476389b0.svg";
+import award from "../../img/icon-game-rank.svg";
 import picture2 from "../../img/game-card-bg-warface.9e636275.png";
 import Warface from "../../img/icon-warface.75063d1d.png";
 import picture3 from "../../img/game-card-bg-dota2.badc2a3f.png";

@@ -63,4 +63,11 @@ class GameService
             'count' => $count,
             ];
     }
+
+    public static function checkGameID($gameId)
+    {
+        return Game::find()
+                ->where(['id' => $gameId])
+                ->count();
+    }
 }

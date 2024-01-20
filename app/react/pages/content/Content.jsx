@@ -7,7 +7,7 @@ function Content() {
         <>
             <div className="sh flex justify-between items-center gap-x-3 mt-10 mb-10">
                 <div className="img-hid">
-                    <img src="/img/icon-btn-13.svg" alt="btn-icon"/>
+                    <img src="/img/icon-btn-13.svg" alt="btn-icon" className="hidden"/>
                 </div>
                 <div className="sh-title flex flex-col justify-center items-center">
                     <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Выбор игры</h2>

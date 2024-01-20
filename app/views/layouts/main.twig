@@ -20,7 +20,7 @@
         {{ void(this.beginBody()) }}
         <div class="layout w-screen">
             <div class="layout-grid">
-                <!-- {% include 'left-menu.twig' %} -->
+                {% include 'left-menu.twig' %}
                 <!-- PAGE -->
                 <div class="layout-page _lf-row">
                     <div class="layout-lf">
@@ -188,8 +188,14 @@
                                                 </div>
                                                 <div class="prsl-item-award flex items-center gap-2 sm:gap-1">
                                                     <div class="prsl-item-award-pic flex-shrink-0 w-17 h-17 flex justify-center items-center">
-                                                        <img class="w-full h-full" src="/img/icon-game-rank-1.476389b0.svg" alt="award">
+                                                        <div class="absolute flex flex-col items-center justify-center  w-full h-full z-[1] rank-inf">
+                                                            <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">
+                                                                <img class="w-full h-full" src="/img/rank.png" alt="award">
+                                                            </div>
+                                                        </div>
+                                                        <img class="w-full h-full" src="/img/icon-game-rank.svg" alt="award">
                                                     </div>
+
                                                     <div class="prsl-item-award-inf">
                                                         <div class="prsl-item-award-title font-secondary-bold text-base text-white">Аккаунт Warface</div>
                                                         <div class="prsl-item-award-subtitle mt-1.5 font-secondary-bold text-sm text-white/40">25 Ранг</div>
