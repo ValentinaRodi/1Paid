@@ -8,7 +8,8 @@ use app\models\{
 };
 use app\services\{
     CategoryService,
-    FileService
+    FileService,
+	LangService
 };
 
 class GameService
@@ -31,6 +32,7 @@ class GameService
 
         $categories = CategoryService::getListOfGames($gamesIds);
         $files = FileService::getFiles($filesIds);
+		$langs = LangService::getLangs($langsIds);
 
         foreach ($games as $key => $game) {
             foreach ($langs as $lang) {
