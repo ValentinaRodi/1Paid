@@ -157,10 +157,16 @@ function Registration(props) {
                         setSuccessMessage(data.message);
                         //console.log(successMessage);
                         // Redirect to the main page using window.location or react-router
-                        window.location.href = "/";
+                        
                         props.changeLogged();
                         props.closeModal();
                         props.changeName(data.name);
+                        
+                        localStorage.setItem('logged', true); 
+                        localStorage.setItem('name', data.name);
+                        localStorage.setItem('avatar', data.avatar);
+                        localStorage.setItem('balance', data.balance);
+                        localStorage.setItem('bonus', data.bonus);
                     } else {
                         setErrorMessage(data.message);
                         console.log(errorMessage);

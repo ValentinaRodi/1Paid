@@ -20,7 +20,8 @@
         {{ void(this.beginBody()) }}
         <div class="layout w-screen">
             <div class="layout-grid">
-                {% include 'left-menu.twig' %}
+                <div id='left-menu' class="layout-sidebar menu"></div>
+                <!--{% include 'left-menu.twig' %} -->
                 <!-- PAGE -->
                 <div class="layout-page _lf-row">
                     <div class="layout-lf">
@@ -187,14 +188,7 @@
                                                     <img class="w-full img-r" src="/img/raffle.161f3412.png" alt="raffle">
                                                 </div>
                                                 <div class="prsl-item-award flex items-center gap-2 sm:gap-1">
-                                                    <div class="prsl-item-award-pic flex-shrink-0 w-17 h-17 flex justify-center items-center">
-                                                        <div class="absolute flex flex-col items-center justify-center  w-full h-full z-[1] rank-inf">
-                                                            <div class="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">
-                                                                <img class="w-full h-full" src="/img/rank.png" alt="award">
-                                                            </div>
-                                                        </div>
-                                                        <img class="w-full h-full" src="/img/icon-game-rank.svg" alt="award">
-                                                    </div>
+                                                    
 
                                                     <div class="prsl-item-award-inf">
                                                         <div class="prsl-item-award-title font-secondary-bold text-base text-white">Аккаунт Warface</div>
@@ -203,9 +197,7 @@
                                                 </div>
                                             </div>
                                             <div class="prsl-item-bar flex justify-center items-center gap-4 ">
-                                                <a class="prsl-item-btn  btn-primary rounded w-[180px] h-10 justify-center items-center flex " href="#">
-                                                    <div class="font-secondary-med text-w text-[15px] text-white">Присоединиться</div>
-                                                </a>
+                                                <button class="flex justify-center items-center prsl-item-btn  btn-primary rounded w-[180px] h-10 justify-center items-center flex font-secondary-med 0text-[15px] text-white" href="#">Присоединиться</button>
                                                 <div class="timer flex items-center gap-1">
                                                     <div class="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px]">
                                                         <div class="circle-progress" data-percent="80" data-measure="67" data-measure-640="44">

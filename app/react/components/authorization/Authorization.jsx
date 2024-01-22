@@ -111,20 +111,22 @@ function Authorization(props) {
                     return res.json();
                 })
                 .then((data) => {
-                    console.log('data', data);
+                    //console.log('data', data);
             
                     if (data.success === true) {
                         setSuccessMessage(data.message);
-                        console.log('data.success', data.name);
+                        //console.log('data.success', data.name);
                         //console.log(successMessage);
-                        // Redirect to the main page using window.location or react-router
+                        
                         props.changeLogged();
                         props.closeModal();
                         props.changeName(data.name);
-                        localStorage.setItem('logged', true); // Запись в localStorage
+                        localStorage.setItem('logged', true); 
                         localStorage.setItem('name', data.name);
-                        // тут вписать остальную информацию.
-
+                        localStorage.setItem('avatar', data.avatar);
+                        localStorage.setItem('balance', data.balance);
+                        localStorage.setItem('bonus', data.bonus);
+                        window.location.reload();
                     } else {
                         setErrorMessage(data.message);
                         console.log(errorMessage);
@@ -138,7 +140,7 @@ function Authorization(props) {
 
         getCSRFToken();
     };
-
+    
     return (
         <div className="absolute inset-x-0 inset-y-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0">
             <div className="z-20 bg-[#F7F7FC] w-screen min-[540px]:w-[540px] rounded-3xl px-10 pb-10 pt-5">
@@ -224,7 +226,8 @@ function Authorization(props) {
                             </label>
                         </div>
                         <button
-                            onClick={() => {
+                            onClick={(e) => {
+                                e.preventDefault();
                                 props.openRecoveryPassword();
                             }}
                             className="text-[#9595AE] cursor-pointer hover:text-[#0046D6] text-center p-0 h-[20px] text-sm sm:text-base"

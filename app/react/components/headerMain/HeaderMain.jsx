@@ -5,7 +5,7 @@ import arrow from "../../../../web/img/icon-back.png";
 import vk from "../../../../web/img/icon-vk.svg";
 import btnIcon2 from "../../../../web/img/icon-btn-icon-2.svg";
 import btnIcon3 from "../../../../web/img/icon-btn-icon-3.svg";
-import avatar from "../../../../web/img/avatar-example-2.9f0c98b7.png";
+//import avatar from "../../../../web/img/avatar-example-2.9f0c98b7.png";
 import iconPlus from "../../../../web/img/icon-plus-blue.a12eb4f0.svg";
 import cardArrow from "../../../../web/img/icon-pmc-card-arrow.svg";
 import npNav from "../../../../web/img/icon-np-nav-icon-1.svg";
@@ -29,23 +29,50 @@ import Registration from '../../components/registration/Registration';
 import Authorization from "../../components/authorization/Authorization";
 import RecPass from '../../components/recpass/Recpass';
 import { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+import React from "react";
+import { createRoot } from "react-dom/client";
 
 function HeaderMain() {
     const [loggedIn, setLoggedIn] = useState(false);
     const [name, setName] = useState('user403219045');
+    const [balance, setBalance] = useState('');
+    const [bonus, setBonus] = useState('');
+    const [avatar, setAvatar] = useState('');
     const [menu, setOpenMenu] = useState('');
     const [notif, setOpenNotif] = useState('hidden');
     const [hedMenu, setOpenHedMenu] = useState('hidden');
-    const root = createRoot(modal);
-    const notModal = <div></div>;
-   
+    const [modalEl, setModalEl] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+
     const changeLogged = () => {
         setLoggedIn(true);
     }
 
     const changeLoggedFalse = () => {
         setLoggedIn(false);
+        localStorage.removeItem('logged');
+        localStorage.removeItem('name');
+        localStorage.removeItem('avatar');
+        localStorage.removeItem('balance');
+        localStorage.removeItem('bonus');
+
+        fetch("/logout", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            console.log('data', data);
+        })
+        .catch((error) => {
+            console.log(error);
+            setErrorMessage("An error occurred");
+        });
     }
 
     const changeName = (nameUser) => {
@@ -68,57 +95,102 @@ function HeaderMain() {
         (notif === 'hidden') ? setOpenNotif('') : setOpenNotif('hidden');
     };
 
-    useEffect(() => {
-        const modal = document.getElementById('modal');
-    }, []);
-
     const openAuthorization = () => {
-        modal.classList.add('modal');
-        const authorization = <Authorization changeLogged={changeLogged} changeName={changeName} closeModal={closeModal} openRecoveryPassword={openRecoveryPassword} openRegistration={openRegistration}/>;
-        root.render(authorization);
+        setModalEl(<Authorization
+            changeLogged={changeLogged}
+            changeName={changeName}
+            closeModal={closeModal}
+            openRecoveryPassword={openRecoveryPassword}
+            openRegistration={openRegistration}
+        />);
+        setModalOpen(true);
+        console.log(modalEl)
     };
 
     const closeModal = () =>{
-        modal.classList.remove('modal');
-        root.render(notModal);
+        setModalOpen(false);
+        setModalEl('');
     };
 
     const openRegistration = () => {
-        modal.classList.add('modal');
-        const registration = <Registration changeLogged={changeLogged} changeName={changeName} closeModal={closeModal} openAuthorization={openAuthorization}/>;
-        root.render(registration);
+        setModalEl(<Registration 
+            changeLogged={changeLogged} 
+            changeName={changeName} 
+            closeModal={closeModal} 
+            openAuthorization={openAuthorization}
+        />);
     };
 
     const openRecoveryPassword = () =>{
-        modal.classList.add('modal');
-        const recPass = <RecPass closeModal={closeModal}/>;
-        root.render(recPass);
+        setModalEl('');
+        setModalEl(<RecPass 
+            closeModal={closeModal} 
+        />);
     };
 
     const openProfile = () => {
         openHedMenu();
         history.pushState(null, null, '/profile');
     };
+  
+    useEffect(() => {
+        let loggedInUser = localStorage.getItem('logged');
+        
+        let links = document.getElementsByTagName('a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].onclick = function(event) {
+              event.preventDefault();
+            };
+        }
+
+        if (loggedInUser) {
+            setLoggedIn(true);
+            setBalance(localStorage.getItem('balance'));
+            setBonus(localStorage.getItem('bonus'));
+            setAvatar(localStorage.getItem('avatar'));
+        }
+    }, []);
+
+    useEffect(() => {
+        const modal = document.getElementById('modal');
+
+        if(modalOpen) {
+            modal.classList.add('modal');
+            modal.textContent = '';
+            
+            const authorizationContainer = document.createElement("div");
+            const root = createRoot(authorizationContainer);
+            root.render(modalEl);
+            modal.appendChild(authorizationContainer);   
+        }
+        if(!modalOpen) {
+            
+            modal.classList.remove('modal');
+            modal.textContent = '';
+        }
+        
+    }, [modalEl]);
 
     return (
         <>
             <div className="layout-h">
             <div className="h-wrapper">
                 <header className="h justify-between">
-                    <a className="h-backlink" href="#">
+                    <button className="h-backlink hidden" href="#">
                         <img src={arrow} alt="btn-icon"/>
-                    </a>
+                    </button>
                     <nav className="nav flex ml-4 justify-between gap-x-5 gap-y-5 flex-wrap mr-10 ">
-                        <a className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Каталог</a>
-                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Топ юзеров</a>
-                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Отзывы</a>
-                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Гарантии</a>
-                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Случайные предметы</a>
-                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Форум</a>
+                        <a className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="#">Главное</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="#">Каталог</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="#">Топ юзеров</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="#">Отзывы</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="#">Гарантии</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="#">Случайные предметы</a>
+                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="#">Форум</a>
                     </nav>
                     {!loggedIn ? (
                         <div className="flex gap-4">
-                            <button className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer lg:w-[50px] lg:h-[50px]">
+                            <button className="btn btn-primary rounded-full w-11 h-11 justify-center cursor-pointer lg:w-[50px] lg:h-[50px]">
                                 <div className="btn-icon">
                                     <img src={vk} alt="btn-vk"/>
                                 </div>
@@ -216,10 +288,10 @@ function HeaderMain() {
                                     <div>
                                         <div className="pmc-chip-bar flex gap-x-3 gap-y-2 items-center lg:flex-wrap lg:ml-auto">
                                             <a className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#DCF1C4]" href="#">
-                                                <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">1 521 100PD</span>
+                                                <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{balance}PD</span>
                                             </a>
                                             <a className="pmc-chip border rounded-full border-[#D2DFFB] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#D2DFFB]" href="#">
-                                                <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">533 100₽</span>
+                                                <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{bonus}₽</span>
                                                 <img className="pmc-chip-icon w-4 h-4" src={iconPlus} alt="picture"/>
                                             </a>
                                         </div>
@@ -312,7 +384,7 @@ function HeaderMain() {
                                 <img src={vk} alt="btn-vk"/>
                             </div>
                         </button>
-                        <button onClick={openAuthorization} className="btn btn-secondary notif-btn notif-btn-a text-white rounded-full w-[140px] h-[45px] lg:w-[160px] lg:h-[55px] justify-center cursor-pointer">
+                        <button onClick={openAuthorization} className="btn btn-secondary text-white rounded-full w-[140px] h-[45px] lg:w-[160px] lg:h-[55px] justify-center cursor-pointer">
                             ВОЙТИ
                         </button>
                     </div>
@@ -409,13 +481,13 @@ function HeaderMain() {
                                     <img className="w-full h-full object-cover" src={avatar} alt="user avatar"/>
                                 </div>
                                 <div>
-                                    <div className="font-bold font-primary-bold">{name}</div>
+                                    {/* <div className="font-bold font-primary-bold">{name}</div> */}
                                     <div className="pmc-chip-bar flex gap-x-3 gap-y-2 items-center lg:flex-wrap lg:ml-auto">
                                         <a className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#DCF1C4]" href="#">
-                                            <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">1 521 100PD</span>
+                                            <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{bonus}PD</span>
                                         </a>
                                         <a className="pmc-chip border rounded-full border-[#D2DFFB] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#D2DFFB]" href="#">
-                                            <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">533 100₽</span>
+                                            <span className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{balance}₽</span>
                                             <img className="pmc-chip-icon w-4 h-4" src={iconPlus} alt="picture"/>
                                         </a>
                                     </div>
