@@ -9,14 +9,32 @@ import Profile from './pages/profile/Profile';
 import Content from './pages/content/Content';
 import Catalog from './components/catalog/Catalog';
 import LeftMenu from './components/leftMenu/LeftMenu';
+import LayoutColRow from './components/LayoutColRow';
+import { useState, useEffect } from 'react';
+import { createRoot } from "react-dom/client";
+
 
 function App() {
-    return (
+  
+  /* useEffect(() => {
+    if (document.querySelector("div#header")) {
+      const header = document.querySelector("div#header");
+      const headerContainer = document.createElement("div");
+      const rootHeader = createRoot(headerContainer);
+      const headerEl = <HeaderMain />;
+      rootHeader.render(headerEl);
+      header.appendChild(rootHeader);  
+  console.log('headerEl', headerEl)
+      
+    }
+    },[]); */
+
+  return (
     <div className="App">
       <Routes >
         <Route path="/" element={<Content />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="catalog" element={<Catalog />} />
+        <Route path="profile" element={<Profile />} />
       </Routes>
     </div>
   );
@@ -32,10 +50,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 if (document.querySelector("div#header")) {
   const header = document.querySelector("div#header");
-  ReactDOM.createRoot(header).render(<HeaderMain />);
+  ReactDOM.createRoot(header).render(<BrowserRouter><HeaderMain /></BrowserRouter>);
 }
 
 if (document.querySelector("div#left-menu")) {
   const leftMenu = document.querySelector("div#left-menu");
   ReactDOM.createRoot(leftMenu).render(<LeftMenu />);
+}
+
+if (document.querySelector("div#layoutColRow")) {
+  const leftMenu = document.querySelector("div#layoutColRow");
+  ReactDOM.createRoot(leftMenu).render(<LayoutColRow />);
 }

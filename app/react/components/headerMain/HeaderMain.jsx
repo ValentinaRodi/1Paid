@@ -20,12 +20,13 @@ import Registration from '../../components/registration/Registration';
 import Authorization from "../../components/authorization/Authorization";
 import RecPass from '../../components/recpass/Recpass';
 import { useState, useEffect, useRef } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import React from "react";
 import { createRoot } from "react-dom/client";
 import listenForOutsideClick from "../listenForOutsideClicks";
 
-function HeaderMain() {
+
+function HeaderMain(props) {
     const [loggedIn, setLoggedIn] = useState(false);
     const [name, setName] = useState('');
     const [balance, setBalance] = useState('');
@@ -123,7 +124,6 @@ function HeaderMain() {
             openRegistration={openRegistration}
         />);
         setModalOpen(true);
-        console.log(modalEl)
     };
 
     const closeModal = () =>{
@@ -152,6 +152,10 @@ function HeaderMain() {
         setIsOpenMenu2(false);
         //history.pushState(null, null, '/profile');
     };
+
+    const clickMain = () => {
+
+    }
   
     useEffect(() => {
         let loggedInUser = localStorage.getItem('logged');
@@ -192,17 +196,19 @@ function HeaderMain() {
         
     }, [modalEl]);
 
+   
+
     return (
         <>
-            <div className="layout-h">
+            <div className="">
             <div className="h-wrapper">
                 <header className="h justify-between">
-                    <button className="h-backlink hidden" href="#">
+                    <button className="h-backlink hidden">
                         <img src={arrow} alt="btn-icon"/>
                     </button>
                     <nav className="nav flex ml-4 justify-between gap-x-5 gap-y-5 flex-wrap mr-10 ">
-                        <a  className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm">Главная</a>
-                        <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="/catalog">Каталог</a>
+                        <a onClick={() => props.clickMain(true)} className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="/">Главная</a>
+                        <Link to='profile'  className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" >Каталог</Link>
                         <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="#">Топ юзеров</a>
                         <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="#">Отзывы</a>
                         <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm" href="#">Гарантии</a>
