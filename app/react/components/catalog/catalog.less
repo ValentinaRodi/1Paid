@@ -48,44 +48,73 @@
 
 
 
+// .form_radio {
+// 	margin-bottom: 10px;
+// }
+// .form_radio input[type=radio] {
+// 	display: none;
+// }
+// .form_radio label {
+// 	display: inline-block;
+// 	cursor: pointer;
+// 	position: relative;
+// 	padding-left: 25px;
+// 	margin-right: 0;
+// 	line-height: 18px;
+// 	user-select: none;
+// }
+// .form_radio label:before {
+// 	content: "";
+// 	display: inline-block;
+// 	width: 17px;
+// 	height: 18px;
+// 	position: absolute;
+// 	left: 0;
+// 	bottom: 1px;
+// 	background: url(/img/radio-1.svg) 0 0 no-repeat;
+// }
 
-.form_radio {
-	margin-bottom: 10px;
-}
-.form_radio input[type=radio] {
-	display: none;
-}
-.form_radio label {
-	display: inline-block;
-	cursor: pointer;
-	position: relative;
-	padding-left: 25px;
-	margin-right: 0;
-	line-height: 18px;
-	user-select: none;
-}
-.form_radio label:before {
-	content: "";
-	display: inline-block;
-	width: 17px;
-	height: 18px;
-	position: absolute;
-	left: 0;
-	bottom: 1px;
-	background: url(/img/radio-1.svg) 0 0 no-repeat;
+// /* Checked */
+// .form_radio input[type=radio]:checked + label:before {
+// 	background: url(/img/radio-2.svg) 0 0 no-repeat;
+// }
+
+// /* Hover */
+// .form_radio label:hover:before {
+// 	filter: brightness(120%);
+// }
+
+// /* Disabled */
+// .form_radio input[type=radio]:disabled + label:before {
+// 	filter: grayscale(100%);
+// }
+
+.h_catalog {
+    display: flex;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    height: 85px;
+    
 }
 
-/* Checked */
-.form_radio input[type=radio]:checked + label:before {
-	background: url(/img/radio-2.svg) 0 0 no-repeat;
+.nav_catalog {
+    overflow: hidden;
 }
 
-/* Hover */
-.form_radio label:hover:before {
-	filter: brightness(120%);
+.range-fill {
+    left: 18.3673%; 
+    width: 30.6122%
 }
 
-/* Disabled */
-.form_radio input[type=radio]:disabled + label:before {
-	filter: grayscale(100%);
+.input {
+    --minRangePercent: 0%;
+    --maxRangePercent: 0%;
+    height: 0.4rem;
+}
+
+input, textarea {
+    outline: none;
 }

@@ -3,11 +3,41 @@ import puicImage from "../../../../web/img/achievements-example.7996faae.png";
 import puicImage2 from "../../../../web/img/icon-shopping-card-gradient.ff3dca76.svg";
 import spfRating from "../../../../web/img/icon-spf-rating-icon.svg";
 import fbcAvatar from "../../../../web/img/avatar-example-4.6cd623f4.png";
-import btnIcon from "../../../../web/img/icon-btn-icon-pr.svg";
-import btnIcon2 from "../../../../web/img/icon-btn-icon-pr2.svg";
+import { useState, useEffect } from 'react';
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import Content from '../content/Content';
 
 function Profile() {
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [name, setName] = useState('');
+    const [balance, setBalance] = useState('');
+    const [bonus, setBonus] = useState('');
+    const [avatar, setAvatar] = useState('');
+    const location = useLocation();
+    let loggedInUser = null;
+    
+    useEffect(() => {
+        
+        const prsl = document.getElementById('prsl');
+        prsl.classList.add('hidden');
+        localStorage.getItem('logged');
 
+        if (loggedInUser) {
+            setLoggedIn(true);
+            setName(localStorage.getItem('name'));
+            setBalance(localStorage.getItem('balance'));
+            setBonus(localStorage.getItem('bonus'));
+            setAvatar(localStorage.getItem('avatar'));
+        }
+
+        if (!loggedInUser) {
+            setLoggedIn(false);
+            // history.pushState(null, null, '/');
+            
+        }
+        
+    }, [loggedIn]);
+    
     return (
         <div className="layout-b pb-4 px-9 3xl:px-4 min-w-0 sm:px-3">
             <div className="spf mt-11 2md:mt-5">

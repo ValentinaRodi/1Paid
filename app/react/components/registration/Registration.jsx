@@ -270,7 +270,7 @@ function Registration(props) {
                     <label htmlFor="secretWorld" className='label input-label text-[#CFD2EA]'>Секретное слово (мин. 8 букв)</label>
                 </div>
                 <div className='flex gap-2 mb-8'>
-                    <input onChange={handleAsseptChange} value={assept} type="checkbox" id="assent" name="assent" className={`${errorAssept} custom-checkbox`}/>
+                    <input onChange={handleAsseptChange} value={assept} type="checkbox" id="assent" name="assent" className={`${errorAssept} custom-checkbox_reg`}/>
                     <label htmlFor="assent" className='check text-sm sm:text-base text-[#9595AE]'>Я подтверждаю, что ознакомлен справилами сайта и пользовательским соглашением</label>
                 </div>
                 <div className='flex justify-between gap-1 items-center'>

@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "./catalog.less";
-import vplay from '../../../../web/img/icon-gc-vplay-icon.svg';
-import btnIcon from '../../../../web/img/icon-btn-icon-11.svg';
 import uuid from 'react-uuid';
 import InputRange from '../../components/inputRange/InputRange';
-
-
+import Select from '../select/Select';
 
 function Catalog() {
-
     const [btn, setBtn] = useState(true);
     const [dataCards, setDataCards] = useState([]);
     const [gamesObj, setGamesObj] = useState([]);
-    const blue = '';
-    const green = '';
 
 
+    const openMenuNav = () => {
+        
+    }
+
+
+
+    
     useEffect(() => {
         const jsonCards = document.getElementById('games-json').innerHTML;
         setDataCards(JSON.parse(jsonCards));
@@ -29,6 +30,8 @@ function Catalog() {
             }
         }
     }, [dataCards]);
+
+    const arr = {0:'localhost', 1:'Москва', 2:'GTA V RP'};
 
     return (
         <>
@@ -52,19 +55,19 @@ function Catalog() {
                     </div>
                 </div>
             </div>
-            <div className="h h-[85px] justify-between rounded-lg bg-white px-6 mb-3">
-                <nav className="flex gap-x-5 gap-y-5 flex-wrap mr-10 ">
-                    <a className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Робуксы</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Донат робуксов (паки)</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Подарочные карты</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Аккаунты</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">GPO</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Pet Simulator X</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">YBA</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">mm2</a>
-                    <a className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">adopt me</a>
+            <div className="flex items-center h-[85px] justify-between rounded-lg bg-white px-6 mb-3">
+                <nav className="flex gap-x-5 mt-[12px] gap-y-10 h-[28px] overflow-hidden flex-wrap mr-10 ">
+                    <a className="nav-link-prim nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Робуксы</a>
+                    <a className="nav-link nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Донат робуксов (паки)</a>
+                    <a className="nav-link nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Подарочные карты</a>
+                    <a className="nav-link nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Аккаунты</a>
+                    <a className="nav-link nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">GPO</a>
+                    <a className="nav-link nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">Pet Simulator X</a>
+                    <a className="nav-link nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">YBA</a>
+                    <a className="nav-link nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">mm2</a>
+                    <a className="nav-link nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">adopt me</a>
                 </nav>
-                <button className='text-[#8A98B3] bg-white text-sm border-solid border-[1px] rounded-[40px] border-[rgb(192,194,220,0.35)] px-4 py-2'>Ещё</button>
+                <button onClick={openMenuNav} className='text-[#8A98B3] bg-white text-sm border-solid border-[1px] rounded-[40px] border-[rgb(192,194,220,0.35)] px-4 py-2'>Ещё</button>
             </div>
             <div className="rounded-lg bg-white p-6 mb-3">
                 <h2 className="mb-2 sh-title-text font-secondary-bold text-bold text-[21px] text-black">Warface</h2>
@@ -73,60 +76,45 @@ function Catalog() {
             <div className='flex gap-2'>
                 <div className='filtr bg-white rounded-[8px] min-w-[317px] p-6'>
                     <div>
-                        <h3 className="mb-2 sh-title-text font-secondary-bold text-bold text-xs text-black">Цена</h3>
-                        <InputRange min='1' max='150000'/>
-                    </div>
-                    <div className='w-full mb-6'>
-                        <label htmlFor="period" className='block sh-title-text font-secondary-bold text-bold text-xs text-black mb-4'>Сервер</label>
-                        <div className='rounded border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] w-full'>
-                            <select name="period" id='period' className=' bg-inherit form-select family-acrom-bold text-bold text-[13px] px-3 h-[40px] w-full outline-none text-black'>
-                                <option defaultValue="none">Не выбрано</option>
-                                <option defaultValue="">Режим</option>
-                                <option defaultValue="">Блиц</option>
-                                <option defaultValue="">Доминация</option>
-                                <option defaultValue="">Захват</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 className="mb-2 sh-title-text font-secondary-bold text-bold text-xs text-black">Ранг</h3>
-                        <InputRange min='1' max='30000'/>
-                    </div>
-                    <div>
-                        <h3 className="mb-2 sh-title-text font-secondary-bold text-bold text-xs text-black">Количество доната</h3>
-                        <InputRange min='1' max='30000'/>
-                    </div>
-                    <div className='w-full mb-6'>
-                        <label htmlFor="period" className='block sh-title-text font-secondary-bold text-bold text-xs text-black mb-4'>Тип аккаунта</label>
-                        <div className='rounded border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] w-full'>
-                            <select name="period" id='period' className=' bg-inherit form-select family-acrom-bold text-bold text-[13px] px-3 h-[40px] w-full outline-none text-black'>
-                                <option defaultValue="none">Не выбрано</option>
-                                <option defaultValue="">Режим</option>
-                                <option defaultValue="">Блиц</option>
-                                <option defaultValue="">Доминация</option>
-                                <option defaultValue="">Захват</option>
-                            </select>
-                        </div>
+                        <h3 className="sh-title-text font-secondary-bold text-bold text-xs text-black">Цена</h3>
+                        <InputRange min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'}/>
                     </div>
                     <div className="mb-6">
-                        <h3 className="mb-2 sh-title-text font-secondary-bold text-bold text-xs text-black">Продавец</h3>
-                        <div className="">
-                            <div className="form-item radio-btn nth-2 flex items-center gap-2 mb-2">
-                                <input type="radio" name="option1" id="radio1" checked/>
-                                <label htmlFor="radio1" className="font-secondary-bold text-bold text-xs">Онлайн</label>
-                            </div>
-                            <div className="form-item radio-btn nth-2 flex items-center gap-2">
-                                <input type="radio" name="option1" id="radio2"/>
-                                <label htmlFor="radio2" className="font-secondary-bold text-bold text-xs">Офлайн</label>
-                            </div>
+                        <label htmlFor="period" className='block sh-title-text font-secondary-bold text-bold text-xs text-black mb-4'>Сервер</label>
+                        <Select arr={arr}/>
+                    </div>
+                    <div>
+                        <h3 className="sh-title-text font-secondary-bold text-bold text-xs text-black">Ранг</h3>
+                        <InputRange min={1} max={30000} styleIcon={'slider-icon_green'} styleDiv={'gradient-green'}/>
+                    </div>
+                    <div>
+                        <h3 className="sh-title-text font-secondary-bold text-bold text-xs text-black">Количество доната</h3>
+                        <InputRange min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'}/>
+                    </div>
+                    <div className="mb-6">
+                        <label htmlFor="period" className='block sh-title-text font-secondary-bold text-bold text-xs text-black mb-4'>Тип аккаунта</label>
+                        <Select arr={arr}/>
+                    </div>
+                    
+                    <div className="mb-2">
+                        <h3 className="mb-4 sh-title-text font-secondary-bold text-bold text-xs text-black">Продавец</h3>
+                        <div className="smt-filter-type-content flex flex-col">
+                            <label className="custom-checkbox mb-[12px] font-secondary-bold text-xs">Онлайн
+                            <input type="checkbox" name="online" defaultChecked="checked"/>
+                            <span className="custom-checkmark"></span>
+                            </label>
+                            <label className="custom-checkbox font-secondary-bold text-xs">Офлайн
+                            <input type="checkbox" name="offline" defaultChecked=""/>
+                            <span className="custom-checkmark"></span>
+                            </label>
                         </div>
                     </div>
                     <div>
-                        <button className="mb-4 btn gap-2 justify-center flex items-center text-white w-full h-[57px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)]">
+                        <button className="mb-4 btn gap-2 justify-center flex items-center text-white w-full h-[57px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)] shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]">
                             <img src='/img/icon-btn.svg' alt='filter'/>
                             Применить фильтр
                         </button>
-                        <button className=" gap-2 justify-center flex items-center w-full h-[57px] rounded-[4px] bg-[#EAEBF8]">
+                        <button className=" gap-2 justify-center flex items-center w-full h-[57px] rounded-[4px] bg-[#EAEBF8] hover:bg-[rgb(208_216_243/1)]">
                             <img src='/img/icon-btn2.svg' alt='filter'/>
                             Сбросить фильтр
                         </button>
@@ -163,7 +151,7 @@ function Catalog() {
                                                 </div>
                                             </label>
                                         </div>
-                                        <div className="pc-preview flex justify-center items-center">
+                                        <div className="pc-preview flex justify-center items-center mb-3">
                                             <div className="pc-preview-inner max-w-[80px] max-h-[80px]">
                                                 <img className="pc-preview-pic w-full" src="/img/icon-war.svg" alt="picture"/>
                                             </div>

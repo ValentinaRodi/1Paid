@@ -1,9 +1,26 @@
 import { useState, useEffect } from 'react';
 import Cards from '../../components/cards/Cards';
+import Catalog from '../../components/catalog/Catalog';
+
 
 function Content() {
+    const [catalog, setCatalog] = useState(false);
+
+    const replaceCatalog = () => {
+        setCatalog(true);
+        history.pushState(null, null, '/catalog');
+    }
+
+    useEffect(() => {
+        
+        const prsl = document.getElementById('prsl');
+        prsl.classList.add('hidden');
+        
+    }, []);
 
     return (
+        <>
+        {!catalog ?
         <>
             <div className="sh flex justify-between items-center gap-x-3 mt-10 mb-10">
                 <div className="img-hid">
@@ -23,8 +40,12 @@ function Content() {
                     </div>
                 </div>
             </div>
-            <Cards />
+            <Cards replaceCatalog={replaceCatalog}/>
         </>
+        :
+        <Catalog />
+    }
+      </>  
     );
 }
 

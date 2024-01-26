@@ -18,12 +18,10 @@
 
 a {
     font-weight: 500;
-    color: #646cff;
+   
     text-decoration: inherit;
 }
-a:hover {
-    color: #535bf2;
-}
+
 
 body {
     margin: 0;
@@ -64,17 +62,10 @@ button:focus-visible {
         color: #213547;
         background-color: #ffffff;
     }
-    a:hover {
-        color: #747bff;
-    }
+
     button {
         background-color: #f9f9f9;
     }
-}
-
-.h {
-    display: flex;
-    align-items: center;
 }
 
 *,
@@ -3882,10 +3873,7 @@ textarea {
         width: 45px;
     }
 
-    .navpin-plate-icon {
-        width: 25px;
-        height: 25px;
-    }
+  
 
     .navpin-plate__dots-1,
     .navpin-plate__dots-2 {
@@ -4582,6 +4570,10 @@ textarea {
     transition: 0.2s;
 }
 
+.nav-link:hover {
+    color: #0c0c0c;
+}
+
 .nav-link::after {
     content: "";
     position: absolute;
@@ -4605,9 +4597,7 @@ textarea {
     transition: 0.2s;
 }
 
-.nav-link:hover {
-    color: #0c0c0c !important;
-}
+
 
 .nav-link:hover::after {
     opacity: 1;
@@ -4642,13 +4632,7 @@ textarea {
     transition: 0.2s;
 }
 
-.hnav-link:hover {
-    color: #0c0c0c !important;
-}
 
-.hnav-link:hover::after {
-    opacity: 1;
-}
 
 @media (max-width: 1600px) {
     .layout-sidebar {
@@ -4720,7 +4704,7 @@ textarea {
 }
 
 .hnav-link:hover {
-    color: #0c0c0c !important;
+    color: #0c0c0c;
 }
 
 .hnav-link:hover::after {
@@ -4902,9 +4886,9 @@ textarea {
     position: relative;
 }
 
-.custom-select select {
+/* .custom-select select {
     display: none;
-}
+} */
 
 .select-selected {
     background-color: #eaebf8;
@@ -4922,8 +4906,7 @@ textarea {
     height: 24px;
     -webkit-animation: transform 1s;
     animation: transform 1s;
-    background: transparent url(" + ___CSS_LOADER_URL_REPLACEMENT_17___ + ")
-        no-repeat;
+    
 }
 
 .select-selected.select-arrow-active:after {
@@ -4971,7 +4954,7 @@ textarea {
     display: block;
     position: relative;
     padding-left: 28px;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     cursor: pointer;
     font-size: 12px;
     -webkit-user-select: none;
@@ -4990,25 +4973,25 @@ textarea {
 
 .custom-checkmark {
     position: absolute;
-    top: 0;
+    top: -4px;
     left: 0;
-    height: 20px;
-    width: 20px;
+    height: 23px;
+    width: 23px;
     background-color: #fff;
     border-radius: 50%;
     border: 2px solid #dadbed;
 }
 
 .custom-checkbox:hover input ~ .custom-checkmark {
-    border-color: #0046d6;
-    border-color: var(--color-primary-gradient-2);
+    border-color: #339CFC;
+    
 }
 
 .custom-checkbox input:checked ~ .custom-checkmark {
-    background-color: #0046d6;
+    background: linear-gradient(36.87deg, #339CFC 18.57%, #1E61EB 80.26%);
     background-color: var(--color-primary-gradient-2);
-    border-color: #0046d6;
-    border-color: var(--color-primary-gradient-2);
+    border-color: #339CFC;
+    
 }
 
 .custom-checkmark:after {
@@ -5021,14 +5004,7 @@ textarea {
     display: block;
 }
 
-.custom-checkbox .custom-checkmark:after {
-    left: 3px;
-    top: 3px;
-    width: 10px;
-    height: 10px;
-    background: #fff;
-    border-radius: 50%;
-}
+
 
 input[type="checkbox"] {
     height: 0;
@@ -6377,8 +6353,7 @@ input[type="checkbox"] {
     width: 100%;
     left: -400px;
     content: "";
-    background: transparent url(" + ___CSS_LOADER_URL_REPLACEMENT_19___ + ")
-        no-repeat;
+   
     background-size: auto auto;
     background-size: initial;
     background-position: top center;
@@ -6390,8 +6365,7 @@ input[type="checkbox"] {
     width: 100%;
     right: -420px;
     content: "";
-    background: transparent url(" + ___CSS_LOADER_URL_REPLACEMENT_20___ + ")
-        no-repeat;
+    
     background-size: auto auto;
     background-size: initial;
     background-position: top center;
@@ -6992,16 +6966,6 @@ input[type="checkbox"] {
     fill: #8a98b3;
 }
 
-.h {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    min-height: 100px;
-}
-
 .h-openmenu {
     position: relative;
     -ms-flex-negative: 0;
@@ -7111,14 +7075,6 @@ input[type="checkbox"] {
     opacity: 0;
 }
 
-.custom-select {
-    width: 100%;
-    position: relative;
-}
-
-.custom-select select {
-    display: none;
-}
 
 .select-selected {
     background-color: #eaebf8;
@@ -7136,8 +7092,7 @@ input[type="checkbox"] {
     height: 24px;
     -webkit-animation: transform 1s;
     animation: transform 1s;
-    background: transparent url(" + ___CSS_LOADER_URL_REPLACEMENT_17___ + ")
-        no-repeat;
+   
 }
 
 .select-selected.select-arrow-active:after {
@@ -7181,18 +7136,7 @@ input[type="checkbox"] {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.custom-checkbox {
-    display: block;
-    position: relative;
-    padding-left: 28px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 12px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+
 
 .custom-checkbox input {
     position: absolute;
@@ -7202,47 +7146,6 @@ input[type="checkbox"] {
     width: 0;
 }
 
-.custom-checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #fff;
-    border-radius: 50%;
-    border: 2px solid #dadbed;
-}
-
-.custom-checkbox:hover input ~ .custom-checkmark {
-    border-color: #0046d6;
-    border-color: var(--color-primary-gradient-2);
-}
-
-.custom-checkbox input:checked ~ .custom-checkmark {
-    background-color: #0046d6;
-    background-color: var(--color-primary-gradient-2);
-    border-color: #0046d6;
-    border-color: var(--color-primary-gradient-2);
-}
-
-.custom-checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.custom-checkbox input:checked ~ .custom-checkmark:after {
-    display: block;
-}
-
-.custom-checkbox .custom-checkmark:after {
-    left: 3px;
-    top: 3px;
-    width: 10px;
-    height: 10px;
-    background: #fff;
-    border-radius: 50%;
-}
 
 input[type="checkbox"] {
     height: 0;
@@ -8549,8 +8452,7 @@ input[type="checkbox"] {
     width: 100%;
     left: -400px;
     content: "";
-    background: transparent url(" + ___CSS_LOADER_URL_REPLACEMENT_19___ + ")
-        no-repeat;
+    
     background-size: auto auto;
     background-size: initial;
     background-position: top center;
@@ -8562,8 +8464,7 @@ input[type="checkbox"] {
     width: 100%;
     right: -420px;
     content: "";
-    background: transparent url(" + ___CSS_LOADER_URL_REPLACEMENT_20___ + ")
-        no-repeat;
+    
     background-size: auto auto;
     background-size: initial;
     background-position: top center;
@@ -9214,8 +9115,8 @@ textarea {
         width: 45px;
     }
     .navpin-plate-icon {
-        width: 25px;
-        height: 25px;
+        width: 35px;
+        height: 35px;
     }
     .navpin-plate__dots-1,
     .navpin-plate__dots-2 {
@@ -9784,39 +9685,7 @@ textarea {
     fill: #8a98b3;
 }
 
-.nav-link {
-    position: relative;
-    -webkit-transition: 0.2s;
-    transition: 0.2s;
-}
-.nav-link::after {
-    content: "";
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(37deg, #339cfc 0%, #0046d6 100%);
-    background: linear-gradient(
-        37deg,
-        var(--color-primary-gradient-1) 0%,
-        var(--color-primary-gradient-2) 100%
-    );
-    opacity: 0;
-    -webkit-box-shadow: 0px 2px 13px 0px rgba(51, 156, 252, 0.71);
-    box-shadow: 0px 2px 13px 0px rgba(51, 156, 252, 0.71);
-    -webkit-box-shadow: 0px 2px 13px 0px
-        rgba(var(--color-primary-gradient-1-rgb) / 71%);
-    box-shadow: 0px 2px 13px 0px rgba(var(--color-primary-gradient-1-rgb) / 71%);
-    -webkit-transition: 0.2s;
-    transition: 0.2s;
-}
-.nav-link:hover {
-    color: #0c0c0c;
-}
-.nav-link:hover::after {
-    opacity: 1;
-}
+
 
 @media (max-width: 1600px) {
     .nav-link:after {
@@ -9827,18 +9696,16 @@ textarea {
 @media (max-width: 1200px) {
     .nav-link:hover {
         color: #ffffff;
-        color: var(--color-white);
+    }
+
+    .nav-link-tab:hover {
+        color: #0c0c0c;
+    }
+    .nav-link-hed:hover {
+        color: #fff;
     }
 }
-.h {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    min-height: 100px;
-}
+
 .h-openmenu {
     position: relative;
     -ms-flex-negative: 0;
@@ -9961,8 +9828,7 @@ textarea {
     height: 24px;
     -webkit-animation: transform 1s;
     animation: transform 1s;
-    background: transparent url(" + ___CSS_LOADER_URL_REPLACEMENT_17___ + ")
-        no-repeat;
+    
 }
 
 .select-selected.select-arrow-active:after {
@@ -10006,18 +9872,6 @@ textarea {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.custom-checkbox {
-    display: block;
-    position: relative;
-    padding-left: 28px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 12px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
 
 .custom-checkbox input {
     position: absolute;
@@ -10027,47 +9881,9 @@ textarea {
     width: 0;
 }
 
-.custom-checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #fff;
-    border-radius: 50%;
-    border: 2px solid #dadbed;
-}
 
-.custom-checkbox:hover input ~ .custom-checkmark {
-    border-color: #0046d6;
-    border-color: var(--color-primary-gradient-2);
-}
 
-.custom-checkbox input:checked ~ .custom-checkmark {
-    background-color: #0046d6;
-    background-color: var(--color-primary-gradient-2);
-    border-color: #0046d6;
-    border-color: var(--color-primary-gradient-2);
-}
 
-.custom-checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.custom-checkbox input:checked ~ .custom-checkmark:after {
-    display: block;
-}
-
-.custom-checkbox .custom-checkmark:after {
-    left: 3px;
-    top: 3px;
-    width: 10px;
-    height: 10px;
-    background: #fff;
-    border-radius: 50%;
-}
 
 input[type="checkbox"] {
     height: 0;
@@ -11250,8 +11066,7 @@ input[type="checkbox"] {
     width: 100%;
     left: -400px;
     content: "";
-    background: transparent url(" + ___CSS_LOADER_URL_REPLACEMENT_19___ + ")
-        no-repeat;
+    
     background-size: auto auto;
     background-size: initial;
     background-position: top center;
@@ -11262,8 +11077,7 @@ input[type="checkbox"] {
     width: 100%;
     right: -420px;
     content: "";
-    background: transparent url(" + ___CSS_LOADER_URL_REPLACEMENT_20___ + ")
-        no-repeat;
+    
     background-size: auto auto;
     background-size: initial;
     background-position: top center;
@@ -11566,10 +11380,7 @@ input[type="checkbox"] {
     .navpin-plate {
         width: 45px;
     }
-    .navpin-plate-icon {
-        width: 25px;
-        height: 25px;
-    }
+   
     .navpin-plate__dots-1,
     .navpin-plate__dots-2 {
         width: 25px;
@@ -12004,43 +11815,10 @@ input[type="checkbox"] {
     fill: #8a98b3;
 }
 
-.nav-link {
-    position: relative;
-    transition: 0.2s;
-}
-.nav-link::after {
-    content: "";
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(
-        37deg,
-        var(--color-primary-gradient-1) 0%,
-        var(--color-primary-gradient-2) 100%
-    );
-    opacity: 0;
-    box-shadow: 0px 2px 13px 0px rgba(var(--color-primary-gradient-1-rgb) / 71%);
-    transition: 0.2s;
-}
-.nav-link:hover {
-    color: #0c0c0c;
-}
-.nav-link:hover::after {
-    opacity: 1;
-}
 
-@media (max-width: 1600px) {
-    .nav-link:after {
-        top: calc(100% + 4px);
-        height: 2px;
-    }
-}
+
 @media (max-width: 1200px) {
-    .nav-link:hover {
-        color: var(--color-white);
-    }
+   
     .footer {
         font-size:12px;
     }
@@ -12150,17 +11928,7 @@ input[type="checkbox"] {
     border-radius: 4px;
 }
 
-.select-selected:after {
-    position: absolute;
-    content: "";
-    top: 12px;
-    right: 10px;
-    width: 24px;
-    height: 24px;
-    animation: transform 1s;
-    background: transparent url("assets/images/icon-arrow-angle-down.svg")
-        no-repeat;
-}
+
 
 .select-selected.select-arrow-active:after {
     border-color: transparent transparent #000 transparent;
@@ -12196,18 +11964,7 @@ input[type="checkbox"] {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.custom-checkbox {
-    display: block;
-    position: relative;
-    padding-left: 28px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 12px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+
 
 .custom-checkbox input {
     position: absolute;
@@ -12217,39 +11974,18 @@ input[type="checkbox"] {
     width: 0;
 }
 
-.custom-checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #fff;
-    border-radius: 50%;
-    border: 2px solid #dadbed;
-}
+
 
 .custom-checkbox:hover input ~ .custom-checkmark {
     border-color: var(--color-primary-gradient-2);
 }
 
-.custom-checkbox input:checked ~ .custom-checkmark {
-    background-color: var(--color-primary-gradient-2);
-    border-color: var(--color-primary-gradient-2);
-}
 
-.custom-checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
 
-.custom-checkbox input:checked ~ .custom-checkmark:after {
-    display: block;
-}
 
 .custom-checkbox .custom-checkmark:after {
-    left: 3px;
-    top: 3px;
+    left: 4.5px;
+    top: 5px;
     width: 10px;
     height: 10px;
     background: #fff;
@@ -13391,9 +13127,7 @@ top: -6px;
 .sh-title-text {
     font-weight: bold;
 }
-.sh-title {
-margin-left:15%;
-}
+
 .text-w {
     width: 63%;
 }
@@ -13507,4 +13241,9 @@ margin-left:15%;
 
 .hidden {
     display: none;
+}
+
+.np-nav-item:hover #svg-icon {
+    fill: #2471ef;
+    transition-duration: 200ms;
 }

@@ -2,19 +2,19 @@
     font-family: "TTNorms-bold";
 }
 
-.custom-checkbox {
+.custom-checkbox_auth {
     position: absolute;
     z-index: -1;
     opacity: 0;
 }
 
-.custom-checkbox + label {
+.custom-checkbox_auth + label {
     display: inline-flex;
     align-items: center;
     user-select: none;
 }
 
-.custom-checkbox + label::before {
+.custom-checkbox_auth + label::before {
     content: "";
     display: inline-block;
     width: 1.4em;
@@ -29,7 +29,7 @@
     background-size: 50% 50%;
 }
 
-.custom-checkbox:checked + label::before {
+.custom-checkbox_auth:checked + label::before {
     border-color: #0b0c10;
     background-color: #0b0c10;
     background-image: url("/img/check.svg");

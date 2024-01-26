@@ -216,7 +216,7 @@ function Authorization(props) {
                                 type="checkbox"
                                 id="assent"
                                 name="rememberMe"
-                                className="custom-checkbox"
+                                className="custom-checkbox_auth"
                             />
                             <label
                                 htmlFor="assent"
