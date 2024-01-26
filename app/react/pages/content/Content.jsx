@@ -29,7 +29,7 @@ function Content() {
         <>
             {!catalog ?
                 <>
-                    <div className="sh flex justify-between items-center gap-x-3 mt-10 mb-10">
+                    <div className="sh flex justify-between items-center gap-x-3 mt-8 xl:mt-16 mb-10">
                         <div className="w-[252px]">
                             <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>
                         </div>

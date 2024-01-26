@@ -20,7 +20,7 @@ function LayoutColRow() {
     
     return (
         
-        <div className={`lf rounded-md ${orient}`}>
+        <div className={`lf ${orient}`}>
             <div className="lf-h">
                 <div className="lf-bar">
                     <div className="lf-inf">
@@ -63,111 +63,123 @@ function LayoutColRow() {
                 <div className="lf-feed-track">
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-blue.6568b466.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-violet.2050f5bf.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-pink.17c520f2.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-gold.dea4179e.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-blue.6568b466.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-violet.2050f5bf.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-pink.17c520f2.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-gold.dea4179e.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-blue.6568b466.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-violet.2050f5bf.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-pink.17c520f2.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                     <div className="lf-item">
                         <img className="lf-item-pic" src="/img/case-gold.dea4179e.png" alt="case"/>
-                        <div className="lf-item-plate">
+                        <div className="lf-item-plate relative">
                             <div className="lf-item-avatar">
                                 <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
                             </div>
                             <div className="lf-item-name" title="Santcese">Santcese</div>
                         </div>
+                        <div class='absolute z-10 w-[40px] h-[40px] rounded-full bg-inherit bottom-[-8.2px] left-[4.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
                     </div>
                 </div>
             </div>
