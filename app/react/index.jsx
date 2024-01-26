@@ -13,7 +13,7 @@ import LeftMenu from './components/leftMenu/LeftMenu';
 function App() {
     return (
     <div className="App">
-      <Routes>
+      <Routes >
         <Route path="/" element={<Content />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/profile" element={<Profile />} />

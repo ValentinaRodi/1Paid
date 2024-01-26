@@ -51,9 +51,9 @@ function Cards(props) {
                                     <div className="gc-vplay-label font-secondary-bold text-center text-[10px] text-white md:hidden">Video</div>
                                 </div>
                                 <div className="gc-tags-wrap">
-                                    <div className="gc-tags">
+                                    <div className="gc-tags w-[30%]">
                                         {Object.values(card.categories).map((categ) => (
-                                            <a key={uuid()} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">{categ.name}</a>
+                                            <a key={uuid()} onClick={props.clickCateg(categ.name)} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">{categ.name}</a>
                                         ))}
                                     </div>
                                 </div>

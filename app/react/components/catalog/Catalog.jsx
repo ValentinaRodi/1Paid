@@ -11,7 +11,7 @@ function Catalog() {
 
 
     const openMenuNav = () => {
-        
+        console.log('dgfdf')
     }
 
 

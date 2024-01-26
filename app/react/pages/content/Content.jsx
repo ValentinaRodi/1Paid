@@ -2,21 +2,28 @@ import { useState, useEffect } from 'react';
 import Cards from '../../components/cards/Cards';
 import Catalog from '../../components/catalog/Catalog';
 
-
 function Content() {
     const [catalog, setCatalog] = useState(false);
+
+    window.onpopstate = function(event) {
+        console.log('event.isTrusted', event.isTrusted)
+        setCatalog(false);
+    };
 
     const replaceCatalog = () => {
         setCatalog(true);
         history.pushState(null, null, '/catalog');
     }
 
+    const categ = {}
+    const clickCateg = () => {
+        console.log(categ)
+    }
+
     useEffect(() => {
-        
         const prsl = document.getElementById('prsl');
-        prsl.classList.add('hidden');
-        
-    }, []);
+        (catalog) ? prsl.classList.add('hidden') : prsl.classList.remove('hidden');
+    }, [catalog]);
 
     return (
         <>
@@ -40,10 +47,10 @@ function Content() {
                     </div>
                 </div>
             </div>
-            <Cards replaceCatalog={replaceCatalog}/>
+            <Cards replaceCatalog={replaceCatalog} clickCateg={clickCateg}/>
         </>
         :
-        <Catalog />
+        <Catalog categ={categ}/>
     }
       </>  
     );
