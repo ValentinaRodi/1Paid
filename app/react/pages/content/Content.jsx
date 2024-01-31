@@ -1,41 +1,47 @@
 import { useState, useEffect } from 'react';
 import Cards from '../../components/cards/Cards';
 import Catalog from '../../components/catalog/Catalog';
+import Prsl from '../../components/prsl/Prsl';
+import LayoutBtn from '../../components/LayoutBtn';
+import Profile from '../profile/Profile';
 
-function Content() {
+function Content(props) {
     const [catalog, setCatalog] = useState(false);
 
-    window.onpopstate = function() {
-        setCatalog(false);
-    };
+    // window.onpopstate = function() {
+    //     setCatalog(false);
+    // };
 
     const replaceCatalog = () => {
+        console.log('1234')
         setCatalog(true);
         history.pushState(null, null, '/catalog');
     }
 
-    const categ = {}
-
-    const clickCateg = () => {
-        console.log(categ)
+    const clickCateg = (item) => {
+        setCatalog(true);
+        history.pushState(null, null, '/catalog');
+        console.log(item.target.textContent)
     }
 
-    useEffect(() => {
-        const prsl = document.getElementById('prsl');
-        (catalog) ? prsl.classList.add('hidden') : prsl.classList.remove('hidden');
-    }, [catalog]);
+    // useEffect(() => {
+        
+    // }, [catalog]);
 
     return (
-        <>
-            {!catalog ?
-                <>
+        <div className={`${props.orient} layout-b pb-4 min-w-0`}>
+            {(!catalog && !props.profile)  ?
+                <div>
+                    <Prsl />
                     <div className="sh flex justify-between items-center gap-x-3 mt-8 xl:mt-16 mb-10">
-                        <div className="w-[252px]">
+                        <div className="w-[252px] hidden">
                             <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>
                         </div>
-                        <div className="sh-title flex flex-col justify-center items-center ">
-                            <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Выбор игры</h2>
-                            <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
+                        <div className="sh-title ">
+                            <div >
+                                <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Выбор игры</h2>
+                                <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
+                                </div>
                             </div>
                         </div>
                         <div className="sh-bar flex items-center gap-2 2md:w-full 2md:flex-row-reverse">
@@ -48,13 +54,20 @@ function Content() {
                         </div>
                     </div>
                     <Cards replaceCatalog={replaceCatalog} clickCateg={clickCateg}/>
-                </>
+                    <LayoutBtn />
+                </div>
+            :(
+                (props.profile)  ?
+                    <div>
+                        <Profile/>
+                    </div>
                 :
-                <Catalog categ={categ}/>
-            }
-
-
-      </>  
+                    <div>
+                        <Catalog />
+                    </div>
+                )
+            }       
+        </div>  
     );
 }
 

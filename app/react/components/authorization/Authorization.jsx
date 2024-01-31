@@ -117,16 +117,18 @@ function Authorization(props) {
                         setSuccessMessage(data.message);
                         //console.log('data.success', data.name);
                         //console.log(successMessage);
-                        
-                        props.changeLogged();
-                        props.closeModal();
-                        props.changeName(data.name);
+
                         localStorage.setItem('logged', true); 
                         localStorage.setItem('name', data.name);
                         localStorage.setItem('avatar', data.avatar);
                         localStorage.setItem('balance', data.balance);
                         localStorage.setItem('bonus', data.bonus);
+                        
+                        props.changeLogged();
+                        props.closeModal();
+                        
                         window.location.reload();
+                        
                     } else {
                         setErrorMessage(data.message);
                         console.log(errorMessage);
@@ -142,7 +144,7 @@ function Authorization(props) {
     };
     
     return (
-        <div className="absolute inset-x-0 inset-y-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0">
+        <div className="fixed inset-x-0 inset-y-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0">
             <div className="z-20 bg-[#F7F7FC] w-screen min-[540px]:w-[540px] rounded-3xl px-10 pb-10 pt-5">
                 <div className="flex justify-end">
                     <button
@@ -166,7 +168,7 @@ function Authorization(props) {
                             name="name"
                             id="name"
                             placeholder=" "
-                            className="input input-label family-bold h-full w-full outline-none text-black"
+                            className="input input-label family-bold h-10 w-full outline-none text-black"
                         />
                         <label
                             htmlFor="name"
@@ -186,7 +188,7 @@ function Authorization(props) {
                                 name="password"
                                 id="password"
                                 placeholder=" "
-                                className="input w-full input-label family-bold h-full w-full outline-none text-black"
+                                className="input w-full input-label family-bold h-10 w-full outline-none text-black"
                             />
                             <label
                                 htmlFor="password"

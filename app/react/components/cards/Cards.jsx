@@ -53,7 +53,7 @@ function Cards(props) {
                                 <div className="gc-tags-wrap">
                                     <div className="gc-tags w-[30%]">
                                         {Object.values(card.categories).map((categ) => (
-                                            <a key={uuid()} onClick={props.clickCateg(categ.name)} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 " href="#">{categ.name}</a>
+                                            <button key={uuid()} onClick={props.clickCateg} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</button>
                                         ))}
                                     </div>
                                 </div>
@@ -71,13 +71,13 @@ function Cards(props) {
                     ) : (<div className='text-[#FF5343]'>error - game not found</div>)
                 }
             </div>
-            {(!btn) ? null :
-                <div className="sgc-f flex justify-center mt-10 ">
+            <div className="sgc-f flex justify-center mt-10 ">
+                {(!btn) ? null :
                     <button className="sgc-btn-more rounded-full h-[60px] flex items-center justify-center px-12 bg-[#E3E9F5] duration-200 hover:bg-[#d3d7e0]">
                         <div className="btn-text font-secondary-bold text-base text-[#B9C3D6]">Показать еще 25</div>
                     </button>
-                </div>
-            }
+                }
+            </div>
         </div>
     
     );

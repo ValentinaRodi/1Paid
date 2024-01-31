@@ -3,7 +3,7 @@ import  './newPass.less';
 function NewPass() {
  
   return (
-    <div className='absolute z-20 inset-0 bg-[rgba(6,9,18,0.8)] items-start md:items-center justify-center mt-[10%] md:mt-0'>
+    <div className='fixed z-20 inset-0 bg-[rgba(6,9,18,0.8)] items-start md:items-center justify-center mt-[10%] md:mt-0'>
         <div className=' bg-[#F7F7FC] w-screen min-[540px]:w-[540px] rounded-3xl px-10 pb-10 pt-5'>
             <div className='flex justify-end'>
                 <button className='p-0 hover:bg-[rgba(241,245,249,1)] rounded-full'>

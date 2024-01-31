@@ -183,7 +183,7 @@ function Registration(props) {
 
     return (
     
-        <div className='absolute z-20 inset-x-2/4 translate-x-[-50%] top-[8%] w-full sm:w-[540px] bg-[#F7F7FC] rounded-3xl px-10 pb-10 pt-5'>
+        <div className='fixed z-20 inset-x-2/4 translate-x-[-50%] w-full sm:w-[540px] bg-[#F7F7FC] rounded-3xl h-screen px-10 pb-10 pt-5'>
             <div className='flex justify-end'>
                 <button onClick={props.closeModal} className='p-0 hover:bg-[rgba(241,245,249,1)] rounded-full'>
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -196,11 +196,11 @@ function Registration(props) {
             <form className='mt-[-10px] mb-6'>
                 <h1 className='family-bold text-black font-bold text-[28px] mb-11'>Регистрация</h1>
                 <div className={`${errorName} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6`}>
-                    <input onChange={handleNameChange} value={name}  type="text" name="name" id='name' placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
+                    <input onChange={handleNameChange} value={name}  type="text" name="name" id='name' placeholder=" " className='input input-label family-bold h-10 w-full outline-none text-black'/>
                     <label htmlFor="name" className='label input-label text-[#CFD2EA]'>Имя пользователя</label>
                 </div>
                 <div className={`${errorEmail} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6`}>
-                    <input onChange={handleEmailChange} value={email} type="email" name="email" id='email'  placeholder=" " className='input input-label family-bold h-full w-full outline-none text-black'/>
+                    <input onChange={handleEmailChange} value={email} type="email" name="email" id='email'  placeholder=" " className='input input-label family-bold h-10 w-full outline-none text-black'/>
                     <label htmlFor="email" className='label input-label text-[#CFD2EA]'>Эл. почта</label>
                 </div>
                 <div className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6 flex items-center justify-between`}>

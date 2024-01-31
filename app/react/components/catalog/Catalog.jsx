@@ -14,9 +14,6 @@ function Catalog() {
         console.log('dgfdf')
     }
 
-
-
-    
     useEffect(() => {
         const jsonCards = document.getElementById('games-json').innerHTML;
         setDataCards(JSON.parse(jsonCards));
@@ -35,7 +32,7 @@ function Catalog() {
 
     return (
         <>
-            <div className="sh flex justify-between items-center gap-x-3 mt-10 mb-10">
+            <div className="sh flex justify-between items-center gap-x-3 mb-10">
                 <div className="flex flex-col justify-start">
                     <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Каталог Warface</h2>
                     <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
@@ -67,7 +64,7 @@ function Catalog() {
                     <a className="nav-link nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">mm2</a>
                     <a className="nav-link nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm" href="#">adopt me</a>
                 </nav>
-                <button onClick={openMenuNav} className='text-[#8A98B3] bg-white text-sm border-solid border-[1px] rounded-[40px] border-[rgb(192,194,220,0.35)] px-4 py-2'>Ещё</button>
+                <button onClick={openMenuNav} className='text-[#8A98B3] bg-white text-sm border-solid border-[1px] rounded-[40px] border-[rgb(192,194,220,0.35)] px-4 py-2 hover:bg-[#e8eaf7]'>Ещё</button>
             </div>
             <div className="rounded-lg bg-white p-6 mb-3">
                 <h2 className="mb-2 sh-title-text font-secondary-bold text-bold text-[21px] text-black">Warface</h2>
@@ -121,12 +118,11 @@ function Catalog() {
                     </div>
                 </div>
                 <div className="pcg">
-                    <div className="pcg-grid view-grid grid gap-3 grid-cols-3">
+                    <div className="pcg-grid view-grid grid gap-3 grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3">
                         {
                             (gamesObj.length !== 0) ? (
                                 gamesObj.map((card) => (
-
-                                    <div key={uuid()} className="pc rounded-lg bg-white">
+                                    <div key={uuid()} className="pc rounded-lg bg-white min-w-[240px]">
                                         <div className="pc-plate-container">
                                             <div className="pc-plate bg-gradient-primary _shadow-primary py-1 px-6 3sm:px-2 3sm:py-[1px] bg-gradient-primary">new</div>
                                         </div>

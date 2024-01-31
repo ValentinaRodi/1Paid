@@ -14,15 +14,9 @@ function Profile() {
     const [bonus, setBonus] = useState('');
     const [avatar, setAvatar] = useState('');
     const location = useLocation();
-    let loggedInUser = null;
     
     useEffect(() => {
-        
-        const prsl = document.getElementById('prsl');
-        prsl.classList.add('hidden');
-        localStorage.getItem('logged');
-
-        if (loggedInUser) {
+        if (localStorage.getItem('logged')) {
             setLoggedIn(true);
             setName(localStorage.getItem('name'));
             setBalance(localStorage.getItem('balance'));
@@ -30,10 +24,9 @@ function Profile() {
             setAvatar(localStorage.getItem('avatar'));
         }
 
-        if (!loggedInUser) {
+        if (!localStorage.getItem('logged')) {
             setLoggedIn(false);
-            // history.pushState(null, null, '/');
-            
+            window.open("/");   
         }
         
     }, [loggedIn]);

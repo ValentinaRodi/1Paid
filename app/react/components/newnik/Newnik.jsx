@@ -3,7 +3,7 @@ import  './newnik.less';
 function Newnik() {
  
   return (
-    <div className='absolute inset-0 bg-[rgba(6,9,18,0.8)] w-full h-full'>
+    <div className='fixed inset-0 bg-[rgba(6,9,18,0.8)] w-full h-full'>
         <div className='absolute inset-x-2/4 translate-x-[-50%] translate-y-[50%] w-full sm:w-[540px] bg-[#F7F7FC] rounded-3xl px-10 pb-10 pt-5'>
             <div className='flex justify-end'>
                 <button className='p-0 hover:bg-[rgba(241,245,249,1)] rounded-full'>
