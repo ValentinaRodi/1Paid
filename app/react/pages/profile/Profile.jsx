@@ -36,8 +36,10 @@ function Profile() {
             <div className="spf mt-11 2md:mt-5">
                 <div className="sh flex justify-between items-center gap-x-3 2md:flex-col-reverse 2md:items-start 2md:gap-y-5 spf-title">
                 <div className="sh-title">
-                    <h2 className="sh-title-text font-secondary-bold text-2xl text-black 2md:text-xl">Личный профиль</h2>
-                    <div className="sh-title-line mt-3 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary"></div>
+                    <div>
+                        <h2 className="sh-title-text font-secondary-bold text-2xl text-black 2md:text-xl">Личный профиль</h2>
+                        <div className="sh-title-line mt-3 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary"></div>
+                    </div>
                 </div>
                 </div>
                 <div className="spf-main flex w-full mt-[44px]">
