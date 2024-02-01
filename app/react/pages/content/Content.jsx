@@ -3,7 +3,6 @@ import Cards from '../../components/cards/Cards';
 import Catalog from '../../components/catalog/Catalog';
 import Prsl from '../../components/prsl/Prsl';
 import LayoutBtn from '../../components/LayoutBtn';
-import Profile from '../profile/Profile';
 
 function Content(props) {
     const [catalog, setCatalog] = useState(false);
@@ -13,9 +12,28 @@ function Content(props) {
     // };
 
     const replaceCatalog = () => {
-        console.log('1234')
-        setCatalog(true);
-        history.pushState(null, null, '/catalog');
+        
+        fetch("/catalog/Warface", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            console.log('data', data);
+            //window.location.reload();
+        })
+        .catch((error) => {
+            console.log(error);
+            setErrorMessage("An error occurred");
+        });
+       
+        // setCatalog(true);
+        // history.pushState(null, null, '/catalog');
     }
 
     const clickCateg = (item) => {
@@ -56,16 +74,10 @@ function Content(props) {
                     <Cards replaceCatalog={replaceCatalog} clickCateg={clickCateg}/>
                     <LayoutBtn />
                 </div>
-            :(
-                (props.profile)  ?
-                    <div>
-                        <Profile/>
-                    </div>
-                :
-                    <div>
-                        <Catalog />
-                    </div>
-                )
+            :
+                <div>
+                    <Catalog />
+                </div>
             }       
         </div>  
     );

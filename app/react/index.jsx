@@ -12,6 +12,7 @@ import LeftMenu from './components/leftMenu/LeftMenu';
 import LayoutColRow from './components/LayoutColRow';
 import { useState, useEffect } from 'react';
 import { createRoot } from "react-dom/client";
+import Settings from './pages/settings/Settings';
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
   return (
     <Routes >
       <Route path="/" element={<Main />} />
+      <Route path="/catalog" element={<Catalog />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/edit" element={<Settings />} />
     </Routes> 
   );
 }
