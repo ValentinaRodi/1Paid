@@ -78,11 +78,6 @@ class Game extends \yii\db\ActiveRecord
     public function getLang()
     {
         return $lang = $this->hasOne(Lang::class, ['id' => 'lang_id']);
-/*
-        return [
-            'russian' => $lang->russian,
-            'english' => $lang->english,
-            ];*/
     }
 
     public function getIcon()

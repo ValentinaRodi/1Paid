@@ -39,3 +39,4 @@ tests/_support/_generated
 /node_modules
 /package-lock.json
 /web/js/*
+/config/db.php
