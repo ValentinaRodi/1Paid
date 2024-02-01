@@ -6,6 +6,7 @@ import "./App.less";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderMain from './components/headerMain/HeaderMain';
 import Profile from './pages/profile/Profile';
+import ProfileEdit from './pages/profile/Edit';
 import Main from './pages/main/Main';
 import Catalog from './components/catalog/Catalog';
 import LeftMenu from './components/leftMenu/LeftMenu';

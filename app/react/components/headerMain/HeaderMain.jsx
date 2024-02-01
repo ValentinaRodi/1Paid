@@ -319,7 +319,7 @@ function HeaderMain(props) {
                                                     </div>
                                                     <div className="np-nav-label font-primary-med text-sm text-[#BEC8DC] duration-200 group-hover:text-[#0C0C0C]">Достижения</div>
                                                 </button>
-                                                <button className="np-nav-item w-full h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" >
+                                                <button onClick={props.openProfileEdit} className="np-nav-item w-full h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" >
                                                     <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
                                                         <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path id="svg-icon" fillRule="evenodd" clipRule="evenodd" d="M7.95904 4.75549C6.3604 4.75549 5.06445 5.9721 5.06445 7.47286C5.06445 8.97362 6.3604 10.1902 7.95904 10.1902C9.55768 10.1902 10.8536 8.97362 10.8536 7.47286C10.8536 6.75217 10.5487 6.061 10.0058 5.55139C9.46299 5.04179 8.72674 4.75549 7.95904 4.75549ZM7.95926 8.83155C7.15994 8.83155 6.51196 8.22325 6.51196 7.47287C6.51196 6.72249 7.15994 6.11419 7.95926 6.11419C8.75858 6.11419 9.40655 6.72249 9.40655 7.47287C9.40655 8.22325 8.75858 8.83155 7.95926 8.83155Z" fill="#CDD6E6"/>
@@ -539,7 +539,7 @@ function HeaderMain(props) {
                                             </div>
                                             <div className="np-nav-label font-primary-med text-bold text-sm text-[#BEC8DC] duration-200 group-hover:text-[#0C0C0C]">Достижения</div>
                                         </button>
-                                        <button className="bg-inherit w-full np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
+                                        <button onClick={props.openProfileEdit} className="bg-inherit w-full np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                             <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
                                                 <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path id="svg-icon" fillRule="evenodd" clipRule="evenodd" d="M7.95904 4.75549C6.3604 4.75549 5.06445 5.9721 5.06445 7.47286C5.06445 8.97362 6.3604 10.1902 7.95904 10.1902C9.55768 10.1902 10.8536 8.97362 10.8536 7.47286C10.8536 6.75217 10.5487 6.061 10.0058 5.55139C9.46299 5.04179 8.72674 4.75549 7.95904 4.75549ZM7.95926 8.83155C7.15994 8.83155 6.51196 8.22325 6.51196 7.47287C6.51196 6.72249 7.15994 6.11419 7.95926 6.11419C8.75858 6.11419 9.40655 6.72249 9.40655 7.47287C9.40655 8.22325 8.75858 8.83155 7.95926 8.83155Z" fill="#CDD6E6"/>
