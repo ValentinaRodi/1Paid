@@ -32,9 +32,6 @@ class m240113_004029_create_table_file extends Migration
             'created_at' => $this->timestamp(),
             'updated_at' => $this->timestamp(),
         ], $collation);
-
-
-
     }
 
     /**

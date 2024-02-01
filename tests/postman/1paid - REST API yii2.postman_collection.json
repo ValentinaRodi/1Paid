@@ -99,48 +99,41 @@
 			"name": "Login",
 			"event": [
 				{
-					"listen": "test",
+					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"pm.test(\"Successful POST request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
-							"});",
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
 							""
 						],
 						"type": "text/javascript"
 					}
 				},
 				{
-					"listen": "prerequest",
+					"listen": "test",
 					"script": {
 						"exec": [
-							"if (pm.request.method !== 'GET') {\r",
-							"    if(pm.environment.get('XSRF-TOKEN')) {\r",
-							"        pm.request.headers.upsert({\r",
-							"            key: 'X-CSRF-Token',\r",
-							"            value: pm.environment.get('XSRF-TOKEN'),\r",
-							"        });\r",
-							"    } else { \r",
-							"        let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
-							"        pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
-							"            let xsrfCookie = cookies.one('_csrf');\r",
-							"            let xsrfJson = res.json();\r",
-							"            if (xsrfJson) {\r",
-							"                let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
-							"                let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
-							"                pm.request.headers.upsert({\r",
-							"                    key: 'X-CSRF-Token',\r",
-							"                    value: xsrfToken,\r",
-							"                });\r",
-							"                pm.request.headers.upsert({\r",
-							"                    key: '_csrf',\r",
-							"                    value: xsrfCookieToken,\r",
-							"                });\r",
-							"                pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
-							"            }\r",
-							"        });\r",
-							"    }\r",
-							"}\r",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
 							""
 						],
 						"type": "text/javascript"
@@ -240,20 +233,22 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/sanctum/csrf-cookie",
+					"raw": "{{base_url}}/csrf",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"sanctum",
-						"csrf-cookie"
+						"csrf"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Items",
+			"name": "Catalog",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -268,14 +263,108 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{base_url}}/item/get",
+					"raw": "{{base_url}}/catalog/Warface",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"item",
-						"get"
+						"catalog",
+						"Warface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Catalog category",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/catalog/Warface/accwarface",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"catalog",
+						"Warface",
+						"accwarface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Catalog category item",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/catalog/Warface/accwarface/1-account",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"catalog",
+						"Warface",
+						"accwarface",
+						"1-account"
 					]
 				}
 			},
@@ -283,6 +372,9 @@
 		},
 		{
 			"name": "Games",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -297,13 +389,22 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{base_url}}/item/get",
+					"raw": "{{base_url}}/game/get",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"item",
+						"game",
 						"get"
 					]
 				}
@@ -421,6 +522,9 @@
 		},
 		{
 			"name": "Category Top",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -435,14 +539,23 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"game_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{base_url}}/item/get",
+					"raw": "{{base_url}}/category/get-one-top",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"item",
-						"get"
+						"category",
+						"get-one-top"
 					]
 				}
 			},
@@ -464,6 +577,15 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{base_url}}/item",
 					"host": [
@@ -484,18 +606,24 @@
 					"script": {
 						"exec": [
 							"if (pm.request.method !== 'GET') {\r",
-							"        let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/sanctum/csrf-cookie';\r",
-							"        pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
-							"            let xsrfCookie = cookies.one('XSRF-TOKEN');\r",
-							"            if (xsrfCookie) {\r",
-							"                let xsrfToken = decodeURIComponent(xsrfCookie['value']);\r",
-							"                pm.request.headers.upsert({\r",
-							"                    key: 'x-xsrf-token',\r",
-							"                    value: xsrfToken,\r",
-							"                });                \r",
-							"                pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
-							"            }\r",
-							"        });\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
 							"}"
 						],
 						"type": "text/javascript"
@@ -518,7 +646,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"lang\": {\r\n        \"russian\": \"Аккаунты\",\r\n        \"english\": \"Accounts\"\r\n    },\r\n    \"name\": \"accwarface\",\r\n    \"game_id\": \"1\"\r\n}",
+					"raw": "{\r\n    \"lang\": {\r\n        \"russian\": \"Аккаунты\",\r\n        \"english\": \"Accounts\"\r\n    },\r\n    \"name\": \"accwarface\",\r\n    \"game_id\": \"2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -554,12 +682,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/item/get",
+					"raw": "{{base_url}}/profile/get",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"item",
+						"profile",
 						"get"
 					]
 				}

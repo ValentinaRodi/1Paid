@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderMain from '../../components/headerMain/HeaderMain';
-import Profile from '../profile/Profile';
+
 import Catalog from '../../components/catalog/Catalog';
 import LeftMenu from '../../components/leftMenu/LeftMenu';
 import LayoutColRow from '../../components/LayoutColRow';
@@ -14,7 +14,6 @@ import RecPass from '../../components/recpass/Recpass';
 function Main() {
     const [loggedIn, setLoggedIn] = useState(false);
     const [orient, setOrient] = useState('');
-    const [profile, setProfile] = useState(false);
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -38,15 +37,6 @@ function Main() {
     //     e.returnValue = "";
         
     // };
-
-    const openProfile = () => {
-        console.log(loggedIn)
-        if(loggedIn) {
-            setProfile(true);
-            //history.replaceState(null, null, '/profile');
-        }
-
-    }
 
     const changeOrient = () => {
         if(orient === '') {
@@ -121,8 +111,8 @@ function Main() {
            <LeftMenu /> 
            <div id='layout-page' className={`layout-page ${orient}`}>
                 <LayoutColRow changeOrient={changeOrient} orient={orient}/>
-                <HeaderMain openProfile={openProfile} openAuthorization={openAuthorization} />
-                <Content orient={orient} profile={profile}/>
+                <HeaderMain  openAuthorization={openAuthorization} />
+                <Content orient={orient} />
            </div>
         </div>
     );

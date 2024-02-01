@@ -1,4 +1,4 @@
-/* eslint-disable no-useless-escape */
+ /* eslint-disable no-useless-escape */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable react/no-unknown-property */

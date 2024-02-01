@@ -31,7 +31,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['game_id', 'lang_id', 'name'], 'required'],
+            [['game_id', 'lang_id', 'seo_name'], 'required'],
             [['game_id', 'lang_id', 'sort'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 190],
@@ -47,7 +47,7 @@ class Category extends \yii\db\ActiveRecord
             'id' => 'ID',
             'game_id' => 'Game ID',
             'lang_id' => 'Lang ID',
-            'name' => 'Name',
+            'seo_name' => 'SEO name',
             'sort' => 'Sort',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
