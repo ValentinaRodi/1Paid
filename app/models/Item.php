@@ -37,12 +37,12 @@ class Item extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'category_id', 'lang_id', 'user_id', 'icon_id', 'new', 'sort', 'price', 'rank', 'description'], 'required'],
+            [['seo_name', 'category_id', 'lang_id', 'user_id', 'icon_id', 'new', 'sort', 'price', 'rank', 'description'], 'required'],
             [['category_id', 'lang_id', 'user_id', 'icon_id', 'new', 'sort'], 'integer'],
             [['price', 'rank'], 'number'],
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name'], 'string', 'max' => 190],
+            [['seo_name'], 'string', 'max' => 190],
         ];
     }
 
@@ -53,7 +53,7 @@ class Item extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'seo_name' => 'SEO Name',
             'category_id' => 'Category ID',
             'lang_id' => 'Lang ID',
             'user_id' => 'User ID',

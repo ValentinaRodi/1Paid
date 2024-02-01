@@ -7,11 +7,9 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\{
-    Category
-};
 use app\services\{
     CategoryService,
+    GameService,
     ItemService
 };
 
@@ -50,18 +48,45 @@ class ItemController extends Controller
         ];
     }
 
+
     public function actionGetList()
     {
-        $post = Yii::$app->request->post();
-//        if (isset($post['game_id']) && !empty($post['game_id'])) {
-//            $categories = CategoryService::getList((int) $post['game_id']);
-//        }
-        if (isset($post['category_id']) && !empty($post['category_id'])) {
-            $items = ItemService::getList((int) $post['category_id']);
+        $get = Yii::$app->request->get();
+        $gameId = GameService::getIDbySEO($get['game']);
+        if (isset($get['category']) && !empty($get['category'])) {
+            $categoryId = CategoryService::getIDbySEO($gameId, $get['category']);
+        } else {
+            $categoryId = CategoryService::getOneTopId($gameId);
         }
-        return $this->asJson([
-                //'categories' => $categories,
-                'items' => $items,
-        ]);
+        if (isset($gameId) && !empty($gameId)) {
+            $categories = CategoryService::getList($gameId);
+            $items = ItemService::getList($categoryId);
+//echo '<pre>' . print_r($get, true) . '</pre>';die();
+            if ($items) {
+                if (Yii::$app->request->isAjax) {
+                    return $this->asJson([
+                        'items' => $items,
+                        'categories' => $categories,
+                        'selected' => $categoryId,
+                        ]);
+                }
+                return $this->render('index', [
+                    'items' => json_encode($items),
+                    'categories' => json_encode($categories),
+                    'category' => json_encode(['selected' => $categoryId]),
+                    ]);
+            }
+        }
+        return $this->asJson(['success' => false]);
+    }
+
+    public function actionGet()
+    {
+        $get = Yii::$app->request->get();
+        $item = ItemService::get($get);
+        if (Yii::$app->request->isAjax) {
+            return $this->asJson($item);
+        }
+        $this->render('item', ['item' => $item]);
     }
 }

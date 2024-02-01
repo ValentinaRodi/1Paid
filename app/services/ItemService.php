@@ -5,9 +5,10 @@ namespace app\services;
 use Yii;
 use app\models\{
     Item,
-    Lang
+//    Lang
 };
 use app\services\{
+//CategoryService,
     FileService,
     LangService,
     UserService
@@ -16,12 +17,21 @@ use app\services\{
 class ItemService
 {
     public static function getList($categoryId) {
-        $items = Item::find()
-                ->where(['category_id' => $categoryId])
-                ->orderBy(['sort' => SORT_DESC])
-                ->asArray()->all();
+        if (isset($categoryId) && !empty($categoryId)) {
+            $items = Item::find()
+                    ->where(['category_id' => $categoryId])
+                    ->orderBy(['sort' => SORT_DESC])
+                    ->asArray()->all();
+            return self::formatItems($items);
+        }
+        return false;
+    }
+
+    public static function formatItems($items)
+    {
         $langsIds = [];
         $iconsIds = [];
+//echo '<pre>' . print_r($items, true) . '</pre>';die();
         foreach ($items as $item) {
             $langsIds[] = $item['lang_id'];
             $iconsIds[] = $item['icon_id'];
@@ -39,7 +49,7 @@ class ItemService
             }
             foreach ($langs as $lang) {
                 if ($item['lang_id'] == $lang['id']) {
-                    $items[$key]['lang'] = $lang['russian'];
+                    $items[$key]['name'] = $lang['russian'];
                     unset($items[$key]['lang_id']);
                 }
             }
@@ -49,7 +59,25 @@ class ItemService
                 }
             }
         }
-//        echo '<pre>' . print_r($items, true) . '</pre>';die();
+
         return $items;
+    }
+
+    public static function get($params)
+    {
+        $gameId = GameService::getIDbySEO($params['game']);
+        $categoryId = CategoryService::getIDbySEO($gameId, $params['category']);
+        if (isset($categoryId) && !empty($categoryId)) {
+            $items = Item::find()
+                    ->where([
+                        'category_id' => $categoryId,
+                        'id' => $params['id'],
+                        'seo_name' => $params['item'],
+                        ])
+                    ->orderBy(['sort' => SORT_DESC])
+                    ->asArray()->one();
+            return self::formatItems([$items])[0];
+        }
+        return false;
     }
 }

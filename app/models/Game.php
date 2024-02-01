@@ -67,7 +67,7 @@ class Game extends \yii\db\ActiveRecord
             'id' => 'ID',
             'icon_id' => 'Icon ID',
             'background_id' => 'Background ID',
-            'name' => 'Name',
+            'name' => 'SEO name',
             'lang_id' => 'Lang ID',
             'new' => 'New',
             'created_at' => 'Created At',
@@ -94,4 +94,5 @@ class Game extends \yii\db\ActiveRecord
     {
         return $background = $this->hasOne(File::class, ['background_id' => 'id']);
     }
+
 }

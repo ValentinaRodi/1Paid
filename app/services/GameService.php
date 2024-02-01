@@ -72,4 +72,13 @@ class GameService
                 ->where(['id' => $gameId])
                 ->count();
     }
+
+    public static function getIDbySEO($seoName)
+    {
+        return Game::find()
+                ->select('id')
+                ->where(['seo_name' => $seoName])
+                ->asArray()->one()['id'];
+    }
+
 }

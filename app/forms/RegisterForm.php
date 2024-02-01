@@ -36,7 +36,7 @@ class RegisterForm extends Model
             ['email', 'email', 'message' => "Email is wrong"],
             ['name', 'string', 'length' => [8, 40]],
             //[['password', 'password_confirmation'], 'validatePassword'],
-            ['password_confirmation', 'compare', 'compareAttribute'=>'password', 'message' => "Passwords don't match"],
+            ['password_confirmation', 'compare', 'compareAttribute' => 'password', 'message' => "Passwords don't match"],
         ];
     }
 

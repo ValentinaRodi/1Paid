@@ -4,10 +4,10 @@ namespace app\services;
 
 use Yii;
 use app\models\{
-    Category,
-    Lang
+    Category
 };
 use app\services\{
+    GameService,
     LangService
 };
 
@@ -16,7 +16,7 @@ class CategoryService
     public static function getList($gameId)
     {
         $categories = Category::find()
-                ->select(['id', 'game_id', 'lang_id'])
+                ->select(['id', 'game_id', 'lang_id', 'seo_name'])
                 ->where(['game_id' => $gameId])
                 ->orderBy(['sort' => SORT_DESC])
                 ->asArray()->all();
@@ -26,7 +26,7 @@ class CategoryService
     public static function getListOfGames($gamesIds)
     {
         $categories = Category::find()
-                ->select(['id', 'game_id', 'lang_id'])
+                ->select(['id', 'game_id', 'lang_id', 'seo_name'])
                 ->where(['in', 'game_id', $gamesIds])
                 ->orderBy(['sort' => SORT_DESC])
                 ->asArray()->all();
@@ -35,26 +35,53 @@ class CategoryService
 
     public static function getOneTop($gameId)
     {
-        $category = Category::find()
-                ->select(['id', 'game_id', 'lang_id'])
-                ->where(['game_id' => $gameId])
-                ->orderBy(['sort' => SORT_DESC])
-                ->asArray()->one();
-        return self::formatCategories([$category]);
+        if (isset($gameId) && !empty($gameId)) {
+            $category = Category::find()
+                    ->select(['id', 'game_id', 'lang_id', 'seo_name'])
+                    ->where(['game_id' => $gameId])
+                    ->orderBy(['sort' => SORT_DESC])
+                    ->asArray()->one();
+            return self::formatCategories([$category]);
+        }
+        return false;
     }
 
     public static function get($gameId)
     {
         $category = Category::find()
-                ->select(['id', 'game_id', 'lang_id'])
+                ->select(['id', 'game_id', 'lang_id', 'seo_name'])
                 ->where(['game_id' => $gameId])
                 ->asArray()->one();
         return self::formatCategories([$category]);
     }
 
+    public static function getIDbySEO($gameId, $categorySeoName)
+    {
+        //$gameId = GameService::getIDbySEO($gameSeoName);
+//echo '<pre>' . print_r($gameId, true) . '</pre>';die();
+        if (isset($gameId) && !empty($gameId)) {
+            return Category::find()
+                    ->select('id')
+                    ->where(['seo_name' => $categorySeoName, 'game_id' => $gameId])
+                    ->asArray()->one()['id'];
+        }
+        return false;
+    }
+
+    public static function getOneTopId($gameId)
+    {
+        if (isset($gameId) && !empty($gameId)) {
+            return Category::find()
+                    ->select(['id', 'game_id', 'lang_id', 'seo_name'])
+                    ->where(['game_id' => $gameId])
+                    ->orderBy(['sort' => SORT_DESC])
+                    ->asArray()->one()['id'];
+        }
+        return false;
+    }
+
     private static function formatCategories($categories)
     {
-//echo '<pre>' . print_r($categories, true) . '</pre>';die();
         foreach ($categories as $category) {
             $langsIds[] = $category['lang_id'];
         }
