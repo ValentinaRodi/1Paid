@@ -21,4 +21,17 @@ class FieldService
                 ->asArray()->all();
         return $fields;
     }
+
+    public static function getListFilters($categoryId)
+    {
+        $fields = Field::find()
+                ->join('LEFT JOIN', 'field_category', 'field_category.field_id = field.id')
+                ->where(['field_category.category_id' => $categoryId])
+                ->andWhere(['field.search' => 1])
+                ->asArray()->all();
+        
+        // Add min|max values
+        return $fields;
+    }
+
 }

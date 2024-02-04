@@ -31,8 +31,8 @@ class Field extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['seo_name', 'lang_id', 'type', 'value'], 'required'],
-            [['lang_id'], 'integer'],
+            [['seo_name', 'lang_id', 'type', 'value', 'search'], 'required'],
+            [['lang_id', 'search'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['seo_name', 'type', 'value'], 'string', 'max' => 190],
         ];
@@ -49,6 +49,7 @@ class Field extends \yii\db\ActiveRecord
             'lang_id' => 'Lang ID',
             'type' => 'Type',
             'value' => 'Value',
+            'search' => 'Search',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

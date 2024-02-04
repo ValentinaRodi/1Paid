@@ -18,12 +18,14 @@ return [
     'GET,HEAD catalog/<game>/<category>/<id>-<item>' => 'item/get',
     'GET,HEAD item/get' => 'item/get',
     'GET,HEAD field/get-list/<category>' => 'field/get-list',
+    'GET,HEAD field/get-list-filters/<category>' => 'field/get-list-filters',
     'POST profile/<action>' => 'profile/<action>',
     'POST game' => 'game/post',
     'POST game/<action>' => 'game/<action>',
     'POST category' => 'category/post',
     'POST category/<action>' => 'category/<action>',
     'POST <action>' => 'main/<action>',
+    'POST field/post' => 'field/post'
 /*
     'PUT,PATCH users/<id>' => 'user/update',
     'DELETE users/<id>' => 'user/delete',

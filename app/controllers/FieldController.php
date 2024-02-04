@@ -13,6 +13,9 @@ use app\services\{
     ItemService,
     FieldService
 };
+use app\forms\{
+    FieldForm
+};
 
 class FieldController extends Controller
 {
@@ -20,6 +23,13 @@ class FieldController extends Controller
     {
         return $this->asJson(
             FieldService::getList(Yii::$app->request->get('category'))
+        );
+    }
+
+    public function actionGetListFilters()
+    {
+        return $this->asJson(
+            FieldService::getListFilters(Yii::$app->request->get('category'))
         );
     }
 
@@ -32,12 +42,12 @@ class FieldController extends Controller
         if ($fieldForm->validate()) {
             return $this->asJson([
                 'success' => true,
-                'game_id' => $fieldForm->save()
+                'field_id' => $fieldForm->save()
             ]);
         } else {
             return $this->asJson([
                 'success' => false,
-                'errors' => $model->errors
+                'errors' => $fieldForm->errors
             ]);
         }        
     }
