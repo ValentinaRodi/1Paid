@@ -56,7 +56,11 @@ class GameController extends Controller
 
     public function actionGetList()
     {
-        $offset = Yii::$app->request->post()['offset'];
+        if (isset(Yii::$app->request->post()['offset']) && !empty(Yii::$app->request->post()['offset'])) {
+			$offset = Yii::$app->request->post()['offset'];
+		} else {
+			$offset = 0;
+		}
         $games = GameService::getList((int) $offset);
         return $this->asJson($games);
     }
