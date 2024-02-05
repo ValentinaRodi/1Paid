@@ -29,38 +29,41 @@ class ItemService
 
     public static function formatItems($items)
     {
-        $langsIds = [];
-        $iconsIds = [];
+        if (isset($items) && !empty($items) && is_array($items)) {
+            $langsIds = [];
+            $iconsIds = [];
 //echo '<pre>' . print_r($items, true) . '</pre>';die();
-        foreach ($items as $item) {
-            $langsIds[] = $item['lang_id'];
-            $iconsIds[] = $item['icon_id'];
-            $usersIds[] = $item['user_id'];
-        }
-        $langs = LangService::getLangs($langsIds);
-        $files = FileService::getFiles($iconsIds);
-        $usersNames = UserService::getUsernames($usersIds);
-        foreach ($items as $key => $item) {
-            foreach ($files as $file) {
-                if ($item['icon_id'] == $file['id']) {
-                    $items[$key]['icon'] = $file['fileName'];
-                    unset($items[$key]['icon_id']);
+            foreach ($items as $item) {
+                $langsIds[] = $item['lang_id'];
+                $iconsIds[] = $item['icon_id'];
+                $usersIds[] = $item['user_id'];
+            }
+            $langs = LangService::getLangs($langsIds);
+            $files = FileService::getFiles($iconsIds);
+            $usersNames = UserService::getUsernames($usersIds);
+            foreach ($items as $key => $item) {
+                foreach ($files as $file) {
+                    if ($item['icon_id'] == $file['id']) {
+                        $items[$key]['icon'] = $file['fileName'];
+                        unset($items[$key]['icon_id']);
+                    }
+                }
+                foreach ($langs as $lang) {
+                    if ($item['lang_id'] == $lang['id']) {
+                        $items[$key]['name'] = $lang['russian'];
+                        unset($items[$key]['lang_id']);
+                    }
+                }
+                foreach ($usersNames as $user) {
+                    if ($item['user_id'] == $user['id']) {
+                        $items[$key]['username'] = $user['name'];
+                    }
                 }
             }
-            foreach ($langs as $lang) {
-                if ($item['lang_id'] == $lang['id']) {
-                    $items[$key]['name'] = $lang['russian'];
-                    unset($items[$key]['lang_id']);
-                }
-            }
-            foreach ($usersNames as $user) {
-                if ($item['user_id'] == $user['id']) {
-                    $items[$key]['username'] = $user['name'];
-                }
-            }
-        }
 
-        return $items;
+            return $items;
+        }
+        return [];
     }
 
     public static function get($params)

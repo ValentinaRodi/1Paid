@@ -81,7 +81,10 @@ class ItemController extends Controller
                     ]);
             }
         }
-        return $this->asJson(['success' => false]);
+        return $this->asJson([
+            'success' => false,
+            'items' => false,
+            ]);
     }
 
     public function actionGet()
