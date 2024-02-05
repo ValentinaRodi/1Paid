@@ -1,6 +1,7 @@
 <?php
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$router = require __DIR__ . '/router.php';
 
 $config = [
     'id' => 'basic',
@@ -68,39 +69,7 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-                'GET,HEAD' => 'main/index',
-                'GET,HEAD profile' => 'main/profile',
-                'GET,HEAD csrf' => 'main/csrf',
-                'GET,HEAD landing' => 'main/landing',
-                'GET,HEAD logout' => 'main/logout',
-                'GET,HEAD game/get' => 'game/get-list',
-                'GET,HEAD category/get-list' => 'category/get-list',
-                'GET,HEAD category/get-one-top' => 'category/get-one-top',
-               [
-                    'pattern' => 'catalog/<game>/<category>',
-                    'route' => 'item/get-list',
-                    'defaults' => ['game' => 'Warface', 'category' => ''],
-                    'verb' => ['GET', 'HEAD'],
-                ],
-                'GET,HEAD catalog/<game>/<category>/<id>-<item>' => 'item/get',
-                'GET,HEAD item/get' => 'item/get',
-                'POST profile/<action>' => 'profile/<action>',
-                'POST game' => 'game/post',
-                'POST game/<action>' => 'game/<action>',
-                'POST category' => 'category/post',
-                'POST category/<action>' => 'category/<action>',
-                'POST <action>' => 'main/<action>',
-/*
-    'PUT,PATCH users/<id>' => 'user/update',
-    'DELETE users/<id>' => 'user/delete',
-    'GET,HEAD users/<id>' => 'user/view',
-    'POST users' => 'user/create',
-    'GET,HEAD users' => 'user/index',
-    'users/<id>' => 'user/options',
-    'users' => 'user/options',
- */
-            ],
+            'rules' => $router,
         ],
         'view' => [
             'class' => 'yii\web\View',

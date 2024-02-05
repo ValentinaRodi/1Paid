@@ -24,7 +24,7 @@ class m240116_090659_create_table_fields extends Migration
             'seo_name' => $this->string(190)->notNull(),
             'lang_id' => $this->integer()->notNull(),
             'type' => $this->string(190)->notNull(), // Type can be option, string, integer, file and picture.
-            'value' => $this->string(190)->notNull(), // Value for option field.
+            'value' => $this->string(190)->notNull(), // Value for option field or default value.
             'created_at' => $this->timestamp(),
             'updated_at' => $this->timestamp(),
         ], $collation);

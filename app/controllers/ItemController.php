@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\services\{
     CategoryService,
+    FieldService,
     GameService,
     ItemService
 };
@@ -61,6 +62,7 @@ class ItemController extends Controller
         if (isset($gameId) && !empty($gameId)) {
             $categories = CategoryService::getList($gameId);
             $items = ItemService::getList($categoryId);
+            $fields = FieldService::getListFilters($categoryId);
 //echo '<pre>' . print_r($get, true) . '</pre>';die();
             if ($items) {
                 if (Yii::$app->request->isAjax) {
@@ -68,12 +70,14 @@ class ItemController extends Controller
                         'items' => $items,
                         'categories' => $categories,
                         'selected' => $categoryId,
+                        'fields' => $fields,
                         ]);
                 }
                 return $this->render('index', [
                     'items' => json_encode($items),
                     'categories' => json_encode($categories),
                     'category' => json_encode(['selected' => $categoryId]),
+                    'fields' => json_encode($fields),
                     ]);
             }
         }
@@ -89,4 +93,5 @@ class ItemController extends Controller
         }
         $this->render('item', ['item' => $item]);
     }
+
 }
