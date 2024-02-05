@@ -64,27 +64,26 @@ class ItemController extends Controller
             $items = ItemService::getList($categoryId);
             $fields = FieldService::getListFilters($categoryId);
 //echo '<pre>' . print_r($get, true) . '</pre>';die();
+            $result = [];
             if ($items) {
-                if (Yii::$app->request->isAjax) {
-                    return $this->asJson([
-                        'items' => $items,
-                        'categories' => $categories,
-                        'selected' => $categoryId,
-                        'fields' => $fields,
-                        ]);
-                }
-                return $this->render('index', [
-                    'items' => json_encode($items),
-                    'categories' => json_encode($categories),
-                    'category' => json_encode(['selected' => $categoryId]),
-                    'fields' => json_encode($fields),
-                    ]);
+                $result['items'] = $items;
             }
-        }
-        return $this->asJson([
-            'success' => false,
-            'items' => false,
+            $result['categories'] = $categories;
+            $result['selected'] = $categoryId;
+            $result['fields'] = $fields;
+            if (Yii::$app->request->isAjax) {
+                return $this->asJson($result);
+            }
+            return $this->render('index', [
+                'data' => json_encode($result),
             ]);
+        }
+        if (Yii::$app->request->isAjax) {
+            return $this->asJson(['success' => false]);
+        }
+        return $this->render('index', [
+            'data' => '',
+        ]);
     }
 
     public function actionGet()
