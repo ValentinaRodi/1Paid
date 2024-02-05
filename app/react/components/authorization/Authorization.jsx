@@ -10,6 +10,9 @@ import closeEye from "../../../../web/img/icon-close-eye.svg";
 import openEye from "../../../../web/img/icon-open-eye.svg";
 import lock from "../../../../web/img/icon-lock.svg";
 
+import useAuth from '../../hooks/useAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 function Authorization(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -61,7 +64,11 @@ function Authorization(props) {
         return regex.test(password);
     };
 
+    const { setAuth } = useAuth()
+
+
     const handleSubmit = (e) => {
+       
         e.preventDefault();
 
         setErrorEmail("");
@@ -111,7 +118,7 @@ function Authorization(props) {
                     return res.json();
                 })
                 .then((data) => {
-                    //console.log('data', data);
+                    console.log('data', data);
             
                     if (data.success === true) {
                         setSuccessMessage(data.message);
@@ -127,6 +134,7 @@ function Authorization(props) {
                         props.changeLogged();
                         props.closeModal();
                         
+                        setAuth(true);
                         window.location.reload();
                         
                     } else {
