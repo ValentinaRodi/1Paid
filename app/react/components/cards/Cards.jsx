@@ -2,17 +2,39 @@ import { useState, useEffect } from 'react';
 import vplay from '../../../../web/img/icon-gc-vplay-icon.svg';
 import btnIcon from '../../../../web/img/icon-btn-icon-11.svg';
 import uuid from 'react-uuid';
+import { Link, useLocation } from 'react-router-dom';
 
-function Cards(props) {
+function Cards() {
 
     const [btn, setBtn] = useState(true);
     const [dataCards, setDataCards] = useState([]);
     const [gamesObj, setGamesObj] = useState([]);
 
     useEffect(() => {
-        const jsonCards = document.getElementById('games-json').innerHTML;
-        setDataCards(JSON.parse(jsonCards));
+
+        const jsonCards = document.getElementById('games-json').textContent;
+    
+        if(jsonCards.length > 0) {
+            setDataCards(JSON.parse(jsonCards));
+        } else {
         
+            fetch("/game/get", {
+                method: "GET",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Content-Type": "application/json",
+                },
+            })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                setDataCards(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
     }, []);
     
     useEffect(() => {
@@ -53,17 +75,17 @@ function Cards(props) {
                                 <div className="gc-tags-wrap">
                                     <div className="gc-tags w-[30%]">
                                         {Object.values(card.categories).map((categ) => (
-                                            <button key={uuid()} onClick={props.clickCateg} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</button>
+                                            <Link to={`catalog/${card.seo_name}`} state={{ game: card.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
                                         ))}
                                     </div>
                                 </div>
-                                <div onClick={props.replaceCatalog} className="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent cursor-pointer ">
+                                <div className="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent">
                                     <div className="gc-btn-label flex-grow px-2 font-secondary-bold text-center text-xs text-white">Перейти</div>
-                                    <button className="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
+                                    <Link  to={`catalog/${card.seo_name}`} state={{ game: card.seo_name, categoryId: 1 }} className="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
                                         <div className="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
                                             <img src={btnIcon} alt="btn-icon"/>
                                         </div>
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
 
@@ -79,7 +101,6 @@ function Cards(props) {
                 }
             </div>
         </div>
-    
     );
 }
 
