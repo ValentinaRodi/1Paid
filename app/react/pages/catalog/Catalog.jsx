@@ -9,10 +9,12 @@ function Catalog() {
     const [btn, setBtn] = useState(true);
     const [primClass, setPrimClass] = useState(true);
     const [gamesObj, setGamesObj] = useState([]);
-
+    
     const location = useLocation();
-    const { game, categoryId } = location.state;
 
+    
+    const { game, categoryId } = location.state;
+       
     const openMenuNav = () => {
         console.log('dgfdf')
     }
@@ -30,13 +32,33 @@ function Catalog() {
             return res.json();
         })
         .then((data) => {
+
+            // Находим индекс элемента с нужным id
+            const index = data.categories.findIndex(category => category.id === categoryId);
+
+            // Если элемент с нужным id найден и он не является первым элементом
+            if (index !== -1 && index !== 0) {
+                // Создаем новый массив на основе текущего categories
+                const newCategories = [...data.categories];
+
+                // Перемещаем элемент с нужным id на первую позицию
+                newCategories.splice(0, 0, newCategories.splice(index, 1)[0]);
+
+                // Присваиваем новый массив категорий обратно в categories
+                data.categories = newCategories;
+            }
+
+            console.log(data);
+            console.log(categoryId);
+
             setGamesObj(data);
+            
         })
         .catch((error) => {
             console.log(error);
         });
         
-    }, []);
+    }, [categoryId]);
 
     // useEffect(() => {
     //     if(dataCards.length !== 0) {
@@ -47,12 +69,19 @@ function Catalog() {
     //     }
     // }, [dataCards]);
 
+
+
+    // var navDiv = document.querySelector('.nav-show');
+    // var navItem = document.querySelector('.nav-item');
+      
+    // console.log('navDiv', navDiv)
+    
     const arr = {0:'localhost', 1:'Москва', 2:'GTA V RP'};
 
     return (
 
         <div className={`layout-b pb-4 min-w-0`}>
-             <div className="sh flex justify-between items-center gap-x-3 mb-10">
+            <div className="sh flex justify-between items-center gap-x-3 mb-10">
                 <div className="flex flex-col justify-start">
                     <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">{`Каталог ${game}`}</h2>
                     <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
@@ -73,18 +102,18 @@ function Catalog() {
                 </div>
             </div>
             <div className="flex items-center h-[85px] justify-between rounded-lg bg-white px-6 mb-3">
-                <div className="overflow-hidden h-full w-full mr-10 flex items-center justify-start">
-                    <nav className="flex gap-x-6 h-[22px] flex-wrap gap-y-10">
+                <div className="nav-show overflow-hidden h-full w-full flex items-center justify-start">
+                    <nav className="nav-item flex gap-x-6 h-[22px] flex-wrap gap-y-10 justify-between">
                         {
                             (gamesObj.length !== 0) ? (
                                 gamesObj.categories.map((categ, i) => (
-                                    <Link to={`catalog/${game}/${categ.seo_name}`} key={uuid()} className={`${(i === categoryId - 1) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>{categ.name}</Link> 
+                                    <Link to={`/catalog/${game}/${categ.seo_name}`} state={{ game: game, categoryId: categ.id }} key={uuid()} className={`${(i === 0) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>{categ.name}</Link> 
                                 ))
                             ) : (<div className='text-[#FF5343]'>error - categories not found</div>)
                         }
                     </nav>
                 </div>
-                <button onClick={openMenuNav} className='hidden text-[#8A98B3] bg-white text-sm border-solid border-[1px] rounded-[40px] border-[rgb(192,194,220,0.35)] px-4 py-2 hover:bg-[#e8eaf7]'>Ещё</button>
+                <button onClick={openMenuNav} className='hidden ml-10 text-[#8A98B3] bg-white text-sm border-solid border-[1px] rounded-[40px] border-[rgb(192,194,220,0.35)] px-4 py-2 hover:bg-[#e8eaf7]'>Ещё</button>
             </div>
             <div className="rounded-lg bg-white p-6 mb-3">
                 <h2 className="mb-2 sh-title-text font-secondary-bold text-bold text-[21px] text-black">Warface</h2>
@@ -141,12 +170,12 @@ function Catalog() {
                     <div className="pcg-grid view-grid grid gap-3 grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3">
                         {
                             (gamesObj.length !== 0) ? (
-                                gamesObj.items.map((card) => (
+                                gamesObj.items.map((card, i) => (
                                     <div key={uuid()} className="pc cursor-pointer rounded-lg bg-white min-w-[240px]">
-                                        <Link to={`${card.id}`} className='pc-link w-full'>
-                                            <div className={(card.new === 1) ? 'pc-plate-container' : 'opacity-0'}>
-                                                <div className="pc-plate bg-gradient-primary _shadow-primary py-1 px-6 3sm:px-2 3sm:py-[1px] bg-gradient-primary">new</div>
-                                            </div>
+                                        <div className={(card.new === 1) ? 'pc-plate-container' : 'opacity-0'}>
+                                            <div className="pc-plate bg-gradient-primary _shadow-primary py-1 px-6 3sm:px-2 3sm:py-[1px] bg-gradient-primary">new</div>
+                                        </div>
+                                        <Link to={`${card.id}-${card.seo_name}`} className='pc-link w-full'>
                                             <div className="pc-supinfo font-secondary-bold text-[13px] text-black 3sm:text-xs">
                                                 <div className="pc-rating flex gap-1 items-center">
                                                     <div className="pc-rating-icon flex-shrink-0 w-[22px] h-[22px] [&amp;_svg]:w-full 3sm:w-4 3sm:h-4">
@@ -158,7 +187,7 @@ function Catalog() {
                                             <div className="pc-ibar flex justify-end items-center flex-wrap gap-3">
                                                 <label className="pc-btn-like">
                                                     <input type="checkbox"/>
-                                                    <div className="btn-icon">
+                                                    <div className="btn-icon btn-icon-none-shadow">
                                                         <svg className="_default" viewBox="0 0 23 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path fillRule="evenodd" clipRule="evenodd" d="M6.00689 10.4136L11.0819 15.0674V15.0674L16.1568 10.4136V10.4136L19.0394 7.77019C20.4408 6.48508 20.4408 4.4015 19.0394 3.11639C17.638 1.83128 15.3659 1.83128 13.9644 3.11639L11.0819 5.77836L8.19927 3.135C6.79786 1.84989 4.52572 1.84989 3.1243 3.135C1.72289 4.42012 1.72289 6.50369 3.1243 7.78881L6.00689 10.4136ZM12.5024 1.82265C14.6914 -0.184698 18.2405 -0.184698 20.4295 1.82265C22.6185 3.82999 22.6185 7.08454 20.4295 9.09189L18.9882 10.4136V10.4136L11.0814 17.6828V17.6828L3.15434 10.4136V10.4136L1.71305 9.09189C-0.475963 7.08454 -0.475963 3.82999 1.71305 1.82265C3.90205 -0.184698 7.45114 -0.184698 9.64015 1.82265L11.0814 3.14433L12.5024 1.82265Z" fill="currentColor" />
                                                         </svg>
@@ -174,7 +203,7 @@ function Catalog() {
                                                 </div>
                                             </div>
                                             <div className="pc-info">
-                                                <div className="pc-title font-secondary-bold text-bold text-[13px] text-black">{card.name} {game}</div>
+                                                <div className="pc-title font-secondary-bold text-bold text-[13px] text-black">{card.name}</div>
                                                 <div className="pc-subtitle mt-1 font-secondary-med text-xs text-[#A6B1C7] 3sm:text-[10px]">{card.description}</div>
                                             </div>
                                             <div className="pc-subinfo text-[#BEC1DB] flex flex-col gap-2 3sm:gap-1">

@@ -75,7 +75,7 @@ function Cards() {
                                 <div className="gc-tags-wrap">
                                     <div className="gc-tags w-[30%]">
                                         {Object.values(card.categories).map((categ) => (
-                                            <Link to={`catalog/${card.seo_name}`} state={{ game: card.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
+                                            <Link to={`catalog/${card.seo_name}/${categ.seo_name}`} state={{ game: card.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
                                         ))}
                                     </div>
                                 </div>

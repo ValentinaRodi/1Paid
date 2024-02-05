@@ -8,6 +8,7 @@ import Catalog from '../pages/catalog/Catalog';
 import Settings from '../pages/settings/Settings';
 import {PrivateRoute} from '../components/PrivateRoute';
 import Authorization from '../components/authorization/Authorization';
+import Card from '../pages/card/Card';
 
 
 export const useRoutes = () => {
@@ -39,16 +40,8 @@ export const useRoutes = () => {
       <Route index element={<Main />} />
       <Route path="/" element={<Main />} />
       <Route path="/login" element={<Authorization />} />
-      <Route path='/catalog/:game' element={<Catalog />} />
-      {/* <Route path="/catalog" element={<Catalog />} /> */}
-      {/* {
-        (games.length !== 0) ? (
-          games.map((game) => (
-            <Route key={uuid()} path={`/catalog/:game}`} element={<Catalog  gameName={game} />} />
-          ))
-        ) : ('error - game not found')
-      } */}
-      
+      <Route path='/catalog/:game?/:category' element={<Catalog />} />
+      <Route path='/catalog/:game?/:category/:card' element={<Card />} />
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />
