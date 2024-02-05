@@ -45,6 +45,11 @@ function Cards() {
             }
         }
     }, [dataCards]);
+
+    //console.log('gamesObj', gamesObj[Object.keys(gamesObj)[0]])
+    console.log('gamesObj2', gamesObj)
+
+        
     
     return (
         <div className="sgc mt-10 md:mt-5">
@@ -75,13 +80,13 @@ function Cards() {
                                 <div className="gc-tags-wrap">
                                     <div className="gc-tags w-[30%]">
                                         {Object.values(card.categories).map((categ) => (
-                                            <Link to={`catalog/${card.seo_name}/${categ.seo_name}`} state={{ game: card.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
+                                            <Link to={`catalog/${card.seo_name}/${categ.seo_name}`} state={{ game: card.seo_name, category: categ.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
                                         ))}
                                     </div>
                                 </div>
                                 <div className="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent">
                                     <div className="gc-btn-label flex-grow px-2 font-secondary-bold text-center text-xs text-white">Перейти</div>
-                                    <Link  to={`catalog/${card.seo_name}`} state={{ game: card.seo_name, categoryId: 1 }} className="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
+                                    <Link  to={`catalog/${card.seo_name}`} state={{ game: card.seo_name, category: null, categoryId: 1 }} className="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
                                         <div className="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
                                             <img src={btnIcon} alt="btn-icon"/>
                                         </div>

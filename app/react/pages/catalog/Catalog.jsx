@@ -12,8 +12,7 @@ function Catalog() {
     
     const location = useLocation();
 
-    
-    const { game, categoryId } = location.state;
+    const { game, category, categoryId } = location.state;
        
     const openMenuNav = () => {
         console.log('dgfdf')
@@ -21,6 +20,7 @@ function Catalog() {
 
     useEffect(() => {
 
+        if(category !== 'null') {
         fetch(`/catalog/${game}`, {
             method: "GET",
             headers: {
@@ -33,20 +33,20 @@ function Catalog() {
         })
         .then((data) => {
 
-            // Находим индекс элемента с нужным id
-            const index = data.categories.findIndex(category => category.id === categoryId);
+            // // Находим индекс элемента с нужным id
+            // const index = data.categories.findIndex(category => category.id === categoryId);
 
-            // Если элемент с нужным id найден и он не является первым элементом
-            if (index !== -1 && index !== 0) {
-                // Создаем новый массив на основе текущего categories
-                const newCategories = [...data.categories];
+            // // Если элемент с нужным id найден и он не является первым элементом
+            // if (index !== -1 && index !== 0) {
+            //     // Создаем новый массив на основе текущего categories
+            //     const newCategories = [...data.categories];
 
-                // Перемещаем элемент с нужным id на первую позицию
-                newCategories.splice(0, 0, newCategories.splice(index, 1)[0]);
+            //     // Перемещаем элемент с нужным id на первую позицию
+            //     newCategories.splice(0, 0, newCategories.splice(index, 1)[0]);
 
-                // Присваиваем новый массив категорий обратно в categories
-                data.categories = newCategories;
-            }
+            //     // Присваиваем новый массив категорий обратно в categories
+            //     data.categories = newCategories;
+            // }
 
             console.log(data);
             console.log(categoryId);
@@ -57,7 +57,7 @@ function Catalog() {
         .catch((error) => {
             console.log(error);
         });
-        
+        }
     }, [categoryId]);
 
     // useEffect(() => {
@@ -107,7 +107,7 @@ function Catalog() {
                         {
                             (gamesObj.length !== 0) ? (
                                 gamesObj.categories.map((categ, i) => (
-                                    <Link to={`/catalog/${game}/${categ.seo_name}`} state={{ game: game, categoryId: categ.id }} key={uuid()} className={`${(i === 0) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>{categ.name}</Link> 
+                                    <Link to={`/catalog/${game}/${categ.seo_name}`} state={{ game: game,  category: categ.seo_name, categoryId: categ.id }} key={uuid()} className={`${(i === categoryId-1) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>{categ.name}</Link> 
                                 ))
                             ) : (<div className='text-[#FF5343]'>error - categories not found</div>)
                         }
