@@ -86,6 +86,7 @@ $config = [
                 ],
                 'GET,HEAD catalog/<game>/<category>/<id>-<item>' => 'item/get',
                 'GET,HEAD item/get' => 'item/get',
+                'POST profile/edit' => 'profile/post',
                 'POST profile/<action>' => 'profile/<action>',
                 //'POST profile/edit' => 'profile/edit',
                 'POST game' => 'game/post',

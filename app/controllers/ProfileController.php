@@ -39,7 +39,7 @@ class ProfileController extends Controller
                                         ],*/
                     [
                         'allow' => true,
-                        'actions' => ['get', 'edit', 'edit-password'],
+                        'actions' => ['get', 'post', 'edit-password'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -48,7 +48,7 @@ class ProfileController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'get' => ['get', 'head'],
-                    'edit' => ['post'],
+                    'post' => ['post'],
                     'edit-password' => ['post'],
                 ],
             ],
@@ -57,12 +57,28 @@ class ProfileController extends Controller
 
     public function actionGet()
     {
-        return $this->asJson(ProfileService::get());
+//        echo '<pre>' . print_r('huj', true) . '</pre>';
+//        return $this->asJson(ProfileService::get());
+
+        if (Yii::$app->request->isAjax) {
+            return $this->asJson(ProfileService::get());
+        }
+        return $this->render('edit', [
+            'profile' => json_encode(ProfileService::get()),
+        ]);
     }
 
-    public function actionEdit()
+    public function actionPost()
     {
-        return $this->asJson(ProfileService::edit(Yii::$app->request->post()));
+
+        if (Yii::$app->request->isAjax) {
+            return $this->asJson(ProfileService::edit(Yii::$app->request->post()));
+        }
+
+        return $this->render('edit', [
+            'profile' => json_encode(ProfileService::edit(Yii::$app->request->post())),
+        ]);
+
     }
 
     public function actionEditPassword()

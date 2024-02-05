@@ -110,7 +110,7 @@ CONFIGURATION
 
 ### Database
 
-Edit the file `config/db.php` with real data, for example:
+ProfileEdit the file `config/db.php` with real data, for example:
 
 ```php
 return [

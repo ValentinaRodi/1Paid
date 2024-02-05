@@ -9,21 +9,26 @@ use Yii;
 class ProfileService
 {
 
-    public static function get() : array
+    public static function get(): array
     {
-        $user = &Yii::$app->user->identity;
+        if (!Yii::$app->user->isGuest) {
+            $user = &Yii::$app->user->identity;
 
-        return [
-            'name' => $user->name,
-            'avatar' => $user->getAvatar(),
-            'balance' => $user->balance,
-            'bonus' => $user->bonus,
-            'registerDate' => $user->created_at,
-            'logged' => !Yii::$app->user->isGuest,
-        ];
+            return [
+                'name' => $user->name,
+                'avatar' => $user->getAvatar(),
+                'balance' => $user->balance,
+                'bonus' => $user->bonus,
+                'registerDate' => $user->created_at,
+                'logged' => !Yii::$app->user->isGuest,
+                'secret_word' => $user->secret_word,
+                'email' => $user->email
+            ];
+        }
+        return ['logged' => false];
     }
 
-    public static function edit($post) : array
+    public static function edit($post): array
     {
         $profileForm = new ProfileForm();
         foreach ($post as $key => $value) {
@@ -52,7 +57,7 @@ class ProfileService
         }
     }
 
-    public static function editPassword($post) : array
+    public static function editPassword($post): array
     {
         $passwordForm = new PasswordForm();
         foreach ($post as $key => $value) {

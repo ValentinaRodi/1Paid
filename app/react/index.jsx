@@ -6,7 +6,7 @@ import "./App.less";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderMain from './components/headerMain/HeaderMain';
 import Profile from './pages/profile/Profile';
-import Settings from './pages/profile/Edit';
+//import Settings from './components/profileEdit/ProfileEdit';
 import Main from './pages/main/Main';
 import Catalog from './components/catalog/Catalog';
 import LeftMenu from './components/leftMenu/LeftMenu';
@@ -14,17 +14,24 @@ import LayoutColRow from './components/LayoutColRow';
 import { useState, useEffect } from 'react';
 import { createRoot } from "react-dom/client";
 import Settings from './pages/settings/Settings';
+import ProfileEdit from "./components/profileEdit/ProfileEdit";
 
 
 function App() {
+    const user = {
+        "name":"testn",
+        "secret_word":"secret_word",
+        "password":"password",
+        "email":"email",
+    }
 
   return (
     <Routes >
       <Route path="/" element={<Main />} />
       <Route path="/catalog" element={<Catalog />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="profile/edit" element={<Settings />} />
-    </Routes> 
+      <Route path="/profile/edit" element={<Settings  />} />
+    </Routes>
   );
 }
 
