@@ -521,6 +521,90 @@
 			"response": []
 		},
 		{
+			"name": "Fields",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"game_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/field/get-list/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"field",
+						"get-list",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fields filters",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"game_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/field/get-list-filters/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"field",
+						"get-list-filters",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Category Top",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -593,6 +677,75 @@
 					],
 					"path": [
 						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Field add",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"seo_name\": \"server\",\r\n    \"type\": \"options\",\r\n    \"value\": \"wf1|wf2|wf3\",\r\n    \"category\": \"accwarface\",\r\n    \"game\": \"Warface\",\r\n    \"search\": 1,\r\n    \"lang\": {\r\n        \"russian\": \"Сервер\",\r\n        \"english\": \"Server\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/field/post",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"field",
+						"post"
 					]
 				}
 			},
