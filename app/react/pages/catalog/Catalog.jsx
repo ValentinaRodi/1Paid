@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from 'react-router-dom';
 import "./catalog.less";
 import uuid from 'react-uuid';
@@ -7,20 +7,20 @@ import Select from '../../components/select/Select';
 
 function Catalog() {
     const [btn, setBtn] = useState(true);
-    const [primClass, setPrimClass] = useState(true);
     const [gamesObj, setGamesObj] = useState([]);
+    const [gamesItems, setGamesItems] = useState([]);
+    const [btnYet, setBtnYet] = useState('hidden');
+    const [hiddenNav, setHiddenNav] = useState('overflow-hidden');
+    const [heightNav, setHeight] = useState('h-[27px]');
+    const [textBtnLink, setTextBtnLink] = useState('Ещё');
     
     const location = useLocation();
 
-    const { game, category, categoryId } = location.state;
-       
-    const openMenuNav = () => {
-        console.log('dgfdf')
-    }
+    const { game, category, categoryId, gamesObjAdd } = location.state;
 
     useEffect(() => {
 
-        if(category !== 'null') {
+        //запрос на отображение категорий
         fetch(`/catalog/${game}`, {
             method: "GET",
             headers: {
@@ -32,50 +32,77 @@ function Catalog() {
             return res.json();
         })
         .then((data) => {
-
-            // // Находим индекс элемента с нужным id
-            // const index = data.categories.findIndex(category => category.id === categoryId);
-
-            // // Если элемент с нужным id найден и он не является первым элементом
-            // if (index !== -1 && index !== 0) {
-            //     // Создаем новый массив на основе текущего categories
-            //     const newCategories = [...data.categories];
-
-            //     // Перемещаем элемент с нужным id на первую позицию
-            //     newCategories.splice(0, 0, newCategories.splice(index, 1)[0]);
-
-            //     // Присваиваем новый массив категорий обратно в categories
-            //     data.categories = newCategories;
-            // }
-
-            console.log(data);
-            console.log(categoryId);
-
-            setGamesObj(data);
             
+            //если переход из главной страницы, то пересобираем категории, чтоб вывелась первая та, которую выбрали
+            if(gamesObjAdd === undefined) {
+                // Находим индекс элемента с нужным id
+                const index = data.categories.findIndex(category => category.id === categoryId);
+
+                // Если элемент с нужным id найден и он не является первым элементом
+                if (index !== -1 && index !== 0) {
+                    // Создаем новый массив на основе текущего categories
+                    const newCategories = [...data.categories];
+
+                    // Перемещаем элемент с нужным id на первую позицию
+                    newCategories.splice(0, 0, newCategories.splice(index, 1)[0]);
+
+                    // Присваиваем новый массив категорий обратно в categories
+                    data.categories = newCategories;
+                    
+                }
+                setGamesObj(data);
+            } else {
+                setGamesObj(gamesObjAdd);
+            }
         })
         .catch((error) => {
             console.log(error);
         });
-        }
+        
+
+        //запрос на отображение карточек (items) в выбранной категории
+        fetch(`/catalog/${game}/${category}`, {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+           setGamesItems(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+        
     }, [categoryId]);
 
-    // useEffect(() => {
-    //     if(dataCards.length !== 0) {
-    //         setGamesObj(Object.values(dataCards.games))
-    //         if(dataCards.offset + 8 >= dataCards.count) {
-    //             setBtn(false);
-    //         }
-    //     }
-    // }, [dataCards]);
+    useEffect(() => {
+        //Определяем показывать кнопку еще или нет для категорий
+        const parentDiv = document.getElementById("parent");
+        const navDiv = document.getElementById("nav");
+        const allLinks = navDiv.querySelectorAll('a');
+        const parentRect = parentDiv.getBoundingClientRect();
 
+        allLinks.forEach(el => {
+            
+            const childRect = el.getBoundingClientRect();
+            
+            if(parentRect.bottom <= childRect.top) {
+                setBtnYet('');
+            }
+        });
+    }, []);
 
+    const openNav = () => {
+        (hiddenNav === '') ? setHiddenNav('overflow-hidden') : setHiddenNav('');
+        (heightNav === 'h-full') ? setHeight('h-[27px]') : setHeight('h-full');
+        (textBtnLink === 'Скрыть') ? setTextBtnLink('Ещё') : setTextBtnLink('Скрыть');
+    }
 
-    // var navDiv = document.querySelector('.nav-show');
-    // var navItem = document.querySelector('.nav-item');
-      
-    // console.log('navDiv', navDiv)
-    
     const arr = {0:'localhost', 1:'Москва', 2:'GTA V RP'};
 
     return (
@@ -101,19 +128,19 @@ function Catalog() {
                     </div>
                 </div>
             </div>
-            <div className="flex items-center h-[85px] justify-between rounded-lg bg-white px-6 mb-3">
-                <div className="nav-show overflow-hidden h-full w-full flex items-center justify-start">
-                    <nav className="nav-item flex gap-x-6 h-[22px] flex-wrap gap-y-10 justify-between">
+            <div className="flex items-start py-6 justify-between rounded-lg bg-white px-6 mb-3">
+                <div id='parent' className={`${hiddenNav} nav-show pt-2 h-full w-full flex items-center justify-start`}>
+                    <nav id='nav' className={`${heightNav} nav-item pb-2.5 flex gap-x-6 flex-wrap gap-y-6`}>
                         {
                             (gamesObj.length !== 0) ? (
-                                gamesObj.categories.map((categ, i) => (
-                                    <Link to={`/catalog/${game}/${categ.seo_name}`} state={{ game: game,  category: categ.seo_name, categoryId: categ.id }} key={uuid()} className={`${(i === categoryId-1) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>{categ.name}</Link> 
+                                gamesObj.categories.map((categ) => (
+                                    <Link to={`/catalog/${game}/${categ.seo_name}`} state={{ game: game,  category: categ.seo_name, categoryId: categ.id, gamesObjAdd: gamesObj }} key={uuid()} className={`${(categ.id === categoryId) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>{categ.name}</Link> 
                                 ))
-                            ) : (<div className='text-[#FF5343]'>error - categories not found</div>)
+                            ) : (<div className='text-[#FF5343]'>categories not found</div>)
                         }
                     </nav>
                 </div>
-                <button onClick={openMenuNav} className='hidden ml-10 text-[#8A98B3] bg-white text-sm border-solid border-[1px] rounded-[40px] border-[rgb(192,194,220,0.35)] px-4 py-2 hover:bg-[#e8eaf7]'>Ещё</button>
+                <button onClick={openNav} className={`${btnYet} ml-10 text-[#8A98B3] bg-white text-sm border-solid border-[1px] rounded-[40px] border-[rgb(192,194,220,0.35)] px-4 py-2 hover:bg-[#e8eaf7]`}>{textBtnLink}</button>
             </div>
             <div className="rounded-lg bg-white p-6 mb-3">
                 <h2 className="mb-2 sh-title-text font-secondary-bold text-bold text-[21px] text-black">Warface</h2>
@@ -166,16 +193,16 @@ function Catalog() {
                         </button>
                     </div>
                 </div>
-                <div className="pcg">
+                <div className="pcg w-full">
                     <div className="pcg-grid view-grid grid gap-3 grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3">
                         {
-                            (gamesObj.length !== 0) ? (
-                                gamesObj.items.map((card, i) => (
-                                    <div key={uuid()} className="pc cursor-pointer rounded-lg bg-white min-w-[240px]">
-                                        <div className={(card.new === 1) ? 'pc-plate-container' : 'opacity-0'}>
-                                            <div className="pc-plate bg-gradient-primary _shadow-primary py-1 px-6 3sm:px-2 3sm:py-[1px] bg-gradient-primary">new</div>
+                            (gamesItems.length !== 0 && gamesItems.items !== undefined) ? (
+                                gamesItems.items.map((card) => (
+                                    <div key={uuid()} className="pc-card max-w-[310px] rounded-lg bg-white min-w-[240px]">
+                                        <div className={(card.new === 1) ? 'pc-plate-container' : 'hidden'}>
+                                            <div className="pc-plate bg-gradient-primary _shadow-primary font-bold py-1 px-7 3sm:px-2 3sm:py-[1px] bg-gradient-primary">new</div>
                                         </div>
-                                        <Link to={`${card.id}-${card.seo_name}`} className='pc-link w-full'>
+                                        <div className="flex items-center justify-between">
                                             <div className="pc-supinfo font-secondary-bold text-[13px] text-black 3sm:text-xs">
                                                 <div className="pc-rating flex gap-1 items-center">
                                                     <div className="pc-rating-icon flex-shrink-0 w-[22px] h-[22px] [&amp;_svg]:w-full 3sm:w-4 3sm:h-4">
@@ -197,6 +224,8 @@ function Catalog() {
                                                     </div>
                                                 </label>
                                             </div>
+                                        </div>
+                                        <Link to={`${card.id}-${card.seo_name}`} className='pc-link w-full'>
                                             <div className="pc-preview flex justify-center items-center mb-3">
                                                 <div className="pc-preview-inner max-w-[80px] max-h-[80px]">
                                                     <img className="pc-preview-pic w-full" src={card.icon} alt="picture"/>
@@ -224,7 +253,7 @@ function Catalog() {
                                                     <div className="pc-total flex-grow h-11 rounded-full border border-solid border-[#F3F7FF] flex items-center justify-between pl-4 gap-2 3sm:h-10 3sm:pl-3 3sm:w-full">
                                                     <div className="pc-total-inf flex flex-wrap gap-x-[5px] font-secondary-bold text-xs 3sm:text-[10px]">
                                                         <span className="text-[#BEC1DB]">Цена</span>
-                                                        <span className="text-black font-secondary-bold text-bold">{card.price}<b> ₽</b></span>
+                                                        <span className="text-black font-secondary-bold font-bold">{card.price}<b> ₽</b></span>
                                                     </div>
                                                     <div className="pc-total-btn-wrap flex-shrink-0 w-11 h-11 3sm:w-10 3sm:h-10">
                                                         <Link to='#' className="btn btn-secondary pc-total-btn rounded-full w-full h-full justify-center">
@@ -240,7 +269,7 @@ function Catalog() {
                                         </div>
                                     </div>
                                 ))
-                            ) : (<div className='text-[#FF5343]'>error - game not found</div>)
+                            ) : (<div className='text-[#FF5343]'>game not found</div>)
                         }
                     </div>
                     {(!btn) ? null :

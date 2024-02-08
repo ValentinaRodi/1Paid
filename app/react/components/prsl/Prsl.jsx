@@ -62,7 +62,7 @@ function Prsl() {
                 <div className="prsl-pag-item"></div>
             </div>
             <div className="prsl-btn prsl-btn-prev">
-                <div className="btn-icon">
+                <div className="bg-inherit">
                     <img src="/img/icon-btn-icon.svg" alt="btn-icon"/>
                 </div>
             </div>

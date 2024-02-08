@@ -4,7 +4,7 @@ import btnIcon from '../../../../web/img/icon-btn-icon-11.svg';
 import uuid from 'react-uuid';
 import { Link, useLocation } from 'react-router-dom';
 
-function Cards() {
+function CardsGame() {
 
     const [btn, setBtn] = useState(true);
     const [dataCards, setDataCards] = useState([]);
@@ -12,10 +12,10 @@ function Cards() {
 
     useEffect(() => {
 
-        const jsonCards = document.getElementById('games-json').textContent;
-    
-        if(jsonCards.length > 0) {
-            setDataCards(JSON.parse(jsonCards));
+        const jsonCards = document.getElementById('game-json'); 
+        
+        if(jsonCards) {
+            setDataCards(JSON.parse(jsonCards.textContent));
         } else {
         
             fetch("/game/get", {
@@ -46,16 +46,19 @@ function Cards() {
         }
     }, [dataCards]);
 
-    //console.log('gamesObj', gamesObj[Object.keys(gamesObj)[0]])
-    console.log('gamesObj2', gamesObj)
-
+    // if(gamesObj.length > 0) {
+    //     gamesObj.map((card) => (
+    //         console.log('card',card)
+    //     ))
         
+    // }
     
+
     return (
         <div className="sgc mt-10 md:mt-5">
             <div  className="sgc-grid grid grid-cols-2 gap-[30px]">
                 {
-                    (gamesObj.length !== 0) ? (
+                    (gamesObj.length > 0) ? (
                         gamesObj.map((card) => (
                             <div key={uuid()} className="gc relative overflow-hidden rounded-lg p-5 min-h-[195px]">
                                 <div className="gc-bg absolute z-[1] top-0 left-0 w-full h-full">
@@ -78,15 +81,15 @@ function Cards() {
                                     <div className="gc-vplay-label font-secondary-bold text-center text-[10px] text-white md:hidden">Video</div>
                                 </div>
                                 <div className="gc-tags-wrap">
-                                    <div className="gc-tags w-[30%]">
+                                    <div className="gc-tags">
                                         {Object.values(card.categories).map((categ) => (
-                                            <Link to={`catalog/${card.seo_name}/${categ.seo_name}`} state={{ game: card.seo_name, category: categ.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
+                                            <Link to={`catalog/${card.seo_name}/${categ.seo_name}`} state={{ game: card.seo_name, category: categ.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item w-fit font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
                                         ))}
                                     </div>
                                 </div>
                                 <div className="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent">
                                     <div className="gc-btn-label flex-grow px-2 font-secondary-bold text-center text-xs text-white">Перейти</div>
-                                    <Link  to={`catalog/${card.seo_name}`} state={{ game: card.seo_name, category: null, categoryId: 1 }} className="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
+                                    <Link  to={`catalog/${card.seo_name}`} state={{ game: card.seo_name, category: card.categories[0].seo_name, categoryId: 1 }} className="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
                                         <div className="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
                                             <img src={btnIcon} alt="btn-icon"/>
                                         </div>
@@ -109,5 +112,5 @@ function Cards() {
     );
 }
 
-export default Cards;
+export default CardsGame;
 

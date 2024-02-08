@@ -15,7 +15,7 @@ import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
-import Cards from '../../components/cards/Cards';
+import CardsGame from '../../components/cardsGame/CardsGame';
 import Prsl from '../../components/prsl/Prsl';
 import LayoutBtn from '../../components/LayoutBtn';
 
@@ -50,7 +50,7 @@ function Main() {
                         </div>
                     </div>
                 </div>
-                <Cards />
+                <CardsGame />
                 <LayoutBtn />
             </div>
         </div>  
