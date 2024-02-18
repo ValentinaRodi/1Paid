@@ -1,29 +1,8 @@
-import { useState, useEffect } from 'react';
-import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HeaderMain from '../../components/headerMain/HeaderMain';
-
-import Catalog from '../catalog/Catalog';
-import LeftMenu from '../../components/leftMenu/LeftMenu';
-import LayoutColRow from '../../components/LayoutColRow';
-import Registration from '../../components/registration/Registration';
-import Authorization from "../../components/authorization/Authorization";
-import RecPass from '../../components/recpass/Recpass';
-
-import { Link } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import { useLocation, useNavigate } from 'react-router-dom';
-
-
 import CardsGame from '../../components/cardsGame/CardsGame';
 import Prsl from '../../components/prsl/Prsl';
 import LayoutBtn from '../../components/LayoutBtn';
 
 function Main() {
-
-    // window.onpopstate = function() {
-    //     setCatalog(false);
-    // };
 
     return (
        
@@ -46,7 +25,7 @@ function Main() {
                             <button className="sh-search-icon bg-inherit flex-shrink-0 w-4 h-full [&amp;_svg]:w-full flex justify-center items-center text-[#B8BACF] duration-100 hover:text-black">
                                 <img src="/img/icon-sh-search-icon.svg" alt="sh-search-icon"/>
                             </button>
-                            <input className="sh-search-input flex-grow ml-2.5 w-full h-full bg-transparent font-primary-med text-base text-black 2md:text-sm" placeholder="Поиск"/>
+                            <input maxLength="80" className="sh-search-input flex-grow ml-2.5 w-full h-full bg-transparent font-primary-med text-base text-black 2md:text-sm" placeholder="Поиск"/>
                         </div>
                     </div>
                 </div>

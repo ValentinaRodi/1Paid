@@ -5,13 +5,18 @@ import { createRoot } from "react-dom/client";
 import Registration from '../../components/registration/Registration';
 import Authorization from "../../components/authorization/Authorization";
 import RecPass from '../../components/recpass/Recpass';
+import AddProduct from "../addProduct/AddProduct";
+import useAuth from '../../hooks/useAuth';
 
 function LeftMenu() {
     const [loggedIn, setLoggedIn] = useState(false);
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
+    const body = document.querySelector('body');
+    const { isAuthenticated } = useAuth();
 
     const openAuthorization = () => {
+        body.style.overflow = 'hidden';
         setModalEl(<Authorization
             changeLogged={changeLogged}
             closeModal={closeModal}
@@ -19,10 +24,10 @@ function LeftMenu() {
             openRegistration={openRegistration}
         />);
         setModalOpen(true);
-        console.log(modalEl)
     };
 
     const closeModal = () =>{
+        body.style.overflow = 'auto';
         setModalOpen(false);
         setModalEl('');
     };
@@ -46,26 +51,37 @@ function LeftMenu() {
         />);
     };
 
+    const openSellProduct = () => {
+        body.style.overflow = 'hidden';
+        setModalEl(<AddProduct
+            closeModal={closeModal}
+        />);
+        setModalOpen(true);
+    };
+
     const sellProduct = () => {
-        if(!loggedIn) {
+        if(!isAuthenticated) {
             openAuthorization();
+        }
+        if(isAuthenticated) {
+            openSellProduct();
         }
     };
 
     const goTab = () => {
-        if(!loggedIn) {
+        if(!isAuthenticated) {
             openAuthorization();
         }
     };
 
     const goHistory = () => {
-        if(!loggedIn) {
+        if(!isAuthenticated) {
             openAuthorization();
         }
     };
 
     const goHistorySell = () => {
-        if(!loggedIn) {
+        if(!isAuthenticated) {
             openAuthorization();
         }
     };
@@ -85,13 +101,12 @@ function LeftMenu() {
             modal.classList.add('modal');
             modal.textContent = '';
             
-            const authorizationContainer = document.createElement("div");
-            const root = createRoot(authorizationContainer);
+            const containerModal = document.createElement("div");
+            const root = createRoot(containerModal);
             root.render(modalEl);
-            modal.appendChild(authorizationContainer);   
+            modal.appendChild(containerModal);   
         }
         if(!modalOpen) {
-            
             modal.classList.remove('modal');
             modal.textContent = '';
         }

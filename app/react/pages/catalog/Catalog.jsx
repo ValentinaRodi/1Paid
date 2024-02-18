@@ -13,9 +13,12 @@ function Catalog() {
     const [hiddenNav, setHiddenNav] = useState('overflow-hidden');
     const [heightNav, setHeight] = useState('h-[27px]');
     const [textBtnLink, setTextBtnLink] = useState('Ещё');
-    
-    const location = useLocation();
+    const [filterObj, setFilterObj] = useState([]);
+    const [formValue, setFormValue] = useState({});
+    const [resetFilter, setResetFilter] = useState(false);
+    const [resetRange, setRange] = useState(false);
 
+    const location = useLocation();
     const { game, category, categoryId, gamesObjAdd } = location.state;
 
     useEffect(() => {
@@ -77,11 +80,29 @@ function Catalog() {
         .catch((error) => {
             console.log(error);
         });
-        
+
+        //запрос на отображение фильтра в выбранной категории
+        fetch(`/field/get-list-filters/${categoryId}`, {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            //console.log('data',data);
+           setFilterObj(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }, [categoryId]);
 
     useEffect(() => {
-        //Определяем показывать кнопку еще или нет для категорий
+        //Определяем показывать кнопку "Еще" или нет для категорий
         const parentDiv = document.getElementById("parent");
         const navDiv = document.getElementById("nav");
         const allLinks = navDiv.querySelectorAll('a');
@@ -101,9 +122,48 @@ function Catalog() {
         (hiddenNav === '') ? setHiddenNav('overflow-hidden') : setHiddenNav('');
         (heightNav === 'h-full') ? setHeight('h-[27px]') : setHeight('h-full');
         (textBtnLink === 'Скрыть') ? setTextBtnLink('Ещё') : setTextBtnLink('Скрыть');
-    }
+    };
 
-    const arr = {0:'localhost', 1:'Москва', 2:'GTA V RP'};
+    const arr = ['localhost', 'Москва', 'GTA V RP'];
+
+    // Функция для обновления объекта formValue
+    const changeFormValue = (key, value) => {
+
+       
+
+        (key in formValue) ? formValue[key] = value : formValue[key] = value;
+       
+        if(value === '') {
+            delete formValue[`${key}`];
+        }
+    };
+
+    const changeCheckOn = (e) => {
+        changeFormValue('online', e.target.checked); 
+    };
+
+    const changeCheckOff = (e) => {
+        changeFormValue('offline', e.target.checked);
+    };
+
+    //Отправка фильтра
+    const submitFilter = () => {
+        console.log('formValue', formValue);
+    };
+
+
+    //Сброс фильтра
+    const cancelFilter = () => { 
+        setRange(true);
+        setResetFilter(true);
+        setFormValue({});
+        setResetFilter(false);
+    };
+
+    //RangeInput разрешить ввод
+    const changeStateRangeFalse = () => {
+        setRange(false);
+    };
 
     return (
 
@@ -116,7 +176,7 @@ function Catalog() {
                 </div>
                 <div className='flex justify-between items-center gap-2'>
                     <button className="img-hid cursor-pointer bg-inherit">
-                        <img src="/img/icon-menu-catalog.svg" alt="btn-icon"/>
+                        {/* <img src="/img/icon-menu-catalog.svg" alt="btn-icon"/> */}
                     </button>
                     <div className="sh-bar flex items-center gap-2 2md:w-full 2md:flex-row-reverse">
                         <div className="sh-search rounded-full h-[45px] px-6 max-w-[270px] w-full flex items-center bg-[#E8EAF7] 2md:max-w-none 2md:flex-grow 2md:h-10 2md:px-3">
@@ -129,8 +189,8 @@ function Catalog() {
                 </div>
             </div>
             <div className="flex items-start py-6 justify-between rounded-lg bg-white px-6 mb-3">
-                <div id='parent' className={`${hiddenNav} nav-show pt-2 h-full w-full flex items-center justify-start`}>
-                    <nav id='nav' className={`${heightNav} nav-item pb-2.5 flex gap-x-6 flex-wrap gap-y-6`}>
+                <div id="parent" className={`${hiddenNav} nav-show pt-2 h-full w-full flex items-center justify-start`}>
+                    <nav id="nav" className={`${heightNav} nav-item pb-2.5 flex gap-x-6 flex-wrap gap-y-6`}>
                         {
                             (gamesObj.length !== 0) ? (
                                 gamesObj.categories.map((categ) => (
@@ -147,47 +207,49 @@ function Catalog() {
                 <p className="w-[80%] font-primary-bold text-sm text-[#8A98B3]">Всего доступно для продажи 20 товаров одного типа. Всего доступно для продажи 20 товаров одного типа. Всего доступно для продажи 20 товаров одного типа. Всего доступно для продажи 20 товаров одного типа. Всего доступно для продажи 20 товаров одного типа.</p>
             </div>
             <div className='flex gap-2'>
-                <div className='filtr bg-white rounded-[8px] min-w-[317px] p-6'>
-                    <div>
-                        <h3 className="sh-title-text font-secondary-bold text-bold text-xs text-black">Цена</h3>
-                        <InputRange min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'}/>
-                    </div>
-                    <div className="mb-6">
-                        <label htmlFor="period" className='block sh-title-text font-secondary-bold text-bold text-xs text-black mb-4'>Сервер</label>
-                        <Select arr={arr}/>
-                    </div>
-                    <div>
-                        <h3 className="sh-title-text font-secondary-bold text-bold text-xs text-black">Ранг</h3>
-                        <InputRange min={1} max={30000} styleIcon={'slider-icon_green'} styleDiv={'gradient-green'}/>
-                    </div>
-                    <div>
-                        <h3 className="sh-title-text font-secondary-bold text-bold text-xs text-black">Количество доната</h3>
-                        <InputRange min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'}/>
-                    </div>
-                    <div className="mb-6">
-                        <label htmlFor="period" className='block sh-title-text font-secondary-bold text-bold text-xs text-black mb-4'>Тип аккаунта</label>
-                        <Select arr={arr}/>
-                    </div>
+                <div className='filter bg-white rounded-[8px] min-w-[317px] p-6'>
+                    {
+                        (filterObj.length !== 0) ? (
+                            filterObj.map(filter => {
+                                if(filter.type === 'options') {
+                                    return (
+                                        <Select key={uuid()} reset={resetFilter} changeFormValue={changeFormValue} arr={filter.value.split('|')} name={filter.seo_name}/>
+                                    )
+                                }
+                            })
+                        ) : (<div></div>)
+                    }
+                    
+                    <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
+                    
+                    <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue}  name='Сервер'/>
+                   
+                    <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={30000} styleIcon={'slider-icon_green'} styleDiv={'gradient-green'} name='Ранг'/>
+                    
+                    <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Количество доната'/>
+                    
+                    <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} name='Тип аккаунта'/>
+                    
                     
                     <div className="mb-2">
                         <h3 className="mb-4 sh-title-text font-secondary-bold text-bold text-xs text-black">Продавец</h3>
                         <div className="smt-filter-type-content flex flex-col">
                             <label className="custom-checkbox mb-[12px] font-secondary-bold text-xs">Онлайн
-                            <input type="checkbox" name="online" defaultChecked="checked"/>
-                            <span className="custom-checkmark"></span>
+                                <input onChange={changeCheckOn} type="checkbox" name="online" defaultChecked="checked"/>
+                                <span className="custom-checkmark"></span>
                             </label>
                             <label className="custom-checkbox font-secondary-bold text-xs">Офлайн
-                            <input type="checkbox" name="offline" defaultChecked=""/>
-                            <span className="custom-checkmark"></span>
+                                <input onChange={changeCheckOff} type="checkbox" name="offline" defaultChecked=""/>
+                                <span className="custom-checkmark"></span>
                             </label>
                         </div>
                     </div>
                     <div>
-                        <button className="mb-4 btn gap-2 justify-center flex items-center text-white w-full h-[57px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)] shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]">
+                        <button onClick={submitFilter} className="mb-4 btn gap-2 justify-center flex items-center text-white w-full h-[57px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)] shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]">
                             <img src='/img/icon-btn.svg' alt='filter'/>
                             Применить фильтр
                         </button>
-                        <button className=" gap-2 justify-center flex items-center w-full h-[57px] rounded-[4px] bg-[#EAEBF8] hover:bg-[rgb(208_216_243/1)]">
+                        <button onClick={cancelFilter} className=" gap-2 justify-center flex items-center w-full h-[57px] rounded-[4px] bg-[#EAEBF8] hover:bg-[rgb(208_216_243/1)]">
                             <img src='/img/icon-btn2.svg' alt='filter'/>
                             Сбросить фильтр
                         </button>

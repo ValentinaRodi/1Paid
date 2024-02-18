@@ -5,7 +5,6 @@ import arrow from "../../../../web/img/icon-back.png";
 import vk from "../../../../web/img/icon-vk.svg";
 import btnIcon2 from "../../../../web/img/icon-btn-icon-2.svg";
 import btnIcon3 from "../../../../web/img/icon-btn-icon-3.svg";
-//import avatar from "../../../../web/img/avatar-example-2.9f0c98b7.png";
 import iconPlus from "../../../../web/img/icon-plus-blue.a12eb4f0.svg";
 import cardArrow from "../../../../web/img/icon-pmc-card-arrow.svg";
 import logoDots from "../../../../web/img/dots-1.82560447.svg";
@@ -16,16 +15,14 @@ import navpinPlate2 from "../../../../web/img/icon-navpin-plate-icon-2.svg";
 import navpinPlate3 from "../../../../web/img/icon-navpin-plate-icon-3.svg";
 import navpinPlate4 from "../../../../web/img/icon-navpin-plate-icon-4.svg";
 import lk from "../../../../web/img/icon-lk.svg";
-// import Registration from '../../components/registration/Registration';
-// import Authorization from "../../components/authorization/Authorization";
-// import RecPass from '../../components/recpass/Recpass';
 import { useState, useEffect, useRef } from 'react';
+import { createRoot } from "react-dom/client";
+import AddProduct from "../addProduct/AddProduct";
 
 import React from "react";
-import { createRoot } from "react-dom/client";
 import listenForOutsideClick from "../listenForOutsideClicks";
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 
@@ -47,10 +44,10 @@ function HeaderMain(props) {
     const [isOpenNotif, setIsOpenNotif] = useState(false);
     const [isOpenMenu2, setIsOpenMenu2] = useState(false);
     const [isOpenNotif2, setIsOpenNotif2] = useState(false);
+    const [modalEl, setModalEl] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+    const body = document.querySelector('body');
   
-  
-
-
     useEffect(() => {
         let loggedInUser = localStorage.getItem('logged');
         
@@ -67,23 +64,25 @@ function HeaderMain(props) {
         }
     }, []);
 
-
     const toggleMenu = () => {
         setIsOpenMenu(!isOpenMenu);
         setIsOpenNotif(false);
-    }
+    };
+
     const toggleNotif = () => {
         setIsOpenNotif(!isOpenNotif);
         setIsOpenMenu(false);
-    }
+    };
+
     const toggleMenu2 = () => {
         setIsOpenMenu2(!isOpenMenu2);
         setIsOpenNotif2(false);
-    }
+    };
+
     const toggleNotif2 = () => {
         setIsOpenNotif2(!isOpenNotif2);
         setIsOpenMenu2(false);
-    }
+    };
 
     useEffect(listenForOutsideClick(listening, setListening, menuRef, setIsOpenMenu));
     useEffect(listenForOutsideClick(listening, setListening, menuRef, setIsOpenNotif));
@@ -130,34 +129,74 @@ function HeaderMain(props) {
 
     }
   
+    const openSellProduct = () => {
+        body.style.overflow = 'hidden';
+        setModalEl(<AddProduct
+            closeModal={closeModal}
+        />);
+        setModalOpen(true);
+    };
 
     const sellProduct = () => {
         setOpenMenu('');
-        if(!loggedIn) {
+
+        if(!isAuthenticated) {
             props.openAuthorization();
-        }
+        };
+
+        if(isAuthenticated) {
+            openSellProduct();
+        };
     };
 
     const goTab = () => {
         setOpenMenu('');
+
         if(!loggedIn) {
             props.openAuthorization();
-        }
+        };
     };
 
     const goHistory = () => {
         setOpenMenu('');
+
         if(!loggedIn) {
             props.openAuthorization();
-        }
+        };
     };
 
     const goHistorySell = () => {
         setOpenMenu('');
+
         if(!loggedIn) {
             props.openAuthorization();
-        }
+        };
     };
+
+    const closeModal = () =>{
+        body.style.overflow = 'auto';
+        setModalOpen(false);
+        setModalEl('');
+    };
+
+    useEffect(() => {
+        const modal = document.getElementById('modal');
+
+        if(modalOpen) {
+            modal.classList.add('modal');
+            modal.textContent = '';
+            
+            const containerModal = document.createElement("div");
+            const root = createRoot(containerModal);
+            root.render(modalEl);
+            modal.appendChild(containerModal);   
+        }
+        if(!modalOpen) {
+            modal.classList.remove('modal');
+            modal.textContent = '';
+        }
+        
+    }, [modalEl]);
    
     return (
         <div className="layout-h">

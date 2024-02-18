@@ -1,23 +1,47 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState, useEffect, useRef } from "react";
 import "./inputRange.less";
 
 var thumbsize = 14;
 
-const InputRange = ({ min, max, styleIcon, styleDiv}) => {
+const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, reset, changeStateRangeFalse}) => {
     const [avg, setAvg] = useState((min + max) / 2);
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
-    
-    const minFmt = min.toLocaleString('ru-RU');
-    const maxFmt = max.toLocaleString('ru-RU');
+    const [minValInput, setMinValInput] = useState(min);
+    const [maxValInput, setMaxValInput] = useState(max);
+
+   
+    // const minWidth =
+    //     thumbsize + ((avg - min) / (max - min)) * (width - 2 * thumbsize);
+    // const minPercent = ((minVal - min) / (avg - min)) * 100;
+    // const maxPercent = ((maxVal - avg) / (max - avg)) * 100;
+    // // const pozitionWidth = width - (width * minPercent / 100);
+    // // const pozitionLeft = width * minPercent / 100;
+    // const styles = {
+    //     min: {
+    //     width: minWidth,
+    //     left: 0,
+    //     "--minRangePercent": `${minPercent}%`
+    //     },
+    //     max: {
+    //     width: thumbsize + ((max - avg) / (max - min)) * (width - 2 * thumbsize),
+    //     left: minWidth,
+    //     "--maxRangePercent": `${maxPercent}%`
+    //     },
+    //     /* pozition: {
+    //         width: pozitionWidth,
+    //         left: pozitionLeft
+    //     } */
+    // };
+
+    let minNumber = (reset === true) ? min : (minVal === '') ? 1 : minVal;
+    let avgWid = (reset === true) ? ((min + max) / 2) : avg;
 
     const width = 269;
-    const minWidth =
-        thumbsize + ((avg - min) / (max - min)) * (width - 2 * thumbsize);
-    const minPercent = ((minVal - min) / (avg - min)) * 100;
-    const maxPercent = ((maxVal - avg) / (max - avg)) * 100;
-    // const pozitionWidth = width - (width * minPercent / 100);
-    // const pozitionLeft = width * minPercent / 100;
+    const minWidth = thumbsize + ((avgWid- min) / (max - min)) * (width - 2 * thumbsize);
+    const minPercent = (((minNumber === '') ? 1 : minNumber - min) / (avgWid - min)) * 100;
+    const maxPercent = (((reset === true) ? max : maxVal - avgWid) / (max - avgWid)) * 100;
+    
     const styles = {
         min: {
         width: minWidth,
@@ -25,74 +49,207 @@ const InputRange = ({ min, max, styleIcon, styleDiv}) => {
         "--minRangePercent": `${minPercent}%`
         },
         max: {
-        width: thumbsize + ((max - avg) / (max - min)) * (width - 2 * thumbsize),
+        width: thumbsize + ((max - avgWid) / (max - min)) * (width - 2 * thumbsize),
         left: minWidth,
         "--maxRangePercent": `${maxPercent}%`
-        },
-        /* pozition: {
-            width: pozitionWidth,
-            left: pozitionLeft
-        } */
+        }
     };
 
-    const minValFmt = minVal.toLocaleString('ru-RU');
-    const maxValFmt = maxVal.toLocaleString('ru-RU');
-
+    //Для изменения значения при перемещении ползунка
     useLayoutEffect(() => {
-        setAvg(Math.round((maxVal + minVal) / 2));
+        if(reset === true) {
+            changeStateRangeFalse();
+        };
+        
+        if(Number(minVal) > Number(max)) {
+            setMinVal(max);
+        } 
+
+        if(Number(maxVal) < Number(minVal)) {
+            setMaxVal(minVal);
+        }
+
+        setAvg(Math.round((maxVal + minNumber) / 2));
+        
+        if(+minVal !== +min || +maxVal !== +max) {
+            changeFormValue(name + '-min', minVal);
+            changeFormValue(name + '-max', maxVal);
+        }
+
     }, [minVal, maxVal]);
+    
+    const changeMinValue = (e) => {
+        if(reset === true) {
+            changeStateRangeFalse();
+        };
+
+        let { value } = e.target;
+        
+        let isnum = /^[0-9\s]+$/.test(value);
+
+        if(isnum) {
+            if(Math.floor(+value.replace(/\s/g, '')) > +max) {
+                setMinValInput(+max);
+                e.preventDefault();
+            } else {
+                setMinValInput(value);
+            };
+        };
+
+        if(value === '')  {
+            setMinValInput('');
+        };
+    }
+
+    const changeMaxValue = (e) => {
+        if(reset === true) {
+            changeStateRangeFalse();
+        };
+
+        let { value } = e.target;
+        let isnum = /^[0-9\s]+$/.test(value);
+        
+        if(isnum) {
+            if(Math.floor(+value.replace(/\s/g, '')) > max) {
+                setMaxValInput(+max);
+                e.preventDefault();
+            } else {
+                setMaxValInput(value);
+            };
+        };
+
+        if(value === '')  {
+            setMaxValInput(value);
+        };
+    }
+
+    const clearInputMin = (e) => {
+        let { value } = e.target;
+        value = '';
+        setMinValInput(value);
+    };
+
+    const clearInputMax = (e) => {
+        let { value } = e.target;
+        value = '';
+        setMaxValInput(value);
+    };
+
+    //Если пользователь вручную вводит значения min/max
+    const inputMinRef = useRef();
+    const inputMaxRef = useRef();
+
+    useEffect(() => {
+        
+        const handleClickOutsideMin = (event) => {
+            if (inputMinRef.current && !inputMinRef.current.contains(event.target)) {
+                
+                if(+minValInput < +min) {
+                    setMinVal(+min);
+                    setMinValInput(+min);
+                } else {
+                    setMinVal(+minValInput);
+                    setMinValInput(+minValInput);
+                };
+
+                if(+minValInput > +maxVal) {
+                    setMinVal(+maxVal);
+                    setMinValInput(+maxVal);
+                } else {
+                    setMinVal(+minValInput);
+                    setMinValInput(+minValInput);
+                };
+
+                if(minValInput.length === 0) {
+                    setMinVal(min);
+                    setMinValInput(min);
+                }
+            }
+        };
+    
+        document.addEventListener("click", handleClickOutsideMin);
+    
+        return () => {
+            document.removeEventListener("click", handleClickOutsideMin);
+        };
+
+    }, [inputMinRef, minValInput]);
+
+    useEffect(() => {
+
+        const handleClickOutsideMax = (event) => {
+            
+            if (inputMaxRef.current && !inputMaxRef.current.contains(event.target)) {
+                if(+maxValInput < +minVal) {
+                    setMaxVal(+minVal);
+                    setMaxValInput(+minVal);
+                }  else {
+                    setMaxVal(+maxValInput);
+                    setMaxValInput(+maxValInput);
+                } 
+            }
+        };
+    
+        document.addEventListener("click", handleClickOutsideMax);
+    
+        return () => { 
+            document.removeEventListener("click", handleClickOutsideMax);
+        };
+
+    }, [inputMaxRef, maxValInput]);
 
     return (
-        <div className="range mt-4 mb-6 relative">
-            <div className={`${styleDiv} h-[3px] absolute w-full left-0 top-0 h-[3px]`} ></div>
-            <div
-            className="min-max-slider"
-            data-legendnum="2"
-            data-rangemin={min}
-            data-rangemax={max}
-            data-thumbsize={thumbsize}
-            data-rangewidth={width}
-            >
-            <label htmlFor="min"></label>
-            <input
-                id="min"
-                className={`min ${styleIcon}`}
-                style={styles.min}
-                name="min"
-                type="range"
-                step="1"
-                min={min}
-                max={avg}
-                value={minVal}
-                onChange={({ target }) => setMinVal(Number(target.value))}
-            />
-            <label htmlFor="max"></label>
-            <input
-                id="max"
-                className={`max ${styleIcon}`}
-                style={styles.max}
-                name="max"
-                type="range"
-                step="1"
-                min={avg}
-                max={max}
-                value={maxVal}
-                onChange={({ target }) => setMaxVal(Number(target.value))}
-            />
-            </div>
-            <div className='flex justify-between items-center mb-3 pt-6'>
-                <div className='flex justify-between items-center gap-[5px]'>
-                    <p className='text-sm text-[#CDCFE5] font-secondary-bold'>от</p>
-                    <div className='flex items-center h-[33px] min-w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'>{minValFmt}</div>
+        <div>
+            <h3 className="sh-title-text font-secondary-bold text-bold text-xs text-black">{name}</h3>
+            <div className="range mt-4 mb-6 relative">
+                <div className={`${styleDiv} h-[3px] absolute w-full left-0 top-0 h-[3px]`} ></div>
+                <div
+                    className="min-max-slider"
+                    data-legendnum="2"
+                    data-rangemin={min}
+                    data-rangemax={max}
+                    data-thumbsize={thumbsize}
+                    data-rangewidth={width}
+                >
+                    <label htmlFor="min"></label>
+                    <input
+                        className={`min ${styleIcon}`}
+                        style={styles.min}
+                        name="min"
+                        type="range"
+                        step="1"
+                        min={min}
+                        max={avg}
+                        value={(reset === true) ? min : (minVal === '') ? 1 : minVal}
+                        onChange={({ target }) => [setMinVal(Number(target.value)), setMinValInput(Number(target.value))]}
+                    />
+                    <label htmlFor="max"></label>
+                    <input
+                        className={`max ${styleIcon}`}
+                        style={styles.max}
+                        name="max"
+                        type="range"
+                        step="1"
+                        min={avg}
+                        max={max}
+                        value={(reset === true) ? max : maxVal}
+                        onChange={({ target }) => [setMaxVal(Number(target.value)), setMaxValInput(Number(target.value))]}
+                    />
                 </div>
-                <div className='flex justify-between items-center gap-[5px]'>
-                    <p className='text-sm text-[#CDCFE5] font-secondary-bold'>до</p>
-                    <div className='flex items-center h-[33px] min-w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'>{maxValFmt}</div>
+                <div  className='flex justify-between items-center mb-3 pt-6'>
+                    <div ref={inputMinRef} className='flex justify-between items-center gap-[5px]'>
+                        <p className='text-sm text-[#CDCFE5] font-secondary-bold'>от</p>
+                        <input type="text" value={(reset === true) ? min.toLocaleString('ru-RU') : minValInput.toLocaleString('ru-RU')} onClick={clearInputMin} onChange={changeMinValue} placeholder={min.toLocaleString('ru-RU')} className=' flex items-center h-[33px] w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'/>
+                    </div>
+                    <div ref={inputMaxRef} className='flex justify-between items-center gap-[5px]'>
+                        <p className='text-sm text-[#CDCFE5] font-secondary-bold'>до</p>
+                        <input type="text" value={(reset === true) ? max.toLocaleString('ru-RU') : maxValInput.toLocaleString('ru-RU')} onClick={clearInputMax} onChange={changeMaxValue} placeholder={max.toLocaleString('ru-RU')} className=' flex items-center h-[33px] w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'/>
+                    </div>
                 </div>
-            </div>
-            <div className="flex justify-between">
-                <p className='text-xs text-[#CDCFE5] font-secondary-med'>мин. {minFmt}</p>
-                <p className='text-xs text-[#CDCFE5] font-secondary-med'>макс. {maxFmt}</p>
+                <div className="flex justify-between">
+                    <p className='text-xs text-[#CDCFE5] font-secondary-med'>мин. {min.toLocaleString('ru-RU')}</p>
+                    <p className='text-xs text-[#CDCFE5] font-secondary-med'>макс. {max.toLocaleString('ru-RU')}</p>
+                </div>
             </div>
         </div>
     );

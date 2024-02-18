@@ -25,6 +25,7 @@ function App() {
   const [orient, setOrient] = useState('');
   const [modalEl, setModalEl] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
+  const body = document.querySelector('body');
 
   // useEffect(() => {
   //     window.addEventListener("beforeunload", alertUser);
@@ -48,7 +49,6 @@ function App() {
   }
 
   const openAuthorization = () => {
-      const body = document.querySelector('body');
       body.style.overflow = 'hidden';
       setModalEl(<Authorization
           changeLogged={changeLogged}
@@ -60,7 +60,6 @@ function App() {
   };
 
   const closeModal = () =>{
-      const body = document.querySelector('body');
       body.style.overflow = 'auto';
       setModalOpen(false);
       setModalEl('');

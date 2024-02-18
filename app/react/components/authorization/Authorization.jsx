@@ -11,7 +11,6 @@ import openEye from "../../../../web/img/icon-open-eye.svg";
 import lock from "../../../../web/img/icon-lock.svg";
 
 import useAuth from '../../hooks/useAuth';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 function Authorization(props) {
     const [email, setEmail] = useState("");
@@ -131,7 +130,7 @@ function Authorization(props) {
                         localStorage.setItem('balance', data.balance);
                         localStorage.setItem('bonus', data.bonus);
                         
-                        props.changeLogged();
+                        // props.changeLogged();
                         props.closeModal();
                         
                         setAuth(true);

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import uuid from 'react-uuid';
 
 function Select(props) {
     const [modal, setModal] = useState(false);
@@ -6,54 +7,80 @@ function Select(props) {
     const [modalSet, setModalSet] = useState(false);
     const [valueSelect, setValueSelect] = useState("Не выбрано");
     const [rotate, setRotate] = useState("");
-
-    const openModal = () => {
-        (valueSelect === "Не выбрано") ? setModalSet(false) : setModalSet(true);
-        (rotate === '') ? setRotate('rotate-180') : setRotate('');
-        (modal) ? setModal(false) : setModal(true);
-    }
-
+    
+    //Для отображения Select категорий в Продать товар
+    useEffect(() => {   
+        if(props.arr.length === 0) {
+            setValueSelect("Не выбрано");
+        } else {
+            if(!props.arr.includes(valueSelect)) {
+                setValueSelect("Не выбрано");
+            };
+        }
+    }, [props.arr]);
+    
     const selectItem = (value) => {
         setValueSelect(value);
         setRotate('');
         setModal(false);
-    }
+    };
 
+    const openModal = () => {    
+        (valueSelect === "Не выбрано") ? setModalSet(false) : setModalSet(true);
+        (rotate === '') ? setRotate('rotate-180') : setRotate('');
+        (modal) ? setModal(false) : setModal(true);
+    };
+    
     useEffect(() => {
         setModalOpen(modal);
     }, [modal]);
 
-    return (
-        <div className="custom-select">
-            <select className="font-secondary-med text-base">
-                <option value="0">Не выбрано</option>
-                <option value="1">localhost</option>
-                <option value="2">Москва</option>
-                <option value="3">GTA V RP</option>
-            </select>
-            <div onClick={openModal} className="flex justify-between select-selected text-base font-secondary-bold">{valueSelect}
-            <span><img className={rotate} src='/img/icon-arrow-down.svg' alt='arrow'/></span></div>
-            {modalOpen ?
-                <div className="select-items">
-                    {modalSet ?
-                        <div onClick={() => selectItem('Не выбрано')} className="font-secondary-med text-base">Не выбрано</div>
-                        :
-                        null
-                    }
-                    {Object.keys(props.arr).map(key => (
-                        <div
-                        id={key}
-                        key={key}
-                        className="font-secondary-med text-base"
-                        onClick={() => selectItem(props.arr[key])}
-                        >
-                        {props.arr[key]}
-                        </div>
-                    ))}
-                </div>
-                :
-                null
+    //Для закрытия выпадающего Select, если клик вне окна Select
+    const selectRef = useRef();
+
+    useEffect(() => {
+        
+        const handleClickOutside = (event) => {
+            if (selectRef.current && !selectRef.current.contains(event.target)) {
+                setModal(false);
             }
+        };
+    
+        document.addEventListener("click", handleClickOutside);
+    
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+
+    }, [selectRef]);
+
+    return (
+        <div className="mb-6" ref={selectRef}>
+            <p className='block sh-title-text font-secondary-bold text-bold text-xs text-black mb-4'>{props.name}</p>
+            <div className="popup custom-select">
+                <div onClick={openModal} className="flex justify-between select-selected text-base font-secondary-bold">{(props.reset === true) ? "Не выбрано" : valueSelect}
+                <span><img className={rotate} src='/img/icon-arrow-down.svg' alt='arrow'/></span></div>
+                {modalOpen ?
+                    <div className="select-items">
+                        {modalSet ?
+                            <div onClick={() => [selectItem('Не выбрано'), props.changeFormValue(props.name,'')]} className="font-secondary-med text-base">Не выбрано</div>
+                            :
+                            null
+                        }
+                        {props.arr.map(item => (
+                            <div
+                                key={uuid()}
+                                className="font-secondary-med text-base"
+                                onClick={() => [selectItem(item), props.changeFormValue(props.name, item)]}
+                            >
+                                {item}
+                            </div>
+                        ))}
+                    </div>
+                    :
+                    null
+                }
+            </div>
         </div>
     );
 }
