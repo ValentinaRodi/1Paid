@@ -6,8 +6,8 @@ function Main() {
 
     return (
        
-        <div className={`layout-b pb-4 min-w-0`}>
-            <div>
+        <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
+            <div className='w-full'>
                 <Prsl />
                 <div className="sh flex justify-between items-center gap-x-3 mt-8 xl:mt-16 mb-10">
                     <div className="w-[252px] hidden">
@@ -30,8 +30,8 @@ function Main() {
                     </div>
                 </div>
                 <CardsGame />
-                <LayoutBtn />
             </div>
+            <LayoutBtn />
         </div>  
           
     );

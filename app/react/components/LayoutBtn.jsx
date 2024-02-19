@@ -2,10 +2,17 @@ import { useState, useEffect } from 'react';
 
 function LayoutBtn() {
     //const [orient, setOrient] = useState('_lf-row');
+
+    const scrollToTop = () =>{ 
+        window.scrollTo({ 
+            top: 0,  
+            behavior: 'smooth'
+        }); 
+    }; 
     
     return (
-        <div className="layout-b-f flex justify-between mt-6 mb-6">
-            <button className="layout-btn-totop scroll-to-top rounded-full w-16 h-16 flex items-center justify-center bg-[#D7DFF5] hover:bg-[#d0d8f3] shadow-2xl 3sm:w-11 3sm:h-11">
+        <div className="layout-b-f flex justify-between mt-6 mb-6 w-full">
+            <button onClick={scrollToTop} className="layout-btn-totop scroll-to-top rounded-full w-16 h-16 flex items-center justify-center bg-[#D7DFF5] hover:bg-[#d0d8f3] shadow-2xl 3sm:w-11 3sm:h-11">
                 <div className=" flex items-center ">
                     <img src="/img/icon-btn-icon-12.svg" alt="btn-icon"/>
                 </div>

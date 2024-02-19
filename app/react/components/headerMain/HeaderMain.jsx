@@ -28,8 +28,6 @@ import useAuth from '../../hooks/useAuth';
 
 function HeaderMain(props) {
     const { isAuthenticated, setAuth } = useAuth();
-
-    const [loggedIn, setLoggedIn] = useState(false);
     const [name, setName] = useState('');
     const [balance, setBalance] = useState('');
     const [bonus, setBonus] = useState('');
@@ -153,23 +151,27 @@ function HeaderMain(props) {
     const goTab = () => {
         setOpenMenu('');
 
-        if(!loggedIn) {
+        if(!isAuthenticated) {
             props.openAuthorization();
+        } else {
+            navigate('/tab')
         };
     };
 
     const goHistory = () => {
         setOpenMenu('');
 
-        if(!loggedIn) {
+        if(!isAuthenticated) {
             props.openAuthorization();
+        } else {
+            navigate('/historyviews');
         };
     };
 
     const goHistorySell = () => {
         setOpenMenu('');
 
-        if(!loggedIn) {
+        if(!isAuthenticated) {
             props.openAuthorization();
         };
     };

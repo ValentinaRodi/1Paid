@@ -1,5 +1,6 @@
 import "./leftMenu.less";
 import { useState, useEffect } from 'react';
+import { useNavigate  } from 'react-router-dom';
 import React from "react";
 import { createRoot } from "react-dom/client";
 import Registration from '../../components/registration/Registration';
@@ -14,6 +15,7 @@ function LeftMenu(props) {
     const [modalOpen, setModalOpen] = useState(false);
     const body = document.querySelector('body');
     const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
 
     const openAuthorization = () => {
         body.style.overflow = 'hidden';
@@ -72,16 +74,16 @@ function LeftMenu(props) {
     const goTab = () => {
         if(!isAuthenticated) {
             openAuthorization();
-        };
-
-        if(isAuthenticated) {
-            <Link to=''/>
+        } else {
+            navigate('/tab');
         };
     };
 
     const goHistory = () => {
         if(!isAuthenticated) {
             openAuthorization();
+        } else {
+            navigate('/historyviews');
         };
     };
 
