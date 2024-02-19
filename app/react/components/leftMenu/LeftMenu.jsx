@@ -8,7 +8,7 @@ import RecPass from '../../components/recpass/Recpass';
 import AddProduct from "../addProduct/AddProduct";
 import useAuth from '../../hooks/useAuth';
 
-function LeftMenu() {
+function LeftMenu(props) {
     const [loggedIn, setLoggedIn] = useState(false);
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
@@ -62,28 +62,33 @@ function LeftMenu() {
     const sellProduct = () => {
         if(!isAuthenticated) {
             openAuthorization();
-        }
+        };
+
         if(isAuthenticated) {
             openSellProduct();
-        }
+        };
     };
 
     const goTab = () => {
         if(!isAuthenticated) {
             openAuthorization();
-        }
+        };
+
+        if(isAuthenticated) {
+            <Link to=''/>
+        };
     };
 
     const goHistory = () => {
         if(!isAuthenticated) {
             openAuthorization();
-        }
+        };
     };
 
     const goHistorySell = () => {
         if(!isAuthenticated) {
             openAuthorization();
-        }
+        };
     };
   
     useEffect(() => {
@@ -91,7 +96,7 @@ function LeftMenu() {
 
         if (loggedInUser) {
             setLoggedIn(true);
-        }
+        };
     }, []);
 
     useEffect(() => {
@@ -105,16 +110,16 @@ function LeftMenu() {
             const root = createRoot(containerModal);
             root.render(modalEl);
             modal.appendChild(containerModal);   
-        }
+        };
         if(!modalOpen) {
             modal.classList.remove('modal');
             modal.textContent = '';
-        }
+        };
         
     }, [modalEl]);
 
     return (
-        <div className="layout-sidebar menu">
+        <div className={`${props.leftMenuDisplay} layout-sidebar menu`}>
             <div className="cm">
                 <div className="cm-inner">
                     <div className="cm-h relative pt-8 bg-center bg-[url('/img/fon-logo.svg')]">
@@ -122,9 +127,6 @@ function LeftMenu() {
                         <div className="logo w-[180px] 3xl:w-[150px] xl:w-[120px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
                             <img className="logo__dots lg:h-[100%] xl:w-1/2" src="/img/dots-1.82560447.svg" alt="1paid.ru"/>
                             <img className="logo-pic" src="/img/logo.7fb09570.svg" alt="1paid.ru"/>
-                        </div>
-                        <div>
-                            <img src="/img/icon-menu-h.svg" alt="1paid.ru"/>
                         </div>
                     </div>
                     <div className="absolute inset-0 h-[86%] w-full shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]"></div>

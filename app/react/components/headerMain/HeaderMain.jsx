@@ -47,6 +47,7 @@ function HeaderMain(props) {
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
     const body = document.querySelector('body');
+
   
     useEffect(() => {
         let loggedInUser = localStorage.getItem('logged');
@@ -190,23 +191,22 @@ function HeaderMain(props) {
             const root = createRoot(containerModal);
             root.render(modalEl);
             modal.appendChild(containerModal);   
-        }
+        };
+
         if(!modalOpen) {
             modal.classList.remove('modal');
             modal.textContent = '';
-        }
+        };
         
     }, [modalEl]);
-   
+
     return (
         <div className="layout-h">
             <div className="">
                 <div className="h-wrapper">
                     <header className="h justify-between">
-                        <button className="h-backlink hidden">
-                            <img src={arrow} alt="btn-icon"/>
-                        </button>
-                        <nav className="nav flex mr-4 justify-between gap-x-5 gap-y-5 flex-wrap ">
+                        <button onClick={props.closeLeftMenu} className={`h-openmenu ${props.leftMenuOpen}`}><span></span><span></span></button>
+                        <nav className="nav flex mx-6 justify-between gap-x-5 gap-y-5 flex-wrap ">
                             <Link to='/'  className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm">Главная</Link>
                             <Link to='#' className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm">Топ юзеров</Link>
                             <Link to='#' className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm">Отзывы</Link>
@@ -697,7 +697,7 @@ function HeaderMain(props) {
                 </div>
             </div>
         </div>
-  );
-}
+    );
+};
 
 export default HeaderMain;

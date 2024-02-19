@@ -15,17 +15,17 @@ import useAuth from './hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function App() {
-
   const routes = useRoutes();
-  const { setAuth } = useAuth()
-  const navigate = useNavigate()
-  const location = useLocation()
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const from = location.state?.from?.pathname || '/';
-
   const [orient, setOrient] = useState('');
   const [modalEl, setModalEl] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const body = document.querySelector('body');
+  const [leftMenuOpen, setleftMenuOpen] = useState('');
+  const [leftMenuDisplay, setleftMenuDisplay] = useState('');
 
   // useEffect(() => {
   //     window.addEventListener("beforeunload", alertUser);
@@ -41,43 +41,43 @@ function App() {
   // };
 
   const changeOrient = () => {
-      if(orient === '') {
-          setOrient('_lf-row');
-      } else {
-          setOrient('');
-      }
-  }
+    if(orient === '') {
+      setOrient('_lf-row');
+    } else {
+      setOrient('');
+    }
+  };
 
   const openAuthorization = () => {
-      body.style.overflow = 'hidden';
-      setModalEl(<Authorization
-          changeLogged={changeLogged}
-          closeModal={closeModal}
-          openRecoveryPassword={openRecoveryPassword}
-          openRegistration={openRegistration}
-      />);
-      setModalOpen(true);
+    body.style.overflow = 'hidden';
+    setModalEl(<Authorization
+      changeLogged={changeLogged}
+      closeModal={closeModal}
+      openRecoveryPassword={openRecoveryPassword}
+      openRegistration={openRegistration}
+    />);
+    setModalOpen(true);
   };
 
   const closeModal = () =>{
-      body.style.overflow = 'auto';
-      setModalOpen(false);
-      setModalEl('');
+    body.style.overflow = 'auto';
+    setModalOpen(false);
+    setModalEl('');
   };
 
   const openRegistration = () => {
-      setModalEl(<Registration 
-          changeLogged={changeLogged} 
-          closeModal={closeModal} 
-          openAuthorization={openAuthorization}
-      />);
+    setModalEl(<Registration 
+      changeLogged={changeLogged} 
+      closeModal={closeModal} 
+      openAuthorization={openAuthorization}
+    />);
   };
 
   const openRecoveryPassword = () =>{
-      setModalEl('');
-      setModalEl(<RecPass 
-          closeModal={closeModal} 
-      />);
+    setModalEl('');
+    setModalEl(<RecPass 
+      closeModal={closeModal} 
+    />);
   };
 
   const changeLogged = () => {
@@ -106,17 +106,23 @@ function App() {
       
   }, [modalEl]);
 
+  const closeLeftMenu = () => {
+    console.log('hgfgh'); 
+    (leftMenuOpen === '') ? setleftMenuOpen('_to-open') : setleftMenuOpen('');
+    (leftMenuDisplay === '') ? setleftMenuDisplay('hidden') : setleftMenuDisplay('');
+  };
+
+
   return (
     <div className={`layout-grid ${orient}`}>
-      <LeftMenu /> 
-        <div id='layout-page' className={`layout-page ${orient}`}>
-          <LayoutColRow changeOrient={changeOrient} orient={orient}/>
-          <HeaderMain openAuthorization={openAuthorization} />
-          {routes}
-        </div>
+      <LeftMenu leftMenuDisplay={leftMenuDisplay} /> 
+      <div id='layout-page' className={`layout-page ${orient}`}>
+        <LayoutColRow changeOrient={changeOrient} orient={orient}/>
+        <HeaderMain closeLeftMenu={closeLeftMenu} leftMenuOpen={leftMenuOpen} openAuthorization={openAuthorization} />
+        {routes}
+      </div>
     </div>
   )
-}
+};
 
 export default App;
-

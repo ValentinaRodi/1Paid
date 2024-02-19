@@ -9,7 +9,7 @@ import Settings from '../pages/settings/Settings';
 import {PrivateRoute} from '../components/PrivateRoute';
 import Authorization from '../components/authorization/Authorization';
 import Card from '../pages/card/Card';
-
+import Tab from '../pages/tab/Tab';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -45,6 +45,7 @@ export const useRoutes = () => {
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />
+        <Route path="/tab" element={<Tab />} />
       </Route>
     </Routes> 
   );

@@ -168,17 +168,21 @@ function AddProduct(props) {
                                             <input type="text" name="exist" id='exist' defaultValue='1000шт' className='family-acrom-bold text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
                                         </div>
                                         <div className='w-[49%]'>
-                                            <label htmlFor="server" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Сервер</label>
-                                            <div className='rounded border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full'>
-                                                <select name="server" id='server' className='appearance-none bg-inherit form-select family-acrom-bold text-[13px] px-4 h-12 w-full outline-none text-black'>
-                                                    <option defaultValue="ru.warface.com">ru.warface.com</option>
-                                                    <option defaultValue="">ru.warface.com</option>
-                                                    <option defaultValue="">ru.warface.com</option>
-                                                </select>
-                                            </div>
+                                            <Select arr={categ} changeFormValue={changeFormValue} name='Сервер'/>
                                         </div>
                                     </div>
-                                    <ProductAdd />
+                                    <div className='flex justify-between flex-wrap mb-6 gap-y-5 mt-[-15px]'>
+                                        <div className='w-full sm:w-[32%]'>
+                                            <Select arr={arr} changeFormValue={changeFormValue} name='Срок'/>
+                                        </div>
+                                        <div className='w-full sm:w-[32%]'>
+                                            <Select arr={arr} changeFormValue={changeFormValue} name='Тип'/>
+                                        </div>
+                                        <div className='w-full sm:w-[32%]'>
+                                            <label htmlFor="content" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Содержимое</label>
+                                            <input type="text" name="content" id='content' defaultValue='Makmilan Gr-23' className='family-acrom-bold text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
+                                        </div>
+                                    </div>
                                     <div className='rounded-xl border border-solid border-[#E9EAF4] px-3 pt-3 mb-3'>
                                         <div className='flex justify-end'>
                                             <button className='p-0'>
@@ -188,7 +192,18 @@ function AddProduct(props) {
                                                 </svg>
                                             </button>
                                         </div>
-                                        <ProductAdd />
+                                        <div className='flex justify-between flex-wrap mb-6 gap-y-5 mt-[-15px]'>
+                                            <div className='w-full sm:w-[32%]'>
+                                                <Select arr={arr} changeFormValue={changeFormValue} name='Срок'/>
+                                            </div>
+                                            <div className='w-full sm:w-[32%]'>
+                                                <Select arr={arr} changeFormValue={changeFormValue} name='Тип'/>
+                                            </div>
+                                            <div className='w-full sm:w-[32%]'>
+                                                <label htmlFor="content" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Содержимое</label>
+                                                <input type="text" name="content" id='content' defaultValue='Makmilan Gr-23' className='family-acrom-bold text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className='rounded-xl border border-solid border-[#E9EAF4] px-3 pt-3 mb-6'>
                                         <div className='flex justify-end'>
@@ -199,7 +214,18 @@ function AddProduct(props) {
                                                 </svg>
                                             </button>
                                         </div>
-                                        <ProductAdd />
+                                        <div className='flex justify-between flex-wrap mb-6 gap-y-5 mt-[-15px]'>
+                                            <div className='w-full sm:w-[32%]'>
+                                                <Select arr={arr} changeFormValue={changeFormValue} name='Срок'/>
+                                            </div>
+                                            <div className='w-full sm:w-[32%]'>
+                                                <Select arr={arr} changeFormValue={changeFormValue} name='Тип'/>
+                                            </div>
+                                            <div className='w-full sm:w-[32%]'>
+                                                <label htmlFor="content" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Содержимое</label>
+                                                <input type="text" name="content" id='content' defaultValue='Makmilan Gr-23' className='family-acrom-bold text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className='flex justify-center mb-6'>
                                         <button className='p-0'>
