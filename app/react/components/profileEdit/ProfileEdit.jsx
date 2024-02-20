@@ -1,5 +1,4 @@
-// import {useState} from "@types/react";
-// import {useLocation} from "react-router-dom";
+import "./profileEdit.less";
 
 function ProfileEdit(props) {
 
@@ -22,8 +21,9 @@ function ProfileEdit(props) {
                                 className="sps-avatar flex-shrink-0 w-[258px] h-[258px] mb-[12px] overflow-hidden rounded-[12px] relative">
                                 <img id="img_user_avatar" className="sps-avatar-pic w-full h-full object-cover"
                                      src={props.user.avatar} alt="user"/>
-                                <div
+                                <div onClick={props.openUploadModal}
                                     className="sps-avatar-action flex justify-center items-center bg-black/40 top-0 left-0 w-full h-full absolute cursor-pointer">
+
                                     <div
                                         className="sps-avatar-icon flex justify-center items-center flex-shrink-0 w-[56px] h-[56px] [&amp;_svg]:w-full">
                                         <svg width="56" height="49" viewBox="0 0 56 49" fill="none"
@@ -62,7 +62,7 @@ function ProfileEdit(props) {
                                 </div>
                             </div>
                             <span
-                                className="sps-user-status block text-[12px] max-w-max py-[2px] px-[8px] mb-[12px] text-[#8CD23C] text-center border border-[#8CD23C] rounded-full">В сети</span>
+                                className="sps-user-status block text-[14px] max-w-max py-[2px] px-[8px] mb-[12px] text-[#8CD23C] text-center border border-[#8CD23C] rounded-full">В сети</span>
                             <div className="sps-user-actions w-full pt-[12px] border-t border-[#DBE0ED]">
                                 <button
                                     className="sps-user-action self-start text-[#ACB6CC] text-[14px] border-b border-[#ACB6CC]">Выйти
@@ -72,68 +72,77 @@ function ProfileEdit(props) {
                         </div>
                     </div>
                     <div className="sps-form flex flex-col w-full pl-[56px] border-l border-[#DBE0ED] pt-[26px]">
-                        <div className="sps-fields grid grid-cols-2 gap-[24px] mb-[64px]">
-                            <div className="input-wrapper flex flex-col font-secondary-bold text-black">
-                                <label className="input-label mb-[16px] text-[12px]">Имя пользователя</label>
-                                <input onChange={props.handleName} id="input_user_name" className="bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]"
-                                       type="text" placeholder={props.user.name}/>
-                            </div>
-                            <div className="input-wrapper flex flex-col font-secondary-bold text-black">
-                                <label className="input-label mb-[16px] text-[12px]">Секретное слово</label>
-                                <input  onChange={props.handleSecretWord}  id="input_user_secret_word"  className={ `${props.errorSecretWord} bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]`}
-                                       type="text" placeholder={props.user.secret_word}/>
-                            </div>
-                            <div className="input-wrapper flex flex-col font-secondary-bold text-black">
-                                <label className="input-label mb-[16px] text-[12px]">Пароль</label>
-                                <input id="input_user_password" className="bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]"
-                                       type="password" value={props.user.password} disabled/>
-                                <button onClick={props.openPasswordEditPopup} className="text-[12px]">Изменить</button>
-                            </div>
-                            <div className="input-wrapper flex flex-col font-secondary-bold text-black">
-                                <label className="input-label mb-[16px] text-[12px]">Почта</label>
-                                <input onChange={props.handleEmail}  id="input_user_email" className={ `${props.errorEmail} bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]`}
-                                       type="text" placeholder={props.user.email} value={props.user.email}/>
-                            </div>
-                            <div className="switch-wrapper flex flex-col font-secondary-bold text-black">
-                                <span className="switch-label mb-[16px] text-[12px]">Звуки уведомления</span>
-                                <div className="switch flex items-center">
-                                    <input id="switch1" type="checkbox" value="1"/>
-                                    <label htmlFor="switch1">toggle</label>
-                                    <span className="inline-block switch-text ml-[8px] text-[12px]">Включено</span>
+                            <div className="sps-fields grid grid-cols-2 gap-[24px] mb-[64px]">
+                                <div className="input-wrapper flex flex-col font-secondary-bold text-black">
+                                    <label className="input-label mb-[16px] text-[14px]">Имя пользователя</label>
+                                    <input onChange={props.handleName} id="input_user_name"
+                                           className="bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]"
+                                           type="text" placeholder={props.user.name}/>
+                                    <span className={ `${props.errorName}  text-[14px] text-red-600`}>Количество символов должно соответсвовать диапазону от 8 до 40.</span>
+                                </div>
+                                <div className="input-wrapper flex flex-col font-secondary-bold text-black">
+                                    <label className="input-label mb-[16px] text-[14px]">Секретное слово</label>
+                                    <input onChange={props.handleSecretWord} id="input_user_secret_word"
+                                           className={` bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]`}
+                                           type="text" placeholder={props.user.secret_word}/>
+                                    <span className={ `${props.errorSecretWord}  text-[14px] text-red-600`}>Секретное слово введено некорректно.</span>
+                                </div>
+                                <div id='pass_edit' className="input-wrapper flex flex-col font-secondary-bold text-black">
+                                    <label className="input-label mb-[16px] text-[14px]">Пароль</label>
+                                    <input id="input_user_password"
+                                           className="bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]"
+                                           type="password" value={props.user.password} disabled/>
+                                    <button onClick={props.openPasswordEditPopup} className="text-[14px]">Изменить
+                                    </button>
+                                </div>
+                                <div className="input-wrapper flex flex-col font-secondary-bold text-black">
+                                    <label className="input-label mb-[16px] text-[14px]">Почта</label>
+                                    <input onChange={props.handleEmail} id="input_user_email"
+                                           className={`bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]`}
+                                           type="text" placeholder={props.user.email}/>
+                                    <span className={ `${props.errorEmail}  text-[14px] text-red-600`}>Email введен некорректно</span>
+                                </div>
+                                <div className="switch-wrapper flex flex-col font-secondary-bold text-black">
+                                    <span className="switch-label mb-[16px] text-[14px]">Звуки уведомления</span>
+                                    <div className="switch flex items-center">
+                                        <input id="switch1" type="checkbox" value="1"/>
+                                        <label htmlFor="switch1">toggle</label>
+                                        <span className="inline-block switch-text ml-[8px] text-[14px]">Включено</span>
+                                    </div>
+                                </div>
+                                <div className="switch-wrapper flex flex-col font-secondary-bold text-black">
+                                    <span className="switch-label mb-[16px] text-[14px]">Рассылка на почту</span>
+                                    <div className="switch flex items-center">
+                                        <input id="switch2" type="checkbox" value="1"/>
+                                        <label htmlFor="switch2">toggle</label>
+                                        <span className="inline-block switch-text ml-[8px] text-[14px]">Включено</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="switch-wrapper flex flex-col font-secondary-bold text-black">
-                                <span className="switch-label mb-[16px] text-[12px]">Рассылка на почту</span>
-                                <div className="switch flex items-center">
-                                    <input id="switch2" type="checkbox" value="1"/>
-                                    <label htmlFor="switch2">toggle</label>
-                                    <span className="inline-block switch-text ml-[8px] text-[12px]">Включено</span>
-                                </div>
+                            <div className="sps-form-actions flex w-full">
+                                <button onClick={props.onSubmit}
+                                        className="sm-filter-btn btn flex justify-center items-center bg-gradient-primary rounded-[4px] py-4 w-full mb-[12px]">
+                                    <div
+                                        className="sm-filter-btn-icon flex-shrink-0 w-[14px] h-[14px] [&amp;_svg]:w-full flex justify-center items-center mr-[8px]">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M12.9872 0.8L12.9872 7.2L12.9872 7.272C11.9195 7.5396 11.1707 8.49924 11.1707 9.6C11.1707 10.7008 11.9195 11.6604 12.9872 11.928L12.9872 12L12.9872 15.2C12.9872 15.6418 13.3454 16 13.7872 16C14.2291 16 14.5872 15.6418 14.5872 15.2L14.5872 12C14.5949 11.9282 14.5949 11.8558 14.5872 11.784C15.443 11.3941 15.9922 10.5404 15.9922 9.6C15.9922 8.65963 15.443 7.80589 14.5872 7.416C14.5949 7.3442 14.5949 7.2718 14.5872 7.2L14.5872 0.8C14.5872 0.358172 14.2291 -7.70681e-08 13.7872 -9.6381e-08C13.3454 -1.15694e-07 12.9872 0.358172 12.9872 0.8ZM14.3633 9.6C14.3633 10.0418 14.0051 10.4 13.5633 10.4C13.1215 10.4 12.7633 10.0418 12.7633 9.6C12.7633 9.15817 13.1215 8.8 13.5633 8.8C14.0051 8.8 14.3633 9.15817 14.3633 9.6Z"
+                                                  fill="white"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M7.38818 0.8L7.38818 2.4L7.38818 2.472C6.32813 2.74531 5.58736 3.70129 5.58736 4.796C5.58736 5.89071 6.32813 6.84669 7.38817 7.12L7.38817 15.2C7.38817 15.6418 7.74635 16 8.18817 16C8.63 16 8.98817 15.6418 8.98817 15.2L8.98817 6.96C9.82986 6.56435 10.3672 5.71804 10.3672 4.788C10.3672 3.85796 9.82986 3.01165 8.98818 2.616C8.99579 2.5442 8.99579 2.4718 8.98818 2.4L8.98818 0.8C8.98818 0.358172 8.63 -7.59347e-08 8.18818 -9.52477e-08C7.74635 -1.14561e-07 7.38818 0.358172 7.38818 0.8ZM8.76388 4.8C8.76388 5.24183 8.40571 5.6 7.96388 5.6C7.52205 5.6 7.16388 5.24183 7.16388 4.8C7.16388 4.35817 7.52205 4 7.96388 4C8.40571 4 8.76388 4.35817 8.76388 4.8Z"
+                                                  fill="white"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M1.78832 0.8L1.78832 8.08C0.735795 8.35878 0.00281436 9.31118 0.00281432 10.4C0.00281427 11.4888 0.735795 12.4412 1.78832 12.72L1.78832 15.2C1.78832 15.6418 2.14649 16 2.58832 16C3.03015 16 3.38832 15.6418 3.38832 15.2L3.38832 12.56C4.2163 12.159 4.74219 11.32 4.74219 10.4C4.74219 9.48003 4.2163 8.64101 3.38832 8.24L3.38832 0.8C3.38832 0.358172 3.03015 -7.48355e-08 2.58832 -9.41484e-08C2.1465 -1.13461e-07 1.78832 0.358172 1.78832 0.8ZM3.16448 10.4C3.16448 10.8418 2.80631 11.2 2.36448 11.2C1.92265 11.2 1.56448 10.8418 1.56448 10.4C1.56448 9.95817 1.92265 9.6 2.36448 9.6C2.80631 9.6 3.16448 9.95817 3.16448 10.4Z"
+                                                  fill="white"></path>
+                                        </svg>
+                                    </div>
+                                    <div
+                                        className="sm-filter-btn-text font-secondary-bold text-[14px] text-white">Применить
+                                        изменения
+                                    </div>
+                                </button>
                             </div>
-                        </div>
-                        <div className="sps-form-actions flex w-full">
-                            <button onClick={props.onSubmit}
-                                className="sm-filter-btn btn flex justify-center items-center bg-gradient-primary rounded-[4px] py-4 w-full mb-[12px]">
-                                <div
-                                    className="sm-filter-btn-icon flex-shrink-0 w-[14px] h-[14px] [&amp;_svg]:w-full flex justify-center items-center mr-[8px]">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M12.9872 0.8L12.9872 7.2L12.9872 7.272C11.9195 7.5396 11.1707 8.49924 11.1707 9.6C11.1707 10.7008 11.9195 11.6604 12.9872 11.928L12.9872 12L12.9872 15.2C12.9872 15.6418 13.3454 16 13.7872 16C14.2291 16 14.5872 15.6418 14.5872 15.2L14.5872 12C14.5949 11.9282 14.5949 11.8558 14.5872 11.784C15.443 11.3941 15.9922 10.5404 15.9922 9.6C15.9922 8.65963 15.443 7.80589 14.5872 7.416C14.5949 7.3442 14.5949 7.2718 14.5872 7.2L14.5872 0.8C14.5872 0.358172 14.2291 -7.70681e-08 13.7872 -9.6381e-08C13.3454 -1.15694e-07 12.9872 0.358172 12.9872 0.8ZM14.3633 9.6C14.3633 10.0418 14.0051 10.4 13.5633 10.4C13.1215 10.4 12.7633 10.0418 12.7633 9.6C12.7633 9.15817 13.1215 8.8 13.5633 8.8C14.0051 8.8 14.3633 9.15817 14.3633 9.6Z"
-                                              fill="white"></path>
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M7.38818 0.8L7.38818 2.4L7.38818 2.472C6.32813 2.74531 5.58736 3.70129 5.58736 4.796C5.58736 5.89071 6.32813 6.84669 7.38817 7.12L7.38817 15.2C7.38817 15.6418 7.74635 16 8.18817 16C8.63 16 8.98817 15.6418 8.98817 15.2L8.98817 6.96C9.82986 6.56435 10.3672 5.71804 10.3672 4.788C10.3672 3.85796 9.82986 3.01165 8.98818 2.616C8.99579 2.5442 8.99579 2.4718 8.98818 2.4L8.98818 0.8C8.98818 0.358172 8.63 -7.59347e-08 8.18818 -9.52477e-08C7.74635 -1.14561e-07 7.38818 0.358172 7.38818 0.8ZM8.76388 4.8C8.76388 5.24183 8.40571 5.6 7.96388 5.6C7.52205 5.6 7.16388 5.24183 7.16388 4.8C7.16388 4.35817 7.52205 4 7.96388 4C8.40571 4 8.76388 4.35817 8.76388 4.8Z"
-                                              fill="white"></path>
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                              d="M1.78832 0.8L1.78832 8.08C0.735795 8.35878 0.00281436 9.31118 0.00281432 10.4C0.00281427 11.4888 0.735795 12.4412 1.78832 12.72L1.78832 15.2C1.78832 15.6418 2.14649 16 2.58832 16C3.03015 16 3.38832 15.6418 3.38832 15.2L3.38832 12.56C4.2163 12.159 4.74219 11.32 4.74219 10.4C4.74219 9.48003 4.2163 8.64101 3.38832 8.24L3.38832 0.8C3.38832 0.358172 3.03015 -7.48355e-08 2.58832 -9.41484e-08C2.1465 -1.13461e-07 1.78832 0.358172 1.78832 0.8ZM3.16448 10.4C3.16448 10.8418 2.80631 11.2 2.36448 11.2C1.92265 11.2 1.56448 10.8418 1.56448 10.4C1.56448 9.95817 1.92265 9.6 2.36448 9.6C2.80631 9.6 3.16448 9.95817 3.16448 10.4Z"
-                                              fill="white"></path>
-                                    </svg>
-                                </div>
-                                <div className="sm-filter-btn-text font-secondary-bold text-[14px] text-white" >Применить
-                                    изменения
-                                </div>
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>

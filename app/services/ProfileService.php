@@ -15,6 +15,7 @@ class ProfileService
             $user = &Yii::$app->user->identity;
 
             return [
+                'success' => true,
                 'name' => $user->name,
                 'avatar' => $user->getAvatar(),
                 'balance' => $user->balance,
@@ -42,6 +43,8 @@ class ProfileService
             return [
                 'success' => true,
                 'name' => $user->name,
+                'email' => $user->email,
+                'secret_word' => $user->secret_word,
                 'avatar' => $user->getAvatar(),
                 'balance' => $user->balance,
                 'bonus' => $user->bonus,
@@ -77,6 +80,14 @@ class ProfileService
             ];
         }
 
+    }
+
+    public static function uploadImage($img)
+    {
+
+        $res = FileService::uploadImage($img);
+        var_dump($res);
+        return $res;
     }
 
 }

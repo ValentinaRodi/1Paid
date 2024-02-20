@@ -17,7 +17,7 @@ import navpinPlate3 from "../../../../web/img/icon-navpin-plate-icon-3.svg";
 import navpinPlate4 from "../../../../web/img/icon-navpin-plate-icon-4.svg";
 import lk from "../../../../web/img/icon-lk.svg";
 // import Registration from '../../components/registration/Registration';
-// import Authorization from "../../components/authorization/Authorization";
+// import Authorisation from "../../components/authorisation/Authorisation";
 // import RecPass from '../../components/recpass/Recpass';
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';

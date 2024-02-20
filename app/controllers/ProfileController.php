@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 use app\forms\{
     PasswordForm,
@@ -39,7 +40,7 @@ class ProfileController extends Controller
                                         ],*/
                     [
                         'allow' => true,
-                        'actions' => ['get', 'post', 'edit-password'],
+                        'actions' => ['get', 'post', 'edit-password', 'upload-image'], //
                         'roles' => ['@'],
                     ],
                 ],
@@ -50,6 +51,7 @@ class ProfileController extends Controller
                     'get' => ['get', 'head'],
                     'post' => ['post'],
                     'edit-password' => ['post'],
+                    'upload-image' => ['post'],
                 ],
             ],
         ];
@@ -84,6 +86,20 @@ class ProfileController extends Controller
     public function actionEditPassword()
     {
         return $this->asJson(ProfileService::editPassword(Yii::$app->request->post()));
+
+    }
+
+    public function actionUploadImage()
+    {
+        var_dump($_FILES);
+        var_dump($_FILES['img_file']);
+//        var_dump(Yii::$app->request->post());
+        ['actionUploadImage',ProfileService::uploadImage($_FILES['img_file'])];
+//        echo '<pre>' . print_r($_FILES, true) . '<pre>';
+//        echo '<pre>' . print_r(\Yii::$app->request->post(), true) . '<pre>';
+        $file = UploadedFile::getInstanceByName('img_file');
+//        echo $file;
+//        return $this->asJson(ProfileService::uploadImage(\Yii::$app->request->post()));
 
     }
 }

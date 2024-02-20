@@ -6,182 +6,74 @@ import fbcAvatar from "../../../../web/img/avatar-example-4.6cd623f4.png";
 import {useState, useEffect} from 'react';
 import {createRoot} from "react-dom/client";
 import {Navigate, Outlet, useLocation} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 import LeftMenu from '../../components/leftMenu/LeftMenu';
 import LayoutColRow from '../../components/LayoutColRow';
 import Content from '../content/Content';
 import Registration from '../../components/registration/Registration';
-import Authorization from "../../components/authorization/Authorization";
+import Authorisation from "../../components/authorisation/Authorisation";
 import RecPass from '../../components/recpass/Recpass';
 import HeaderMain from '../../components/headerMain/HeaderMain';
 import ProfileEdit from '../../components/profileEdit/ProfileEdit';
 import fetchFunc from '../../services/fetch';
-import NewPass from "../../components/newpass/Newpass";
-import AutorisationValidation from "../../validators/AutorisationValidation";
+import NewPass from "../../components/newpass/NewPass";
+import Upload from "../../components/upload/Upload";
+import AlertPopup from "../../components/alertPopup/AlertPopup";
+import {
+    checkEmail,
+    checkName,
+    checkPassword,
+    checkSecretWord
+} from "../../validators/AuthorisationValidation";
+
 
 function Settings() {
     const [loggedIn, setLoggedIn] = useState(false);
     const [orient, setOrient] = useState('');
-    const [name, setName] = useState('');
     const [balance, setBalance] = useState('');
     const [bonus, setBonus] = useState('');
     const [avatar, setAvatar] = useState('');
-    const [secret_word, setSecretWord] = useState('');
-    const [email, setEmail] = useState('');
     const [user, setUser] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [secretWord, setSecretWord] = useState('');
+    const [file, setFile] = useState('');
+    // const [isChanged, setIsChanged] = useState(false);
+    // const [isError, setIsError] = useState(false);
+
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
-    const [errorEmail, setErrorEmail] = useState("");
-    const [errorSecretWord, setErrorSecretWord] = useState("");
-    const [errorPassword, setErrorPassword] = useState("");
-
+    const [errorName, setErrorName] = useState("hidden");
+    const [errorEmail, setErrorEmail] = useState("hidden");
+    const [errorSecretWord, setErrorSecretWord] = useState("hidden");
     const location = useLocation();
 
+    // const saveNewPass = (e) => {
+    //     // e.preventDefault();
+    //
+    //     let body = {
+    //         'password': password,
+    //         'password_confirmation': passwordConfirm
+    //     };
+    //     fetchFunc('/profile/edit-password', 'POST', body)
+    //         .then((data) => {
+    //             console.log(data)
+    //
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    //
+    //     console.log(password)
+    //     console.log(passwordConfirm)
+    //     setErrorPassword("");
+    //     // if (password !== passwordConfirm) {
+    //     //     setErrorPassword('border-[#FF5343] border-[1px] border-solid');
+    //     //     return;
+    //     // };
+    // }
 
-    const getCSRFToken = async () => {
-        const response = await fetch("/csrf");
-
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-
-        let csrfJson = await response.json();
-
-        fetch("/profile/edit", {
-            method: "POST",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json",
-                "X-CSRF-Token": decodeURIComponent(csrfJson._csrf),
-            },
-            body: JSON.stringify({
-                'name': name,
-                'email': email,
-                'secret_word': secret_word
-            })
-        })
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                console.log('data', data);
-                return data;
-            })
-            .catch((error) => {
-                console.log(error);
-                // setErrorMessage("An error occurred");
-                return error;
-
-            });
-    };
-
-    const saveNewPass = (e) => {
-        e.preventDefault();
-
-
-        console.log(password)
-        console.log(passwordConfirm)
-        setErrorPassword("");
-        // if (password !== passwordConfirm) {
-        //     setErrorPassword('border-[#FF5343] border-[1px] border-solid');
-        //     return;
-        // };
-        let getCSRFToken3 = async () => {
-            const response = await fetch("/csrf");
-
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-
-            let csrfJson = await response.json();
-
-            fetch("/profile/edit-password", {
-                method: "POST",
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "Content-Type": "application/json",
-                    "X-CSRF-Token": decodeURIComponent(csrfJson._csrf),
-                },
-                body: JSON.stringify({
-                    'password': password,
-                    'password_confirmation': passwordConfirm
-                })
-            })
-                .then((res) => {
-                    return res.json();
-                })
-                .then((data) => {
-                    console.log('data', data);
-                    return data;
-                })
-                .catch((error) => {
-                    console.log(error);
-                    // setErrorMessage("An error occurred");
-                    return error;
-
-                });
-        }
-        getCSRFToken3();
-    }
-    const validateEmail = (email) => {
-        console.log(email);
-        const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        return regex.test(email);
-    };
-
-    const validatePassword = (password) => {
-        const regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%\^&\*])(?=.{8,})");
-        return regex.test(password);
-    };
-
-    const validatesecret_word = (secret_word) => {
-        const regex = new RegExp("^[a-zA-Zа-яА-Я0-9]{8,}$");
-        return regex.test(secret_word);
-    };
-
-    const onSubmit = () => {
-        useEffect(() => {
-            let getCSRFToken2 = async () => {
-                const response = await fetch("/csrf");
-
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-
-                let csrfJson = await response.json();
-
-                fetch("/profile/edit", {
-                    method: "POST",
-                    headers: {
-                        "X-Requested-With": "XMLHttpRequest",
-                        "Content-Type": "application/json",
-                        "X-CSRF-Token": decodeURIComponent(csrfJson._csrf),
-                    },
-                    body: JSON.stringify({
-                        'name': name,
-                        'email': email,
-                        'secret_word': secret_word
-                    })
-                })
-                    .then((res) => {
-                        return res.json();
-                    })
-                    .then((data) => {
-                        console.log('data', data);
-                        return data;
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                        // setErrorMessage("An error occurred");
-                        return error;
-
-                    });
-            }
-            getCSRFToken2();
-        }, []);
-    }
 
     const changeOrient = () => {
         if (orient === '') {
@@ -193,28 +85,19 @@ function Settings() {
 
     useEffect(() => {
 
-        fetch("/profile/edit", {
-            method: "GET",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json",
-            },
-
-        })
-            .then((res) => {
-                return res.json();
-            })
+        fetchFunc('/profile/edit', 'GET')
             .then((data) => {
-
-                // пришедшие данные из промиса
-                console.log('data:', data);
-                data.password = '********'
-                data.avatar = 'http://1paid.local/js/00d4721a6417b9c4833a61c762672a7c.png'
-                setUser(data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+                if (data.success === true) {
+                    console.log('dataFromFetchFunc:', data);
+                    //пришедшие данные из промиса
+                    console.log('data:', data);
+                    data.password = '********'
+                    data.avatar = 'http://1paid.local/js/00d4721a6417b9c4833a61c762672a7c.png'
+                    setUser(data);
+                }
+            }).catch((error) => {
+            console.log('ERRR:', error);
+        });
 
         let loggedInUser = localStorage.getItem('logged');
 
@@ -224,11 +107,11 @@ function Settings() {
 
         if (loggedInUser) {
             setLoggedIn(true);
-            setName(localStorage.getItem('name'));
+            // setName(localStorage.getItem('name'));
             setBalance(localStorage.getItem('balance'));
             setBonus(localStorage.getItem('bonus'));
-            setEmail(localStorage.getItem('email'));
-            setSecretWord(localStorage.getItem('secret_word'));
+            // setEmail(localStorage.getItem('email'));
+            // setSecretWord(localStorage.getItem('secret_word'));
 
             if (localStorage.getItem('avatar') !== 'null') {
                 setAvatar(localStorage.getItem('avatar'))
@@ -253,19 +136,39 @@ function Settings() {
 
     }, [loggedIn, modalEl]);
 
+    const openUploadModal = () => {
+        console.log('Upload_mod');
+        const body = document.querySelector('body');
+        body.style.overflow = 'hidden';
+        setModalEl(<Upload
+            closeModal={closeModal}
+            img_upload_id={'profile_img'}
+            handleFile={handleFile}
+            url={'/profile/upload-image'}
+        />);
+
+        setModalOpen(true);
+    }
     const openPasswordEditPopup = () => {
         console.log('mod');
         const body = document.querySelector('body');
         body.style.overflow = 'hidden';
         setModalEl(<NewPass
             closeModal={closeModal}
-            saveNewPass={saveNewPass}
-            errorPassword={errorPassword}
-            handlePassword={handlePassword}
-            handlePasswordConfirm={handlePasswordConfirm}
+            openSaveCompletePopup={openSaveCompletePopup}
         />);
         setModalOpen(true);
     };
+
+    const openSaveCompletePopup = () => {
+        console.log('mod SAVE');
+        const body = document.querySelector('body');
+        body.style.overflow = 'hidden';
+        setModalEl(<AlertPopup
+            closeModal={closeModal}
+        />);
+        setModalOpen(true);
+    }
 
     const closeModal = () => {
         const body = document.querySelector('body');
@@ -273,31 +176,96 @@ function Settings() {
         setModalOpen(false);
         setModalEl('');
     };
+    const handleFile = (file) => {
+        console.log(file);
+        setFile(file);
+        console.log(file)
 
+    }
     const handleName = (e) => {
         setName(e.target.value);
+        console.log('HandleSetName:', name)
+
     }
     const handleEmail = (e) => {
         setEmail(e.target.value);
+        console.log(email)
+
     }
     const handleSecretWord = (e) => {
         setSecretWord(e.target.value);
-    }
-    const handlePassword = (e) => {
-        console.log(e.target.value);
-        setPassword(e.target.value);
-        console.log(password)
-    }
-
-    const handlePasswordConfirm = (e) => {
-        console.log(e.target.value);
-
-
-        setPasswordConfirm(e.target.value);
-        console.log(passwordConfirm)
+        console.log(secretWord)
 
     }
+    // const handlePassword = (e) => {
+    //     console.log(e.target.value);
+    //     setPassword(e.target.value);
+    //     console.log(password)
+    // }
+    //
+    // const handlePasswordConfirm = (e) => {
+    //     console.log(e.target.value);
+    //     setPasswordConfirm(e.target.value);
+    //     console.log(passwordConfirm)
+    // }
+    const onSubmit = () => {
+        let body = {
+            'name': '',
+            'email': '',
+            'secret_word': ''
+        };
+        setErrorName('hidden');
+        setErrorEmail('hidden');
+        setErrorSecretWord('hidden');
+        let isChanged = false;
+        let isError = false;
 
+        if (name) {
+            if (checkName(name)) {
+                body.name = name;
+                isChanged = true;
+                isError = false;
+            } else {
+                isChanged = false;
+                isError = true;
+                setErrorName(' ');
+             }
+        }
+        if (email) {
+            if (checkEmail(email)) {
+                body.email = email;
+                isChanged = true;
+                isError = false;
+            } else {
+                isChanged = false;
+                isError = true;
+                setErrorEmail(' ')
+            }
+        }
+        if (secretWord) {
+            if (checkSecretWord(secretWord)) {
+               body.secret_word = secretWord;
+                isChanged = true;
+                isError = false;
+            } else {
+                isChanged = false;
+                isError = true;
+                setErrorSecretWord(' ')
+            }
+        }
+        if (isChanged && !isError) {
+            fetchFunc('/profile/edit', 'POST', body)
+                .then((data) => {
+                    if (data.success === true) {
+                        openSaveCompletePopup();
+                    } else {
+                        console.log(data.errors)
+                    }
+                }).catch((error) => {
+                console.log('ERRR:', error);
+            });
+        }
+    }
     return (
         <div className={`layout-grid ${orient}`}>
             <LeftMenu/>
@@ -309,8 +277,10 @@ function Settings() {
                 </div>
                 <ProfileEdit
                     user={user}
+                    openUploadModal={openUploadModal}
                     handleName={handleName}
                     handleEmail={handleEmail}
+                    errorName={errorName}
                     errorEmail={errorEmail}
                     errorSecretWord={errorSecretWord}
                     onSubmit={onSubmit}
@@ -319,7 +289,7 @@ function Settings() {
                 />
             </div>
         </div>
-    )
+    );
 }
 
 export default Settings;

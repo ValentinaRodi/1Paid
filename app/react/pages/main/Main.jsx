@@ -8,7 +8,7 @@ import LeftMenu from '../../components/leftMenu/LeftMenu';
 import LayoutColRow from '../../components/LayoutColRow';
 import Content from '../content/Content';
 import Registration from '../../components/registration/Registration';
-import Authorization from "../../components/authorization/Authorization";
+import Authorisation from "../../components/authorisation/Authorisation";
 import RecPass from '../../components/recpass/Recpass';
 
 function Main() {
@@ -50,7 +50,7 @@ function Main() {
     const openAuthorization = () => {
         const body = document.querySelector('body');
         body.style.overflow = 'hidden';
-        setModalEl(<Authorization
+        setModalEl(<Authorisation
             changeLogged={changeLogged}
             closeModal={closeModal}
             openRecoveryPassword={openRecoveryPassword}

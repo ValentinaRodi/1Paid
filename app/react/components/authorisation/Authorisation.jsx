@@ -3,14 +3,14 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
-import "./authorization.less";
+import "./authorisation.less";
 import {useState} from "react";
 import arrow from "../../../../web/img/icon-arrow-round.svg";
 import closeEye from "../../../../web/img/icon-close-eye.svg";
 import openEye from "../../../../web/img/icon-open-eye.svg";
 import lock from "../../../../web/img/icon-lock.svg";
 
-function Authorization(props) {
+function Authorisation(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRemember] = useState(false);
@@ -272,4 +272,4 @@ function Authorization(props) {
     );
 }
 
-export default Authorization;
+export default Authorisation;

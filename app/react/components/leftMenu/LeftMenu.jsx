@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import React from "react";
 import { createRoot } from "react-dom/client";
 import Registration from '../../components/registration/Registration';
-import Authorization from "../../components/authorization/Authorization";
+import Authorisation from "../authorisation/Authorisation";
 import RecPass from '../../components/recpass/Recpass';
 
 function LeftMenu() {
@@ -12,7 +12,7 @@ function LeftMenu() {
     const [modalOpen, setModalOpen] = useState(false);
 
     const openAuthorization = () => {
-        setModalEl(<Authorization
+        setModalEl(<Authorisation
             changeLogged={changeLogged}
             closeModal={closeModal}
             openRecoveryPassword={openRecoveryPassword}
