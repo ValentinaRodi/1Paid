@@ -85,7 +85,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getAvatar()
     {
-        //return $this->hasOne(File::class, ['id' => 'user_id']);
+        return $this->hasOne(File::class, ['avatar' => 'id']);
     }
 
     /**

@@ -6,7 +6,12 @@ return [
     'GET,HEAD csrf' => 'main/csrf',
     'GET,HEAD landing' => 'main/landing',
     'GET,HEAD logout' => 'main/logout',
-    'GET,HEAD game/get' => 'game/get-list',
+    [
+        'pattern' => 'game/get/<offset>',
+        'route' => 'game/get-list',
+        'defaults' => ['offset' => 0],
+        'verb' => ['GET', 'HEAD'],
+    ],
     'GET,HEAD category/get-list' => 'category/get-list',
     'GET,HEAD category/get-one-top' => 'category/get-one-top',
     [

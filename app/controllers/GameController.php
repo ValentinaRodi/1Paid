@@ -18,15 +18,14 @@ use app\services\{
     LangService
 };
 
-class GameController extends Controller
-{
+class GameController extends Controller {
+
     public $layout = 'main.twig';
 
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::class,
@@ -54,32 +53,30 @@ class GameController extends Controller
         ];
     }
 
-    public function actionGetList()
-    {
-        if (isset(Yii::$app->request->post()['offset']) && !empty(Yii::$app->request->post()['offset'])) {
-			$offset = Yii::$app->request->post()['offset'];
-		} else {
-			$offset = 0;
-		}
+    public function actionGetList() {
+        if (isset(Yii::$app->request->get()['offset']) && !empty(Yii::$app->request->get()['offset'])) {
+            $offset = Yii::$app->request->get()['offset'];
+        } else {
+            $offset = 0;
+        }
         $games = GameService::getList((int) $offset);
         return $this->asJson($games);
     }
 
-    public function actionPost()
-    {
+    public function actionPost() {
         $model = new GameForm();
         foreach (Yii::$app->request->post() as $key => $value) {
             $model->{$key} = $value;
         }
         if ($model->validate()) {
             return $this->asJson([
-                'success' => true,
-                'game_id' => $model->save()
+                        'success' => true,
+                        'game_id' => $model->save()
             ]);
         } else {
             return $this->asJson([
-                'success' => false,
-                'errors' => $model->errors
+                        'success' => false,
+                        'errors' => $model->errors
             ]);
         }
     }

@@ -17,6 +17,7 @@ class FieldService
     {
         $fields = Field::find()
                 ->join('LEFT JOIN', 'field_category', 'field_category.field_id = field.id')
+                ->join('LEFT JOIN', 'lang', 'lang.id = field.lang_id')
                 ->where(['field_category.category_id' => $categoryId])
                 ->asArray()->all();
         return $fields;
@@ -26,6 +27,7 @@ class FieldService
     {
         $fields = Field::find()
                 ->join('LEFT JOIN', 'field_category', 'field_category.field_id = field.id')
+                ->join('LEFT JOIN', 'lang', 'lang.id = field.lang_id')
                 ->where(['field_category.category_id' => $categoryId])
                 ->andWhere(['field.search' => 1])
                 ->asArray()->all();
