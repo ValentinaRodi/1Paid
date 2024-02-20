@@ -87,9 +87,11 @@ function LeftMenu(props) {
         };
     };
 
-    const goHistorySell = () => {
+    const goHistorySales = () => {
         if(!isAuthenticated) {
             openAuthorization();
+        } else {
+            navigate('/historysales');
         };
     };
   
@@ -201,7 +203,7 @@ function LeftMenu(props) {
                                     </div>
                                     <div className="navpin-text uppercase ml-7 text-xs 2xl:text-sm">История просмотра</div>
                                 </button>
-                                <button onClick={goHistorySell} className="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
+                                <button onClick={goHistorySales} className="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
                                     <div className="navpin-plate">
                                         <img className="navpin-plate-pic" src="/img/link-pin-plate.6d928d3b.svg" alt="dots"/>
                                         <img className="navpin-plate__dots-1" src="/img/dots-1.82560447.svg" alt="dots"/>

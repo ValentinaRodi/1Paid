@@ -168,11 +168,13 @@ function HeaderMain(props) {
         };
     };
 
-    const goHistorySell = () => {
+    const goHistorySales = () => {
         setOpenMenu('');
 
         if(!isAuthenticated) {
             props.openAuthorization();
+        } else {
+            navigate('/historysales');
         };
     };
 
@@ -684,7 +686,7 @@ function HeaderMain(props) {
                             </div>
                             <div className="navpin-text text-sm uppercase ml-7 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">История просмотра</div>
                         </button>
-                        <button onClick={goHistorySell} className="navpin-item mt-[30px] first-of-type:mt-0 3xl:mt-4  bg-inherit w-full ">
+                        <button onClick={goHistorySales} className="navpin-item mt-[30px] first-of-type:mt-0 3xl:mt-4  bg-inherit w-full ">
                             <div className="navpin-plate">
                                 <img className="navpin-plate-pic" src={linkPin} alt="dots" />
                                 <img className="navpin-plate__dots-1" src={logoDots} alt="dots" />
