@@ -205,7 +205,7 @@ function Catalog() {
                             {
                                 (gamesObj.length !== 0) ? (
                                     gamesObj.categories.map((categ) => (
-                                        <Link to={`/catalog/${game}/${categ.seo_name}`} state={{ game: game,  category: categ.seo_name, categoryId: categ.id, gamesObjAdd: gamesObj }} key={uuid()} className={`${(categ.id === categoryId) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>{categ.name}</Link> 
+                                        <Link to={`/catalog/${game}/${categ.seo_name}`} state={{ game: game,  category: categ.seo_name, categoryId: categ.id, gamesObjAdd: gamesObj }} key={uuid()} className={`${(categ.id === categoryId) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase`}>{categ.name}</Link> 
                                     ))
                                 ) : (<div className='text-[#FF5343]'>categories not found</div>)
                             }
