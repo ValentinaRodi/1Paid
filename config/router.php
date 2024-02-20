@@ -3,6 +3,7 @@
 return [
     'GET,HEAD' => 'main/index',
     'GET,HEAD profile' => 'main/profile',
+    'GET,HEAD profile/edit' => 'profile/get',
     'GET,HEAD csrf' => 'main/csrf',
     'GET,HEAD landing' => 'main/landing',
     'GET,HEAD logout' => 'main/logout',
@@ -24,6 +25,7 @@ return [
     'GET,HEAD item/get' => 'item/get',
     'GET,HEAD field/get-list/<category>' => 'field/get-list',
     'GET,HEAD field/get-list-filters/<category>' => 'field/get-list-filters',
+    'POST profile/edit' => 'profile/post',
     'POST profile/<action>' => 'profile/<action>',
     'POST game' => 'game/post',
     'POST game/<action>' => 'game/<action>',

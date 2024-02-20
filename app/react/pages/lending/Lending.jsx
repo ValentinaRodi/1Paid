@@ -3,7 +3,7 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import Registration from '../../components/registration/Registration';
 import { useState} from 'react';
-import Authorization from "../../components/authorization/Authorization";
+import Authorisation from "../../components/authorisation/Authorisation";
 import RecPass from '../../components/recpass/Recpass';
 import star from '../../../../web/img/icon-star.svg';
 
@@ -104,7 +104,7 @@ function LendingPage() {
         </div>
         {(!fon) ? null : <div className='absolute h-full w-full z-10 inset-0 bg-[rgba(6,9,18,0.8)]'></div>}
         {(!registration) ? null : <Registration closeRegistration={closeRegistration} transAuth={transAuth}/>}
-        {(!authorization) ? null : <Authorization closeAuthorization={closeAuthorization} openRecoveryPassword={openRecoveryPassword} openRegistration={openRegistration} />}
+        {(!authorization) ? null : <Authorisation closeAuthorization={closeAuthorization} openRecoveryPassword={openRecoveryPassword} openRegistration={openRegistration} />}
         {(!recPass) ? null : <RecPass closeRecPass={closeRecPass}/>}
     </>
   );

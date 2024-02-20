@@ -4,7 +4,7 @@ import { useNavigate  } from 'react-router-dom';
 import React from "react";
 import { createRoot } from "react-dom/client";
 import Registration from '../../components/registration/Registration';
-import Authorization from "../../components/authorization/Authorization";
+import Authorisation from "../authorisation/Authorisation";
 import RecPass from '../../components/recpass/Recpass';
 import AddProduct from "../addProduct/AddProduct";
 import useAuth from '../../hooks/useAuth';
@@ -19,7 +19,7 @@ function LeftMenu(props) {
 
     const openAuthorization = () => {
         body.style.overflow = 'hidden';
-        setModalEl(<Authorization
+        setModalEl(<Authorisation
             changeLogged={changeLogged}
             closeModal={closeModal}
             openRecoveryPassword={openRecoveryPassword}
