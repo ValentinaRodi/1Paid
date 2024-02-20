@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 
 import LeftMenu from '../../components/leftMenu/LeftMenu';
 import LayoutColRow from '../../components/LayoutColRow';
-import Content from '../content/Content';
+//import Content from '../content/Content';
 import Registration from '../../components/registration/Registration';
 import Authorisation from "../../components/authorisation/Authorisation";
 import RecPass from '../../components/recpass/Recpass';
@@ -267,14 +267,6 @@ function Settings() {
         }
     }
     return (
-        <div className={`layout-grid ${orient}`}>
-            <LeftMenu/>
-            <div id='layout-page' className={`layout-page ${orient}`}>
-                <LayoutColRow changeOrient={changeOrient} orient={orient}/>
-                <HeaderMain/>
-                <div className="layout-b pb-4 px-9 3xl:px-4 min-w-0 sm:px-3">
-
-                </div>
                 <ProfileEdit
                     user={user}
                     openUploadModal={openUploadModal}
@@ -287,9 +279,20 @@ function Settings() {
                     handleSecretWord={handleSecretWord}
                     openPasswordEditPopup={openPasswordEditPopup}
                 />
-            </div>
-        </div>
     );
 }
 
+/*
+        <div className={`layout-grid ${orient}`}>
+            <LeftMenu/>
+            <div id='layout-page' className={`layout-page ${orient}`}>
+                <LayoutColRow changeOrient={changeOrient} orient={orient}/>
+                <HeaderMain/>
+                <div className="layout-b pb-4 px-9 3xl:px-4 min-w-0 sm:px-3">
+
+                </div>
+            </div>
+        </div>
+
+*/
 export default Settings;

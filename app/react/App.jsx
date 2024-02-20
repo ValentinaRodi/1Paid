@@ -8,7 +8,7 @@ import LeftMenu from './components/leftMenu/LeftMenu';
 import LayoutColRow from './components/LayoutColRow';
 
 import Registration from './components/registration/Registration';
-import Authorization from "./components/authorization/Authorization";
+import Authorization from "./components/authorisation/Authorisation";
 import RecPass from './components/recpass/Recpass';
 
 import useAuth from './hooks/useAuth';

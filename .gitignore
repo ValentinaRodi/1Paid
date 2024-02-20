@@ -40,3 +40,4 @@ tests/_support/_generated
 /package-lock.json
 /web/js/*
 /config/db.php
+/1paid-archive

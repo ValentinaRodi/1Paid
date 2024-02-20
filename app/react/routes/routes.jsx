@@ -7,7 +7,7 @@ import Main from '../pages/main/Main';
 import Catalog from '../pages/catalog/Catalog';
 import Settings from '../pages/settings/Settings';
 import {PrivateRoute} from '../components/PrivateRoute';
-import Authorization from '../components/authorization/Authorization';
+import Authorisation from '../components/authorisation/Authorisation';
 import Card from '../pages/card/Card';
 import Tab from '../pages/tab/Tab';
 import HistoryViews from '../pages/historyViews/HistoryViews';
@@ -41,7 +41,7 @@ export const useRoutes = () => {
     <Routes>
       <Route index element={<Main />} />
       <Route path="/" element={<Main />} />
-      <Route path="/login" element={<Authorization />} />
+      <Route path="/login" element={<Authorisation />} />
       <Route path='/catalog/:game?/:category' element={<Catalog />} />
       <Route path='/catalog/:game?/:category/:card' element={<Card />} />
       <Route element={<PrivateRoute />}>
