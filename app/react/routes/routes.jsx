@@ -12,6 +12,7 @@ import Card from '../pages/card/Card';
 import Tab from '../pages/tab/Tab';
 import HistoryViews from '../pages/historyViews/HistoryViews';
 import HistorySales from '../pages/historySales/HistorySales';
+import TopUsers from '../pages/top-users/TopUsers';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -44,12 +45,13 @@ export const useRoutes = () => {
       <Route path="/login" element={<Authorisation />} />
       <Route path='/catalog/:game?/:category' element={<Catalog />} />
       <Route path='/catalog/:game?/:category/:card' element={<Card />} />
+      <Route path='/top_users' element={<TopUsers />} />
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />
         <Route path="/tab" element={<Tab />} />
-        <Route path="/historyviews" element={<HistoryViews />} />
-        <Route path="/historysales" element={<HistorySales />} />
+        <Route path="/history_views" element={<HistoryViews />} />
+        <Route path="/history_sales" element={<HistorySales />} />
       </Route>
     </Routes> 
   );

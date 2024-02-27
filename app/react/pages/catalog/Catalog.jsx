@@ -21,7 +21,18 @@ function Catalog() {
     const [cardsView, setCardsView] = useState(true);
     const [cardsViewImg, setCardsViewImg] = useState('/img/icon-cards-stroke.svg');
     const [cardsViewDiv, setCardsViewDiv] = useState('');
+    const [checked1, setChecked1] = useState(true);
+    const [checked2, setChecked2] = useState(false);
 
+    const changeCheckOn = () => {
+        setChecked1(!checked1);
+        setChecked2(false);
+    };
+    
+    const changeCheckOff = () => {
+        setChecked2(!checked2);
+        setChecked1(false);
+    };
 
     const location = useLocation();
     const { game, category, categoryId, gamesObjAdd } = location.state;
@@ -140,14 +151,6 @@ function Catalog() {
         }
     };
 
-    const changeCheckOn = (e) => {
-        changeFormValue('online', e.target.checked); 
-    };
-
-    const changeCheckOff = (e) => {
-        changeFormValue('offline', e.target.checked);
-    };
-
     //Отправка фильтра
     const submitFilter = () => {
         console.log('formValue', formValue);
@@ -224,7 +227,7 @@ function Catalog() {
                                 filterObj.map(filter => {
                                     if(filter.type === 'options') {
                                         return (
-                                            <Select key={uuid()} reset={resetFilter} changeFormValue={changeFormValue} arr={filter.value.split('|')} name={filter.seo_name}/>
+                                            <Select key={uuid()} reset={resetFilter} changeFormValue={changeFormValue} arr={filter.value.split('|')} keyValue={filter.seo_name} name={filter.seo_name}/>
                                         )
                                     }
                                 })
@@ -233,23 +236,23 @@ function Catalog() {
                         
                         <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
                         
-                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue}  name='Сервер'/>
+                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='Сервер' name='Сервер'/>
                     
-                        <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={30000} styleIcon={'slider-icon_green'} styleDiv={'gradient-green'} name='Ранг'/>
+                        <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={30000} styleIcon={'slider-icon_green'} styleDiv={'gradient-green'} keyValue='Ранг' name='Ранг'/>
                         
-                        <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Количество доната'/>
+                        <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} keyValue='Количество доната' name='Количество доната'/>
                         
-                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} name='Тип аккаунта'/>
+                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='' name='Тип аккаунта'/>
                         
                         <div className="mb-2">
                             <h3 className="mb-4 sh-title-text font-secondary-bold text-bold text-xs text-black">Продавец</h3>
                             <div className="smt-filter-type-content flex flex-col">
                                 <label className="custom-checkbox mb-[12px] font-secondary-bold text-xs">Онлайн
-                                    <input onChange={changeCheckOn} type="checkbox" name="online" defaultChecked="checked"/>
+                                    <input id="checkbox1" onChange={changeCheckOn} type="checkbox" name="online" checked={(checked1) ? "checked" : ""}/>
                                     <span className="custom-checkmark"></span>
                                 </label>
                                 <label className="custom-checkbox font-secondary-bold text-xs">Офлайн
-                                    <input onChange={changeCheckOff} type="checkbox" name="offline" defaultChecked=""/>
+                                    <input id="checkbox2" onChange={changeCheckOff} type="checkbox" name="offline" checked={(checked2) ? "checked" : ""}/>
                                     <span className="custom-checkmark"></span>
                                 </label>
                             </div>

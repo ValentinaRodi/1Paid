@@ -83,7 +83,7 @@ function LeftMenu(props) {
         if(!isAuthenticated) {
             openAuthorization();
         } else {
-            navigate('/historyviews');
+            navigate('/history_views');
         };
     };
 
@@ -91,7 +91,7 @@ function LeftMenu(props) {
         if(!isAuthenticated) {
             openAuthorization();
         } else {
-            navigate('/historysales');
+            navigate('/history_sales');
         };
     };
   
@@ -133,7 +133,7 @@ function LeftMenu(props) {
                             <img className="logo-pic" src="/img/logo.7fb09570.svg" alt="1paid.ru"/>
                         </div>
                     </div>
-                    <div className="absolute inset-0 h-[86%] w-full shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]"></div>
+                    <div className="rectangle absolute inset-0 h-[86%] w-full shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]"></div>
                     </div>
                     <div className="cm-b mt-4">
                         <div className="cm-container">

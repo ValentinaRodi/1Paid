@@ -1,23 +1,132 @@
 import { useState, useEffect } from 'react';
+import LifeFeedItem from './lifeFeedItem/LifeFeedItem';
+import uuid from 'react-uuid';
 
 function LayoutColRow(props) {
-    const [orient, setOrient] = useState('');
-    const layoutPage = document.getElementById('layout-page');
+    const [components, setComponents] = useState([]);
+    const [shifted, setShifted] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(1);
+    const slider = document.getElementById("slider");
 
-    const changeOrient = () => {
-        console.log('orient',orient)
-        console.log('layoutPage',layoutPage)
-        
-        // if(orient === '') {
-        //     layoutPage.classList.add('_lf-row');
-        //     setOrient('_lf-row');
-        // } else {
-        //     layoutPage.classList.remove('_lf-row');
-        //     setOrient('');
-        // }
-        
-    }
-    
+    const arr = [
+        {
+            "id": 1,
+            "img_card": "case-blue.6568b466.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 2,
+            "img_card": "case-violet.2050f5bf.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 3,
+            "img_card": "case-pink.17c520f2.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 4,
+            "img_card": "case-gold.dea4179e.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 5,
+            "img_card": "case-blue.6568b466.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 6,
+            "img_card": "case-violet.2050f5bf.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 7,
+            "img_card": "case-pink.17c520f2.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 8,
+            "img_card": "case-gold.dea4179e.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 9,
+            "img_card": "case-blue.6568b466.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 10,
+            "img_card": "case-violet.2050f5bf.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 11,
+            "img_card": "case-pink.17c520f2.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 12,
+            "img_card": "case-gold.dea4179e.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 13,
+            "img_card": "case-blue.6568b466.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 14,
+            "img_card": "case-violet.2050f5bf.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 15,
+            "img_card": "case-pink.17c520f2.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 16,
+            "img_card": "case-gold.dea4179e.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        }
+    ];
+
+    useEffect(() => {
+        setComponents(arr);
+    }, []);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            // перемещаем последний элемент на первое место
+            const shiftedItem = components.pop();
+            setComponents([shiftedItem, ...components]);
+            setShifted(true);
+        }, Math.floor(Math.random() * 3000 + 2000)); // через каждые 2-4 секунды
+
+        return () => clearTimeout(timer); // очищаем таймер при размонтировании компонента
+    }, [components]);
+
+    const customStyle = {
+        '--shifted': shifted ? '-100%' : '-',
+        '--translate': components[components.length - 1] && components[components.length - 1].length * 200 + 'px'
+    };
+   
     return (
         <div className='layout-lf'>
             <div className={`lf ${props.orient}`}>
@@ -60,127 +169,14 @@ function LayoutColRow(props) {
                     </div>
                 </div>
                 <div className="lf-feed">
-                    <div className="lf-feed-track">
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-blue.6568b466.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-violet.2050f5bf.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-pink.17c520f2.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-gold.dea4179e.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-blue.6568b466.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-violet.2050f5bf.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-pink.17c520f2.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-gold.dea4179e.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-blue.6568b466.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-violet.2050f5bf.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-pink.17c520f2.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
-                        <div className="lf-item">
-                            <img className="lf-item-pic" src="/img/case-gold.dea4179e.png" alt="case"/>
-                            <div className="lf-item-plate relative">
-                                <div className="lf-item-avatar">
-                                    <img src="/img/avatar-example-1.efb6cc72.png" alt="case"/>
-                                </div>
-                                <div className="lf-item-name" title="Santcese">Santcese</div>
-                            </div>
-                            <div className='lf-item-div absolute z-10 w-[20px] h-[20px] rounded-full bg-inherit bottom-[3px] left-[7.2px] shadow-[0px_5px_25px_0px_#74809A]'></div>
-                        </div>
+                    <div id="slider" className="lf-feed-track slider-lite">
+                        {
+                            (components.length !== 0) ? (
+                                components.map((component) => (
+                                    <LifeFeedItem key={uuid()} imgCard={component.img_card} imgAvatar={component.img_avatar} name={component.name}/>  
+                                ))
+                            ) : (<div></div>)
+                        }
                     </div>
                 </div>
             </div>

@@ -2,7 +2,8 @@ export default function listenForOutsideClick(
     listening,
     setListening,
     menuRef,
-    setIsOpen
+    setIsOpen, 
+    setRotate
     ) {
     return () => {
       if (listening) return;
@@ -14,6 +15,9 @@ export default function listenForOutsideClick(
           const node = evt.target;
           if (cur.contains(node)) return;
           setIsOpen(false);
+          if(setRotate) {
+            setRotate(false);
+          }
         });
       });
     };
