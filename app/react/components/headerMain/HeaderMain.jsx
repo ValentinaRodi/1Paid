@@ -32,6 +32,7 @@ function HeaderMain(props) {
     const [modalOpen, setModalOpen] = useState(false);
     const body = document.querySelector('body');
     const [rotate, setRotate] = useState(false);
+    const [link, setLink] = useState(['nav-link-prim', 'nav-link', 'nav-link', 'nav-link', 'nav-link', 'nav-link']);
   
     useEffect(() => {
         let loggedInUser = localStorage.getItem('logged');
@@ -110,10 +111,6 @@ function HeaderMain(props) {
     const closeMenu = () =>{
         setOpenMenu('');
     };
-
-    const clickMain = () => {
-
-    }
   
     const openSellProduct = () => {
         body.style.overflow = 'hidden';
@@ -191,6 +188,20 @@ function HeaderMain(props) {
         
     }, [modalEl]);
 
+    const clickLink = (e) => {
+        const clickLink = e.target.id;
+        const clickLinkIndex = parseInt(clickLink.slice(-1));
+        const newLink = link.map((item, index) => {
+            if(index === clickLinkIndex) {
+                return 'nav-link-prim';
+            } else {
+                return 'nav-link';
+            }
+        });
+
+        setLink(newLink);
+    };
+
     return (
         <div className="layout-h">
             <div className="">
@@ -198,12 +209,12 @@ function HeaderMain(props) {
                     <header className="h justify-between">
                         <button onClick={props.closeLeftMenu} className={`h-openmenu ${props.leftMenuOpen}`}><span></span><span></span></button>
                         <nav className="nav flex mx-6 justify-between gap-x-5 gap-y-5 flex-wrap ">
-                            <Link to='/'  className="nav-link-prim font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm">Главная</Link>
-                            <Link to='/top_users' className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm">Топ юзеров</Link>
-                            <Link to='#' className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm">Отзывы</Link>
-                            <Link to='#' className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm">Гарантии</Link>
-                            <Link to='#' className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm">Случайные предметы</Link>
-                            <Link to='#' className="nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-sm">Форум</Link>
+                            <Link to='/' id='link0' onClick={clickLink} className={`${link[0]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Главная</Link>
+                            <Link to='/top_users' id='link1' onClick={clickLink} className={`${link[1]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Топ юзеров</Link>
+                            <Link to='#' id='link2' onClick={clickLink} className={`${link[2]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Отзывы</Link>
+                            <Link to='/guarantees' id='link3' onClick={clickLink} className={`${link[3]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Гарантии</Link>
+                            <Link to='#' id='link4' onClick={clickLink} className={`${link[4]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Случайные предметы</Link>
+                            <Link to='#' id='link5' onClick={clickLink} className={`${link[5]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Форум</Link>
                         </nav>
                         {!isAuthenticated ? (
                             <div className="flex gap-4">
@@ -630,12 +641,12 @@ function HeaderMain(props) {
                 </button>
                 <div className="mmenu-nav flex gap-x-4">
                     <nav className="nav flex  mr-2 gap-x-5 gap-y-5 flex-wrap mx-4 3xl:gap-x-2.5 lg:flex-col lg:items-start lg:gap-y-8">
-                        <Link to='/' onClick={closeMenu} className="nav-link-hed nav-link nav-link-prim-hed font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30">Главная</Link>
-                        <Link to='/top_users' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30">Топ юзеров</Link>
-                        <Link to='#' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30">Отзывы</Link>
-                        <Link to='#' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30">Гарантии</Link>
-                        <Link to='#' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30">Случайные предметы</Link>
-                        <Link to='#' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm lg:text-white/30">Форум</Link>
+                        <Link to='/' onClick={closeMenu} className="nav-link-hed nav-link nav-link-prim-hed font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Главная</Link>
+                        <Link to='/top_users' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Топ юзеров</Link>
+                        <Link to='#' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-white/30">Отзывы</Link>
+                        <Link to='/guarantees' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Гарантии</Link>
+                        <Link to='#' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Случайные предметы</Link>
+                        <Link to='#' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Форум</Link>
                     </nav>
                 </div>
                 <div className="mmenu-pnav pt-8 max-w-[400px]">

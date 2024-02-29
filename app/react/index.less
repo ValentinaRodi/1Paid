@@ -3034,7 +3034,7 @@ video {
         Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, sans-serif;
 }
 
-.font-italic {
+.font-primary-italic {
     font-family: TTNorms-italic, system-ui, -apple-system, Segoe UI, Roboto,
         Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, sans-serif;
 }
@@ -5190,6 +5190,13 @@ input[type="checkbox"] {
     position: relative;
     padding-left: 132px;
     padding-right: 132px;
+    background: transparent url(../img/banner_2.png) no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+.prsl-top {
+    position: relative;
     background: transparent url(../img/banner_2.png) no-repeat;
     background-size: cover;
     background-position: top center;
@@ -12427,4 +12434,23 @@ top: -6px;
     100% {
         transform: translateX(var(--shifted) var(--translate));
     }
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #8CD23C 0%, #417A00 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-gold {
+    background: linear-gradient(90deg, #A5703B 0%, #E6BB86 54.17%, #A5703B 100%);
+}
+
+.bg-silver {
+    background: linear-gradient(90deg, #A4A8CB 0%, #C6C9E7 53.97%, #A4A8CB 100%);
+}
+
+.bg-bronze {
+    background: linear-gradient(90deg, #96595A 0%, #BA7172 52.6%, #96595A 99.99%, #CD7F32 100%);
 }

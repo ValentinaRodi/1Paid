@@ -13,6 +13,7 @@ import Tab from '../pages/tab/Tab';
 import HistoryViews from '../pages/historyViews/HistoryViews';
 import HistorySales from '../pages/historySales/HistorySales';
 import TopUsers from '../pages/top-users/TopUsers';
+import Guarantees from '../pages/guarantees/Guarantees';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -46,6 +47,7 @@ export const useRoutes = () => {
       <Route path='/catalog/:game?/:category' element={<Catalog />} />
       <Route path='/catalog/:game?/:category/:card' element={<Card />} />
       <Route path='/top_users' element={<TopUsers />} />
+      <Route path='/guarantees' element={<Guarantees />} />
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />
