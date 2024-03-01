@@ -174,7 +174,7 @@ function Catalog() {
         (cardsView) ? setCardsView(false) : setCardsView(true);
         (cardsViewImg === '/img/icon-card-tile.svg') ? setCardsViewImg('/img/icon-cards-stroke.svg') : setCardsViewImg('/img/icon-card-tile.svg');
         (cardsViewDiv === '') ? setCardsViewDiv('_view-list') : setCardsViewDiv(''); 
-    }
+    };
 
     return (
         

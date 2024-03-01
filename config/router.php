@@ -2,6 +2,7 @@
 
 return [
     'GET,HEAD' => 'main/index',
+    'GET,HEAD my-notifications' => 'main/index',
     'GET,HEAD profile' => 'main/profile',
     'GET,HEAD profile/edit' => 'profile/get',
     'GET,HEAD csrf' => 'main/csrf',

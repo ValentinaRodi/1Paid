@@ -1,14 +1,11 @@
 /* eslint-disable react/prop-types */
 import "../../pages/lending/lending.less";
 import "./headerMain.less";
-//import arrow from "../../../../web"/img/icon-back.png";
 import { useState, useEffect, useRef } from 'react';
 import { createRoot } from "react-dom/client";
 import AddProduct from "../addProduct/AddProduct";
-
 import React from "react";
 import listenForOutsideClick from "../listenForOutsideClicks";
-
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
@@ -202,6 +199,11 @@ function HeaderMain(props) {
         setLink(newLink);
     };
 
+    const clickNotif = () => {
+        // Открываем новую страницу при нажатии ссылки
+        window.location.assign('/my-notifications');
+    };
+
     return (
         <div className="layout-h">
             <div className="">
@@ -211,9 +213,9 @@ function HeaderMain(props) {
                         <nav className="nav flex mx-6 justify-between gap-x-5 gap-y-5 flex-wrap ">
                             <Link to='/' id='link0' onClick={clickLink} className={`${link[0]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Главная</Link>
                             <Link to='/top_users' id='link1' onClick={clickLink} className={`${link[1]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Топ юзеров</Link>
-                            <Link to='#' id='link2' onClick={clickLink} className={`${link[2]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Отзывы</Link>
+                            <Link to='/feedbacks' id='link2' onClick={clickLink} className={`${link[2]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Отзывы</Link>
                             <Link to='/guarantees' id='link3' onClick={clickLink} className={`${link[3]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Гарантии</Link>
-                            <Link to='#' id='link4' onClick={clickLink} className={`${link[4]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Случайные предметы</Link>
+                            <Link to='/random-items' id='link4' onClick={clickLink} className={`${link[4]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Случайные предметы</Link>
                             <Link to='#' id='link5' onClick={clickLink} className={`${link[5]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Форум</Link>
                         </nav>
                         {!isAuthenticated ? (
@@ -302,7 +304,7 @@ function HeaderMain(props) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button className="notif-btnall mt-5 w-full border-b border-[#ECEDF7] py-1 flex justify-center duration-200 hover:bg-[#F6F9FF]">
+                                            <button onClick={clickNotif} className="notif-btnall mt-5 w-full border-b border-[#ECEDF7] py-1 flex justify-center duration-200 hover:bg-[#F6F9FF]">
                                                 <div className="btn-text font-primary-bold text-sm text-[#C5CFE4]">Показать все</div>
                                             </button>
                                         </div>
@@ -519,9 +521,9 @@ function HeaderMain(props) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <Link to='#' className="notif-btnall mt-5 w-full border-b border-[#ECEDF7] py-1 flex justify-center duration-200 hover:bg-[#F6F9FF]" href="#">
+                                            <button onClick={clickNotif} className="notif-btnall mt-5 w-full border-b border-[#ECEDF7] py-1 flex justify-center duration-200 hover:bg-[#F6F9FF]" href="#">
                                                 <div className="btn-text font-primary-bold text-sm text-[#C5CFE4]">Показать все</div>
-                                            </Link>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -643,9 +645,9 @@ function HeaderMain(props) {
                     <nav className="nav flex  mr-2 gap-x-5 gap-y-5 flex-wrap mx-4 3xl:gap-x-2.5 lg:flex-col lg:items-start lg:gap-y-8">
                         <Link to='/' onClick={closeMenu} className="nav-link-hed nav-link nav-link-prim-hed font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Главная</Link>
                         <Link to='/top_users' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Топ юзеров</Link>
-                        <Link to='#' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-white/30">Отзывы</Link>
+                        <Link to='/feedbacks' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-white/30">Отзывы</Link>
                         <Link to='/guarantees' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Гарантии</Link>
-                        <Link to='#' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Случайные предметы</Link>
+                        <Link to='/random-items' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Случайные предметы</Link>
                         <Link to='#' onClick={closeMenu} className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Форум</Link>
                     </nav>
                 </div>

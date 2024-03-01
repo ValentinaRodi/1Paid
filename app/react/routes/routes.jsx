@@ -14,6 +14,9 @@ import HistoryViews from '../pages/historyViews/HistoryViews';
 import HistorySales from '../pages/historySales/HistorySales';
 import TopUsers from '../pages/top-users/TopUsers';
 import Guarantees from '../pages/guarantees/Guarantees';
+import Feedbacks from '../pages/feedbacks/Feedbacks';
+import RandomItems from '../pages/randomItems/RandomItems';
+import MyNotifications from '../pages/myNotifications/MyNotifications';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -48,6 +51,9 @@ export const useRoutes = () => {
       <Route path='/catalog/:game?/:category/:card' element={<Card />} />
       <Route path='/top_users' element={<TopUsers />} />
       <Route path='/guarantees' element={<Guarantees />} />
+      <Route path='/feedbacks' element={<Feedbacks />} />
+      <Route path='/random-items' element={<RandomItems />} />
+      <Route path='/my-notifications' element={<MyNotifications />} />
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />
