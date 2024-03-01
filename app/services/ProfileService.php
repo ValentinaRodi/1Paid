@@ -13,17 +13,20 @@ class ProfileService
     {
         if (!Yii::$app->user->isGuest) {
             $user = &Yii::$app->user->identity;
-
+//            var_dump($user);
+//            var_dump($user);
             return [
                 'success' => true,
                 'name' => $user->name,
-                'avatar' => $user->getAvatar(),
+                'avatar' => json_decode(UserService::getAvatar($user->id)['avatar'], true),
                 'balance' => $user->balance,
                 'bonus' => $user->bonus,
                 'registerDate' => $user->created_at,
                 'logged' => !Yii::$app->user->isGuest,
                 'secret_word' => $user->secret_word,
-                'email' => $user->email
+                'email' => $user->email,
+                'mailing' => boolval($user->mailing),
+                'notify_sound' => boolval($user->notify_sound)
             ];
         }
         return ['logged' => false];
@@ -35,21 +38,23 @@ class ProfileService
         foreach ($post as $key => $value) {
             $profileForm->{$key} = $value;
         }
-
-        // сохранить изменения если корректно
         if ($profileForm->validate()) {
+            $profileForm->setNotification();
             $profileForm->save();
             $user = &Yii::$app->user->identity;
+
             return [
                 'success' => true,
                 'name' => $user->name,
                 'email' => $user->email,
                 'secret_word' => $user->secret_word,
-                'avatar' => $user->getAvatar(),
+                'avatar' => json_decode(UserService::getAvatar($user->id)['avatar'], true),
                 'balance' => $user->balance,
                 'bonus' => $user->bonus,
                 'registerDate' => $user->created_at,
-                'logged' => !Yii::$app->user->isGuest
+                'logged' => !Yii::$app->user->isGuest,
+                'mailing' => boolval($user->mailing),
+                'notify_sound' => boolval($user->notify_sound)
             ];
         } else {
             // указать ошибки
@@ -82,12 +87,10 @@ class ProfileService
 
     }
 
-    public static function uploadImage($img)
+    public static function uploadImage($img): array
     {
+        return FileService::uploadImage($img);
 
-        $res = FileService::uploadImage($img);
-        var_dump($res);
-        return $res;
     }
 
 }

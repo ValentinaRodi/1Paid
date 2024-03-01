@@ -91,15 +91,7 @@ class ProfileController extends Controller
 
     public function actionUploadImage()
     {
-        var_dump($_FILES);
-        var_dump($_FILES['img_file']);
-//        var_dump(Yii::$app->request->post());
-        ['actionUploadImage',ProfileService::uploadImage($_FILES['img_file'])];
-//        echo '<pre>' . print_r($_FILES, true) . '<pre>';
-//        echo '<pre>' . print_r(\Yii::$app->request->post(), true) . '<pre>';
-        $file = UploadedFile::getInstanceByName('img_file');
-//        echo $file;
-//        return $this->asJson(ProfileService::uploadImage(\Yii::$app->request->post()));
+        return $this->asJson(ProfileService::uploadImage($_FILES['img_file']));
 
     }
 }

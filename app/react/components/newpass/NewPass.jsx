@@ -8,9 +8,9 @@ function NewPass(props) {
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [errorPassword, setErrorPassword] = useState("hidden");
     const [errorPasswordConfirm, setErrorPasswordConfirm] = useState("hidden");
+    console.log('props:',props);
 
     const saveNewPass = () => {
-        // e.preventDefault();
         let body = {
             'password': password,
             'password_confirmation': passwordConfirm
@@ -19,39 +19,28 @@ function NewPass(props) {
         let isError = false;
         setErrorPassword('hidden');
         setErrorPasswordConfirm('hidden');
-        console.log('before if pass conf:', password, passwordConfirm);
 
         if (password && passwordConfirm) {
-            console.log(' if pass conf:', password, passwordConfirm);
-
             if (checkPassword(password)) {
                 if (password === passwordConfirm) {
                     isChanged = true;
                     isError = false;
-                    console.log('pass true and similar; change err true false:', isChanged, isError);
                 } else {
                     isChanged = false;
                     isError = true;
                     setErrorPasswordConfirm(' ');
-                    console.log('pass true but not similar; change err false true:', isChanged, isError);
-
                 }
             } else {
                 isChanged = false;
                 isError = true;
                 setErrorPassword(' ');
-                console.log('pass not true; change err false true:', isChanged, isError);
-
             }
         }
 
-        console.log('fetch: change err false true:', isChanged, isError);
-        console.log('body:', body);
         if (isChanged && !isError) {
 
             fetchFunc('/profile/edit-password', 'POST', body)
                 .then((data) => {
-                    console.log(data)
                     props.closeModal();
                     props.openSaveCompletePopup();
 
@@ -59,27 +48,16 @@ function NewPass(props) {
                 .catch((error) => {
                     console.log(error)
                 })
-
-            console.log(password)
-            console.log(passwordConfirm)
             setErrorPassword("");
         }
-        // if (password !== passwordConfirm) {
-        //     setErrorPassword('border-[#FF5343] border-[1px] border-solid');
-        //     return;
-        // };
     }
 
     const handlePassword = (e) => {
-        console.log(e.target.value);
         setPassword(e.target.value);
-        console.log('HANDLEpass:', password)
     }
 
     const handlePasswordConfirm = (e) => {
-        console.log(e.target.value);
         setPasswordConfirm(e.target.value);
-        console.log('HANDLEpassConf:', passwordConfirm)
     }
 
     return (

@@ -22,12 +22,14 @@ use app\models\{
  * @property string $password
  * @property string $secret_word
  * @property string $remember_token
-// * @property integer $status
+ * // * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
- * @property integer $avatar
+ * @property string $avatar
  * @property integer $balance
  * @property integer $bonus
+ * @property integer $notify_sound
+ * @property integer $mailing
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -85,7 +87,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getAvatar()
     {
-        //return $this->hasOne(File::class, ['id' => 'user_id']);
+        return $this->hasOne(File::class, ['avatar' => 'id']);
     }
 
     /**
@@ -131,6 +133,16 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->secret_word;
     }
 
+    public function getMailing()
+    {
+        return $this->mailing;
+    }
+
+    public function getNotifySound()
+    {
+        return $this->notify_sound;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -163,7 +175,7 @@ class User extends ActiveRecord implements IdentityInterface
      *
      * @param string $password
      */
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->password = Yii::$app->security->generatePasswordHash($password);
     }
@@ -187,5 +199,24 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findByEmail($email)
     {
         return static::findOne(['email' => $email, 'status' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]]);
+    }
+
+    /**
+     * @param $avatar
+     * @return void
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
+    public function setMailing($mailing)
+    {
+        $this->mailing = $mailing;
+    }
+
+    public function setNotifySound($notify_sound)
+    {
+        $this->notify_sound = $notify_sound;
     }
 }

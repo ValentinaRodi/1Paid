@@ -94,6 +94,7 @@ $config = [
                 'POST category' => 'category/post',
                 'POST category/<action>' => 'category/<action>',
                 'POST <action>' => 'main/<action>',
+                'GET, HEAD operator/user' => 'operator/user'
 /*
     'PUT,PATCH users/<id>' => 'user/update',
     'DELETE users/<id>' => 'user/delete',
