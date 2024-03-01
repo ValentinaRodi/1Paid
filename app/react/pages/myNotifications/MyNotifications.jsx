@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import LayoutBtn from '../../components/LayoutBtn';
 import { Link } from 'react-router-dom';
 
-function MyNotifications() {
+function MyAchievements() {
     // const [cardsView, setCardsView] = useState(true);
     // const [cardsViewImg, setCardsViewImg] = useState('/img/icon-cards-stroke.svg');
     // const [cardsViewDiv, setCardsViewDiv] = useState('');
@@ -62,7 +62,7 @@ function MyNotifications() {
                     <img src="/img/icon-btn-icon-2.svg" alt="btn-icon"/>
                   </div>
                   <div className="nc-text font-secondary-bold text-lg text-[#1D222C] [&amp;_a]:text-[#1E61EB] overflow-hidden text-ellipsis whitespace-nowrap">
-                      <a href="#">Lacoste17</a> ответил(а) в теме <a href="#">Бесплатная бесконечная</a>
+                      <a className="text-[#1E61EB]" href="#">Lacoste17</a> ответил(а) в теме <a className="text-[#1E61EB]" href="#">Бесплатная бесконечная</a>
                   </div>
                   <div className="nc-date">
                     <div className="nc-date-label font-secondary-med text-xs text-[#969BA5]">Дата</div>
@@ -81,7 +81,7 @@ function MyNotifications() {
                     <img src="/img/icon-btn-icon-2.svg" alt="btn-icon"/>
                   </div>
                   <div className="nc-text font-secondary-bold text-lg text-[#1D222C] [&amp;_a]:text-[#1E61EB]  overflow-hidden text-ellipsis whitespace-nowrap">
-                    <a href="#">Lacoste17</a> ответил(а) в теме <a href="#">Бесплатная бесконечная накрутка лайков на пост ВК. Подскажу как сделать накрутку легально</a>
+                    <a className="text-[#1E61EB]" href="#">Lacoste17</a> ответил(а) в теме <a className="text-[#1E61EB]" href="#">Бесплатная бесконечная накрутка лайков на пост ВК. Подскажу как сделать накрутку легально</a>
                   </div>
                   <div className="nc-date">
                     <div className="nc-date-label font-secondary-med text-xs text-[#969BA5]">Дата</div>
@@ -151,7 +151,7 @@ function MyNotifications() {
                     <img src="/img/icon-btn-icon-2.svg" alt="btn-icon"/>
                   </div>
                   <div className="nc-text font-secondary-bold text-lg text-[#1D222C] [&amp;_a]:text-[#1E61EB] overflow-hidden text-ellipsis whitespace-nowrap">
-                    <a href="#">Lacoste17</a> ответил(а) в теме <a href="#">Бесплатная бесконечная накрутка лайков на пост ВК.</a> 
+                    <a  href="#" className="text-[#1E61EB]">Lacoste17</a> ответил(а) в теме <a href="#" className="text-[#1E61EB]">Бесплатная бесконечная накрутка лайков на пост ВК.</a> 
                   </div>
                   <div className="nc-date">
                     <div className="nc-date-label font-secondary-med text-xs text-[#969BA5]">Дата</div>
@@ -185,4 +185,4 @@ function MyNotifications() {
     );
 };
 
-export default MyNotifications;
+export default MyAchievements;

@@ -17,6 +17,8 @@ import Guarantees from '../pages/guarantees/Guarantees';
 import Feedbacks from '../pages/feedbacks/Feedbacks';
 import RandomItems from '../pages/randomItems/RandomItems';
 import MyNotifications from '../pages/myNotifications/MyNotifications';
+import MyAchievements from '../pages/myAchievements/MyAchievements';
+import Refs from '../pages/refs/Refs';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -60,6 +62,8 @@ export const useRoutes = () => {
         <Route path="/tab" element={<Tab />} />
         <Route path="/history_views" element={<HistoryViews />} />
         <Route path="/history_sales" element={<HistorySales />} />
+        <Route path='/my-achievements' element={<MyAchievements />} />
+        <Route path='/refs' element={<Refs />} />
       </Route>
     </Routes> 
   );
