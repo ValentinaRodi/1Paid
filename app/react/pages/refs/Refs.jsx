@@ -2,7 +2,17 @@ import { useState, useEffect } from 'react';
 import LayoutBtn from '../../components/LayoutBtn';
 import { Link } from 'react-router-dom';
 
+
 function Refs() {
+
+    const [refs, setRefs] = useState('https://dealkgo.com/ref/38921');
+
+    const handleCopy = () => {
+        //Только по протоколу HTTPS
+        if(window.isSecureContext) {
+            navigator.clipboard.writeText(refs);
+        };
+    }
     
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
@@ -34,8 +44,8 @@ function Refs() {
                                 <div className="srd-link mb-[20px]">
                                     <div className="srd-link-title font-primary-bold text-[#B9BCDD] text-[11px] mb-[12px] uppercase">Реферальная ссылка</div>
                                     <div className="srd-link-block flex items-center bg-[#EAEBF8] h-[48px] p-[16px] rounded-[4px]">
-                                        <div className="srd-link-text font-secondary-bold text-sm text-black">https://dealkgo.com/ref/38921</div>
-                                        <button className="srd-link-btn bg-inherit flex justify-center items-center ml-auto flex-shrink-0 w-[18px] h-[18px] [&amp;_svg]:w-full text-[#BEC1DE]">
+                                <div className="srd-link-text font-secondary-bold text-sm text-black">{refs}</div>
+                                        <button onClick={handleCopy} className="srd-link-btn bg-inherit flex justify-center items-center ml-auto flex-shrink-0 w-[18px] h-[18px] [&amp;_svg]:w-full text-[#BEC1DE]">
                                             <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M9.89444 0.987331C9.49032 0.404796 8.82676 0.0568308 8.11778 0.0556641H2.16667C0.97005 0.0556641 0 1.02571 0 2.22233V13.7779C0 14.9745 0.97005 15.9446 2.16667 15.9446H10.8333C12.03 15.9446 13 14.9745 13 13.7779V6.12233C12.999 5.68053 12.8629 5.24961 12.61 4.88733L9.89444 0.987331ZM11.5548 13.7779C11.5548 14.1767 11.2314 14.5001 10.8325 14.5001H2.16586C1.76699 14.5001 1.44364 14.1767 1.44364 13.7779V2.22232C1.44364 1.82345 1.76699 1.5001 2.16586 1.5001H8.11697C8.3533 1.50048 8.57449 1.61647 8.7092 1.81065L11.4248 5.71065C11.509 5.83141 11.5544 5.97505 11.5548 6.12232V13.7779Z" fill="#BEC1DE"></path>
                                             </svg>

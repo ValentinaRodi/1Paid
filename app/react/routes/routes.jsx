@@ -19,6 +19,7 @@ import RandomItems from '../pages/randomItems/RandomItems';
 import MyNotifications from '../pages/myNotifications/MyNotifications';
 import MyAchievements from '../pages/myAchievements/MyAchievements';
 import Refs from '../pages/refs/Refs';
+import MyTovars from '../pages/myTovars/MyTovars';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -55,7 +56,6 @@ export const useRoutes = () => {
       <Route path='/guarantees' element={<Guarantees />} />
       <Route path='/feedbacks' element={<Feedbacks />} />
       <Route path='/random-items' element={<RandomItems />} />
-      <Route path='/my-notifications' element={<MyNotifications />} />
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />
@@ -63,6 +63,8 @@ export const useRoutes = () => {
         <Route path="/history_views" element={<HistoryViews />} />
         <Route path="/history_sales" element={<HistorySales />} />
         <Route path='/my-achievements' element={<MyAchievements />} />
+        <Route path='/my-notifications' element={<MyNotifications />} />
+        <Route path='/my-tovars' element={<MyTovars />} />
         <Route path='/refs' element={<Refs />} />
       </Route>
     </Routes> 
