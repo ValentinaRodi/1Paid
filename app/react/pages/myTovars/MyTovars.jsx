@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 import Select from '../../components/select/Select';
 import uuid from 'react-uuid';
 import CardGame from '../../components/cardGame/CardGame';
+import AddProduct from '../../components/addProduct/AddProduct';
+import { createRoot } from "react-dom/client";
 
 function MyTovars() {
     const [formValue, setFormValue] = useState({});
     const [resetFilter, setResetFilter] = useState(false);
-    const [refs, setRefs] = useState('https://dealkgo.com/ref/38921');
+    const [modalEl, setModalEl] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+    const body = document.querySelector('body');
 
    // Функция для обновления объекта formValue
    const changeFormValue = (key, value) => {
@@ -24,6 +28,40 @@ function MyTovars() {
         setResetFilter(true);
         setFormValue({});
         setResetFilter(false);
+    };
+
+    const openSellProduct = () => {
+        body.style.overflow = 'hidden';
+        setModalEl(<AddProduct
+            closeModal={closeModal}
+        />);
+        setModalOpen(true);
+    };
+
+    useEffect(() => {
+        const modal = document.getElementById('modal');
+
+        if(modalOpen) {
+            modal.classList.add('modal');
+            modal.textContent = '';
+            
+            const containerModal = document.createElement("div");
+            const root = createRoot(containerModal);
+            root.render(modalEl);
+            modal.appendChild(containerModal);   
+        };
+
+        if(!modalOpen) {
+            modal.classList.remove('modal');
+            modal.textContent = '';
+        };
+        
+    }, [modalEl]);
+
+    const closeModal = () =>{
+        body.style.overflow = 'auto';
+        setModalOpen(false);
+        setModalEl('');
     };
     
     const arr = ['Warface', 'New game', 'GTA', 'New game'];
@@ -54,7 +92,7 @@ function MyTovars() {
                             <br />20 товаров одного типа.
                         </div>
                         <div className="smt-tab-actions flex items-center">
-                            <button className="smt-tab-btn flex justify-center items-center font-secondary-bold text-[14px] mr-[12px] text-white bg-gradient-secondary rounded-full py-2 px-4 min-w-[170px]">Добавить товар
+                            <button onClick={openSellProduct} className="smt-tab-btn flex justify-center items-center font-secondary-bold text-[14px] mr-[12px] text-white bg-gradient-secondary rounded-full py-2 px-4 min-w-[170px]">Добавить товар
                                 <div className="smt-tab-btn-icon ml-[8px]">
                                     <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0.570322 7.96147C0.568324 7.56276 0.869736 7.22785 1.26645 7.18799H13.7968C14.224 7.18799 14.5703 7.53429 14.5703 7.96147C14.5703 8.38865 14.224 8.73495 13.7968 8.73495H1.26645C0.869736 8.69508 0.568324 8.36018 0.570322 7.96147Z" fill="white" stroke="white"  strokeWidth="0.4"></path>

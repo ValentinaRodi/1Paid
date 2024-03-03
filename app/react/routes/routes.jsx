@@ -20,6 +20,7 @@ import MyNotifications from '../pages/myNotifications/MyNotifications';
 import MyAchievements from '../pages/myAchievements/MyAchievements';
 import Refs from '../pages/refs/Refs';
 import MyTovars from '../pages/myTovars/MyTovars';
+import MyFinance from '../pages/myFinance/MyFinance';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -65,6 +66,7 @@ export const useRoutes = () => {
         <Route path='/my-achievements' element={<MyAchievements />} />
         <Route path='/my-notifications' element={<MyNotifications />} />
         <Route path='/my-tovars' element={<MyTovars />} />
+        <Route path='/my-finance' element={<MyFinance />} />
         <Route path='/refs' element={<Refs />} />
       </Route>
     </Routes> 

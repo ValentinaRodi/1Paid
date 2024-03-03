@@ -1,17 +1,17 @@
 import  './addBalance.less'; 
 
-function AddBalance() {
+function AddBalance(props) {
  
   return (
-    <div className='absolute inset-0 bg-[rgba(6,9,18,0.8)] w-full h-full'>
-        <div className='shadow-[0px_25px_35px_0px_#E2E3F3A6] absolute inset-x-2/4 translate-x-[-50%] translate-y-[40%] w-full sm:w-[443px] bg-white rounded-lg px-6 pb-6'>
+    <div className='fixed inset-x-0 inset-y-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0'>
+        <div className='shadow-[0px_25px_35px_0px_#E2E3F3A6] w-full sm:w-[443px] bg-white rounded-lg px-6 pb-6'>
             <div className='w-full flex justify-center'>
                 <div className='flex justify-center items-center px-6 h-[22px] rounded-b-[20px] shadow-[0px_4px_32px_0px_#9D3FFC6B] bg-[linear-gradient(90deg,#8CD23C_0%,#417A00_100%)]'>
                     <p className='family-bold font-bold text-xs text-white uppercase'>Пополнение баланса</p>
                 </div>
             </div>
             <div className='flex justify-end mb-5'>
-                <button className='p-0 bg-inherit hover:bg-[rgba(241,245,249,1)]'>
+                <button onClick={props.closeModal} className='p-0 bg-inherit hover:bg-[rgba(241,245,249,1)]'>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 6L6 18M6 6L18 18" stroke="#B8B8B8" strokeWidth="1.5" strokeLinecap="round"/>
                     </svg>
