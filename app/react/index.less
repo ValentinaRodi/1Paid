@@ -5511,10 +5511,9 @@ input[type="checkbox"] {
 }
 
 .pcg-grid._view-list .pc-ibar {
-    grid-column: 5/6;
-    grid-row: 2/-1;
+    grid-column: 6/7;
+    grid-row: 2/3;
     align-self: center;
-    padding-left: 12px;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
 }
@@ -5555,11 +5554,11 @@ input[type="checkbox"] {
 }
 
 .pc-plate:nth-of-type(1) {
-    border-bottom-left-radius: 22px;
+    border-bottom-left-radius: 12px;
 }
 
 .pc-plate:nth-last-of-type(1) {
-    border-bottom-right-radius: 22px;
+    border-bottom-right-radius: 12px;
 }
 
 .pc-plate._shadow-primary {
@@ -5741,9 +5740,8 @@ input[type="checkbox"] {
     }
 
     .pcg-grid._view-list .pc-ibar {
-        padding: 5px 0 0;
-        grid-column: 4/5;
-        grid-row: 1/2;
+        grid-column: 5/6;
+        grid-row: 2/3;
     }
 }
 
@@ -7511,11 +7509,7 @@ input[type="checkbox"] {
         grid-row: 2/3;
     }
 
-    .pcg-grid._view-list .pc-ibar {
-        padding: 5px 0 0;
-        grid-column: 4/5;
-        grid-row: 1/2;
-    }
+
 }
 
 @media (max-width: 768px) {
@@ -9819,11 +9813,7 @@ input[type="checkbox"] {
         grid-column: 4/5;
         grid-row: 2/3;
     }
-    .pcg-grid._view-list .pc-ibar {
-        padding: 5px 0 0;
-        grid-column: 4/5;
-        grid-row: 1/2;
-    }
+   
 }
 @media (max-width: 768px) {
     .pcg-grid._view-list {
@@ -11610,11 +11600,7 @@ input[type="checkbox"] {
         grid-column: 4/5;
         grid-row: 2/3;
     }
-    .pcg-grid._view-list .pc-ibar {
-        padding: 5px 0 0;
-        grid-column: 4/5;
-        grid-row: 1/2;
-    }
+ 
 }
 @media (max-width: 768px) {
     .pcg-grid._view-list {
@@ -12480,4 +12466,21 @@ top: -6px;
 
 .bg-gradient-primary-hover:hover {
     background-image: linear-gradient(37deg, #037ceb 0%, #003299 100%);
+}
+
+.pc-plate-container-chang {
+    position: absolute;
+    top: 25.5;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    max-width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.shadow-primary {
+    box-shadow: 0px 4px 20px 0px rgba(51, 156, 252, 0.71);
 }

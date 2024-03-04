@@ -8,14 +8,14 @@ import React from "react";
 import listenForOutsideClick from "../listenForOutsideClicks";
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-
+import { useNavigate  } from 'react-router-dom';
 
 function HeaderMain(props) {
     const { isAuthenticated, setAuth } = useAuth();
     const [name, setName] = useState('');
     const [balance, setBalance] = useState('');
     const [bonus, setBonus] = useState('');
-    const [avatar, setAvatar] = useState('/img/icon-tsc-item-btn-3.svg');
+    const [avatar, setAvatar] = useState('icon-tsc-item-btn-3.svg');
     const [menu, setOpenMenu] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const menuRef = useRef(null);
@@ -30,6 +30,7 @@ function HeaderMain(props) {
     const body = document.querySelector('body');
     const [rotate, setRotate] = useState(false);
     const [link, setLink] = useState(['nav-link-prim', 'nav-link', 'nav-link', 'nav-link', 'nav-link', 'nav-link']);
+    const navigate = useNavigate();
   
     useEffect(() => {
         let loggedInUser = localStorage.getItem('logged');
@@ -39,10 +40,10 @@ function HeaderMain(props) {
             setBalance(localStorage.getItem('balance'));
             setBonus(localStorage.getItem('bonus'));
             
-            if(localStorage.getItem('avatar') !== 'null') {
-                console.log('avatar',localStorage.getItem('avatar'))
-                setAvatar(localStorage.getItem('avatar'))
-            };
+            // if(localStorage.getItem('avatar') !== 'null' && localStorage.getItem('avatar')) {
+            //     console.log('avatar',localStorage.getItem('avatar'))
+            //     setAvatar(localStorage.getItem('avatar'))
+            // };
             
         }
     }, []);
@@ -313,7 +314,7 @@ function HeaderMain(props) {
                                 <div className="h-profile h-[64px] w-[320px] relative">
                                     <div className="pmc py-1 h-14 rounded-full px-3 flex items-center gap-x-3 bg-white">
                                         <div className="pmc-avatar overflow-hidden flex-shrink-0 rounded-full w-8 h-8">
-                                            <img className="w-full h-full object-center object-contain" src={avatar} alt="user avatar"/>
+                                            <img className="w-full h-full object-center object-contain" src={`/img/${avatar}`} alt="user avatar"/>
                                         </div>
                                         <div>
                                             <div className="pmc-chip-bar flex gap-x-3 gap-y-2 items-center lg:flex-wrap lg:ml-auto">

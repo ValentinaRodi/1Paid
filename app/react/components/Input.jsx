@@ -6,12 +6,17 @@ const Input = (props) => {
     const changeValue = (e) => {
     
         let { value } = e.target;
-        let isnum = /^[0-9\s]+$/.test(value);
+
+        if(props.type === 'number') {
+            let isnum = /^[0-9\s]+$/.test(value);
        
-        if(isnum) {
+            if(isnum) {
+                setValInput(value);
+            };
+        } else {
             setValInput(value);
         };
-
+        
         if(value === '')  {
             setValInput(value);
         };

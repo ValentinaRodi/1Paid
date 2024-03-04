@@ -1,10 +1,50 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { createRoot } from "react-dom/client";
+import ModalChangeTovar from '../modalChangeTovar/ModalChangeTovar';
 
 function CardGame(props) {
+    const [modalEl, setModalEl] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+    const body = document.querySelector('body');
+
+    const openChangeModalTovar = () => {
+        body.style.overflow = 'hidden';
+        setModalEl(<ModalChangeTovar
+            closeModal={closeModal} name={props.name} description={props.description} price={props.price}
+        />);
+        setModalOpen(true);
+    };
+
+    const closeModal = () =>{
+        body.style.overflow = 'auto';
+        setModalOpen(false);
+        setModalEl('');
+    };
+
+    useEffect(() => {
+        const modal = document.getElementById('modal');
+
+        if(modalOpen) {
+            modal.classList.add('modal');
+            modal.textContent = '';
+            
+            const containerModal = document.createElement("div");
+            const root = createRoot(containerModal);
+            root.render(modalEl);
+            modal.appendChild(containerModal);   
+        };
+
+        if(!modalOpen) {
+            modal.classList.remove('modal');
+            modal.textContent = '';
+        };
+        
+    }, [modalEl]);
 
     return (
         <div className="pc-card max-w-[310px] rounded-lg bg-white min-w-[240px]">
-            <div className={(props.new === 1) ? 'pc-plate-container' : 'hidden'}>
+            <div className={(props.new === '1') ? 'pc-plate-container' : 'hidden'}>
                 <div className="pc-plate bg-gradient-primary _shadow-primary font-bold py-1 px-7 3sm:px-2 3sm:py-[1px] bg-gradient-primary">new</div>
             </div>
             <div className="flex items-center justify-between">
@@ -19,7 +59,7 @@ function CardGame(props) {
                 <div className='flex items-center justify-between gap-3'>
                     {(props.change === 'true') ?
                         (
-                            <button className='bg-inherit'>
+                            <button onClick={openChangeModalTovar} className='bg-inherit'>
                                 <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fillRule="evenodd" clipRule="evenodd" d="M17.2006 7.88717L7.96108 17.1267C7.40327 17.6852 6.64649 17.9993 5.85714 18H0.0712891V12.2142C0.071984 11.4248 0.386117 10.668 0.944625 10.1102L10.1841 0.870716C11.3465 -0.290239 13.2296 -0.290239 14.392 0.870716L17.2006 3.67928C18.3615 4.84168 18.3615 6.72477 17.2006 7.88717ZM2.29269 11.4698C2.10934 11.6547 2.00598 11.9042 2.00488 12.1645L2.0545 16.0151H5.8555C6.11585 16.014 6.36535 15.9107 6.5502 15.7273L15.75 6.42828C16.1348 6.04119 16.1348 5.41604 15.75 5.02895L12.9414 2.22039C12.5543 1.8356 11.9292 1.8356 11.5421 2.22039L2.29269 11.4698Z" fill="#C5CFE4"/>
                                 </svg>
@@ -56,7 +96,7 @@ function CardGame(props) {
             <Link to={`${props.id}-${props.seoName}`} className='pc-link w-full'>
                 <div className="pc-preview flex justify-center items-center mb-3">
                     <div className="pc-preview-inner max-w-[80px] max-h-[80px]">
-                        <img className="pc-preview-pic w-full" src={props.icon} alt="picture"/>
+                        <img className="pc-preview-pic w-full" src={`/img/${props.icon}`} alt="picture"/>
                     </div>
                 </div>
                 <div className="pc-info">

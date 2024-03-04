@@ -155,7 +155,7 @@ function AddProduct(props) {
                         fields.map(item => {
                             if(item.type === 'float') {
                                 return (
-                                    <Input key={uuid()} widht='w-[32%]' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
+                                    <Input key={uuid()} widht='w-[32%]' type='number' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
                                 )
                             };
                             if(item.type === 'options') {

@@ -141,7 +141,7 @@ function MyTovars() {
                         <span className="block w-full font-secondary-med text-[14px] text-[#A6B1C7]">Если вы хотите поднять в Топ какой то товар с определенного раздела ,то сначала вам нужно выбрать фильтр и далее нажать на поднять в топ ,если фильтр не выбран то вы поднимите все товары в топ</span></div>
                         <div className="pcg w-full">
                             <div className="pcg-grid view-grid grid gap-3 grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3">
-                                <CardGame key={uuid()} rank='4.8' id='1' change='true' seoName='Makmilan Gr-23' icon='/img/product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
+                                <CardGame key={uuid()} rank='4.8' id='1' change='true' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
                             </div>
                         </div>
                     </div>
