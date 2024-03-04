@@ -12,16 +12,24 @@ use yii\grid\GridView;
 
 $this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerLinkTag([
+    'title' => 'style',
+    'rel' => 'alternate',
+    'type' => 'application/rss+xml',
+    'href' => 'https://www.yiiframework.com/rss.xml/',
+]);
 ?>
 <div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <div>hello</div>
+
 
     <p>
         <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+<!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -49,9 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, User $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
+
     ]); ?>
 
 
