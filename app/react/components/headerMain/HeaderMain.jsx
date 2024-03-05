@@ -402,6 +402,14 @@ function HeaderMain(props) {
                                                     </div>
                                                     <div className="np-nav-label font-primary-med text-sm text-[#8a98b3] duration-200 group-hover:text-[#0C0C0C]">Реферальная система</div>
                                                 </Link>
+                                                <Link to="/operator/user" onClick={window.location.reload} className=" np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
+                                                    <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                                        <svg  width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path className="svg-icon" fillRule="evenodd" clipRule="evenodd" d="M10.96 8.28496C12.5719 7.06555 13.2053 4.99292 12.5375 3.12364C11.8696 1.25436 10.0475 0 8 0C5.95247 0 4.13036 1.25436 3.46251 3.12364C2.79466 4.99292 3.42813 7.06555 5.04 8.28496C1.99965 9.45436 0.00337721 12.2942 0 15.4548V16.2274C0 16.6541 0.358172 17 0.8 17C1.24183 17 1.6 16.6541 1.6 16.2274V15.4548C1.6 12.0412 4.46538 9.2739 8 9.2739C11.5346 9.2739 14.4 12.0412 14.4 15.4548V16.2274C14.4 16.6541 14.7582 17 15.2 17C15.6418 17 16 16.6541 16 16.2274V15.4548C15.9966 12.2942 14.0003 9.45436 10.96 8.28496ZM4.7998 4.6382C4.7998 2.9314 6.23249 1.54776 7.9998 1.54776C9.76712 1.54776 11.1998 2.9314 11.1998 4.6382C11.1998 6.345 9.76712 7.72864 7.9998 7.72864C7.15111 7.72864 6.33718 7.40304 5.73706 6.82347C5.13695 6.2439 4.7998 5.45783 4.7998 4.6382Z" fill="#8a98b3"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div className="np-nav-label font-primary-med text-sm text-[#8a98b3] duration-200 group-hover:text-[#0C0C0C]">Оператор</div>
+                                                </Link>
                                                 <button onClick={changeLoggedFalse} className="bg-white np-nav-item h-11 w-full px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]" >
                                                     <div className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
                                                         <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">

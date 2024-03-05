@@ -1,14 +1,21 @@
 body {
     display: block !important;
+
 }
 #navbar {
     position: fixed;
-    width: 250px;
+    width: 150px;
+    right: 30px;
+    top: 30px;
+}
+#dropdown-menu{
+    width: 300px;
     right: 0;
 }
 #operator {
     display: flex;
     flex-flow: row nowrap;
+    background-color: #f3f7ff;
 }
 
 .btn {
@@ -20,4 +27,11 @@ body {
 input[readonly]
 {
     background-color: #c2c2c2;
+}
+.main {
+    margin:30px;
+}
+
+.hidden {
+    display:none;
 }
