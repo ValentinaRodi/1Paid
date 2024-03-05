@@ -1,20 +1,9 @@
-import spsAvatar from "../../../../web/img/avatar-example-5.00d4721a.png";
-import puicImage from "../../../../web/img/achievements-example.7996faae.png";
-import puicImage2 from "../../../../web/img/icon-shopping-card-gradient.ff3dca76.svg";
-import spfRating from "../../../../web/img/icon-spf-rating-icon.svg";
-import fbcAvatar from "../../../../web/img/avatar-example-4.6cd623f4.png";
+
 import {useState, useEffect} from 'react';
 import {createRoot} from "react-dom/client";
 import {Navigate, Outlet, useLocation} from "react-router-dom";
 import PropTypes from 'prop-types';
-
-import LeftMenu from '../../components/leftMenu/LeftMenu';
-import LayoutColRow from '../../components/LayoutColRow';
 //import Content from '../content/Content';
-import Registration from '../../components/registration/Registration';
-import Authorisation from "../../components/authorisation/Authorisation";
-import RecPass from '../../components/recpass/Recpass';
-import HeaderMain from '../../components/headerMain/HeaderMain';
 import ProfileEdit from '../../components/profileEdit/ProfileEdit';
 import fetchFunc from '../../services/fetch';
 import NewPass from "../../components/newpass/NewPass";

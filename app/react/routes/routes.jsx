@@ -12,6 +12,16 @@ import Card from '../pages/card/Card';
 import Tab from '../pages/tab/Tab';
 import HistoryViews from '../pages/historyViews/HistoryViews';
 import HistorySales from '../pages/historySales/HistorySales';
+import TopUsers from '../pages/top-users/TopUsers';
+import Guarantees from '../pages/guarantees/Guarantees';
+import Feedbacks from '../pages/feedbacks/Feedbacks';
+import RandomItems from '../pages/randomItems/RandomItems';
+import MyNotifications from '../pages/myNotifications/MyNotifications';
+import MyAchievements from '../pages/myAchievements/MyAchievements';
+import Refs from '../pages/refs/Refs';
+import MyTovars from '../pages/myTovars/MyTovars';
+import MyFinance from '../pages/myFinance/MyFinance';
+import OrderTable from '../pages/orderTable/OrderTable';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -44,12 +54,22 @@ export const useRoutes = () => {
       <Route path="/login" element={<Authorisation />} />
       <Route path='/catalog/:game?/:category' element={<Catalog />} />
       <Route path='/catalog/:game?/:category/:card' element={<Card />} />
+      <Route path='/top_users' element={<TopUsers />} />
+      <Route path='/guarantees' element={<Guarantees />} />
+      <Route path='/feedbacks' element={<Feedbacks />} />
+      <Route path='/random-items' element={<RandomItems />} />
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />
         <Route path="/tab" element={<Tab />} />
-        <Route path="/historyviews" element={<HistoryViews />} />
-        <Route path="/historysales" element={<HistorySales />} />
+        <Route path="/history_views" element={<HistoryViews />} />
+        <Route path="/history_sales" element={<HistorySales />} />
+        <Route path='/my-achievements' element={<MyAchievements />} />
+        <Route path='/my-notifications' element={<MyNotifications />} />
+        <Route path='/my-tovars' element={<MyTovars />} />
+        <Route path='/my-finance' element={<MyFinance />} />
+        <Route path='/refs' element={<Refs />} />
+        <Route path='/order-table' element={<OrderTable />} />
       </Route>
     </Routes> 
   );

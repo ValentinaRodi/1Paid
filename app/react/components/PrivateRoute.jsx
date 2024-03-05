@@ -8,7 +8,7 @@ export const PrivateRoute = () => {
   // Получаем значение isAuthenticated из пользовательского хука useAuth
   const { isAuthenticated } = useAuth();
 
-  console.log('isAuthenticated10', isAuthenticated)
+  //console.log('isAuthenticated10', isAuthenticated)
 
   // Получаем текущий маршрут из хука useLocation
   const location = useLocation()

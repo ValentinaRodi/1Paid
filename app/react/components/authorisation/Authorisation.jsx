@@ -121,8 +121,7 @@ function Authorisation(props) {
             
                     if (data.success === true) {
                         setSuccessMessage(data.message);
-                        //console.log('data.success', data.name);
-                        //console.log(successMessage);
+                        console.log('data', data);
 
                         localStorage.setItem('logged', true); 
                         localStorage.setItem('name', data.name);

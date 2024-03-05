@@ -107,7 +107,6 @@ function App() {
   }, [modalEl]);
 
   const closeLeftMenu = () => {
-    console.log('hgfgh'); 
     (leftMenuOpen === '') ? setleftMenuOpen('_to-open') : setleftMenuOpen('');
     (leftMenuDisplay === '') ? setleftMenuDisplay('hidden') : setleftMenuDisplay('');
   };

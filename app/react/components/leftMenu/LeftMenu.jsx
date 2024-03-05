@@ -83,7 +83,7 @@ function LeftMenu(props) {
         if(!isAuthenticated) {
             openAuthorization();
         } else {
-            navigate('/historyviews');
+            navigate('/history_views');
         };
     };
 
@@ -91,7 +91,7 @@ function LeftMenu(props) {
         if(!isAuthenticated) {
             openAuthorization();
         } else {
-            navigate('/historysales');
+            navigate('/history_sales');
         };
     };
   
@@ -133,7 +133,7 @@ function LeftMenu(props) {
                             <img className="logo-pic" src="/img/logo.7fb09570.svg" alt="1paid.ru"/>
                         </div>
                     </div>
-                    <div className="absolute inset-0 h-[86%] w-full shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]"></div>
+                    <div className="rectangle absolute inset-0 h-[86%] w-full shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]"></div>
                     </div>
                     <div className="cm-b mt-4">
                         <div className="cm-container">
@@ -229,9 +229,9 @@ function LeftMenu(props) {
                     </div>
                     <div className="cm-f pb-10">
                         <div className="cm-container flex flex-col items-center">
-                            <a className="rounded-full border-[1px] border-solid border-[#C0C2DC59] max-w-none w-full h-10 px-3 flex justify-center items-center hover:bg-slate-100 xl:max-w-[160px] xl:h-12" href="#">
+                            {/* <a className="rounded-full border-[1px] border-solid border-[#C0C2DC59] max-w-none w-full h-10 px-3 flex justify-center items-center hover:bg-slate-100 xl:max-w-[160px] xl:h-12" href="#">
                                 <div className="btn-text font-secondary-bold text-sm text-[#A1AEC8] text-xs 3xl:text-sm">Выбор игры</div>
-                            </a>
+                            </a> */}
                             <div className="cm-f-bar mt-3 overflow-hidden flex w-full h-auto rounded-xl border-[1px] border-solid border-[#C0C2DC59] flex-col xl:flex-row xl:h-16 xl:rounded-full">
                                 <a className="cm-f-bar-item h-12 flex items-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100 3xl:px-4 xl:h-full" href="#">
                                     <div className="cm-f-bar-item-icon flex-shrink-0">

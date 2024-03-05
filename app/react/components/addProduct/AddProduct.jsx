@@ -1,22 +1,27 @@
 import  './addProduct.less';
 import { useState, useEffect } from 'react';
-import ProductAdd from '../productAdd/ProductAdd';
 import Select from '../select/Select';
+import uuid from 'react-uuid';
+import Input from '../Input';
+import { createRoot } from "react-dom/client";
 
 function AddProduct(props) {
     const [title, setTitle] = useState('');
     const [error, setError] = useState('');
     const [gamesObj, setGamesObj] = useState([]);
     const [games, setGames] = useState([]);
+    const [gameName, setGameName] = useState('');
     const [categ, setCateg] = useState([]);
+    const [categName, setCategName] = useState([]);
     const [fields, setFields] = useState([]);
-
+    // const [fieldsAdd, setFieldsAdd] = useState([])
     const [formValue, setFormValue] = useState({});
-
+    const [idBlockFields, setIdBlockFields] = useState('idBlockFields');
+    const [index, setIndex] = useState(0);
+    
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
     };
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,21 +30,24 @@ function AddProduct(props) {
 
         if (title === '') {
           setError('border-[#FF5343] border-[1px] border-solid');
-        }
+        };
 
-        console.log('formValue', formValue);
-    }
+        //console.log('formValue', formValue);
+    };
 
     // Функция для обновления объекта formValue
     const changeFormValue = (key, value) => {
-    
+        //console.log('formValue',formValue);
+        
         (key in formValue) ? formValue[key] = value : formValue[key] = value;
        
         if(value === '') {
             delete formValue[`${key}`];
         }
 
-        if('Игра' in formValue) {
+        if('Игра' in formValue && gameName !== formValue['Игра']) {
+            setGameName(formValue['Игра']);
+            
             const categArr = [];
 
             gamesObj.forEach(el => {
@@ -48,7 +56,7 @@ function AddProduct(props) {
                     el.categories.forEach(el => {
                         categArr.push(el.name);
                     });
-                }
+                };
             });
 
             if(categArr.length !== 0) {
@@ -56,14 +64,53 @@ function AddProduct(props) {
             };
         };
 
+        if(formValue['Категория'] && categName !== formValue['Категория']) {
+            setCategName(formValue['Категория']);
+            gamesObj.forEach(el => {
+
+                if(el.name === formValue['Игра']) {
+                    el.categories.forEach(el => {
+                        if(el.name === formValue['Категория']) {
+                            
+                            //Получаем поля выбранной категории
+                            fetch(`/field/get-list/${el.id}`, {
+                                method: "GET",
+                                headers: {
+                                    "X-Requested-With": "XMLHttpRequest",
+                                    "Content-Type": "application/json",
+                                },
+                            })
+                            .then((res) => {
+                                return res.json();
+                            })
+                            .then((data) => {
+                                //console.log('data',data);
+                                setFields(data);
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                            return;
+                        };
+                    });
+                }
+            });
+        }; 
+        
+        if(!('Категория' in formValue)) {
+            setFields([]);
+        };
+
         if(!('Игра' in formValue)) {
+            setFormValue({}); 
             setCateg([]);
-        }
+            setFields([]);
+        };
     };
 
+    //Получаем список игр
     useEffect(() => {
 
-        //Получаем игры и категории
         fetch("/game/get", {
             method: "GET",
             headers: {
@@ -93,47 +140,58 @@ function AddProduct(props) {
         .catch((error) => {
             console.log(error);
         });
-
     }, []);
-    console.log('formValue', formValue)
 
-    useEffect(() => {
-        if(formValue['Категория']) {
-
-            gamesObj.forEach(el => {
-
-                if(el.name === formValue['Игра']) {
-                    el.categories.forEach(el => {
-                        if(el.name === formValue['Категория']) {
-                            
-                            //Получаем поля выбранной категории
-                            fetch(`/field/get-list/${el.id}`, {
-                                method: "GET",
-                                headers: {
-                                    "X-Requested-With": "XMLHttpRequest",
-                                    "Content-Type": "application/json",
-                                },
-                            })
-                            .then((res) => {
-                                return res.json();
-                            })
-                            .then((data) => {
-                                //console.log('data',data)
-                                setFields(data);
-                            })
-                            .catch((error) => {
-                                console.log(error);
-                            });
-                            return;
-                        };
-                    });
+    const fieldsBlockAdd = (
+        <div key={uuid()} className='rounded-xl border border-solid border-[#E9EAF4] px-3 pt-3 mb-3'>
+            <div className='flex justify-end'>
+                <button onClick={() => deleteFields(idBlockFields)} className='p-0 z-10'>
+                    <img src="/img/icon-minus.svg" alt="minus"/>
+                </button>
+            </div>
+            <div className='flex justify-between flex-wrap mb-6 gap-y-5 mt-[-15px]'>
+                {
+                    (fields.length !== 0) ? (
+                        fields.map(item => {
+                            if(item.type === 'float') {
+                                return (
+                                    <Input key={uuid()} widht='w-[32%]' type='number' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
+                                )
+                            };
+                            if(item.type === 'options') {
+                                return (
+                                    <div key={item.id} className='w-[32%] '>
+                                        <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_productAdd' + '-' + index} name={item.seo_name}/>
+                                    </div>
+                                )
+                            }
+                        })
+                    ) : (<div></div>)
                 }
-            });
-        };
-        
-    }, [categ]);
+            </div>
+        </div>
+    );
 
-    const arr = ['localhost', 'Москва', 'GTA V RP'];
+    const addFields = () => {
+        
+        const parentFieldsBlock = document.getElementById('parentFieldsAdd');
+        const containerBlock = document.createElement("div");
+        containerBlock.setAttribute("id", idBlockFields);
+        const root = createRoot(containerBlock);
+        root.render(fieldsBlockAdd);
+        parentFieldsBlock.appendChild(containerBlock);   
+        
+        setIdBlockFields('idBlockFields' + index);
+        
+        const newIndex = index + 1;
+        setIndex(newIndex);
+    };
+   
+    const deleteFields = (index) => {
+        const parentFieldsBlock = document.getElementById('parentFieldsAdd');
+        const fieldsBlock = document.getElementById(index);
+        parentFieldsBlock.removeChild(fieldsBlock);
+    };
 
     return (
         <div className="h-screen fixed inset-x-0 inset-y-0 overflow-scroll flex justify-center pt-[2%] pb-[3%] px-[2%]">
@@ -150,94 +208,46 @@ function AddProduct(props) {
                             </svg>
                         </button>
                     </div>
-                    <div className='mt-[-10px]'>
-                        <div className='flex justify-between flex-wrap gap-y-5 flex-[50%_50%]'>
+                    <div  className='mt-[-10px]'>
+                        <div className='flex justify-between flex-wrap gap-y-5 flex-[50%_50%] mb-4'>
                             <div className='w-[49%]'>
-                                <Select arr={games} changeFormValue={changeFormValue} name='Игра'/>
+                                <Select arr={games} changeFormValue={changeFormValue} keyValue='Игра' name='Игра'/>
                             </div>
                             <div className='w-[49%]'>
-                                <Select arr={categ} changeFormValue={changeFormValue} name='Категория'/>   
+                                <Select arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>   
                             </div>
                         </div>
+                        <div className='flex justify-between flex-wrap gap-y-5 mt-[-15px]'>
+                            {
+                                (fields.length !== 0) ? (
+                                    fields.map(item => {
+                                        if(item.type === 'float') {
+                                            return (
+                                                <Input key={uuid()} widht='w-[32%]' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
+                                            )
+                                        };
+                                        if(item.type === 'options') {
+                                            return (
+                                                <div key={item.id} className='w-[32%] '>
+                                                    <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
+                                                </div>
+                                            )
+                                        }
+                                    })
+                                ) : (<div></div>)
+                            }
+                        </div>
+                        <div id='parentFieldsAdd'></div>
                         {
                             (fields.length !== 0) ? (
-                                <div>
-                                    <div className='flex justify-between flex-wrap mb-9 gap-y-5'>
-                                        <div className='w-[49%]'>
-                                            <label htmlFor="exist" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Наличие</label>
-                                            <input type="text" name="exist" id='exist' defaultValue='1000шт' className='family-acrom-bold text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
-                                        </div>
-                                        <div className='w-[49%]'>
-                                            <Select arr={categ} changeFormValue={changeFormValue} name='Сервер'/>
-                                        </div>
-                                    </div>
-                                    <div className='flex justify-between flex-wrap mb-6 gap-y-5 mt-[-15px]'>
-                                        <div className='w-full sm:w-[32%]'>
-                                            <Select arr={arr} changeFormValue={changeFormValue} name='Срок'/>
-                                        </div>
-                                        <div className='w-full sm:w-[32%]'>
-                                            <Select arr={arr} changeFormValue={changeFormValue} name='Тип'/>
-                                        </div>
-                                        <div className='w-full sm:w-[32%]'>
-                                            <label htmlFor="content" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Содержимое</label>
-                                            <input type="text" name="content" id='content' defaultValue='Makmilan Gr-23' className='family-acrom-bold text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
-                                        </div>
-                                    </div>
-                                    <div className='rounded-xl border border-solid border-[#E9EAF4] px-3 pt-3 mb-3'>
-                                        <div className='flex justify-end'>
-                                            <button className='p-0'>
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect width="24" height="24" rx="12" fill="#D2D5EA"/>
-                                                    <path d="M6 12L18 12" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div className='flex justify-between flex-wrap mb-6 gap-y-5 mt-[-15px]'>
-                                            <div className='w-full sm:w-[32%]'>
-                                                <Select arr={arr} changeFormValue={changeFormValue} name='Срок'/>
-                                            </div>
-                                            <div className='w-full sm:w-[32%]'>
-                                                <Select arr={arr} changeFormValue={changeFormValue} name='Тип'/>
-                                            </div>
-                                            <div className='w-full sm:w-[32%]'>
-                                                <label htmlFor="content" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Содержимое</label>
-                                                <input type="text" name="content" id='content' defaultValue='Makmilan Gr-23' className='family-acrom-bold text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='rounded-xl border border-solid border-[#E9EAF4] px-3 pt-3 mb-6'>
-                                        <div className='flex justify-end'>
-                                            <button className='p-0'>
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect width="24" height="24" rx="12" fill="#D2D5EA"/>
-                                                    <path d="M6 12L18 12" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div className='flex justify-between flex-wrap mb-6 gap-y-5 mt-[-15px]'>
-                                            <div className='w-full sm:w-[32%]'>
-                                                <Select arr={arr} changeFormValue={changeFormValue} name='Срок'/>
-                                            </div>
-                                            <div className='w-full sm:w-[32%]'>
-                                                <Select arr={arr} changeFormValue={changeFormValue} name='Тип'/>
-                                            </div>
-                                            <div className='w-full sm:w-[32%]'>
-                                                <label htmlFor="content" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Содержимое</label>
-                                                <input type="text" name="content" id='content' defaultValue='Makmilan Gr-23' className='family-acrom-bold text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='flex justify-center mb-6'>
-                                        <button className='p-0'>
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect width="24" height="24" rx="12" fill="#D2D5EA"/>
-                                                <path d="M12 18V6M6 12L18 12" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                                            </svg>
-                                        </button>
-                                    </div>
+                                <div className='flex justify-center mb-6'>
+                                    <button onClick={addFields} className='p-0'>
+                                        <img src="/img/icon-plus.svg" alt="plus"/>
+                                    </button>
                                 </div>
-                            ) : (<div className='text-[#FF5343]'></div>)
+                            ) : (<div></div>)    
                         }
+                        <div ></div>
                         <div className='h-px w-full bg-[#E9EAF4] mb-6'></div>
                         <div>
                             <label htmlFor="title" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Заголовок</label>

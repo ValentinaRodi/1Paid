@@ -239,11 +239,11 @@ const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, rese
                 <div  className='flex justify-between items-center mb-3 pt-6'>
                     <div ref={inputMinRef} className='flex justify-between items-center gap-[5px]'>
                         <p className='text-sm text-[#CDCFE5] font-secondary-bold'>от</p>
-                        <input type="text" value={(reset === true) ? min.toLocaleString('ru-RU') : minValInput.toLocaleString('ru-RU')} onClick={clearInputMin} onChange={changeMinValue} placeholder={min.toLocaleString('ru-RU')} className=' flex items-center h-[33px] w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'/>
+                        <input type="text" value={(reset === true) ? min.toLocaleString('ru-RU') : minValInput.toLocaleString('ru-RU')} onClick={clearInputMin} onChange={changeMinValue} placeholder={min.toLocaleString('ru-RU')} className='flex items-center h-[33px] w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'/>
                     </div>
                     <div ref={inputMaxRef} className='flex justify-between items-center gap-[5px]'>
                         <p className='text-sm text-[#CDCFE5] font-secondary-bold'>до</p>
-                        <input type="text" value={(reset === true) ? max.toLocaleString('ru-RU') : maxValInput.toLocaleString('ru-RU')} onClick={clearInputMax} onChange={changeMaxValue} placeholder={max.toLocaleString('ru-RU')} className=' flex items-center h-[33px] w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'/>
+                        <input type="text" value={(reset === true) ? max.toLocaleString('ru-RU') : maxValInput.toLocaleString('ru-RU')} onClick={clearInputMax} onChange={changeMaxValue} placeholder={max.toLocaleString('ru-RU')} className='flex items-center h-[33px] w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'/>
                     </div>
                 </div>
                 <div className="flex justify-between">

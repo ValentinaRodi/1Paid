@@ -9,7 +9,8 @@ function Select(props) {
     const [rotate, setRotate] = useState("");
     
     //Для отображения Select категорий в Продать товар
-    useEffect(() => {   
+    useEffect(() => { 
+        
         if(props.arr.length === 0) {
             setValueSelect("Не выбрано");
         } else {
@@ -17,18 +18,20 @@ function Select(props) {
                 setValueSelect("Не выбрано");
             };
         }
+        
     }, [props.arr]);
     
     const selectItem = (value) => {
         setValueSelect(value);
+        
         setRotate('');
         setModal(false);
     };
-
-    const openModal = () => {    
+    
+    const openModal = () => {  
+        (modal) ? setModal(false) : setModal(true);
         (valueSelect === "Не выбрано") ? setModalSet(false) : setModalSet(true);
         (rotate === '') ? setRotate('rotate-180') : setRotate('');
-        (modal) ? setModal(false) : setModal(true);
     };
     
     useEffect(() => {
@@ -53,6 +56,7 @@ function Select(props) {
         };
 
     }, [selectRef]);
+  
 
     return (
         <div className="mb-6" ref={selectRef}>
@@ -63,7 +67,7 @@ function Select(props) {
                 {modalOpen ?
                     <div className="select-items">
                         {modalSet ?
-                            <div onClick={() => [selectItem('Не выбрано'), props.changeFormValue(props.name,'')]} className="font-secondary-med text-base">Не выбрано</div>
+                            <div onClick={() => [selectItem('Не выбрано'), props.changeFormValue(props.keyValue,'')]} className="font-secondary-med text-base">Не выбрано</div>
                             :
                             null
                         }
@@ -71,7 +75,7 @@ function Select(props) {
                             <div
                                 key={uuid()}
                                 className="font-secondary-med text-base"
-                                onClick={() => [selectItem(item), props.changeFormValue(props.name, item)]}
+                                onClick={() => [selectItem(item), props.changeFormValue(props.keyValue, item)]}
                             >
                                 {item}
                             </div>

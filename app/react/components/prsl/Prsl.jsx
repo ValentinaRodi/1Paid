@@ -2,10 +2,63 @@ import { useState, useEffect } from 'react';
 
 function Prsl() {
     //const [orient, setOrient] = useState('_lf-row');
+
+    // const images = [
+    //     '/img/raffle.161f3412.png',
+    //     '/img/raffle.161f3412.png',
+    //     '/img/raffle.161f3412.png',
+    //     '/img/raffle.161f3412.png',
+    //     '/img/raffle.161f3412.png'
+    //   ];
+
+    // const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    // useEffect(() => {
+    //   const interval = setInterval(() => {
+    //     setCurrentImageIndex(prevIndex =>
+    //       prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    //     );
+    //   }, 2000);
+  
+    //   return () => clearInterval(interval);
+    // }, []);
+  
+    // const showSlide = (index) => {
+    //   setCurrentImageIndex(index);
+    // };
     
     return (
+    //     <div className="slider-container">
+    //   <div className="slider">
+    //     {images.map((image, index) => (
+    //       <img
+    //         key={index}
+    //         src={image}
+    //         alt={`Slide ${index + 1}`}
+    //         className={index === currentImageIndex ? 'active' : ''}
+    //       />
+    //     ))}
+    //   </div>
+    //   <div className="controls">
+    //     <button onClick={() => showSlide(currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1)}>
+    //       ----
+    //     </button>
+    //     <button onClick={() => showSlide(currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1)}>
+    //       ++++++
+    //     </button>
+    //   </div>
+    //   <div className="pagination">
+    //     {images.map((_, index) => (
+    //       <div
+    //         key={index}
+    //         className={index === currentImageIndex ? 'active' : ''}
+    //         onClick={() => showSlide(index)}
+    //       />
+    //     ))}
+    //   </div>
+    // </div>
         <div id="prsl" className="prsl rounded-md min-h-[100px] flex justify-between items-center">
-            <div className="swiper prsl-slider w-full h-full px-4">
+            <div className="swiper slider prsl-slider w-full h-full px-4">
                 <div className="swiper-wrapper">
                     <div className="swiper-slide">
                         <div className="prsl-item flex items-center justify-between gap-4 flex-wrap 2md:flex-col 2md:gap-2">
@@ -61,16 +114,16 @@ function Prsl() {
                 <div className="prsl-pag-item prsl-pag-item-active"></div>
                 <div className="prsl-pag-item"></div>
             </div>
-            <div className="prsl-btn prsl-btn-prev">
+            <button onClick={() => showSlide(currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1)} className="bg-inherit prsl-btn prsl-btn-prev">
                 <div className="bg-inherit">
                     <img src="/img/icon-btn-icon.svg" alt="btn-icon"/>
                 </div>
-            </div>
-            <div className="prsl-btn prsl-btn-next">
+            </button>
+            <button onClick={() => showSlide(currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1)} className="bg-inherit prsl-btn prsl-btn-next">
                 <div className="bg-inherit">
                     <img src="/img/icon-btn-icon-4.svg" alt="btn-icon"/>
                 </div>
-            </div>
+            </button>
         </div>
     );
 }
