@@ -24,6 +24,8 @@ function Upload(props) {
                     <h1 className='family-bold text-black fontt-bold text-[28px] mb-11'>Загрузите новую фотографию</h1>
                     <UploadFile
                         url={props.url}
+                        closeModal={props.closeModal}
+                        openSaveCompletePopup={props.openSaveCompletePopup}
                     />
                 </div>
             </div>

@@ -1,0 +1,23 @@
+body {
+    display: block !important;
+}
+#navbar {
+    position: fixed;
+    width: 250px;
+    right: 0;
+}
+#operator {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.btn {
+    width:130px;
+    background-color: #198754;
+    color: black;
+}
+
+input[readonly]
+{
+    background-color: #c2c2c2;
+}

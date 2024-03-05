@@ -33,14 +33,14 @@ function Settings() {
     const [orient, setOrient] = useState('');
     const [balance, setBalance] = useState('');
     const [bonus, setBonus] = useState('');
-    const [avatar, setAvatar] = useState('');
+    const [avatar, setAvatar] = useState({});
     const [user, setUser] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [secretWord, setSecretWord] = useState('');
+    const [notifySound, setNotifySound] = useState('');
+    const [mailing, setMailing] = useState('');
     const [file, setFile] = useState('');
-    // const [isChanged, setIsChanged] = useState(false);
-    // const [isError, setIsError] = useState(false);
 
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
@@ -48,31 +48,7 @@ function Settings() {
     const [errorEmail, setErrorEmail] = useState("hidden");
     const [errorSecretWord, setErrorSecretWord] = useState("hidden");
     const location = useLocation();
-
-    // const saveNewPass = (e) => {
-    //     // e.preventDefault();
-    //
-    //     let body = {
-    //         'password': password,
-    //         'password_confirmation': passwordConfirm
-    //     };
-    //     fetchFunc('/profile/edit-password', 'POST', body)
-    //         .then((data) => {
-    //             console.log(data)
-    //
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         })
-    //
-    //     console.log(password)
-    //     console.log(passwordConfirm)
-    //     setErrorPassword("");
-    //     // if (password !== passwordConfirm) {
-    //     //     setErrorPassword('border-[#FF5343] border-[1px] border-solid');
-    //     //     return;
-    //     // };
-    // }
+    const avatarPath = 'http://1paid.local/uploads/avatars/';
 
 
     const changeOrient = () => {
@@ -83,21 +59,26 @@ function Settings() {
         }
     }
 
+
     useEffect(() => {
 
         fetchFunc('/profile/edit', 'GET')
             .then((data) => {
                 if (data.success === true) {
-                    console.log('dataFromFetchFunc:', data);
                     //пришедшие данные из промиса
-                    console.log('data:', data);
+
                     data.password = '********'
-                    data.avatar = 'http://1paid.local/js/00d4721a6417b9c4833a61c762672a7c.png'
+                    // data.avatar = 'http://1paid.local/js/00d4721a6417b9c4833a61c762672a7c.png'
+                    data.avatarBig = avatarPath + 'big/' + data.avatar.big + '.png';
+                    data.avatarMedium = avatarPath + 'medium/' + data.avatar.medium + '.png';
+                    data.avatarSmall = avatarPath + 'small/' + data.avatar.small + '.png';
+
                     setUser(data);
                 }
             }).catch((error) => {
             console.log('ERRR:', error);
         });
+
 
         let loggedInUser = localStorage.getItem('logged');
 
@@ -114,7 +95,7 @@ function Settings() {
             // setSecretWord(localStorage.getItem('secret_word'));
 
             if (localStorage.getItem('avatar') !== 'null') {
-                setAvatar(localStorage.getItem('avatar'))
+                // setAvatar(localStorage.getItem('avatar'))
             }
         }
         const modal = document.getElementById('modal');
@@ -137,11 +118,11 @@ function Settings() {
     }, [loggedIn, modalEl]);
 
     const openUploadModal = () => {
-        console.log('Upload_mod');
         const body = document.querySelector('body');
         body.style.overflow = 'hidden';
         setModalEl(<Upload
             closeModal={closeModal}
+            openSaveCompletePopup={openSaveCompletePopup}
             img_upload_id={'profile_img'}
             handleFile={handleFile}
             url={'/profile/upload-image'}
@@ -150,7 +131,6 @@ function Settings() {
         setModalOpen(true);
     }
     const openPasswordEditPopup = () => {
-        console.log('mod');
         const body = document.querySelector('body');
         body.style.overflow = 'hidden';
         setModalEl(<NewPass
@@ -161,7 +141,6 @@ function Settings() {
     };
 
     const openSaveCompletePopup = () => {
-        console.log('mod SAVE');
         const body = document.querySelector('body');
         body.style.overflow = 'hidden';
         setModalEl(<AlertPopup
@@ -177,37 +156,24 @@ function Settings() {
         setModalEl('');
     };
     const handleFile = (file) => {
-        console.log(file);
         setFile(file);
-        console.log(file)
-
     }
     const handleName = (e) => {
         setName(e.target.value);
-        console.log('HandleSetName:', name)
-
     }
     const handleEmail = (e) => {
         setEmail(e.target.value);
-        console.log(email)
-
     }
     const handleSecretWord = (e) => {
         setSecretWord(e.target.value);
-        console.log(secretWord)
-
     }
-    // const handlePassword = (e) => {
-    //     console.log(e.target.value);
-    //     setPassword(e.target.value);
-    //     console.log(password)
-    // }
-    //
-    // const handlePasswordConfirm = (e) => {
-    //     console.log(e.target.value);
-    //     setPasswordConfirm(e.target.value);
-    //     console.log(passwordConfirm)
-    // }
+
+    const handleNotifySound = (e) => {
+        setNotifySound(!notifySound);
+    }
+    const handleMailing = (e) => {
+        setMailing(!mailing);
+    }
     const onSubmit = () => {
         let body = {
             'name': '',
@@ -229,7 +195,7 @@ function Settings() {
                 isChanged = false;
                 isError = true;
                 setErrorName(' ');
-             }
+            }
         }
         if (email) {
             if (checkEmail(email)) {
@@ -244,7 +210,7 @@ function Settings() {
         }
         if (secretWord) {
             if (checkSecretWord(secretWord)) {
-               body.secret_word = secretWord;
+                body.secret_word = secretWord;
                 isChanged = true;
                 isError = false;
             } else {
@@ -253,10 +219,23 @@ function Settings() {
                 setErrorSecretWord(' ')
             }
         }
+
+        if (typeof (user.notify_sound || user.notify_sound) =='boolean') {
+            isChanged = true;
+            body['notify_sound'] = Number(notifySound);
+            body['mailing'] = Number(mailing);
+        }
+
         if (isChanged && !isError) {
             fetchFunc('/profile/edit', 'POST', body)
                 .then((data) => {
                     if (data.success === true) {
+                        let data = user;
+                        data.avatarBig = avatarPath + 'big/' + data.avatar.big + '.png';
+                        data.avatarMedium = avatarPath + 'medium/' + data.avatar.medium + '.png';
+                        data.avatarSmall = avatarPath + 'small/' + data.avatar.small + '.png';
+                        setUser(data);
+
                         openSaveCompletePopup();
                     } else {
                         console.log(data.errors)
@@ -269,14 +248,18 @@ function Settings() {
     return (
                 <ProfileEdit
                     user={user}
-                    openUploadModal={openUploadModal}
                     handleName={handleName}
                     handleEmail={handleEmail}
+                    handleSecretWord={handleSecretWord}
+                    handleNotifySound={handleNotifySound}
+                    handleMailing={handleMailing}
+
                     errorName={errorName}
                     errorEmail={errorEmail}
                     errorSecretWord={errorSecretWord}
+
                     onSubmit={onSubmit}
-                    handleSecretWord={handleSecretWord}
+                    openUploadModal={openUploadModal}
                     openPasswordEditPopup={openPasswordEditPopup}
                 />
     );

@@ -20,7 +20,7 @@ function ProfileEdit(props) {
                             <div
                                 className="sps-avatar flex-shrink-0 w-[258px] h-[258px] mb-[12px] overflow-hidden rounded-[12px] relative">
                                 <img id="img_user_avatar" className="sps-avatar-pic w-full h-full object-cover"
-                                     src={props.user.avatar} alt="user"/>
+                                     src={props.user.avatarBig} alt="user"/>
                                 <div onClick={props.openUploadModal}
                                     className="sps-avatar-action flex justify-center items-center bg-black/40 top-0 left-0 w-full h-full absolute cursor-pointer">
 
@@ -105,15 +105,24 @@ function ProfileEdit(props) {
                                 <div className="switch-wrapper flex flex-col font-secondary-bold text-black">
                                     <span className="switch-label mb-[16px] text-[14px]">Звуки уведомления</span>
                                     <div className="switch flex items-center">
-                                        <input id="switch1" type="checkbox" value="1"/>
+                                        <input
+                                            defaultChecked={props.user.notify_sound}
+                                            onChange={props.handleNotifySound}
+                                            id="switch1" type="checkbox" value="1"/>
                                         <label htmlFor="switch1">toggle</label>
                                         <span className="inline-block switch-text ml-[8px] text-[14px]">Включено</span>
+                                        <input type="checkbox"
+
+                                        />
                                     </div>
                                 </div>
                                 <div className="switch-wrapper flex flex-col font-secondary-bold text-black">
                                     <span className="switch-label mb-[16px] text-[14px]">Рассылка на почту</span>
                                     <div className="switch flex items-center">
-                                        <input id="switch2" type="checkbox" value="1"/>
+                                        <input
+                                            defaultChecked={props.user.mailing}
+                                            onChange={props.handleMailing}
+                                            id="switch2" type="checkbox" value="1"/>
                                         <label htmlFor="switch2">toggle</label>
                                         <span className="inline-block switch-text ml-[8px] text-[14px]">Включено</span>
                                     </div>

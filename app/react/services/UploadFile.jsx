@@ -9,27 +9,26 @@ function UploadFunc(props) {
     const [errorFile, setErrorFile] = useState('hidden');
     const [errorFileType, setErrorFileType] = useState('hidden');
 
-
     const save = (file) => {
         file = file[0];
-        console.log(file);
         setErrorFile('hidden');
         setErrorFileType('hidden');
 
         if (validateType(file.path, 'image/')) {
-            console.log('TYPE-IMG')
             let myData = new FormData();
             myData.append('img_file', file);
 
-            console.log(myData);
 
             //файл загружен успешно, отправка на серв gif
-            console.log(myData.getAll('img_file'));
 
             fetchFunc(props.url, 'POST', myData, 'img')
                 .then((data) => {
-                    console.log('res:', data);
+                    console.log('SAVEcomplete');
+                    props.closeModal();
+                    props.openSaveCompletePopup();
+                    localStorage.setItem('avatar',JSON.stringify( data['avatar']));
 
+// local storage
                 })
                 .catch((error) => {
                     console.log('ERRR:', error);
