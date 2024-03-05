@@ -21,6 +21,7 @@ import MyAchievements from '../pages/myAchievements/MyAchievements';
 import Refs from '../pages/refs/Refs';
 import MyTovars from '../pages/myTovars/MyTovars';
 import MyFinance from '../pages/myFinance/MyFinance';
+import OrderTable from '../pages/orderTable/OrderTable';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -68,6 +69,7 @@ export const useRoutes = () => {
         <Route path='/my-tovars' element={<MyTovars />} />
         <Route path='/my-finance' element={<MyFinance />} />
         <Route path='/refs' element={<Refs />} />
+        <Route path='/order-table' element={<OrderTable />} />
       </Route>
     </Routes> 
   );
