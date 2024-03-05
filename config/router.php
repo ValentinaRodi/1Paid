@@ -36,7 +36,7 @@ return [
     'POST category' => 'category/post',
     'POST category/<action>' => 'category/<action>',
     'POST <action>' => 'main/<action>',
-    'POST field/post' => 'field/post'
+    'POST field/post' => 'field/post',
     'GET, HEAD operator/user' => 'operator/user',
     'GET, HEAD operator/lang' => 'operator/lang',
     'GET, HEAD operator/item' => 'operator/item',
