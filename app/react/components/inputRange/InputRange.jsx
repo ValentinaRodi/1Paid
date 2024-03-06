@@ -10,49 +10,32 @@ const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, rese
     const [minValInput, setMinValInput] = useState(min);
     const [maxValInput, setMaxValInput] = useState(max);
 
-   
-    // const minWidth =
-    //     thumbsize + ((avg - min) / (max - min)) * (width - 2 * thumbsize);
-    // const minPercent = ((minVal - min) / (avg - min)) * 100;
-    // const maxPercent = ((maxVal - avg) / (max - avg)) * 100;
-    // // const pozitionWidth = width - (width * minPercent / 100);
-    // // const pozitionLeft = width * minPercent / 100;
-    // const styles = {
-    //     min: {
-    //     width: minWidth,
-    //     left: 0,
-    //     "--minRangePercent": `${minPercent}%`
-    //     },
-    //     max: {
-    //     width: thumbsize + ((max - avg) / (max - min)) * (width - 2 * thumbsize),
-    //     left: minWidth,
-    //     "--maxRangePercent": `${maxPercent}%`
-    //     },
-    //     /* pozition: {
-    //         width: pozitionWidth,
-    //         left: pozitionLeft
-    //     } */
-    // };
-
     let minNumber = (reset === true) ? min : (minVal === '') ? 1 : minVal;
     let avgWid = (reset === true) ? ((min + max) / 2) : avg;
 
-    const width = 269;
-    const minWidth = thumbsize + ((avgWid- min) / (max - min)) * (width - 2 * thumbsize);
-    const minPercent = (((minNumber === '') ? 1 : minNumber - min) / (avgWid - min)) * 100;
-    const maxPercent = (((reset === true) ? max : maxVal - avgWid) / (max - avgWid)) * 100;
-    
-    const styles = {
-        min: {
-        width: minWidth,
-        left: 0,
-        "--minRangePercent": `${minPercent}%`
-        },
-        max: {
-        width: thumbsize + ((max - avgWid) / (max - min)) * (width - 2 * thumbsize),
-        left: minWidth,
-        "--maxRangePercent": `${maxPercent}%`
-        }
+    const parentDiv = document.getElementById('rangeWidht');
+
+    let width = 0;
+    let styles = {};
+
+    if(parentDiv !== null) {
+        width = +parentDiv.offsetWidth;
+        const minWidth = thumbsize + ((avgWid- min) / (max - min)) * (width - 2 * thumbsize);
+        const minPercent = (((minNumber === '') ? 1 : minNumber - min) / (avgWid - min)) * 100;
+        const maxPercent = (((reset === true) ? max : maxVal - avgWid) / (max - avgWid)) * 100;
+        
+        styles = {
+            min: {
+            width: minWidth,
+            left: 0,
+            "--minRangePercent": `${minPercent}%`
+            },
+            max: {
+            width: thumbsize + ((max - avgWid) / (max - min)) * (width - 2 * thumbsize),
+            left: minWidth,
+            "--maxRangePercent": `${maxPercent}%`
+            }
+        };
     };
 
     //Для изменения значения при перемещении ползунка
@@ -204,6 +187,7 @@ const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, rese
             <div className="range mt-4 mb-6 relative">
                 <div className={`${styleDiv} h-[3px] absolute w-full left-0 top-0 h-[3px]`} ></div>
                 <div
+                    id='rangeWidht'
                     className="min-max-slider"
                     data-legendnum="2"
                     data-rangemin={min}

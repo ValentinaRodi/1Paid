@@ -7,6 +7,7 @@ import Select from '../../components/select/Select';
 import LayoutBtn from '../../components/LayoutBtn';
 import CardGame from "../../components/cardGame/CardGame";
 import CardGameString from "../../components/cardGame/CardGameString";
+import Checkbox from "../../components/checkbox/Checkbox";
 
 function Catalog() {
     const [btn, setBtn] = useState(true);
@@ -158,7 +159,6 @@ function Catalog() {
         console.log('formValue', formValue);
     };
 
-
     //Сброс фильтра
     const cancelFilter = () => { 
         setRange(true);
@@ -246,19 +246,8 @@ function Catalog() {
                         
                         <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='' name='Тип аккаунта'/>
                         
-                        <div className="mb-2">
-                            <h3 className="mb-4 sh-title-text font-secondary-bold text-bold text-xs text-black">Продавец</h3>
-                            <div className="smt-filter-type-content flex flex-col">
-                                <label className="custom-checkbox mb-[12px] font-secondary-bold text-xs">Онлайн
-                                    <input id="checkbox1" onChange={changeCheckOn} type="checkbox" name="online" checked={(checked1) ? "checked" : ""}/>
-                                    <span className="custom-checkmark"></span>
-                                </label>
-                                <label className="custom-checkbox font-secondary-bold text-xs">Офлайн
-                                    <input id="checkbox2" onChange={changeCheckOff} type="checkbox" name="offline" checked={(checked2) ? "checked" : ""}/>
-                                    <span className="custom-checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
+                        <Checkbox changeFormValue={changeFormValue}/>
+
                         <div>
                             <button onClick={submitFilter} className="mb-4 btn gap-2 justify-center flex items-center text-white w-full h-[57px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)] shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]">
                                 <img src='/img/icon-btn.svg' alt='filter'/>

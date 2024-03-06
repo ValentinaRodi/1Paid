@@ -7,57 +7,9 @@ import CardGameString from "../../components/cardGame/CardGameString";
 
 function Tab() {
     const [btn, setBtn] = useState(true);
-    const [gamesObj, setGamesObj] = useState([]);
-    const [gamesItems, setGamesItems] = useState([]);
-    const [btnYet, setBtnYet] = useState('hidden');
-    const [hiddenNav, setHiddenNav] = useState('overflow-hidden');
-    const [heightNav, setHeight] = useState('h-[27px]');
-    const [textBtnLink, setTextBtnLink] = useState('Ещё');
-    const [filterObj, setFilterObj] = useState([]);
-    const [formValue, setFormValue] = useState({});
-    const [resetFilter, setResetFilter] = useState(false);
-    const [resetRange, setRange] = useState(false);
     const [cardsView, setCardsView] = useState(true);
     const [cardsViewImg, setCardsViewImg] = useState('/img/icon-cards-stroke.svg');
     const [cardsViewDiv, setCardsViewDiv] = useState('');
-
-    // useEffect(() => {
-
-    //     //запрос на отображение избранных карточек
-    //     fetch(`/catalog/${game}`, {
-    //         method: "GET",
-    //         headers: {
-    //             "X-Requested-With": "XMLHttpRequest",
-    //             "Content-Type": "application/json",
-    //         },
-    //     })
-    //     .then((res) => {
-    //         return res.json();
-    //     })
-    //     .then((data) => {
-    //         console.log(data)
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //     });
-    // }, []);
-
-    // useEffect(() => {
-    //     //Определяем показывать кнопку "Еще" или нет для категорий
-    //     const parentDiv = document.getElementById("parent");
-    //     const navDiv = document.getElementById("nav");
-    //     const allLinks = navDiv.querySelectorAll('a');
-    //     const parentRect = parentDiv.getBoundingClientRect();
-
-    //     allLinks.forEach(el => {
-            
-    //         const childRect = el.getBoundingClientRect();
-            
-    //         if(parentRect.bottom <= childRect.top) {
-    //             setBtnYet('');
-    //         }
-    //     });
-    // }, []);
 
     const changeViewCards = () => {
         (cardsView) ? setCardsView(false) : setCardsView(true);
