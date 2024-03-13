@@ -9,6 +9,7 @@ function Market() {
     const [formValue, setFormValue] = useState({});
     const [resetFilter, setResetFilter] = useState(false);
     const [resetRange, setRange] = useState(false);
+    const [resetCheck, setResetCheck] = useState(false);
     
     const game = ['Warface', 'New_cool_game', 'New_cool_game2'];
     const categ = ['Пин-коды', 'Буст PM', 'Спецоперации'];
@@ -33,11 +34,18 @@ function Market() {
         setResetFilter(true);
         setFormValue({});
         setResetFilter(false);
+        setResetCheck(true);
     };
 
     //RangeInput разрешить ввод
     const changeStateRangeFalse = () => {
         setRange(false);
+    };
+
+    //Checkbox разрешить ввод
+    const changeCheck = () => {
+        console.log('reset',resetCheck)
+        setResetCheck(false);
     };
 
     return (
@@ -52,7 +60,7 @@ function Market() {
                     <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
                     <Select key={uuid()} reset={resetFilter} arr={game} changeFormValue={changeFormValue} keyValue='Выбор игры' name='Выбор игры'/>
                     <Select key={uuid()} reset={resetFilter} arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>
-                    <Checkbox changeFormValue={changeFormValue}/>
+                    <Checkbox changeFormValue={changeFormValue} reset={resetCheck} changeCheck={changeCheck}/>
                     <div>
                         <button onClick={submitFilter} className="mb-4 btn gap-2 justify-center flex items-center text-white w-full h-[57px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)] shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]">
                             <img src='/img/icon-btn.svg' alt='filter'/>
@@ -66,7 +74,7 @@ function Market() {
                 </div>
                 <div className="pcg w-full">
                     <div className="_view-list pcg-grid view-grid grid gap-3 grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3">
-                        <CardGameString key={uuid()} rank='4.8' id='1' seoName='card' icon='product-preview-1.fcb96f91.png' name='Аккаунт Warface за самые низкие цены' price='120 000'/> 
+                        <CardGameString key={uuid()} priceDouble='true' rank='4.8' id='1' seoName='card' icon='product-preview-1.fcb96f91.png' name='Аккаунт Warface за самые низкие цены' price2='100 000' price1='120 000'/> 
                     </div>
                 </div>
             </div>

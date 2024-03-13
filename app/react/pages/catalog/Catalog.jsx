@@ -21,6 +21,7 @@ function Catalog() {
     const [formValue, setFormValue] = useState({});
     const [resetFilter, setResetFilter] = useState(false);
     const [resetRange, setRange] = useState(false);
+    const [resetCheck, setResetCheck] = useState(false);
     const [cardsView, setCardsView] = useState(true);
     const [cardsViewImg, setCardsViewImg] = useState('icon-cards-stroke.svg');
     const [cardsViewDiv, setCardsViewDiv] = useState('');
@@ -165,11 +166,18 @@ function Catalog() {
         setResetFilter(true);
         setFormValue({});
         setResetFilter(false);
+        setResetCheck(true);
     };
 
     //RangeInput разрешить ввод
     const changeStateRangeFalse = () => {
         setRange(false);
+    };
+
+    //Checkbox разрешить ввод
+    const changeCheck = () => {
+        console.log('reset',resetCheck)
+        setResetCheck(false);
     };
 
     const changeViewCards = () => {
@@ -246,7 +254,7 @@ function Catalog() {
                         
                         <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='' name='Тип аккаунта'/>
                         
-                        <Checkbox changeFormValue={changeFormValue}/>
+                        <Checkbox changeFormValue={changeFormValue} reset={resetCheck} changeCheck={changeCheck}/>
 
                         <div>
                             <button onClick={submitFilter} className="mb-4 btn gap-2 justify-center flex items-center text-white w-full h-[57px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)] shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]">

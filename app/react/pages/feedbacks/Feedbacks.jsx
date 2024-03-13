@@ -112,7 +112,7 @@ function Feedbacks() {
                                 <div className="sfb-form-f mt-8">
                                     <Link className="btn btn-secondary rounded w-full h-11 justify-center gap-2 text-white" href="#">
                                         <div className="btn-icon w-4 h-4 [&amp;_svg]:w-[100%] [&amp;_svg]:h-[100%]">
-                                            <img src='/img/icon-basket' alt='basket'/>
+                                            <img src='/img/icon-basket.svg' alt='basket'/>
                                         </div>
                                         <div className="btn-text font-secondary-bold text-sm text-white">Перейти в маркет</div>
                                     </Link>

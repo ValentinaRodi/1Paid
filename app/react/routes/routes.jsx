@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 import uuid from 'react-uuid';
-
 import Profile from '../pages/profile/Profile';
 import Main from '../pages/main/Main';
 import Catalog from '../pages/catalog/Catalog';
@@ -22,6 +21,7 @@ import Refs from '../pages/refs/Refs';
 import MyTovars from '../pages/myTovars/MyTovars';
 import MyFinance from '../pages/myFinance/MyFinance';
 import OrderTable from '../pages/orderTable/OrderTable';
+import TechSupport from '../pages/techSupport/TechSupport';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -70,6 +70,7 @@ export const useRoutes = () => {
         <Route path='/my-finance' element={<MyFinance />} />
         <Route path='/refs' element={<Refs />} />
         <Route path='/order-table' element={<OrderTable />} />
+        <Route path='/tech-support' element={<TechSupport />} />
       </Route>
     </Routes> 
   );

@@ -91,7 +91,6 @@ function Refs() {
                         </div>
                         <div className="sr-feed w-full flex flex-col gap-3">
                             <div className="srf-ref flex items-center font-secondary-bold rounded-lg text-sm bg-white w-full h-[56px] max-h-[56px] px-6">
-                                <div className="srf-ref-id text-[#1D222C] mr-10 ">25812</div>
                                 <div className="srf-ref-username text-[#1F62EC]">Evhen_823</div>
                                 <div className="srf-ref-info flex items-center ml-auto text-[#969BA5]">
                                     <div className="srf-ref-info-income flex items-center mr-[16px]">Ваш доход:
@@ -104,7 +103,6 @@ function Refs() {
                                 </div>
                             </div>
                             <div className="srf-ref flex items-center font-secondary-bold rounded-lg text-sm bg-white w-full h-[56px] max-h-[56px] px-6">
-                                <div className="srf-ref-id text-[#1D222C] mr-10 ">25812</div>
                                 <div className="srf-ref-username text-[#1F62EC]">Evhen_823</div>
                                 <div className="srf-ref-info flex items-center ml-auto text-[#969BA5]">
                                     <div className="srf-ref-info-income flex items-center mr-[16px]">Ваш доход:
@@ -117,7 +115,6 @@ function Refs() {
                                 </div>
                             </div>
                             <div className="srf-ref flex items-center font-secondary-bold rounded-lg text-sm bg-white w-full h-[56px] max-h-[56px] px-6">
-                                <div className="srf-ref-id text-[#1D222C] mr-10 ">25812</div>
                                 <div className="srf-ref-username text-[#1F62EC]">Evhen_823</div>
                                 <div className="srf-ref-info flex items-center ml-auto text-[#969BA5] gap-3">
                                     <div className="srf-ref-info-income flex items-center ">Ваш доход:

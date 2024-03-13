@@ -12,7 +12,15 @@ function ModalOrder(props) {
     const [time, setTime] = useState(["Навсегда", "На год", "На месяц"]);
     const [categ, setCateg] = useState(["Аккаунты", "Пин-коды", "Буст PM","Спецоперации"]);
     const [formValue, setFormValue] = useState({});
-    
+
+   
+    const [gamesObj, setGamesObj] = useState([]);
+    const [games, setGames] = useState([]);
+    const [gameName, setGameName] = useState('');
+    const [categName, setCategName] = useState([]);
+    const [fields, setFields] = useState([]);
+
+
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
     };
@@ -25,23 +33,114 @@ function ModalOrder(props) {
         if (title === '') {
           setError('border-[#FF5343] border-[1px] border-solid');
         };
-
-        //console.log('formValue', formValue);
     };
 
     // Функция для обновления объекта formValue
     const changeFormValue = (key, value) => {
+        //console.log('formValue',formValue);
+        
         (key in formValue) ? formValue[key] = value : formValue[key] = value;
-    
+       
         if(value === '') {
             delete formValue[`${key}`];
+        }
+
+        if('Игра' in formValue && gameName !== formValue['Игра']) {
+            setGameName(formValue['Игра']);
+            
+            const categArr = [];
+
+            gamesObj.forEach(el => {
+
+                if(el.name === formValue['Игра']) {
+                    el.categories.forEach(el => {
+                        categArr.push(el.name);
+                    });
+                };
+            });
+
+            if(categArr.length !== 0) {
+                setCateg(categArr);
+            };
+        };
+
+        if(formValue['Категория'] && categName !== formValue['Категория']) {
+            setCategName(formValue['Категория']);
+            gamesObj.forEach(el => {
+
+                if(el.name === formValue['Игра']) {
+                    el.categories.forEach(el => {
+                        if(el.name === formValue['Категория']) {
+                            
+                            //Получаем поля выбранной категории
+                            fetch(`/field/get-list/${el.id}`, {
+                                method: "GET",
+                                headers: {
+                                    "X-Requested-With": "XMLHttpRequest",
+                                    "Content-Type": "application/json",
+                                },
+                            })
+                            .then((res) => {
+                                return res.json();
+                            })
+                            .then((data) => {
+                                //console.log('data',data);
+                                setFields(data);
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                            return;
+                        };
+                    });
+                }
+            });
+        }; 
+        
+        if(!('Категория' in formValue)) {
+            setFields([]);
+        };
+
+        if(!('Игра' in formValue)) {
+            setFormValue({}); 
+            setCateg([]);
+            setFields([]);
         };
     };
 
+    //Получаем список игр
+    useEffect(() => {
 
+        fetch("/game/get", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            //console.log('data',data)
+            if(data.games.length !== 0) {
+                setGamesObj(data.games);
+            }
 
+            const gamesArr = [];
 
-
+            data.games.forEach(el => {
+                gamesArr.push(el.name);
+            });
+            
+            if(gamesArr.length !== 0) {
+                setGames(gamesArr);
+            } 
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, []);
 
 
     return (
@@ -55,27 +154,33 @@ function ModalOrder(props) {
                         </button>
                     </div>
                     <div  className='mt-[-10px]'>
-                        <div className='w-full mb-6'>
-                            <div className='flex items-center justify-between  family-acrom-bold text-sm rounded-[40px] px-5 border border-solid border-[#C0C2DC59] bg-white h-12 w-full text-[#8A98B3]'>
-                                <div className='flex items-center gap-2'>
-                                    <img src='/img/icon-game-warf.svg' alt='game' />
-                                    <p>Warface</p>
-                                </div>
-                                <button className='bg-inherit'>
-                                    <img src='/img/icon-game-edit.svg' alt='edit' />
-                                </button>
+                        <div className='flex justify-between flex-wrap gap-y-5 flex-[50%_50%] mb-4'>
+                            <div className='w-[49%]'>
+                                <Select arr={games} changeFormValue={changeFormValue} keyValue='Игра' name='Игра'/>
+                            </div>
+                            <div className='w-[49%]'>
+                                <Select arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>   
                             </div>
                         </div>
-                        <div className='flex justify-between flex-wrap gap-y-5 flex-[50%_50%]'>
-                            <div className='w-[32%]'>
-                                <Select arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>
-                            </div>
-                            <div className='w-[32%]'>
-                                <Select arr={typePin} changeFormValue={changeFormValue} keyValue='Тип пин-кода' name='Тип пин-кода'/>   
-                            </div>
-                            <div className='w-[32%]'>
-                                <Select arr={time} changeFormValue={changeFormValue} keyValue='Срок' name='Срок'/>   
-                            </div>
+                        <div className='flex justify-between flex-wrap gap-y-5 mt-[-15px]'>
+                            {
+                                (fields.length !== 0) ? (
+                                    fields.map(item => {
+                                        if(item.type === 'float') {
+                                            return (
+                                                <Input key={uuid()} widht='w-[32%]' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
+                                            )
+                                        };
+                                        if(item.type === 'options') {
+                                            return (
+                                                <div key={item.id} className='w-[32%] '>
+                                                    <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
+                                                </div>
+                                            )
+                                        }
+                                    })
+                                ) : (<div></div>)
+                            }
                         </div>
                         <div className='h-px w-full bg-[#E9EAF4] mb-6'></div>
                         <div className='mb-6'>

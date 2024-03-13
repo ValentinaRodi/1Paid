@@ -48,9 +48,9 @@ function CardGame(props) {
     };
 
     return (
-        <div className="pc-card max-w-[310px] rounded-lg bg-white min-w-[240px]">
-            <div className={(props.new === '1') ? 'pc-plate-container' : 'hidden'}>
-                <div className="pc-plate bg-gradient-primary _shadow-primary font-bold py-1 px-7 3sm:px-2 3sm:py-[1px] bg-gradient-primary">new</div>
+        <div className="pc-card max-h-[414px] max-w-[310px] rounded-lg bg-white min-w-[240px]">
+            <div className='pc-plate-container h-[22px] w-[79px] flex items-center justify-center'>
+                <div className={(props.new === '1') ? 'pc-plate bg-gradient-primary _shadow-primary h-full w-full flex items-center justify-center font-bold bg-gradient-primary' : 'hidden'}>new</div>
             </div>
             <div className="flex items-center justify-between">
                 <div className="pc-supinfo font-secondary-bold text-[13px] text-black 3sm:text-xs">
@@ -100,7 +100,7 @@ function CardGame(props) {
             </div>
             <Link to={`${props.id}-${props.seoName}`} className='pc-link w-full'>
                 <div className="pc-preview flex justify-center items-center mb-3">
-                    <div className="pc-preview-inner max-w-[80px] max-h-[80px]">
+                    <div className="pc-preview-inner max-w-[80px] h-[80px]">
                         <img className="pc-preview-pic w-full" src={`/img/${props.icon}`} alt="picture"/>
                     </div>
                 </div>

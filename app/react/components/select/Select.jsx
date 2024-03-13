@@ -57,7 +57,6 @@ function Select(props) {
 
     }, [selectRef]);
   
-
     return (
         <div className="mb-6" ref={selectRef}>
             <p className='block sh-title-text font-secondary-bold text-bold text-xs text-black mb-4'>{props.name}</p>

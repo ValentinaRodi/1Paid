@@ -108,7 +108,7 @@ function App() {
 
   const closeLeftMenu = () => {
     (leftMenuOpen === '') ? setleftMenuOpen('_to-open') : setleftMenuOpen('');
-    (leftMenuDisplay === '') ? setleftMenuDisplay('hidden') : setleftMenuDisplay('');
+    (leftMenuDisplay === '') ? setleftMenuDisplay('_hide') : setleftMenuDisplay('');
   };
 
 

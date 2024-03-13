@@ -39,9 +39,12 @@ function CardGameString(props) {
                         </div>
                     </div>
                     <div className="pc-total flex-grow h-11 rounded-full border border-solid border-[#F3F7FF] flex items-center justify-between pl-4 gap-2 3sm:h-10 3sm:pl-3 3sm:w-full">
-                        <div className="pc-total-inf flex flex-wrap gap-x-[5px] font-secondary-bold text-xs ">
-                            <span className="text-[#BEC1DB]">Цена</span>
-                            <span className="text-black font-bold">{props.price} <b>₽</b></span>
+                        <div className="pc-total-inf flex flex-wrap gap-x-[5px] flex mr-5">
+                            <div className="text-[#BEC1DB] font-secondary-bold text-xs">Цена</div>
+                            {props.priceDouble === 'true' 
+                                ? <div className='font-secondary-bold font-bold text-xs'>от {props.price1} ₽ до {props.price2} ₽</div>
+                                : <div className="text-black font-bold font-secondary-bold text-xs">{props.price} ₽</div>
+                            }
                         </div>
                         <div className="pc-total-btn-wrap flex-shrink-0 w-11 h-11 ">
                             <a className="btn btn-secondary pc-total-btn rounded-full w-full h-full justify-center" href="#">

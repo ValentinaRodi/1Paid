@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import LifeFeedItem from './lifeFeedItem/LifeFeedItem';
 import uuid from 'react-uuid';
 
 function LayoutColRow(props) {
     const [components, setComponents] = useState([]);
     const [shifted, setShifted] = useState(false);
-    const [currentIndex, setCurrentIndex] = useState(1);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const slider = document.getElementById("slider");
+    const parentBlock = useRef();
 
     const arr = [
         {
@@ -113,20 +114,22 @@ function LayoutColRow(props) {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            // перемещаем последний элемент на первое место
-            const shiftedItem = components.pop();
-            setComponents([shiftedItem, ...components]);
-            setShifted(true);
-        }, Math.floor(Math.random() * 3000 + 2000)); // через каждые 2-4 секунды
+            //смещаем ленту
+            
+            //slider.classList.add("slider-transform");
+            slider.firstChild.classList.add("slider-transform");
+            setShifted(true); 
+
+            setTimeout(() => {
+                //перемещаем последний элемент на первое место
+                const shiftedItem = components.pop();
+                setComponents([shiftedItem, ...components]);
+            }, 500); 
+        }, Math.floor(Math.random() * 3000 + 3000));
 
         return () => clearTimeout(timer); // очищаем таймер при размонтировании компонента
     }, [components]);
 
-    const customStyle = {
-        '--shifted': shifted ? '-100%' : '-',
-        '--translate': components[components.length - 1] && components[components.length - 1].length * 200 + 'px'
-    };
-   
     return (
         <div className='layout-lf'>
             <div className={`lf ${props.orient}`}>
@@ -169,11 +172,11 @@ function LayoutColRow(props) {
                     </div>
                 </div>
                 <div className="lf-feed">
-                    <div id="slider" className="lf-feed-track slider-lite">
+                    <div id="slider" ref={parentBlock} className="lf-feed-track slider-lite">
                         {
                             (components.length !== 0) ? (
-                                components.map((component) => (
-                                    <LifeFeedItem key={uuid()} imgCard={component.img_card} imgAvatar={component.img_avatar} name={component.name}/>  
+                                components.map(component => (
+                                    <LifeFeedItem key={uuid()} id={component.id} imgCard={component.img_card} imgAvatar={component.img_avatar} name={component.name}/>  
                                 ))
                             ) : (<div></div>)
                         }
