@@ -46,7 +46,15 @@ return [
     'POST category' => 'category/post',
     'POST category/<action>' => 'category/<action>',
     'POST <action>' => 'main/<action>',
-    'POST field/post' => 'field/post'
+    'POST field/post' => 'field/post',
+    'GET, HEAD operator/user' => 'operator/user',
+    'GET, HEAD operator/lang' => 'operator/lang',
+    'GET, HEAD operator/item' => 'operator/item',
+    'GET, HEAD operator/game' => 'operator/game',
+    'GET, HEAD operator/file' => 'operator/file',
+    'GET, HEAD operator/field' => 'operator/field',
+    'GET, HEAD operator/categories' => 'operator/categories',
+    'GET, HEAD operator/permission' => 'operator/permission'
 /*
     'PUT,PATCH users/<id>' => 'user/update',
     'DELETE users/<id>' => 'user/delete',

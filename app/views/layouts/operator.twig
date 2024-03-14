@@ -1,0 +1,486 @@
+{{ use('app/assets/OperatorAsset') }}
+{{ register_operator_asset() }}
+{{ void(this.beginPage()) }}
+<!DOCTYPE html>
+<html lang="{{ app.language }}" xmlns="http://www.w3.org/1999/html">
+<head>
+    {{ void(this.registerCsrfMetaTags()) }}
+    {{ Html.csrfMetaTags() | raw }}
+    {{ void(this.registerMetaTag({'charset': app.charset}, 'charset')) }}
+    {{ void(this.registerMetaTag({'name': 'viewport', 'content': 'width=device-width, initial-scale=1, shrink-to-fit=no'})) }}
+    {{ void(this.registerLinkTag({'rel': 'icon', 'type': 'image/x-icon', 'href': Yii.getAlias('@web/favicon/favicon.ico')})) }}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ Html.encode(this.title) }} - 1paid</title>
+    {{ void(this.head) }}
+    <link rel="stylesheet" href="/css/operator.css">
+</head>
+<body>
+{{ void(this.beginBody()) }}
+<div class="" id="operator">
+    <!-- Menu -->
+
+    <div id="navbar" class="pmc py-1 h-14 rounded-full px-3 flex items-center gap-x-3 bg-white">
+        <div class="pmc-avatar overflow-hidden flex-shrink-0 rounded-full w-8 h-8"><img
+                    class="w-full h-full object-center object-contain"
+                    src=""
+                    alt="user avatar">
+        </div>
+        <div>
+            <div class="pmc-chip-bar flex gap-x-3 gap-y-2 items-center lg:flex-wrap lg:ml-auto">
+
+                <span>
+                    Меню
+                </span>
+            </div>
+
+
+            <div id="dropdown-menu" class="hidden absolute top-16 z-[100] h-profile-content rounded-[22px] w-full py-3 bg-white shadow-sm overflow-hidden">
+                <div class="np">
+                    <nav class="np-nav">
+                        <a
+                                class=" np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]"
+                                href="/profile">
+                            <div class="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path class="svg-icon" fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M10.96 8.28496C12.5719 7.06555 13.2053 4.99292 12.5375 3.12364C11.8696 1.25436 10.0475 0 8 0C5.95247 0 4.13036 1.25436 3.46251 3.12364C2.79466 4.99292 3.42813 7.06555 5.04 8.28496C1.99965 9.45436 0.00337721 12.2942 0 15.4548V16.2274C0 16.6541 0.358172 17 0.8 17C1.24183 17 1.6 16.6541 1.6 16.2274V15.4548C1.6 12.0412 4.46538 9.2739 8 9.2739C11.5346 9.2739 14.4 12.0412 14.4 15.4548V16.2274C14.4 16.6541 14.7582 17 15.2 17C15.6418 17 16 16.6541 16 16.2274V15.4548C15.9966 12.2942 14.0003 9.45436 10.96 8.28496ZM4.7998 4.6382C4.7998 2.9314 6.23249 1.54776 7.9998 1.54776C9.76712 1.54776 11.1998 2.9314 11.1998 4.6382C11.1998 6.345 9.76712 7.72864 7.9998 7.72864C7.15111 7.72864 6.33718 7.40304 5.73706 6.82347C5.13695 6.2439 4.7998 5.45783 4.7998 4.6382Z"
+                                          fill="#8a98b3"></path>
+                                </svg>
+                            </div>
+                            <div class="np-nav-label font-primary-med text-sm text-[#8a98b3] duration-200 group-hover:text-[#0C0C0C]">
+                                Мой профиль
+                            </div>
+                        </a>
+                        <a class="np-nav-item w-full h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]"
+                               href="/">
+                            <div class="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path class="svg-icon" fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M13.6 0H2.296C1.02978 0.0042394 0.00438903 0.994671 0 2.21773V14.6818C0 15.9621 1.07452 17 2.4 17H13.6C14.9255 17 16 15.9621 16 14.6818V2.31818C16 1.03789 14.9255 0 13.6 0ZM12.7199 1.54546C13.5004 1.50959 14.2007 2.00562 14.3999 2.73546C14.5531 3.27168 14.3961 3.84607 13.9889 4.23941C13.5817 4.63275 12.987 4.78436 12.4319 4.63637C11.6763 4.44397 11.1627 3.76757 11.1999 3.01364V1.54546H12.7199ZM9.60004 1.54546V3.09091C9.60226 3.59138 9.35344 4.06191 8.93235 4.35353C8.51127 4.64515 7.97005 4.72176 7.48004 4.5591C6.80262 4.33535 6.36153 3.70417 6.40004 3.01364V1.54546H9.60004ZM4.79995 1.54546V3.09091C4.80217 3.59138 4.55335 4.06191 4.13226 4.35353C3.71117 4.64515 3.16996 4.72176 2.67995 4.5591C2.00845 4.33694 1.56875 3.71403 1.59995 3.0291V2.31819C1.59995 1.89142 1.95812 1.54546 2.39995 1.54546H4.79995ZM5.6001 15.4545V11.5909C5.59945 10.8999 5.91794 10.2447 6.46877 9.80382C7.01959 9.36294 7.74531 9.18238 8.4481 9.31136C9.61048 9.55255 10.4305 10.5588 10.4001 11.7068V15.4545H5.6001ZM13.6001 15.4545H12.0001V11.5909C12.0003 10.4306 11.4607 9.33157 10.5302 8.59761C9.5998 7.86366 8.37712 7.57248 7.2001 7.80455C5.30355 8.21795 3.96757 9.86003 4.0001 11.7377V15.4545H2.4001C1.95827 15.4545 1.6001 15.1086 1.6001 14.6818V5.76455C2.5154 6.2662 3.62304 6.31783 4.5841 5.90364C4.988 5.72727 5.34401 5.46275 5.6241 5.13091C6.38601 5.95434 7.54488 6.32255 8.6641 6.09682C9.34408 5.96213 9.95634 5.60784 10.4001 5.09228C10.8557 5.63462 11.4969 6.00185 12.2081 6.12773C12.9602 6.2637 13.7379 6.13486 14.4001 5.76455V14.6818C14.4001 15.1086 14.0419 15.4545 13.6001 15.4545Z"
+                                          fill="#8a98b3"></path>
+                                </svg>
+                            </div>
+                            <div class="np-nav-label font-primary-med text-sm text-[#8a98b3] duration-200 group-hover:text-[#0C0C0C]">
+                                На главную
+                            </div>
+                        </a>
+
+                        <button class="bg-white np-nav-item h-11 w-full px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
+                            <div class="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
+                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path class="svg-icon" fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M3.88308 11.5556H1.55323V1.44444H3.88308C4.08905 1.44444 4.28657 1.36834 4.43222 1.2329C4.57786 1.09746 4.65969 0.913767 4.65969 0.722222C4.65969 0.530677 4.57786 0.346987 4.43222 0.211544C4.28657 0.0761015 4.08905 0 3.88308 0H0.776616C0.570644 0 0.37312 0.0761015 0.227477 0.211544C0.081833 0.346987 0 0.530677 0 0.722222V12.2778C0 12.4693 0.081833 12.6531 0.227477 12.7885C0.37312 12.9239 0.570644 13 0.776616 13H3.88308C4.08905 13 4.28657 12.9239 4.43222 12.7885C4.57786 12.6531 4.65969 12.4693 4.65969 12.2778C4.65969 12.0862 4.57786 11.9025 4.43222 11.7671C4.28657 11.6316 4.08905 11.5556 3.88308 11.5556ZM13.7539 5.98721L9.09416 1.65387C8.94586 1.52075 8.74677 1.44789 8.54069 1.45128C8.3346 1.45466 8.13842 1.53403 7.99527 1.67195C7.85212 1.80986 7.77373 1.99498 7.77737 2.18664C7.78101 2.37829 7.86638 2.56075 8.01468 2.69387L11.3463 5.79224H3.88308C3.67711 5.79224 3.47958 5.86829 3.33394 6.00374C3.1883 6.13918 3.10646 6.32291 3.10646 6.51446C3.10646 6.706 3.1883 6.88965 3.33394 7.02509C3.47958 7.16053 3.67711 7.23668 3.88308 7.23668H13.2025C13.36 7.24063 13.5151 7.19993 13.6472 7.11995C13.7792 7.03998 13.882 6.92449 13.9419 6.78891C14.0017 6.65332 14.0157 6.50403 13.9822 6.36084C13.9486 6.21764 13.869 6.08732 13.7539 5.98721ZM10.3756 8.47165L8.04573 10.2772C7.89022 10.4036 7.79509 10.5823 7.78126 10.774C7.76742 10.9657 7.83603 11.1546 7.97197 11.2992C8.10791 11.4438 8.30005 11.5323 8.50613 11.5452C8.71222 11.558 8.91536 11.4942 9.07087 11.3678L11.4007 9.56221C11.5562 9.43579 11.6514 9.25707 11.6652 9.06542C11.679 8.87377 11.6104 8.68486 11.4745 8.54024C11.3386 8.39563 11.1464 8.30723 10.9403 8.29436C10.7342 8.28149 10.5311 8.34523 10.3756 8.47165Z"
+                                          fill="#8a98b3"></path>
+                                </svg>
+                            </div>
+                            <div class="np-nav-label font-primary-med text-sm text-[#8a98b3] duration-200 group-hover:text-[#0C0C0C]">
+                                Выйти из аккаунта
+                            </div>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="document.getElementById('dropdown-menu').classList.toggle('hidden')" class="pmc-card-arrow bg-inherit h-profile-btn-open ml-auto text-[#D6D9EA] cursor-pointer hover:text-black">
+            <img class="" src="/img/icon-pmc-card-arrow.svg" alt="navpin-plate-icon">
+        </button>
+    </div>
+    <div class="layout-sidebar menu" style="display: block">
+        <div class="cm">
+            <div class="cm-inner">
+                <div class="cm-h relative pt-8 bg-center bg-[url('/img/fon-logo.svg')]">
+                    <div class="cm-h-inner flex justify-between items-center">
+                        <div class="logo w-[180px] 3xl:w-[150px] xl:w-[120px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
+                            <img class="logo__dots lg:h-[100%] xl:w-1/2" src="/img/dots-1.82560447.svg"
+                                 alt="1paid.ru"><img class="logo-pic" src="/img/logo.7fb09570.svg" alt="1paid.ru"></div>
+
+                    </div>
+                    <div class="absolute inset-0 h-[86%] w-full shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]"></div>
+                </div>
+                <div class="cm-b mt-4">
+                    <div class="cm-container">
+                        <!--                        <div class="tsc flex gap-2 p-1.5 xl:py-4 xl:px-3 mb-10">-->
+                        <!--                            <div class="tsc-item flex gap-x-3 items-center">-->
+                        <!--                                <button class="btn btn-secondary tsc-item-btn flex-shrink-0 w-10 h-10 [&amp;_svg]:w-1/3 xl:w-[50px] xl:h-[50px]"-->
+                        <!--                                        disabled=""><img src="/img/icon-tsc-item-btn.svg" alt="icon-tsc-item-btn">-->
+                        <!--                                </button>-->
+                        <!--                                <div class="tsc-item-info">-->
+                        <!--                                    <div class="tsc-item-value text-black text-sm">181 924 365</div>-->
+                        <!--                                    <div class="tsc-item-label mt-0.5 text-xs">Куплено товаров</div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="tsc-item flex gap-x-2.5 items-center">-->
+                        <!--                                <button class="btn btn-primary tsc-item-btn flex-shrink-0 w-10 h-10 [&amp;_svg]:w-1/3 xl:w-[50px] xl:h-[50px]"-->
+                        <!--                                        disabled=""><img src="/img/icon-tsc-item-btn-2.svg" alt="icon-tsc-item-btn">-->
+                        <!--                                </button>-->
+                        <!--                                <div class="tsc-item-info">-->
+                        <!--                                    <div class="tsc-item-value text-black text-sm">486 532</div>-->
+                        <!--                                    <div class="tsc-item-label mt-0.5 text-xs">Пользователей</div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <div class="cm-nav mt-6 3xl:mt-10 xl:mt-8">
+                            <div class="navpin">
+                                <a href="/operator/user">
+                                    <button class="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
+                                        <div class="navpin-plate"><img class="navpin-plate-pic"
+                                                                       src="/img/link-pin-plate.6d928d3b.svg"
+                                                                       alt="dots"><img class="navpin-plate__dots-1"
+                                                                                       src="/img/dots-1.82560447.svg"
+                                                                                       alt="dots"><img
+                                                    class="navpin-plate__dots-2" src="/img/dots-1.82560447.svg"
+                                                    alt="dots">
+                                            <div class="navpin-plate-icon">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="navpin-text uppercase ml-7 text-xs 2xl:text-sm">Пользователи
+                                        </div>
+
+                                    </button>
+                                </a>
+                                <a href="/operator/permission">
+                                    <button class="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
+                                        <div class="navpin-plate"><img class="navpin-plate-pic"
+                                                                       src="/img/link-pin-plate.6d928d3b.svg"
+                                                                       alt="dots"><img class="navpin-plate__dots-1"
+                                                                                       src="/img/dots-1.82560447.svg"
+                                                                                       alt="dots"><img
+                                                    class="navpin-plate__dots-2" src="/img/dots-1.82560447.svg"
+                                                    alt="dots">
+                                            <div class="navpin-plate-icon">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="navpin-text uppercase ml-7 text-xs 2xl:text-sm">Права
+                                        </div>
+
+                                    </button>
+                                </a>
+                                <a href="/operator/category">
+                                    <button class="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
+                                        <div class="navpin-plate"><img class="navpin-plate-pic"
+                                                                       src="/img/link-pin-plate.6d928d3b.svg"
+                                                                       alt="dots"><img class="navpin-plate__dots-1"
+                                                                                       src="/img/dots-1.82560447.svg"
+                                                                                       alt="dots"><img
+                                                    class="navpin-plate__dots-2" src="/img/dots-1.82560447.svg"
+                                                    alt="dots">
+                                            <div class="navpin-plate-icon">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="navpin-text uppercase ml-7 text-xs 2xl:text-sm">Категории</div>
+                                    </button>
+                                </a>
+                                <a href="/operator/field">
+                                    <button class="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
+                                        <div class="navpin-plate"><img class="navpin-plate-pic"
+                                                                       src="/img/link-pin-plate.6d928d3b.svg"
+                                                                       alt="dots"><img class="navpin-plate__dots-1"
+                                                                                       src="/img/dots-1.82560447.svg"
+                                                                                       alt="dots"><img
+                                                    class="navpin-plate__dots-2" src="/img/dots-1.82560447.svg"
+                                                    alt="dots">
+                                            <div class="navpin-plate-icon">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="navpin-text uppercase ml-7 text-xs 2xl:text-sm">Поля</div>
+                                    </button>
+                                </a>
+                                <a href="/operator/file">
+                                    <button class="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
+                                        <div class="navpin-plate"><img class="navpin-plate-pic"
+                                                                       src="/img/link-pin-plate.6d928d3b.svg"
+                                                                       alt="dots"><img class="navpin-plate__dots-1"
+                                                                                       src="/img/dots-1.82560447.svg"
+                                                                                       alt="dots"><img
+                                                    class="navpin-plate__dots-2" src="/img/dots-1.82560447.svg"
+                                                    alt="dots">
+                                            <div class="navpin-plate-icon">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="navpin-text uppercase ml-7 text-xs 2xl:text-sm">Файлы</div>
+                                    </button>
+                                </a>
+                                <a href="/operator/game">
+                                    <button class="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
+                                        <div class="navpin-plate"><img class="navpin-plate-pic"
+                                                                       src="/img/link-pin-plate.6d928d3b.svg"
+                                                                       alt="dots"><img class="navpin-plate__dots-1"
+                                                                                       src="/img/dots-1.82560447.svg"
+                                                                                       alt="dots"><img
+                                                    class="navpin-plate__dots-2" src="/img/dots-1.82560447.svg"
+                                                    alt="dots">
+                                            <div class="navpin-plate-icon">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="navpin-text uppercase ml-7 text-xs 2xl:text-sm">Игры
+                                        </div>
+
+                                    </button>
+                                </a>
+                                <a href="/operator/item">
+                                    <button class="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
+                                        <div class="navpin-plate"><img class="navpin-plate-pic"
+                                                                       src="/img/link-pin-plate.6d928d3b.svg"
+                                                                       alt="dots"><img class="navpin-plate__dots-1"
+                                                                                       src="/img/dots-1.82560447.svg"
+                                                                                       alt="dots"><img
+                                                    class="navpin-plate__dots-2" src="/img/dots-1.82560447.svg"
+                                                    alt="dots">
+                                            <div class="navpin-plate-icon">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="navpin-text uppercase ml-7 text-xs 2xl:text-sm">Товары
+                                        </div>
+
+                                    </button>
+                                </a>
+                                <a href="/operator/lang">
+                                    <button class="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
+                                        <div class="navpin-plate"><img class="navpin-plate-pic"
+                                                                       src="/img/link-pin-plate.6d928d3b.svg"
+                                                                       alt="dots"><img class="navpin-plate__dots-1"
+                                                                                       src="/img/dots-1.82560447.svg"
+                                                                                       alt="dots"><img
+                                                    class="navpin-plate__dots-2" src="/img/dots-1.82560447.svg"
+                                                    alt="dots">
+                                            <div class="navpin-plate-icon">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M20 4H9C8.20435 4 7.44129 4.31607 6.87868 4.87868C6.31607 5.44129 6 6.20435 6 7V24.8C6.00064 25.2303 6.25209 25.6207 6.64357 25.7992C7.03506 25.9777 7.4947 25.9116 7.82 25.63L10.5 23.33L13.29 25.72C13.6649 26.0427 14.2091 26.0754 14.62 25.8L18.42 23.26L21.18 25.63C21.5053 25.9116 21.9649 25.9777 22.3564 25.7992C22.7479 25.6207 22.9994 25.2303 23 24.8V7C23 5.34315 21.6569 4 20 4ZM9.78 21.3L8 22.83V7C8 6.44772 8.44771 6 9 6H20C20.5523 6 21 6.44772 21 7V22.84L19.21 21.29C18.8337 20.9706 18.2918 20.938 17.88 21.21L14.08 23.75L11.22 21.3C10.8036 20.9505 10.1964 20.9505 9.78 21.3Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 10H12C11.4477 10 11 9.55228 11 9C11 8.44772 11.4477 8 12 8H19C19.5523 8 20 8.44772 20 9C20 9.55228 19.5523 10 19 10Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M19 14H15C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12H19C19.5523 12 20 12.4477 20 13C20 13.5523 19.5523 14 19 14Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                    <path d="M11 16H19C19.5523 16 20 16.4477 20 17C20 17.5523 19.5523 18 19 18H11C10.4477 18 10 17.5523 10 17C10 16.4477 10.4477 16 11 16Z"
+                                                          fill="currentColor"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="navpin-text uppercase ml-7 text-xs 2xl:text-sm">Языки
+                                        </div>
+
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--                <div class="cm-f pb-10">-->
+                <!--                    <div class="cm-container flex flex-col items-center"><a-->
+                <!--                                class="rounded-full border-[1px] border-solid border-[#C0C2DC59] max-w-none w-full h-10 px-3 flex justify-center items-center hover:bg-slate-100 xl:max-w-[160px] xl:h-12"-->
+                <!--                                href="#">-->
+                <!--                            <div class="btn-text font-secondary-bold text-sm text-[#A1AEC8] text-xs 3xl:text-sm">Выбор-->
+                <!--                                игры-->
+                <!--                            </div>-->
+                <!--                        </a>-->
+                <!--                        <div class="cm-f-bar mt-3 overflow-hidden flex w-full h-auto rounded-xl border-[1px] border-solid border-[#C0C2DC59] flex-col xl:flex-row xl:h-16 xl:rounded-full">-->
+                <!--                            <a class="cm-f-bar-item h-12 flex items-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100 3xl:px-4 xl:h-full"-->
+                <!--                               href="#">-->
+                <!--                                <div class="cm-f-bar-item-icon flex-shrink-0">-->
+                <!--                                    <svg width="20" height="18" viewBox="0 0 20 18" fill="none"-->
+                <!--                                         xmlns="http://www.w3.org/2000/svg">-->
+                <!--                                        <path fill-rule="evenodd" clip-rule="evenodd"-->
+                <!--                                              d="M17.2727 5.10197H14.5455V3.28379C14.5455 1.77756 13.3244 0.556519 11.8182 0.556519H2.72727C1.22104 0.556519 0 1.77756 0 3.28379V8.73834C0 10.2446 1.22104 11.4656 2.72727 11.4656H4.13636L5.45455 12.9292V13.2565C5.45455 14.7628 6.67559 15.9838 8.18182 15.9838H11.4091L12.7818 17.5383C13.0407 17.8319 13.4132 18 13.8045 18C14.1959 18 14.5684 17.8319 14.8273 17.5383L16.2 15.9838H17.2727C18.779 15.9838 20 14.7628 20 13.2565V7.80197C19.985 6.3064 18.7684 5.1019 17.2727 5.10197ZM2.72727 9.64743C2.2252 9.64743 1.81818 9.24041 1.81818 8.73834V3.28379C1.81818 2.78171 2.2252 2.3747 2.72727 2.3747H11.8182C12.3203 2.3747 12.7273 2.78171 12.7273 3.28379V8.73834C12.7273 9.24041 12.3203 9.64743 11.8182 9.64743H8.11818L6.53636 11.4656L4.95455 9.64743H2.72727ZM17.2727 14.1929C17.7748 14.1929 18.1818 13.7859 18.1818 13.2838V7.84742C18.1818 7.34534 17.7748 6.93833 17.2727 6.93833H14.5455V8.75651C14.5455 10.2627 13.3244 11.4838 11.8182 11.4838H8.92727L7.55455 13.0383C7.4717 13.1321 7.37696 13.2146 7.27273 13.2838C7.27273 13.7859 7.67974 14.1929 8.18182 14.1929H12.2273L13.8091 16.0838L15.3909 14.1929H17.2727Z"-->
+                <!--                                              fill="currentColor"></path>-->
+                <!--                                    </svg>-->
+                <!--                                </div>-->
+                <!--                                <div class="cm-f-bar-item-label font-secondary-bold text-xs 3xl:text-sm">Мои Сообщения-->
+                <!--                                </div>-->
+                <!--                            </a>-->
+                <!--                            <div class="cm-f-bar-sep w-full h-[1px] flex-shrink-0 bg-[#C0C2DC59] xl:h-full xl:w-[1px]"></div>-->
+                <!--                            <a class="cm-f-bar-item h-12 flex items-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100 3xl:px-4 xl:h-full"-->
+                <!--                               href="#">-->
+                <!--                                <div class="cm-f-bar-item-icon flex-shrink-0">-->
+                <!--                                    <svg width="20" height="14" viewBox="0 0 20 14" fill="none"-->
+                <!--                                         xmlns="http://www.w3.org/2000/svg">-->
+                <!--                                        <path fill-rule="evenodd" clip-rule="evenodd"-->
+                <!--                                              d="M17.2727 4.33194H16.3636C16.1681 4.33414 15.9732 4.35545 15.7818 4.39557C14.7435 2.13731 12.4855 0.690216 10 0.690216C7.51449 0.690216 5.25645 2.13731 4.21818 4.39557C4.02678 4.35545 3.83191 4.33414 3.63636 4.33194H2.72727C1.22104 4.33194 0 5.55298 0 7.05921V10.6956C0 12.2018 1.22104 13.4228 2.72727 13.4228H3.63636C5.14259 13.4228 6.36364 12.2018 6.36364 10.6956V7.05921C6.35858 6.45136 6.15061 5.86263 5.77273 5.38648C6.45841 3.65157 8.13451 2.51175 10 2.51175C11.8655 2.51175 13.5416 3.65157 14.2273 5.38648C13.8494 5.86263 13.6414 6.45136 13.6364 7.05921V10.6956C13.6364 12.2018 14.8574 13.4228 16.3636 13.4228H17.2727C18.779 13.4228 20 12.2018 20 10.6956V7.05921C20 5.55298 18.779 4.33194 17.2727 4.33194ZM4.54545 10.6956C4.54545 11.1977 4.13844 11.6047 3.63636 11.6047H2.72727C2.2252 11.6047 1.81818 11.1977 1.81818 10.6956V7.05923C1.81818 6.55716 2.2252 6.15014 2.72727 6.15014H3.63636C4.13844 6.15014 4.54545 6.55716 4.54545 7.05923V10.6956ZM17.2727 11.6047C17.7748 11.6047 18.1818 11.1977 18.1818 10.6956V7.05923C18.1818 6.55716 17.7748 6.15014 17.2727 6.15014H16.3636C15.8616 6.15014 15.4545 6.55716 15.4545 7.05923V10.6956C15.4545 11.1977 15.8616 11.6047 16.3636 11.6047H17.2727Z"-->
+                <!--                                              fill="currentColor"></path>-->
+                <!--                                    </svg>-->
+                <!--                                </div>-->
+                <!--                                <div class="cm-f-bar-item-label font-secondary-bold text-xs 3xl:text-sm">Тех.-->
+                <!--                                    Поддержка-->
+                <!--                                </div>-->
+                <!--                            </a></div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+        </div>
+    </div>
+    <div class="main">
+
+        {{ content | raw }}
+    </div>
+</div>
+<div>
+</div>
+{{ void(this.endBody()) }}
+<div id="modal"></div>
+</body>
+<script type="module" src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script type="module" src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script type="module" src="/js/main.js"></script>
+</html>
+{{ void(this.endPage()) }}
