@@ -101,6 +101,9 @@ function LeftMenu(props) {
         } else {
             navigate('/tech-support');
         };
+        window.scrollTo({ 
+            top: 0,  
+        }); 
     };
   
     useEffect(() => {
