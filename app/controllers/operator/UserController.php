@@ -2,11 +2,15 @@
 
 namespace app\controllers\operator;
 
+use app\forms\AvatarForm;
+use app\models\File;
 use app\models\User;
 use app\search\UserSearch;
+use app\services\FileService;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -14,6 +18,7 @@ use yii\filters\VerbFilter;
 class UserController extends Controller
 {
     public $layout = 'operator';
+
     /**
      * @inheritDoc
      */
@@ -93,13 +98,37 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $file = new AvatarForm();
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            if (!empty((array)UploadedFile::getInstance($file, 'imageFile'))) {
+                $fileData = (array)UploadedFile::getInstance($file, 'imageFile');
+                $fileData['full_path'] = $fileData['fullPath'];
+                $fileData['tmp_name'] = $fileData['tempName'];
+
+                $save_avatar = FileService::uploadImage($fileData, $id);
+
+                if ($save_avatar['success'] == true) {
+                    ?>
+                    <script>alert('аватар успешно загружен')</script>
+                    <?php
+
+                } else {
+                    ?>
+                    <script>alert('ошибка загрузки аватара')</script>
+                    <?php
+
+                }
+            }
+            if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'file' => new AvatarForm()
         ]);
     }
 

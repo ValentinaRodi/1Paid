@@ -30,7 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'game_id',
+            'game_name',
+//            'english',
             'lang_id',
             'seo_name',
             'sort',
@@ -38,8 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
             //'updated_at',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Category $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
+                'urlCreator' => function ($action,  $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model['id']]);
                  }
             ],
         ],

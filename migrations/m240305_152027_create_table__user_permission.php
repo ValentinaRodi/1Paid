@@ -23,8 +23,8 @@ class m240305_152027_create_table__user_permission extends Migration
         }
 
         $this->createTable($this->tableName, [
-            'user_id' => $this->primaryKey()->unsigned()->notNull(),
-            'permission_id' => $this->integer()->notNull(),
+            'user_id' => $this->integer()->unsigned()->notNull(),
+            'permission_id' => $this->integer()->unsigned()->notNull(),
         ], $collation);
 
         $this->createIndex(

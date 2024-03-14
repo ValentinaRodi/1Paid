@@ -3,7 +3,9 @@
 namespace app\controllers\operator;
 
 use app\models\Category;
+use app\models\Field;
 use app\search\CategorySearch;
+use yii\db\Query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -57,8 +59,13 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
+        $searchFieldModel = new CategorySearch();
+        $dataProvider = $searchFieldModel->fieldSearch($id);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchFieldModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -94,13 +101,18 @@ class CategoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $searchFieldModel = new CategorySearch();
+        $dataProvider = $searchFieldModel->fieldSearch($id);
 
+//        $fields_arr = $this->findFields($id);
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'searchModel' => $searchFieldModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -130,6 +142,38 @@ class CategoryController extends Controller
         if (($model = Category::findOne(['id' => $id])) !== null) {
             return $model;
         }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Finds the Fields model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param int $category_id ID
+     * @return Field the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findFields($category_id)
+    {
+        $query = new Query();
+        $query->select(['field_category.field_id', 'field_category.category_id',
+            'field.id', 'field.seo_name', 'field.lang_id',
+            'field.type', 'field.created_at', 'field.updated_at', 'field.search'])
+            ->from('field_category')
+            ->join('LEFT JOIN', 'field', 'field.id = field_category.field_id')
+            ->where(['field_category.category_id' => $category_id]);
+
+        $fields_arr = $query->all();
+        $command = $query->createCommand();
+        $fields_arr = $command->queryAll();
+
+        if (!empty($rows)) {
+            return $fields_arr;
+        }
+
+//        if (($model = Field::findOne(['id' => $category_id])) !== null) {
+//            return $model;
+//        }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }

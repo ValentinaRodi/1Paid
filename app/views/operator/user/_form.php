@@ -28,10 +28,20 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'updated_at')->textInput(['readonly' => true]) ?>
 
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
+    <div class="avatar-upload">
 
+        <?php $formSave = ActiveForm::begin() ?>
+
+        <?= $formSave->field($file, 'imageFile')->fileInput() ?>
+
+
+        <button class="btn">Сохранить аватар</button>
+
+        <?php ActiveForm::end() ?>
+    </div>
 </div>

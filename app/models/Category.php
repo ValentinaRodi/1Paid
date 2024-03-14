@@ -17,6 +17,9 @@ use Yii;
  */
 class Category extends \yii\db\ActiveRecord
 {
+    public string $game_name;
+    public string $russian;
+    public string $english;
     /**
      * {@inheritdoc}
      */

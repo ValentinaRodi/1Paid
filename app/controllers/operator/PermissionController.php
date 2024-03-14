@@ -140,7 +140,7 @@ class PermissionController extends Controller
 //            }
 //        }
 
-        if (($model = Permission::findOne(['id' => $id])) !== null) {
+        if (($model = Permission::findOne(['permission.id' => $id])) !== null) {
             return $model;
         }
 

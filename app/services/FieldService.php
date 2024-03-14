@@ -35,5 +35,4 @@ class FieldService
         // Add min|max values
         return $fields;
     }
-
 }

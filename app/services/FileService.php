@@ -35,9 +35,14 @@ class FileService
 
     }
 
-    public static function uploadImage($fileData): array
+    public static function uploadImage($fileData, $user_id = null): array
     {
+
         $validateFile = self::validateImage($fileData);
+
+        if (empty($user_id)){
+            $user_id = Yii::$app->user->id;
+        }
 
         if ($validateFile['success'] == true) {
             $path = $_SERVER["DOCUMENT_ROOT"] . "/uploads/avatars/";
@@ -69,8 +74,9 @@ class FileService
                     $file->original_name = preg_replace('/\.[^.]+$/', '', $fileData['name']);;
                     $file->hashed_name = $hashedName;
                     $file->extension = 'png';
-                    $file->user_id = Yii::$app->user->id;
+                    $file->user_id = $user_id;
                     $file->size = $fileData['size'];
+                    $file->created_at = date('Y-m-d H:i:s');
                     $file->save();
 
                     $fileNamesList[$directory] = $hashedName;
