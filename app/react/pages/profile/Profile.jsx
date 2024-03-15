@@ -408,7 +408,7 @@ function Profile() {
                     </div>
                 </div>
             </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>
        
     )

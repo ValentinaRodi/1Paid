@@ -180,7 +180,7 @@ function MyAchievements() {
               </div>
               </div>
             </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>
     );
 };

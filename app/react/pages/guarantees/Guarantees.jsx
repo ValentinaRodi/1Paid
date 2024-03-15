@@ -102,7 +102,7 @@ function Guarantees() {
                     </section>
                 </div>
             </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>
     );
 };

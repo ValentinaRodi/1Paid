@@ -113,7 +113,7 @@ function OrderTable() {
                     </a>
                 </div>
             </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>  
        
     );

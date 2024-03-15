@@ -291,7 +291,7 @@ function Catalog() {
                     </div>
                 </div>
             </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>  
        
     );

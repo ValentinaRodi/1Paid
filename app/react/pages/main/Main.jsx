@@ -31,7 +31,7 @@ function Main() {
                 </div>
                 <CardsGame />
             </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>  
           
     );

@@ -161,7 +161,7 @@ function HistorySales() {
                     </div>
                 </div>
             </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>  
        
     );

@@ -208,7 +208,7 @@ function Faq() {
                     </section>
                 </div>
             </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>
     );
 };

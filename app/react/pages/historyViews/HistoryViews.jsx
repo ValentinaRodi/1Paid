@@ -188,7 +188,7 @@ function HistoryViews() {
                         }
                     </div>
                 </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>  
        
     );

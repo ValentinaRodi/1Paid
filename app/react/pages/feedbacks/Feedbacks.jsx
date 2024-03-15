@@ -146,7 +146,7 @@ function Feedbacks() {
                     </div>
                 </div>
             </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>
     );
 };

@@ -152,7 +152,7 @@ function MyTovars() {
                         </div>
                     </div>
             </div>
-            <LayoutBtn />
+            <LayoutBtn toTop='true'/>
         </div>
     );
 };

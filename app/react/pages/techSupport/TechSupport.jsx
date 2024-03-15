@@ -2,11 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import {  Link} from 'react-router-dom';
 import uuid from 'react-uuid';
 import LayoutBtn from '../../components/LayoutBtn';
-import ChatMessageSupport from "../../components/chatMessage/ChatMessageSupport";
+import ChatMessageMy from "../../components/chatMessage/ChatMessageMy";
 import ChatMessageUser from "../../components/chatMessage/ChatMessageUser";
 import StarRating from "../../components/starRating/StarRating";
 
 function TechSupport() {
+    const [newDate, setNewDate] = useState(true);
     const bottomRef = useRef(null);
 
     useEffect(() => {
@@ -69,73 +70,22 @@ function TechSupport() {
                         </div>
                         <div ref={bottomRef} className="chat-messages  px-8 py-6 h-[515px] overflow-hidden overflow-y-scroll">
                             <div className="flex flex-col flex-grow justify-end">
-                                <ChatMessageSupport tail='true' icon='true' time='22:23' text='Привет, как дела ?' date='true'/>
-                                <ChatMessageSupport time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой '/>
-                                <ChatMessageSupport tail='true' icon='true' time='22:23' text='Привет, как дела ?'/>
-                                <ChatMessageSupport tail='true' icon='true' time='22:23' text='Привет, как дела ?'/>
+                                <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?' date='true'/>
+                                <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой '/>
+                                {(newDate) ? 
+                                    <div className="px-3 w-[86px] mx-auto py-1 mb-[18px] rounded-[34px] bg-[#0000000D] font-roboto text-xs text-[#979797B2]">12.09.2019</div>
+                                    : null
+                                }
+                                <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?' date='true'/>
+                                <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой '/>
+                                <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?'/>
+                                <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?'/>
                                 <ChatMessageUser time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой'/>
-                                <ChatMessageUser tail='true' icon='avatar-example-1.efb6cc72.png' time='22:23' text='Привет, как дела ?'/>
+                                <ChatMessageUser tail='true' avatar='avatar-example-1.efb6cc72.png' time='22:23' text='Привет, как дела ?'/>
                             </div>
                         </div>
                         <div className="chat-form flex flex-col mt-4 gap-6">
                             <div className="flex flex-col px-6 gap-6">
-                                {/* <div className="rating flex justify-center items-center w-full mx-auto">
-                                    <span className="rating-star flex cursor-pointer mr-[5px] last:mr-0 rating-full">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22" fill="none">
-                                            <path d="M11.5 0L14.1942 8.2918H22.9127L15.8593 13.4164L18.5534 21.7082L11.5 16.5836L4.44658 21.7082L7.14074 13.4164L0.0873222 8.2918H8.80583L11.5 0Z" fill="#ECECEC"></path>
-                                            <defs>
-                                                <linearGradient id="paint0_linear_33_44806" x1="-0.5" y1="12.4138" x2="23.5" y2="12.4138" gradientUnits="userSpaceOnUse">
-                                                    <stop stopColor="#FB9B41"></stop>
-                                                    <stop offset="1" stopColor="#F2B96D"></stop>
-                                                </linearGradient>
-                                            </defs>
-                                        </svg>
-                                    </span>
-                                    <span className="rating-star flex cursor-pointer mr-[5px] last:mr-0 rating-full">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22" fill="none">
-                                            <path d="M11.5 0L14.1942 8.2918H22.9127L15.8593 13.4164L18.5534 21.7082L11.5 16.5836L4.44658 21.7082L7.14074 13.4164L0.0873222 8.2918H8.80583L11.5 0Z" fill="#ECECEC"></path>
-                                            <defs>
-                                                <linearGradient id="paint0_linear_33_44806" x1="-0.5" y1="12.4138" x2="23.5" y2="12.4138" gradientUnits="userSpaceOnUse">
-                                                    <stop stopColor="#FB9B41"></stop>
-                                                    <stop offset="1" stopColor="#F2B96D"></stop>
-                                                </linearGradient>
-                                            </defs>
-                                        </svg>
-                                    </span>
-                                    <span className="rating-star flex cursor-pointer mr-[5px] last:mr-0 rating-full">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22" fill="none">
-                                            <path d="M11.5 0L14.1942 8.2918H22.9127L15.8593 13.4164L18.5534 21.7082L11.5 16.5836L4.44658 21.7082L7.14074 13.4164L0.0873222 8.2918H8.80583L11.5 0Z" fill="#ECECEC"></path>
-                                            <defs>
-                                                <linearGradient id="paint0_linear_33_44806" x1="-0.5" y1="12.4138" x2="23.5" y2="12.4138" gradientUnits="userSpaceOnUse">
-                                                    <stop stopColor="#FB9B41"></stop>
-                                                    <stop offset="1" stopColor="#F2B96D"></stop>
-                                                </linearGradient>
-                                            </defs>
-                                        </svg>
-                                    </span>
-                                    <span className="rating-star flex cursor-pointer mr-[5px] last:mr-0 rating-full">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22" fill="none">
-                                            <path d="M11.5 0L14.1942 8.2918H22.9127L15.8593 13.4164L18.5534 21.7082L11.5 16.5836L4.44658 21.7082L7.14074 13.4164L0.0873222 8.2918H8.80583L11.5 0Z" fill="#ECECEC"></path>
-                                            <defs>
-                                                <linearGradient id="paint0_linear_33_44806" x1="-0.5" y1="12.4138" x2="23.5" y2="12.4138" gradientUnits="userSpaceOnUse">
-                                                    <stop stopColor="#FB9B41"></stop>
-                                                    <stop offset="1" stopColor="#F2B96D"></stop>
-                                                </linearGradient>
-                                            </defs>
-                                        </svg>
-                                    </span>
-                                    <span className="rating-star flex cursor-pointer mr-[5px] last:mr-0 ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22" fill="none">
-                                            <path d="M11.5 0L14.1942 8.2918H22.9127L15.8593 13.4164L18.5534 21.7082L11.5 16.5836L4.44658 21.7082L7.14074 13.4164L0.0873222 8.2918H8.80583L11.5 0Z" fill="#ECECEC"></path>
-                                            <defs>
-                                                <linearGradient id="paint0_linear_33_44806" x1="-0.5" y1="12.4138" x2="23.5" y2="12.4138" gradientUnits="userSpaceOnUse">
-                                                    <stop stopColor="#FB9B41"></stop>
-                                                    <stop offset="1" stopColor="#F2B96D"></stop>
-                                                </linearGradient>
-                                            </defs>
-                                        </svg>
-                                    </span>
-                                </div> */}
                                 <StarRating />
                                 <div className="chat-tech-types flex items-center mx-auto font-secondary-med text-[14px]">
                                     <div className="chat-tech-types flex items-center bg-[#E9EDF5] hover:bg-[#D1D5DB] text-black mr-[12px] py-[8px] px-[16px] rounded-full cursor-pointer">Финансы</div>
