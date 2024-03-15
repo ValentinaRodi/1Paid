@@ -8,6 +8,7 @@ use app\models\{
 };
 use yii\base\ErrorException;
 use yii\base\Security;
+use yii\db\Query;
 
 class FileService
 {
@@ -40,7 +41,7 @@ class FileService
 
         $validateFile = self::validateImage($fileData);
 
-        if (empty($user_id)){
+        if (empty($user_id)) {
             $user_id = Yii::$app->user->id;
         }
 
@@ -77,6 +78,7 @@ class FileService
                     $file->user_id = $user_id;
                     $file->size = $fileData['size'];
                     $file->created_at = date('Y-m-d H:i:s');
+                    $file->path = '/avatars/' . $directory . '/' . $hashedName;
                     $file->save();
 
                     $fileNamesList[$directory] = $hashedName;
@@ -108,6 +110,65 @@ class FileService
             'success' => false,
             'errors' => $validateFile['errors']
         ];
+    }
+
+    public static function deleteFile($id)
+    {
+        $path = $_SERVER["DOCUMENT_ROOT"] . "/uploads";
+        $fileData = File::find()
+            ->where(['id' => $id])
+            ->asArray()->all();
+        $fileData = $fileData[0];
+
+        if ($fileData['path'] != '0' && unlink($path . $fileData['path'] . '.' . $fileData['extension'])) {
+
+            return [
+                'success' => 'true',
+            ];
+        } else {
+
+            $full_path_with_file_name = self::searchFileFolder($path, $fileData['hashed_name'] . '.' . $fileData['extension']);
+            if (unlink($full_path_with_file_name[0])) {
+                return [
+                    'success' => 'true',
+                ];
+            }
+
+            return [
+                'success' => 'false',
+                'error' => 'path not found'
+            ];
+        }
+    }
+
+    public static function searchFileFolder($folderName, $fileName)
+    {
+        $found = array();
+        $folderName = rtrim($folderName, '/');
+
+        $dir = opendir($folderName); // открываем текущую папку
+
+        // перебираем папку, пока есть файлы
+        while (($file = readdir($dir)) !== false) {
+            $file_path = "$folderName/$file";
+
+            if ($file == '.' || $file == '..') continue;
+
+            // это файл проверяем имя
+            if (is_file($file_path)) {
+                // если имя файла искомое, то вернем путь до него
+                if (false !== strpos($file, $fileName)) $found[] = $file_path;
+            } // это папка, то рекурсивно вызываем search_file
+            elseif (is_dir($file_path)) {
+                $res = self::searchFileFolder($file_path, $fileName);
+                $found = array_merge($found, $res);
+            }
+
+        }
+
+        closedir($dir); // закрываем папку
+
+        return $found;
     }
 
     public static function resizeImage($fileData, $sizeWidth, $sizeHeight)

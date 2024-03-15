@@ -2,16 +2,19 @@ body {
     display: block !important;
 
 }
+
 #navbar {
     position: fixed;
     width: 150px;
     right: 30px;
     top: 30px;
 }
-#dropdown-menu{
+
+#dropdown-menu {
     width: 300px;
     right: 0;
 }
+
 #operator {
     display: flex;
     flex-flow: row nowrap;
@@ -19,32 +22,34 @@ body {
 }
 
 .btn {
-    width:130px;
+    width: 130px;
     background-color: #198754;
     color: black;
 }
 
-input[readonly]
-{
+input[readonly] {
     background-color: #c2c2c2;
 }
+
 .main {
-    margin:30px;
+    margin: 30px;
 }
 
 .hidden {
-    display:none;
+    display: none;
 }
 
 .category-form, .category-view {
     width: 300px;
 }
+
 .category-view p {
-    display:  flex;
+    display: flex;
     flex-flow: row nowrap;
     margin-bottom: 15px;
     justify-content: space-between;
 }
+
 .category-view p a {
 
 }
@@ -56,11 +61,18 @@ input[readonly]
 .user-form .avatar-upload {
     margin: 15px 0;
 }
-.user-form .avatar-upload form{
+
+.user-form .avatar-upload form {
     display: flex;
 
 }
 
-.user-form .avatar-upload  label{
+.user-form .avatar-upload label {
     display: none;
+}
+
+.file-index input[type="checkbox"], .field-grid input[type="checkbox"] {
+    height: 100%;
+    width: 100%;
+    visibility: visible;
 }

@@ -23,12 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
  */?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?=Html::beginForm(['operator/file/checkbox-delete'],'post');?>
+    <?=Html::submitButton('Удалить выбранные', ['class' => 'btn btn-danger mt-3 mb-3','data-confirm' =>
+        Yii::t('yii', 'Вы уверены, что хотите удалить данные записи? Восстановить их будет нельзя.'),]);
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\CheckboxColumn'],
 
             'id',
             'original_name',
@@ -47,5 +51,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-
+    <?= Html::endForm();?>
 </div>

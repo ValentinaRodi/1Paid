@@ -4,6 +4,7 @@ namespace app\controllers\operator;
 
 use app\models\Field;
 use app\search\FieldSearch;
+use app\services\FieldService;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -113,9 +114,29 @@ class FieldController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+//        $this->findModel($id)->delete();
+// удалить запись из field_category
 
         return $this->redirect(['index']);
+    }
+
+    public function actionCheckboxDelete()
+    {
+        $data = \Yii::$app->request->post();
+        $selection = $data['selection'];
+        $category_id = $data['category_id'];
+
+        foreach ($selection as $field_id) {
+            // внимание - костыль - id по какойт+-то причине начинается с 0
+            // временное решение - увеличение на 1
+            $field_id = (int)$field_id + 1;
+
+            FieldService::deleteFieldFromCategory($field_id, $category_id);
+//            $this->findModel($field_id)->delete();
+        }
+        die();
+        return $this->redirect(['index']);
+
     }
 
     /**

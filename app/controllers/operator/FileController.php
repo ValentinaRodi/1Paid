@@ -4,6 +4,7 @@ namespace app\controllers\operator;
 
 use app\models\File;
 use app\search\FileSearch;
+use app\services\FileService;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -113,8 +114,28 @@ class FileController extends Controller
      */
     public function actionDelete($id)
     {
+        $delete_response = FileService::deleteFile($id);
+        if ($delete_response['success'] == 'false') {
+            // err
+            echo 'error';
+        }
         $this->findModel($id)->delete();
 
+        return $this->redirect(['index']);
+    }
+
+    public function actionCheckboxDelete()
+    {
+        $selection = \Yii::$app->request->post('selection');
+        foreach ($selection as $file_id) {
+            $delete_response = FileService::deleteFile($file_id);
+            if ($delete_response['success'] == 'false') {
+                // err
+                echo 'error';
+            }
+            $this->findModel($file_id)->delete();
+
+        }
         return $this->redirect(['index']);
     }
 
