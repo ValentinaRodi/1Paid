@@ -30,8 +30,24 @@ function HeaderMain(props) {
     const [modalOpen, setModalOpen] = useState(false);
     const body = document.querySelector('body');
     const [rotate, setRotate] = useState(false);
-    const [link, setLink] = useState(['nav-link-prim', 'nav-link', 'nav-link', 'nav-link', 'nav-link', 'nav-link']);
+    //const [link, setLink] = useState(['nav-link-prim', 'nav-link', 'nav-link', 'nav-link', 'nav-link', 'nav-link']);
     const navigate = useNavigate();
+    const [link, setLink] = useState(JSON.parse(localStorage.getItem('activeLink')) || ['nav-link-prim', 'nav-link', 'nav-link', 'nav-link', 'nav-link', 'nav-link']);
+
+    //Сохраняем в localStorage цвет выбранной ссылки
+    const clickLink = (index) => {
+        const newLink = link.map((item, i) => i === index ? 'nav-link-prim' : 'nav-link');
+        setLink(newLink);
+        localStorage.setItem('activeLink', JSON.stringify(newLink));
+    };
+
+    useEffect(() => {
+        // Restore active link on component mount
+        const storedActiveLink = JSON.parse(localStorage.getItem('activeLink'));
+        if (storedActiveLink) {
+            setLink(storedActiveLink);
+        }
+    }, []);
   
     useEffect(() => {
         let loggedInUser = localStorage.getItem('logged');
@@ -187,20 +203,6 @@ function HeaderMain(props) {
         
     }, [modalEl]);
 
-    const clickLink = (e) => {
-        const clickLink = e.target.id;
-        const clickLinkIndex = parseInt(clickLink.slice(-1));
-        const newLink = link.map((item, index) => {
-            if(index === clickLinkIndex) {
-                return 'nav-link-prim';
-            } else {
-                return 'nav-link';
-            }
-        });
-
-        setLink(newLink);
-    };
-
     const clickNotif = () => {
         // Открываем новую страницу при нажатии ссылки
         window.location.assign('/my-notifications');
@@ -237,12 +239,12 @@ function HeaderMain(props) {
                     <header className="h justify-between">
                         <button onClick={props.closeLeftMenu} className={`h-openmenu ${props.leftMenuOpen}`}><span></span><span></span></button>
                         <nav className="nav flex mx-6 justify-between gap-x-5 gap-y-5 flex-wrap ">
-                            <Link to='/' id='link0' onClick={clickLink} className={`${link[0]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Главная</Link>
-                            <Link to='/top_users' id='link1' onClick={clickLink} className={`${link[1]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Топ юзеров</Link>
-                            <Link to='/feedbacks' id='link2' onClick={clickLink} className={`${link[2]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Отзывы</Link>
-                            <Link to='/guarantees' id='link3' onClick={clickLink} className={`${link[3]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Гарантии</Link>
-                            <Link to='/random-items' id='link4' onClick={clickLink} className={`${link[4]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Случайные предметы</Link>
-                            <Link to='#' id='link5' onClick={clickLink} className={`${link[5]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Форум</Link>
+                            <Link to='/' onClick={() => clickLink(0)} className={`${link[0]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Главная</Link>
+                            <Link to='/top_users' onClick={() => clickLink(1)} className={`${link[1]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Топ юзеров</Link>
+                            <Link to='/feedbacks' onClick={() => clickLink(2)} className={`${link[2]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Отзывы</Link>
+                            <Link to='/guarantees' onClick={() => clickLink(3)} className={`${link[3]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Гарантии</Link>
+                            <Link to='/random-items' onClick={() => clickLink(4)} className={`${link[4]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Случайные предметы</Link>
+                            <Link to='#' onClick={() => clickLink(5)} className={`${link[5]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Форум</Link>
                         </nav>
                         {!isAuthenticated ? (
                             <div className="flex gap-4">

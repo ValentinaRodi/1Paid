@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
 import LayoutBtn from '../../components/LayoutBtn';
 import { Link } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 
 function Feedbacks() {
+    const navigate = useNavigate();
+    const goMain = () => {
+        navigate('/');
+    };
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
@@ -110,12 +115,12 @@ function Feedbacks() {
                                     <div className="sfb-form-text font-secondary-med text-xs text-[#B4BAD2]">Чтоб оставить отзыв нужно быть зарегистрированным более месяца или продать и купить товар на сумму более 5000₽</div>
                                 </div>
                                 <div className="sfb-form-f mt-8">
-                                    <Link className="btn btn-secondary rounded w-full h-11 justify-center gap-2 text-white" href="#">
+                                    <button onClick={goMain} className="btn btn-secondary rounded w-full h-11 justify-center gap-2 text-white">
                                         <div className="btn-icon w-4 h-4 [&amp;_svg]:w-[100%] [&amp;_svg]:h-[100%]">
                                             <img src='/img/icon-basket.svg' alt='basket'/>
                                         </div>
                                         <div className="btn-text font-secondary-bold text-sm text-white">Перейти в маркет</div>
-                                    </Link>
+                                    </button>
                                 </div>
                             </div>
                         </div>
