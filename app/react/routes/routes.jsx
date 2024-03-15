@@ -22,6 +22,7 @@ import MyTovars from '../pages/myTovars/MyTovars';
 import MyFinance from '../pages/myFinance/MyFinance';
 import OrderTable from '../pages/orderTable/OrderTable';
 import TechSupport from '../pages/techSupport/TechSupport';
+import Faq from '../pages/faq/Faq';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -58,6 +59,7 @@ export const useRoutes = () => {
       <Route path='/guarantees' element={<Guarantees />} />
       <Route path='/feedbacks' element={<Feedbacks />} />
       <Route path='/random-items' element={<RandomItems />} />
+      <Route path='/faq' element={<Faq />} />
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />

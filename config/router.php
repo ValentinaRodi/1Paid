@@ -16,6 +16,7 @@ return [
     'GET,HEAD guarantees' => 'main/index',
     'GET,HEAD top_users' => 'main/index',
     'GET,HEAD refs' => 'main/index',
+    'GET,HEAD faq' => 'main/index',
     'GET,HEAD profile' => 'main/profile',
     'GET,HEAD profile/edit' => 'profile/get',
     'GET,HEAD csrf' => 'main/csrf',

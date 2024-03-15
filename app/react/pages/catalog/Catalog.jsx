@@ -193,7 +193,7 @@ function Catalog() {
                 <div className="sh flex justify-between items-center gap-x-3 mb-10">
                     <div className="flex flex-col justify-start">
                         <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">{`Каталог ${game}`}</h2>
-                        <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
+                        <div className="sh-title-line mt-2 rounded-full w-9 h-1 bg-gradient-primary">
                         </div>
                     </div>
                     <div className='flex justify-between items-center gap-2'>
