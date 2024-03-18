@@ -10,7 +10,6 @@ import AddProduct from "../addProduct/AddProduct";
 import useAuth from '../../hooks/useAuth';
 
 function LeftMenu(props) {
-    const [loggedIn, setLoggedIn] = useState(false);
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
     const body = document.querySelector('body');
@@ -20,7 +19,6 @@ function LeftMenu(props) {
     const openAuthorization = () => {
         body.style.overflow = 'hidden';
         setModalEl(<Authorisation
-            changeLogged={changeLogged}
             closeModal={closeModal}
             openRecoveryPassword={openRecoveryPassword}
             openRegistration={openRegistration}
@@ -34,13 +32,8 @@ function LeftMenu(props) {
         setModalEl('');
     };
 
-    const changeLogged = () => {
-        setLoggedIn(true);
-    };
-
     const openRegistration = () => {
         setModalEl(<Registration 
-            changeLogged={changeLogged} 
             closeModal={closeModal} 
             openAuthorization={openAuthorization}
         />);
@@ -117,13 +110,13 @@ function LeftMenu(props) {
         }); 
     };
   
-    useEffect(() => {
-        let loggedInUser = localStorage.getItem('logged');
+    // useEffect(() => {
+    //     let loggedInUser = localStorage.getItem('logged');
 
-        if (loggedInUser) {
-            setLoggedIn(true);
-        };
-    }, []);
+    //     if (loggedInUser) {
+    //         setLoggedIn(true);
+    //     };
+    // }, []);
 
     useEffect(() => {
         const modal = document.getElementById('modal');

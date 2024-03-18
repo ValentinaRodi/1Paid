@@ -1,8 +1,11 @@
-import { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import uuid from 'react-uuid';
-import React from 'react'
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import useAuth from '../../hooks/useAuth';
+import { useNavigate  } from 'react-router-dom';
+import { createRoot } from "react-dom/client";
+import Authorisation from '../authorisation/Authorisation';
 import 'swiper/less';
 import 'swiper/less/navigation';
 import 'swiper/less/pagination';
@@ -10,6 +13,53 @@ import 'swiper/less/pagination';
 function Prsl() {
     const components = [1,2,3];
     const swiperRef = useRef();
+    const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
+    const [modalEl, setModalEl] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+    const body = document.querySelector('body');
+
+    const openAuthorization = () => {
+        body.style.overflow = 'hidden';
+        setModalEl(<Authorisation
+            closeModal={closeModal}
+        />);
+        setModalOpen(true);
+    };
+
+    const closeModal = () =>{
+        body.style.overflow = 'auto';
+        setModalOpen(false);
+        setModalEl('');
+    };
+
+
+    const joinGiveAway = () => {
+        if(!isAuthenticated) {
+            openAuthorization();
+        } else {
+            navigate('/giveaway');
+        };
+    };
+
+    useEffect(() => {
+        const modal = document.getElementById('modal');
+
+        if(modalOpen) {
+            modal.classList.add('modal');
+            modal.textContent = '';
+            
+            const containerModal = document.createElement("div");
+            const root = createRoot(containerModal);
+            root.render(modalEl);
+            modal.appendChild(containerModal);   
+        };
+        if(!modalOpen) {
+            modal.classList.remove('modal');
+            modal.textContent = '';
+        };
+        
+    }, [modalEl]);
 
     return (
         <div id="prsl" className="prsl rounded-md min-h-[100px] flex justify-between items-center">
@@ -51,7 +101,7 @@ function Prsl() {
                                         </div>
                                     </div>
                                     <div className="prsl-item-bar flex justify-center items-center gap-4 ">
-                                        <button className="flex justify-center items-center prsl-item-btn  btn-primary rounded w-[180px] h-10 justify-center items-center flex font-secondary-med 0text-[15px] text-white" href="#">Присоединиться</button>
+                                        <button onClick={joinGiveAway} className="flex justify-center items-center prsl-item-btn  btn-primary rounded w-[180px] h-10 justify-center items-center flex font-secondary-med 0text-[15px] text-white" href="#">Присоединиться</button>
                                         <div className="timer flex items-center gap-1">
                                             <div className="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px]">
                                                 <div className="circle-progress" data-percent="80" data-measure="67" data-measure-640="44">

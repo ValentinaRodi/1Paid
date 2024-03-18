@@ -129,7 +129,6 @@ function Authorisation(props) {
                         localStorage.setItem('balance', data.balance);
                         localStorage.setItem('bonus', data.bonus);
                         
-                        // props.changeLogged();
                         props.closeModal();
                         
                         setAuth(true);

@@ -134,11 +134,11 @@ function MyMessages() {
                                     </div>
                                 </div>
                                 : 
-                                <div class="smm-empty flex flex-col flex-grow justify-center items-center w-full h-full">
-                                    <div class="smm-empty-icon flex-shrink-0 mb-[32px]">
+                                <div className="smm-empty flex flex-col flex-grow justify-center items-center w-full h-full">
+                                    <div className="smm-empty-icon flex-shrink-0 mb-[32px]">
                                         <img src='/img/icon-chat.svg' alt='chat'/>
                                     </div>
-                                    <div class="smm-empty-text font-primary-med text-xl text-[#74809A80]">Выберите, кому хотели ли бы написать</div>
+                                    <div className="smm-empty-text font-primary-med text-xl text-[#74809A80]">Выберите, кому хотели ли бы написать</div>
                                 </div>
                             }
                         </div>     
