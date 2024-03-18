@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int $game_id
  * @property int $lang_id
- * @property string $name
+ * @property string $seo_name
  * @property int $sort
  * @property string|null $created_at
  * @property string|null $updated_at
@@ -37,7 +37,7 @@ class Category extends \yii\db\ActiveRecord
             [['game_id', 'lang_id', 'seo_name'], 'required'],
             [['game_id', 'lang_id', 'sort'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name'], 'string', 'max' => 190],
+            [['seo_name'], 'string', 'max' => 190],
         ];
     }
 
@@ -50,7 +50,7 @@ class Category extends \yii\db\ActiveRecord
             'id' => 'ID',
             'game_id' => 'Game ID',
             'lang_id' => 'Lang ID',
-            'seo_name' => 'SEO name',
+            'seo_name' => 'Name',
             'sort' => 'Sort',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

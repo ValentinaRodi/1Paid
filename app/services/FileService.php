@@ -3,9 +3,7 @@
 namespace app\services;
 
 use Yii;
-use app\models\{
-    File
-};
+use app\models\{File, Game};
 use yii\base\ErrorException;
 use yii\base\Security;
 use yii\db\Query;
@@ -34,6 +32,58 @@ class FileService
         $file->save();
         return $file;
 
+    }
+
+    public static function uploadGameImage($fileData, $game_id)
+    {
+        $validateFile = self::validateImage($fileData);
+        if ($validateFile['success'] == true) {
+            $size = 256;
+            $path = $_SERVER["DOCUMENT_ROOT"] . "/uploads/files";
+
+            // запись файла в бд, получение его id
+            // запись нового id в табл. game - icon_id
+            try {
+                $img = self::resizeImage($fileData, $size, $size);
+                $hashedName = Yii::$app->getSecurity()->generateRandomString();
+                $directoryAndFileName = $path . '/' . $hashedName . '.png';
+
+                imagepng($img, $directoryAndFileName);
+
+                // Освобождаем память
+                imagedestroy($img);
+                imagedestroy($img);
+
+                $file = new File();
+                $file->original_name = preg_replace('/\.[^.]+$/', '', $fileData['name']);;
+                $file->hashed_name = $hashedName;
+                $file->extension = 'png';
+                $file->user_id = Yii::$app->user->id;
+                $file->size = $fileData['size'];
+                $file->created_at = date('Y-m-d H:i:s');
+                $file->path = '/files/' . $hashedName;
+                $file->save();
+
+                $game = Game::findOne(['id' => $game_id]);
+                $game->icon_id = $file->id;
+                $game->save();
+
+                return [
+                    'success' => true,
+                    'file_id' => $file->id
+                ];
+
+            } catch (ErrorException $error) {
+                return [
+                    'success' => false,
+                    'errors' => $error
+                ];
+            }
+        }
+        return [
+            'success' => false,
+            'errors' => $validateFile['errors']
+        ];
     }
 
     public static function uploadImage($fileData, $user_id = null): array

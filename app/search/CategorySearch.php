@@ -51,7 +51,7 @@ class CategorySearch extends Category
 
         $query = new Query;
         // compose the query
-        $query->select(['category.id','category.seo_name', 'category.lang_id', 'category.sort', 'lang.russian as game_name'])
+        $query->select(['category.id', 'category.seo_name', 'category.lang_id', 'category.sort', 'lang.russian as game_name'])
             ->from('category')
             ->join('LEFT JOIN', 'game', 'category.game_id = game.id')
             ->join('LEFT JOIN', 'lang', 'lang.id = game.lang_id')
@@ -86,7 +86,8 @@ class CategorySearch extends Category
         return $dataProvider;
     }
 
-    public function fieldSearch ($category_id){
+    public function fieldSearch($category_id)
+    {
 
         $query = new Query();
         $query->select(['field_category.field_id', 'field_category.category_id',
@@ -96,6 +97,8 @@ class CategorySearch extends Category
             ->join('LEFT JOIN', 'field', 'field.id = field_category.field_id')
             ->where(['field_category.category_id' => $category_id]);
         // add conditions that should always apply here
+
+        $row = $query->all();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -111,7 +114,7 @@ class CategorySearch extends Category
 
         // grid filtering conditions
 //        $query->andFilterWhere([
-//            'category.id' => $this->id,
+//            'category.id' => $row[],
 //            'game_name' => $this->game_id,
 //            'category.lang_id' => $this->lang_id,
 //            'category.sort' => $this->sort,

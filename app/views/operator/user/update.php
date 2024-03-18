@@ -22,10 +22,4 @@ $action = '/operator/user/update?id=' . $model->id;
         'file' => $file
 
     ]) ?>
-<!---->
-<!--    <form action="--><?//= $action ?><!--" method="post">-->
-<!--          <input type="file">-->
-<!--        <input type="submit">-->
-<!--    </form>-->
-
 </div>

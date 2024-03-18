@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /** @var yii\web\View $this */
 /** @var app\models\Game $model */
+/** @var app\models\File $file */
 
 $this->title = 'Update Game: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Games', 'url' => ['index']];
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'file' => $file
     ]) ?>
 
 </div>

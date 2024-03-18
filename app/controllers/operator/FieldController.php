@@ -127,9 +127,6 @@ class FieldController extends Controller
         $category_id = $data['category_id'];
 
         foreach ($selection as $field_id) {
-            // внимание - костыль - id по какойт+-то причине начинается с 0
-            // временное решение - увеличение на 1
-            $field_id = (int)$field_id + 1;
 
             FieldService::deleteFieldFromCategory($field_id, $category_id);
 //            $this->findModel($field_id)->delete();

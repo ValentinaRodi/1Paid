@@ -5,7 +5,10 @@ namespace app\controllers\operator;
 use app\models\Category;
 use app\models\Field;
 use app\search\CategorySearch;
+use app\services\RbacService;
+use Yii;
 use yii\db\Query;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,6 +27,38 @@ class CategoryController extends Controller
     {
         return array_merge(
             parent::behaviors(),
+            [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index', 'view', 'create', 'update', 'delete'], // Устанавливаем правила только для site/user и site/admin. К site/index имеют доступ все.
+                    'rules' => [
+                        [
+                            'allow' => true, // Разрешаем доступ.
+                            'actions' => ['index', 'view'], // К действию site/admin
+                            'verbs' => ['GET'], // Через HTTP методы GET, POST и PUT.
+                            'matchCallback' => function () {
+                                return RbacService::getRole('viewing');
+                            },
+                            'denyCallback' => function () {
+                                // Если пользователь не подпадает под все условия, то завершаем работы и выдаем своё сообщение.
+                                die('Эта страница доступна только администратору!');
+                            },
+                        ],
+                        [
+                            'allow' => true, // Разрешаем доступ.
+                            'actions' => ['index', 'view', 'create', 'update', 'delete'], // К действию site/admin
+                            'verbs' => ['GET', 'POST'], // Через HTTP методы GET, POST и PUT.
+                            'matchCallback' => function () {
+                                return RbacService::getRole('editing');
+                            },
+                            'denyCallback' => function () {
+                                // Если пользователь не подпадает под все условия, то завершаем работы и выдаем своё сообщение.
+                                die('Эта страница доступна только администратору!');
+                            },
+                        ],
+                    ],
+                ],
+            ],
             [
                 'verbs' => [
                     'class' => VerbFilter::className(),

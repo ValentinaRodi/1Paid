@@ -58,16 +58,16 @@ input[readonly] {
     margin: 15px 0;
 }
 
-.user-form .avatar-upload {
+.user-form .avatar-upload, .game-form .game-img-upload {
     margin: 15px 0;
 }
 
-.user-form .avatar-upload form {
+.user-form .avatar-upload form, .game-form .game-img-upload form{
     display: flex;
 
 }
 
-.user-form .avatar-upload label {
+.user-form .avatar-upload label, .game-form .game-img-upload label {
     display: none;
 }
 

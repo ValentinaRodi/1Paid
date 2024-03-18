@@ -40,9 +40,12 @@ class FieldService
         var_dump($field_id);
         var_dump($category_id);
 
-        $fieldCategoryModels = FieldCategory::find()->where(['field_id' => $field_id])->andWhere(['category_id' => $category_id]);
+        $fieldCategoryModels = FieldCategory::find()->where(['field_id' => $field_id])->andWhere(['category_id' => $category_id])->one();
 //        $fieldCategoryModel = $fieldCategoryModel[0];
 //            $fieldCategoryModel->delete();
+
+        var_dump($fieldCategoryModels);
+        die();
         foreach ($fieldCategoryModels as $model) {
             var_dump($model);
             $model->delete();
