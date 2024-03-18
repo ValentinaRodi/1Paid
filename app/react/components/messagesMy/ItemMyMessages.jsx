@@ -5,7 +5,7 @@ import uuid from 'react-uuid';
 function ItemMessagesMy(props) {
 
     return (                          
-        <div className={`${props.read ? 'bg-[#F3F5FA]' : null} fm-message flex items-center py-3 pr-3 pl-1.5 cursor-pointer hover:bg-[#C8D5ED]/30 border-b border-solid border-[#EAEEF4]`}>
+        <div onClick={props.openChat} className={`${props.read ? 'bg-[#F3F5FA]' : null} fm-message flex items-center py-3 pr-3 pl-1.5 cursor-pointer hover:bg-[#C8D5ED]/30 border-b border-solid border-[#EAEEF4]`}>
             <div className={`${props.read ? 'bg-[#F3F5FA]' : null} fm-message-avatar-wrapper flex-shrink-0 overflow-hidden relative mr-1.5 rounded-full p-1.5`}>
                 <div className="fm-message-avatar flex-shrink-0 w-[40px] h-[40px] overflow-hidden rounded-full">
                     <img className="sps-avatar-pic w-full h-full object-cover" src={`/img/${props.avatar}`} alt="user"/>
