@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import LayoutBtn from '../../components/LayoutBtn';
 import { Link } from 'react-router-dom';
-
+import Pagination from '../../components/pagination/Pagination';
 
 function Refs() {
 
@@ -126,18 +126,7 @@ function Refs() {
                                     <div className="srf-ref-date text-[#1D222C]">15.02.2023, 16:30</div>
                                 </div>
                             </div>
-                            <div className="pag mt-6 flex justify-center items-center gap-2">
-                                <a className="pag-arrow mr-4" href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15 6L9.70711 11.2929C9.31658 11.6834 9.31658 12.3166 9.70711 12.7071L15 18" stroke="currentColor"  strokeWidth="1.5" strokeLinecap="round"></path>
-                                    </svg>
-                                </a><a className="pag-item" href="#">1</a><a className="pag-item" href="#">2</a><a className="pag-item" href="#">3</a><a className="pag-item _active" href="#">443</a>
-                                <a className="pag-arrow ml-4" href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 6L14.2929 11.2929C14.6834 11.6834 14.6834 12.3166 14.2929 12.7071L9 18" stroke="currentColor"  strokeWidth="1.5" strokeLinecap="round"></path>
-                                    </svg>
-                                </a>
-                            </div>
+                            <Pagination />
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ import Catalog from '../pages/catalog/Catalog';
 import Settings from '../pages/settings/Settings';
 import {PrivateRoute} from '../components/PrivateRoute';
 import Authorisation from '../components/authorisation/Authorisation';
-import Card from '../pages/card/Card';
+import Card from '../pages/cardTovar/CardTovar';
 import Tab from '../pages/tab/Tab';
 import HistoryViews from '../pages/historyViews/HistoryViews';
 import HistorySales from '../pages/historySales/HistorySales';
@@ -26,6 +26,7 @@ import Faq from '../pages/faq/Faq';
 import MyMessages from '../pages/myMessages/MyMessages';
 import GiveAway from '../pages/giveaway/GiveAway';
 import Roulette from '../pages/roulette/Roulette';
+import CardTovar from '../pages/cardTovar/CardTovar';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -63,6 +64,7 @@ export const useRoutes = () => {
       <Route path='/feedbacks' element={<Feedbacks />} />
       <Route path='/random-items' element={<RandomItems />} />
       <Route path='/faq' element={<Faq />} />
+      <Route path='/catalog/Warface/1-account' element={<CardTovar />} />
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />
