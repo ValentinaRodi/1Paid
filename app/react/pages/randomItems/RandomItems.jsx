@@ -1,9 +1,81 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import LayoutBtn from '../../components/LayoutBtn';
 import Prsl from '../../components/prsl/Prsl';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import { createRoot } from "react-dom/client";
+import Authorisation from '../../components/authorisation/Authorisation';
+import Registration from '../../components/registration/Registration';
+import RecPass from '../../components/recpass/Recpass';
+import { useNavigate  } from 'react-router-dom';
+
 
 function RandomItems() {
+    const [modalEl, setModalEl] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+    const body = document.querySelector('body');
+    const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
+
+    const openAuthorization = () => {
+        body.style.overflow = 'hidden';
+        setModalEl(<Authorisation
+            closeModal={closeModal}
+            openRecoveryPassword={openRecoveryPassword}
+            openRegistration={openRegistration}
+        />);
+        setModalOpen(true);
+    };
+
+    const closeModal = () =>{
+        body.style.overflow = 'auto';
+        setModalOpen(false);
+        setModalEl('');
+    };
+
+    const openRegistration = () => {
+        setModalEl(<Registration 
+            closeModal={closeModal} 
+            openAuthorization={openAuthorization}
+        />);
+    };
+
+    const openRecoveryPassword = () =>{
+        setModalEl('');
+        setModalEl(<RecPass 
+            closeModal={closeModal} 
+        />);
+    };
+
+    const clickRoulette = () => {
+        if(!isAuthenticated) {
+            openAuthorization();
+        } else {
+            navigate('/roulette');
+        };
+        window.scrollTo({ 
+            top: 0,  
+        }); 
+    };
+
+    useEffect(() => {
+        const modal = document.getElementById('modal');
+
+        if(modalOpen) {
+            modal.classList.add('modal');
+            modal.textContent = '';
+            
+            const containerModal = document.createElement("div");
+            const root = createRoot(containerModal);
+            root.render(modalEl);
+            modal.appendChild(containerModal);   
+        };
+        if(!modalOpen) {
+            modal.classList.remove('modal');
+            modal.textContent = '';
+        };
+        
+    }, [modalEl]);
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
@@ -35,9 +107,9 @@ function RandomItems() {
                             <div className="csc-value mt-3 mb-5 rounded-full h-10 min-w-[100px] px-8 inline-flex justify-center items-center bg-gradient-primary">
                             <div className="csc-value-text font-primary-bold text-base text-white ">1990₽</div>
                         </div>
-                            <Link className="btn btn-secondary csc-btn mt-auto rounded-full h-[45px] px-6 justify-center" href="#">
+                            <button onClick={clickRoulette} className="btn btn-secondary csc-btn mt-auto rounded-full h-[45px] px-6 justify-center">
                                 <div className="btn-text font-primary-bold text-xs text-white uppercase">Крутить рулетку</div>
-                            </Link>
+                            </button>
                         </div>
                         </div>
                         <div className="csc rounded-lg min-h-[235px] flex flex-grow 2md:flex-shrink-0">

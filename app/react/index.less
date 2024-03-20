@@ -4117,7 +4117,7 @@ textarea {
     align-items: center;
     height: 100%;
     padding: 0;
-    
+    overflow: hidden;
 }
 
 .lf._lf-row .lf-feed::after {
@@ -6336,58 +6336,27 @@ input[type="checkbox"] {
 .ocr-item-wrapper::before {
     display: block;
     height: 100%;
-    width: 100px;
-    left: -100px;
+    width: 26px;
+    left: -26px;
     content: "";
-    -webkit-box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.3);
+    -webkit-box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.8);
+    box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.8);
     position: absolute;
+    z-index: 1;
 }
 
 .ocr-item-wrapper::after {
     display: block;
     height: 100%;
-    width: 100px;
-    right: -100px;
+    width: 26px;
+    right: -26px;
     content: "";
-    -webkit-box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.3);
+    -webkit-box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.8);
+    box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.8);
     position: absolute;
+    z-index: 1;
 }
 
-.ocd {
-    position: relative;
-    overflow: hidden;
-}
-
-.ocd::before {
-    height: 100%;
-    width: 100%;
-    left: -400px;
-    content: "";
-   
-    background-size: auto auto;
-    background-size: initial;
-    background-position: top center;
-    position: absolute;
-}
-
-.ocd::after {
-    height: 100%;
-    width: 100%;
-    right: -420px;
-    content: "";
-    
-    background-size: auto auto;
-    background-size: initial;
-    background-position: top center;
-    position: absolute;
-}
-
-.ocd-drum-btn {
-    -webkit-box-shadow: 0px 15px 36px 14px rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 15px 36px 14px rgba(255, 255, 255, 0.3);
-}
 
 .fm-message-text {
     width: 230px;
@@ -8085,61 +8054,7 @@ input[type="checkbox"] {
     position: relative;
 }
 
-.ocr-item-wrapper::before {
-    display: block;
-    height: 100%;
-    width: 100px;
-    left: -100px;
-    content: "";
-    -webkit-box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    position: absolute;
-}
 
-.ocr-item-wrapper::after {
-    display: block;
-    height: 100%;
-    width: 100px;
-    right: -100px;
-    content: "";
-    -webkit-box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    position: absolute;
-}
-
-.ocd {
-    position: relative;
-    overflow: hidden;
-}
-
-.ocd::before {
-    height: 100%;
-    width: 100%;
-    left: -400px;
-    content: "";
-    
-    background-size: auto auto;
-    background-size: initial;
-    background-position: top center;
-    position: absolute;
-}
-
-.ocd::after {
-    height: 100%;
-    width: 100%;
-    right: -420px;
-    content: "";
-    
-    background-size: auto auto;
-    background-size: initial;
-    background-position: top center;
-    position: absolute;
-}
-
-.ocd-drum-btn {
-    -webkit-box-shadow: 0px 15px 36px 14px rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 15px 36px 14px rgba(255, 255, 255, 0.3);
-}
 
 .fm-message-text {
     width: 230px;
@@ -10268,64 +10183,6 @@ input[type="checkbox"] {
     box-shadow: 0px 3px 24px 0px var(--color-primary-gradient-1);
 }
 
-.ocr-lenta {
-    position: relative;
-}
-.ocr-item-wrapper {
-    overflow: hidden;
-    position: relative;
-}
-.ocr-item-wrapper::before {
-    display: block;
-    height: 100%;
-    width: 100px;
-    left: -100px;
-    content: "";
-    -webkit-box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    position: absolute;
-}
-.ocr-item-wrapper::after {
-    display: block;
-    height: 100%;
-    width: 100px;
-    right: -100px;
-    content: "";
-    -webkit-box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    position: absolute;
-}
-
-.ocd {
-    position: relative;
-    overflow: hidden;
-}
-.ocd::before {
-    height: 100%;
-    width: 100%;
-    left: -400px;
-    content: "";
-    
-    background-size: auto auto;
-    background-size: initial;
-    background-position: top center;
-    position: absolute;
-}
-.ocd::after {
-    height: 100%;
-    width: 100%;
-    right: -420px;
-    content: "";
-    
-    background-size: auto auto;
-    background-size: initial;
-    background-position: top center;
-    position: absolute;
-}
-.ocd-drum-btn {
-    -webkit-box-shadow: 0px 15px 36px 14px rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 15px 36px 14px rgba(255, 255, 255, 0.3);
-}
 
 .fm-message-text {
     width: 230px;
@@ -11909,32 +11766,6 @@ input[type="checkbox"] {
 .ocr-lenta {
     position: relative;
 }
-.ocr-item-wrapper {
-    overflow: hidden;
-    position: relative;
-}
-.ocr-item-wrapper::before {
-    display: block;
-    height: 100%;
-    width: 100px;
-    left: -100px;
-    content: "";
-    -webkit-box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    -moz-box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    box-shadow: 20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    position: absolute;
-}
-.ocr-item-wrapper::after {
-    display: block;
-    height: 100%;
-    width: 100px;
-    right: -100px;
-    content: "";
-    -webkit-box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    -moz-box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    box-shadow: -20px 0px 15px 11px rgba(255, 255, 255, 0.3);
-    position: absolute;
-}
 
 .ocd {
     position: relative;
@@ -11945,9 +11776,9 @@ input[type="checkbox"] {
     width: 100%;
     left: -400px;
     content: "";
-    background: transparent url("assets/images/ocd-bg-2.png") no-repeat;
+    background: transparent url("../img/ocd-bg-2.png") no-repeat;
     background-size: initial;
-    background-position: top center;
+    background-position: bottom center;
     position: absolute;
 }
 .ocd::after {
@@ -11955,11 +11786,13 @@ input[type="checkbox"] {
     width: 100%;
     right: -420px;
     content: "";
-    background: transparent url("assets/images/ocd-bg-1.png") no-repeat;
+    background: transparent url(../img/ocd-bg-1.png) no-repeat;
     background-size: initial;
-    background-position: top center;
+    background-position: bottom center;
     position: absolute;
 }
+
+
 .ocd-drum-btn {
     -webkit-box-shadow: 0px 15px 36px 14px rgba(255, 255, 255, 0.3);
     -moz-box-shadow: 0px 15px 36px 14px rgba(255, 255, 255, 0.3);
@@ -12327,3 +12160,28 @@ top: -6px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.bg-btn_light-green {
+    background: linear-gradient(90deg, rgba(140, 210, 60, 0.1) 0%, rgba(65, 122, 0, 0.1) 100%);
+}
+
+.shadowBlock::after {
+    width: 10%;
+    height: 100%;
+    top: 0;
+    left: auto;
+    right: 0;
+    background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#FFFFFF),
+        to(#FFFFFF)
+    );
+    background: linear-gradient(90deg,  #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.shadow-basket {
+    box-shadow: 0px 4px 28px 0px #67A61E8F;
+}
+

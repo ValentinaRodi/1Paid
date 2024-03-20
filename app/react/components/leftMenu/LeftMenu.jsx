@@ -1,7 +1,6 @@
 import "./leftMenu.less";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate  } from 'react-router-dom';
-import React from "react";
 import { createRoot } from "react-dom/client";
 import Registration from '../../components/registration/Registration';
 import Authorisation from "../authorisation/Authorisation";

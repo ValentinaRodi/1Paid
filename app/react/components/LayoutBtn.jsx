@@ -3,6 +3,8 @@ import useAuth from '../hooks/useAuth';
 import { useNavigate  } from 'react-router-dom';
 import { createRoot } from "react-dom/client";
 import Authorisation from './authorisation/Authorisation';
+import Registration from './registration/Registration';
+import RecPass from './recpass/Recpass';
 
 function LayoutBtn(props) {
     const navigate = useNavigate();
@@ -22,6 +24,8 @@ function LayoutBtn(props) {
         body.style.overflow = 'hidden';
         setModalEl(<Authorisation
             closeModal={closeModal}
+            openRecoveryPassword={openRecoveryPassword}
+            openRegistration={openRegistration}
         />);
         setModalOpen(true);
     };
@@ -30,6 +34,20 @@ function LayoutBtn(props) {
         body.style.overflow = 'auto';
         setModalOpen(false);
         setModalEl('');
+    };
+
+    const openRegistration = () => {
+        setModalEl(<Registration 
+            closeModal={closeModal} 
+            openAuthorization={openAuthorization}
+        />);
+    };
+
+    const openRecoveryPassword = () =>{
+        setModalEl('');
+        setModalEl(<RecPass 
+            closeModal={closeModal} 
+        />);
     };
 
     const goMyMessages = () => {
