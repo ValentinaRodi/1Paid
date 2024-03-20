@@ -3,6 +3,7 @@
 namespace app\controllers\operator;
 
 use app\forms\AvatarForm;
+use app\forms\BackgroundFileForm;
 use app\models\Game;
 use app\search\GameSearch;
 use app\services\FileService;
@@ -99,19 +100,43 @@ class GameController extends Controller
     {
         $model = $this->findModel($id);
         $file = new AvatarForm();
+        $file_background = new BackgroundFileForm();
 
         if ($this->request->isPost) {
+
             if (!empty((array)UploadedFile::getInstance($file, 'imageFile'))) {
                 $fileData = (array)UploadedFile::getInstance($file, 'imageFile');
                 $fileData['full_path'] = $fileData['fullPath'];
                 $fileData['tmp_name'] = $fileData['tempName'];
 
-                $save_file = FileService::uploadGameImage($fileData, $id);
+                $save_file = FileService::uploadGameImage($fileData, $id, 'icon_id', [126, 126]);
 
                 if ($save_file['success'] == true) {
                     ?>
-                    <script>alert('Файл успешно загружен')</script>
+                    <script>alert('Иконка успешно загружена')</script>
                     <?php
+                    return $this->redirect(['index', 'id' => $model->id]);
+
+                } else {
+                    ?>
+                    <script>alert('ошибка загрузки файла')</script>
+                    <?php
+
+                }
+            }
+            if (!empty((array)UploadedFile::getInstance($file_background, 'background'))) {
+                $fileData = (array)UploadedFile::getInstance($file_background, 'background');
+
+                $fileData['full_path'] = $fileData['fullPath'];
+                $fileData['tmp_name'] = $fileData['tempName'];
+
+                $save_file = FileService::uploadGameImage($fileData, $id, 'background_id', [1260, 390]);
+
+                if ($save_file['success'] == true) {
+                    ?>
+                    <script>alert('Background успешно загружен)</script>
+                    <?php
+                    return $this->redirect(['index', 'id' => $model->id]);
 
                 } else {
                     ?>
@@ -128,7 +153,8 @@ class GameController extends Controller
 
         return $this->render('update', [
             'model' => $model,
-            'file' => new AvatarForm()
+            'file_icon' => new AvatarForm(),
+            'file_background' => new BackgroundFileForm()
         ]);
     }
 

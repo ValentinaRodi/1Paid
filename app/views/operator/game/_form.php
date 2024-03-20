@@ -5,7 +5,8 @@ use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var app\models\Game $model */
-/** @var app\models\File $file */
+/** @var app\models\File $file_icon */
+/** @var app\models\File $file_background */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -34,10 +35,21 @@ use yii\widgets\ActiveForm;
 
         <?php $formSave = ActiveForm::begin() ?>
 
-        <?= $formSave->field($file, 'imageFile')->fileInput() ?>
+        <?= $formSave->field($file_icon, 'imageFile')->fileInput() ?>
 
 
-        <button class="btn">Сохранить аватар</button>
+        <button class="btn">Сохранить иконку</button>
+
+        <?php ActiveForm::end() ?>
+    </div>
+    <div class="game-img-upload">
+
+        <?php $formSaveBG = ActiveForm::begin() ?>
+
+        <?= $formSaveBG->field($file_background, 'background')->fileInput() ?>
+
+
+        <button class="btn">Сохранить задний фон</button>
 
         <?php ActiveForm::end() ?>
     </div>

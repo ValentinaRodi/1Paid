@@ -34,17 +34,20 @@ class FileService
 
     }
 
-    public static function uploadGameImage($fileData, $game_id)
+    public static function uploadGameImage($fileData, $game_id, $img_id_name, $size)
     {
         $validateFile = self::validateImage($fileData);
         if ($validateFile['success'] == true) {
-            $size = 256;
-            $path = $_SERVER["DOCUMENT_ROOT"] . "/uploads/files";
+
+
+//            $size = 256;
+            $path = $_SERVER["DOCUMENT_ROOT"] . "/uploads/files/games";
 
             // запись файла в бд, получение его id
             // запись нового id в табл. game - icon_id
             try {
-                $img = self::resizeImage($fileData, $size, $size);
+                $img = self::resizeImage($fileData, $size[0], $size[1]);
+
                 $hashedName = Yii::$app->getSecurity()->generateRandomString();
                 $directoryAndFileName = $path . '/' . $hashedName . '.png';
 
@@ -61,19 +64,35 @@ class FileService
                 $file->user_id = Yii::$app->user->id;
                 $file->size = $fileData['size'];
                 $file->created_at = date('Y-m-d H:i:s');
-                $file->path = '/files/' . $hashedName;
+                $file->path = '/files/games';
                 $file->save();
 
-                $game = Game::findOne(['id' => $game_id]);
-                $game->icon_id = $file->id;
-                $game->save();
+                    $sql = 'UPDATE game
+                        SET ' . $img_id_name . '=' . $file->id .
+                        ' WHERE id=' . $game_id;
+//var_dump($file->id);
+//var_dump($sql);
+//die();
+                    \Yii::$app->db->createCommand($sql)->execute();
+//                    $game = Game::findOne(['background_id' => 1]);
+//                    $game->icon_id = $file->id;
+//                    $game->save();
 
+
+                if (!isset($file['_errors'])) {
+
+
+                    return [
+                        'success' => true,
+                        'file_id' => $file->id
+                    ];
+                }
                 return [
-                    'success' => true,
-                    'file_id' => $file->id
+                    'success' => false,
+                    'errors' => $file['_errors']
                 ];
-
             } catch (ErrorException $error) {
+                var_dump($error);
                 return [
                     'success' => false,
                     'errors' => $error
@@ -128,7 +147,7 @@ class FileService
                     $file->user_id = $user_id;
                     $file->size = $fileData['size'];
                     $file->created_at = date('Y-m-d H:i:s');
-                    $file->path = '/avatars/' . $directory . '/' . $hashedName;
+                    $file->path = '/avatars/' . $directory;
                     $file->save();
 
                     $fileNamesList[$directory] = $hashedName;
@@ -170,7 +189,7 @@ class FileService
             ->asArray()->all();
         $fileData = $fileData[0];
 
-        if ($fileData['path'] != '0' && unlink($path . $fileData['path'] . '.' . $fileData['extension'])) {
+        if ($fileData['path'] != '0' && unlink($path . $fileData['path'] . '/' . $fileData['hashed_name'] . '.' . $fileData['extension'])) {
 
             return [
                 'success' => 'true',

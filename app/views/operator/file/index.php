@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'hashed_name',
             'extension',
             'user_id',
+            'path',
             //'size',
             //'created_at',
             //'updated_at',
