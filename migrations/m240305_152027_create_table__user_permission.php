@@ -30,7 +30,7 @@ class m240305_152027_create_table__user_permission extends Migration
         $this->createIndex(
             'idx-field-permission-permission_id',
             $this->tableName,
-            'permission_id_id'
+            'permission_id'
         );
 
         $this->createIndex(

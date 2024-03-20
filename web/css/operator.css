@@ -71,7 +71,7 @@ input[readonly] {
     display: none;
 }
 
-.file-index input[type="checkbox"], .field-grid input[type="checkbox"] {
+.file-index input[type="checkbox"], .field-grid input[type="checkbox"], .add-field-to-category input[type="checkbox"] {
     height: 100%;
     width: 100%;
     visibility: visible;

@@ -4,7 +4,10 @@ namespace app\controllers\operator;
 
 use app\models\Category;
 use app\models\Field;
+use app\models\FieldCategory;
 use app\search\CategorySearch;
+use app\search\FieldSearch;
+use app\services\FieldService;
 use app\services\RbacService;
 use Yii;
 use yii\db\Query;
@@ -46,7 +49,7 @@ class CategoryController extends Controller
                         ],
                         [
                             'allow' => true, // Разрешаем доступ.
-                            'actions' => ['index', 'view', 'create', 'update', 'delete'], // К действию site/admin
+                            'actions' => ['index', 'view', 'create', 'update', 'delete', 'add-fields'], // К действию site/admin
                             'verbs' => ['GET', 'POST'], // Через HTTP методы GET, POST и PUT.
                             'matchCallback' => function () {
                                 return RbacService::getRole('editing');
@@ -163,6 +166,37 @@ class CategoryController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Add fields an existing Category model.
+     * If adding is successful, the browser will be redirected to the 'update' page.
+     * @param int $category_id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionAddFields($category_id)
+    {
+        $searchFieldModel = new FieldSearch();
+        $dataProvider = $searchFieldModel->search([]);
+
+        if ($this->request->isPost) {
+            $res = FieldService::addFieldsToCategory($this->request->post()['selection'], $category_id);
+
+            if ($res['success']) {
+                return $this->redirect(['update', 'id' => $category_id]);
+            } else {
+                var_dump($res['errors']);
+                die();
+            }
+
+        }
+
+        return $this->render('add-fields', [
+            'model' => $this->findModel($category_id),
+            'searchModel' => $searchFieldModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

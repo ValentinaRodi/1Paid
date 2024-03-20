@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m240318_164559_alter_table_field_category_remove_primary_key
+ * Class m240319_004152_create_table_field_category
  */
-class m240318_164559_alter_table_field_category_remove_primary_key extends Migration
+class m240319_004152_create_table_field_category extends Migration
 {
     protected $tableName = '{{%field_category}}';
 
@@ -19,23 +19,21 @@ class m240318_164559_alter_table_field_category_remove_primary_key extends Migra
             $collation = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->alterColumn($this->tableName,
-        ]);
         $this->createTable($this->tableName, [
             'field_id' => $this->integer()->unsigned()->notNull(),
             'category_id' => $this->integer()->unsigned()->notNull(),
         ], $collation);
 
         $this->createIndex(
-            'idx-field-permission-permission_id',
+            'idx-field-field-field_id',
             $this->tableName,
-            'permission_id_id'
+            'field_id'
         );
 
         $this->createIndex(
-            'idx-field-user-user_id',
+            'idx-field-category-category_id',
             $this->tableName,
-            'user_id'
+            'category_id'
         );
     }
 
@@ -44,7 +42,7 @@ class m240318_164559_alter_table_field_category_remove_primary_key extends Migra
      */
     public function safeDown()
     {
-        echo "m240318_164559_alter_table_field_category_remove_primary_key cannot be reverted.\n";
+        echo "m240319_004152_create_table_field_category cannot be reverted.\n";
 
         return false;
     }
@@ -58,7 +56,7 @@ class m240318_164559_alter_table_field_category_remove_primary_key extends Migra
 
     public function down()
     {
-        echo "m240318_164559_alter_table_field_category_remove_primary_key cannot be reverted.\n";
+        echo "m240319_004152_create_table_field_category cannot be reverted.\n";
 
         return false;
     }

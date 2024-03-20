@@ -2,6 +2,8 @@
 
 namespace app\search;
 
+use app\models\Field;
+use app\models\FieldCategory;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Category;
@@ -88,23 +90,28 @@ class CategorySearch extends Category
 
     public function fieldSearch($category_id)
     {
+//        SELECT `field_category`.`field_id`, `field_category`.`category_id`, `field`.`seo_name`, `lang`.`english`, `lang`.`russian`, `field`.`type`, `field`.`created_at`, `field`.`updated_at`, `field`.`search`
+//
+//FROM `category`
+//LEFT JOIN `field_category` ON field_category.category_id = category.id
+//LEFT JOIN `field` ON field.id = field_category.field_id
+//
+//LEFT JOIN `lang` ON lang.id = field.lang_id
+//WHERE `field_category`.`category_id`='5';
 
-        $query = new Query();
-        $query->select(['field_category.field_id', 'field_category.category_id',
-            'field.id', 'field.seo_name', 'field.lang_id',
-            'field.type', 'field.created_at', 'field.updated_at', 'field.search'])
-            ->from('field_category')
-            ->join('LEFT JOIN', 'field', 'field.id = field_category.field_id')
+        $query = Field::find()
+            ->addSelect(['field.*', 'lang.english', 'lang.russian'])
+            ->join('LEFT JOIN', 'field_category', 'field_category.field_id = field.id')
+            ->join('LEFT JOIN', 'category', 'category.id = field_category.category_id')
+            ->join('LEFT JOIN', 'lang', 'lang.id = field.lang_id')
             ->where(['field_category.category_id' => $category_id]);
-        // add conditions that should always apply here
-
-        $row = $query->all();
+        $query->asArray()->all();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-//        $this->load($params);
+        $this->load([]);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
