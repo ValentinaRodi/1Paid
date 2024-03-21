@@ -16,10 +16,52 @@ function RouletteDrum(props) {
                         <span className="text-xl font-secondary-bold font-bold">140₽</span>
                     </div>
                 </div>
-                <div className="ocd-item-wrapper flex items-center w-full z-10 p-5 flex justify-center items-center absolute z-0 top-0 left-0">
+                <div className="ocd-item-wrapper flex items-center w-full z-10 p-5 flex justify-center items-center absolute z-0 top-[12px] left-[55px]">
+                    <div className="ocd-item flex flex-col items-center h-[92px] w-[85px] relative">
+                        <div className="w-[78px] h-[78px] bg-[#EAEFFB] border-[4px] border-solid border-white rounded-full" ></div>
+                        <div className="absolute z-0 bottom-[11px] left-[13%] font-secondary-bold font-bold text-[10px] bg-[linear-gradient(90deg,#FB9B41_0%,#F2B96D_100%)] flex items-center justify-center w-[65px] h-[26px] rounded-[100px]">40 ранг</div>
+                    </div>
+                </div>
+                <div className="ocd-item-wrapper flex items-center w-full z-10 p-5 flex justify-center items-center absolute z-0 top-[12px] left-[-55px]">
                     <div className="ocd-item flex flex-col items-center h-[92px] w-[85px] relative">
                         <div className="w-[78px] h-[78px] bg-[#EAEFFB] border-[4px] border-solid border-white rounded-full " ></div>
-                        <div className="absolute z-0 bottom-0 left-[13%] font-secondary-bold font-bold text-[10px] bg-[linear-gradient(90deg,#FB9B41_0%,#F2B96D_100%)] flex items-center justify-center w-[65px] h-[26px] rounded-[100px]">40 ранг</div>
+                        <div className="absolute z-0 bottom-[11px] left-[13%] font-secondary-bold font-bold text-[10px] bg-[linear-gradient(90deg,#FB9B41_0%,#F2B96D_100%)] flex items-center justify-center w-[65px] h-[26px] rounded-[100px]">40 ранг</div>
+                    </div>
+                </div>
+                <div className="ocd-item-wrapper flex items-center w-full z-10 p-5 flex justify-center items-center absolute z-0 bottom-0 left-[55px]">
+                    <div className="ocd-item flex flex-col items-center h-[92px] w-[85px] relative">
+                        <div className="w-[78px] h-[78px] bg-[#EAEFFB] border-[4px] border-solid border-white rounded-full " ></div>
+                        <div className="absolute z-0 bottom-[11px] left-[13%] font-secondary-bold font-bold text-[10px] bg-[linear-gradient(90deg,#FB9B41_0%,#F2B96D_100%)] flex items-center justify-center w-[65px] h-[26px] rounded-[100px]">40 ранг</div>
+                    </div>
+                </div>
+                <div className="ocd-item-wrapper flex items-center w-full z-10 p-5 flex justify-center items-center absolute z-0 bottom-0 left-[-55px]">
+                    <div className="ocd-item flex flex-col items-center h-[92px] w-[85px] relative">
+                        <div className="w-[78px] h-[78px] bg-[#EAEFFB] border-[4px] border-solid border-white rounded-full " ></div>
+                        <div className="absolute z-0 bottom-[11px] left-[13%] font-secondary-bold font-bold text-[10px] bg-[linear-gradient(90deg,#FB9B41_0%,#F2B96D_100%)] flex items-center justify-center w-[65px] h-[26px] rounded-[100px]">40 ранг</div>
+                    </div>
+                </div>
+                <div className="ocd-item-wrapper flex items-center w-full z-10 p-5 flex justify-center items-center absolute z-0 top-[93px] left-[139px]">
+                    <div className="ocd-item flex flex-col items-center h-[92px] w-[85px] relative">
+                        <div className="w-[78px] h-[78px] bg-[#EAEFFB] border-[4px] border-solid border-white rounded-full " ></div>
+                        <div className="absolute z-0 bottom-[11px] left-[13%] font-secondary-bold font-bold text-[10px] bg-[linear-gradient(90deg,#FB9B41_0%,#F2B96D_100%)] flex items-center justify-center w-[65px] h-[26px] rounded-[100px]">40 ранг</div>
+                    </div>
+                </div>
+                <div className="ocd-item-wrapper flex items-center w-full z-10 p-5 flex justify-center items-center absolute z-0 top-[93px] left-[-139px]">
+                    <div className="ocd-item flex flex-col items-center h-[92px] w-[85px] relative">
+                        <div className="w-[78px] h-[78px] bg-[#EAEFFB] border-[4px] border-solid border-white rounded-full " ></div>
+                        <div className="absolute z-0 bottom-[11px] left-[13%] font-secondary-bold font-bold text-[10px] bg-[linear-gradient(90deg,#FB9B41_0%,#F2B96D_100%)] flex items-center justify-center w-[65px] h-[26px] rounded-[100px]">40 ранг</div>
+                    </div>
+                </div>
+                <div className="ocd-item-wrapper flex items-center w-full z-10 p-5 flex justify-center items-center absolute z-0 bottom-[86px] left-[144px]">
+                    <div className="ocd-item flex flex-col items-center h-[92px] w-[85px] relative">
+                        <div className="w-[78px] h-[78px] bg-[#EAEFFB] border-[4px] border-solid border-white rounded-full " ></div>
+                        <div className="absolute z-0 bottom-[11px] left-[13%] font-secondary-bold font-bold text-[10px] bg-[linear-gradient(90deg,#FB9B41_0%,#F2B96D_100%)] flex items-center justify-center w-[65px] h-[26px] rounded-[100px]">40 ранг</div>
+                    </div>
+                </div>
+                <div className="ocd-item-wrapper flex items-center w-full z-10 p-5 flex justify-center items-center absolute z-0 bottom-[86px] left-[-144px]">
+                    <div className="ocd-item flex flex-col items-center h-[92px] w-[85px] relative">
+                        <div className="w-[78px] h-[78px] bg-[#EAEFFB] border-[4px] border-solid border-white rounded-full " ></div>
+                        <div className="absolute z-0 bottom-[11px] left-[13%] font-secondary-bold font-bold text-[10px] bg-[linear-gradient(90deg,#FB9B41_0%,#F2B96D_100%)] flex items-center justify-center w-[65px] h-[26px] rounded-[100px]">40 ранг</div>
                     </div>
                 </div>
             </div>
