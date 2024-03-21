@@ -1,10 +1,18 @@
 import "./profileEdit.less";
+import {useState, useEffect} from 'react';
 
 function ProfileEdit(props) {
 
+    useEffect(() => {
+        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+        const totalHeight = headerHeight + mainHeight;
+        document.querySelector('.lf-feed').style.height = totalHeight + "px";
+    }, []);
+
     return (
         <div className="layout-b pb-4 px-9 3xl:px-4 min-w-0 px-5 ">
-            <div className="sps mt-11 2md:mt-5 ">
+            <div className="sps mt-11 2md:mt-5 layout-main">
                 <div
                     className="sh flex justify-between items-center gap-x-3 2md:flex-col-reverse 2md:items-start 2md:gap-y-5 sps-title">
                     <div className="flex-col items-baseline flex-1 h-[85px]">

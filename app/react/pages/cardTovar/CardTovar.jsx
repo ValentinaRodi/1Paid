@@ -19,11 +19,18 @@ function CardTovar() {
         setDonat(newDonat);
     };
 
+    useEffect(() => {
+        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+        const totalHeight = headerHeight + mainHeight;
+        document.querySelector('.lf-feed').style.height = totalHeight + "px";
+    }, []);
+
     const arr = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 mt-10">
-            <div className="w-full spf">
+            <div className="w-full spf layout-main">
                 <div className="spf-main flex w-full gap-[12px] mb-3">
                     <CardGameMin new='1' guarantees='0' rank='4.8' id='0' icon='product-preview-1.fcb96f91.png' name='100 первых мест в быстром варианте своими руками' description='Оружие в идеальном состоянии, прямо из завода.'/>
                     <div className="bg-white rounded-xl w-full flex flex-wrap justify-between font-secondary-bold text-[14px] text-[#C1CCE0] p-6 gap-6">

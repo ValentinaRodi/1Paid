@@ -55,7 +55,7 @@ function CardsGame() {
     
 
     return (
-        <div className="sgc mt-10 md:mt-5">
+        <div className="sgc">
             <div  className="sgc-grid grid grid-cols-2 gap-[30px]">
                 {
                     (gamesObj.length > 0) ? (
@@ -65,7 +65,7 @@ function CardsGame() {
                                     <img className="relative z-[1] w-full h-full object-cover object-center" src={card.bg_image} alt="picture"/>
                                 </div>
                                 <div className="gc-icon">
-                                    <div className="gc-icon-pic overflow-hidden rounded-full w-16 h16 xl:w-12 xl:h-12 md:w-10 md:h-10">
+                                    <div className="gc-icon-pic overflow-hidden rounded-full w-10 h10 xl:w-16 xl:h-16 md:w-12 md:h-12">
                                         <img className="w-full h-full object-cover" src={card.icon} alt="Warface"/>
                                     </div>
                                 </div>

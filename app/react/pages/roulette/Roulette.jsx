@@ -66,6 +66,13 @@ function Roulette() {
         };
     };
 
+    useEffect(() => {
+        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+        const totalHeight = headerHeight + mainHeight;
+        document.querySelector('.lf-feed').style.height = totalHeight + "px";
+    }, []);
+
     const navArr =['лента', 'карточки', 'барабан'];
 
     const arrRoulet = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
@@ -73,7 +80,7 @@ function Roulette() {
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 mt-10">
-            <div className="w-full">
+            <div className="w-full layout-main">
                 <div className="w-full mb-[68px]">
                     <div className="sh flex justify-between items-center gap-x-3 mb-10">
                         <div className="flex flex-col justify-start">

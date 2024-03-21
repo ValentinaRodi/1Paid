@@ -233,7 +233,8 @@ function Settings() {
                 console.log('ERRR:', error);
             });
         }
-    }
+    };
+    
     return (
                 <ProfileEdit
                     user={user}

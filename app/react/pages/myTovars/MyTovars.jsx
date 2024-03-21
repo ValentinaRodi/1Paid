@@ -68,12 +68,20 @@ function MyTovars() {
     const clickCancelDelTovar = () => {
         setShowDelModal(false);
     };
+
+    
+    useEffect(() => {
+        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+        const totalHeight = headerHeight + mainHeight;
+        document.querySelector('.lf-feed').style.height = totalHeight + "px";
+    }, []);
     
     const arr = ['Warface', 'New game', 'GTA', 'New game'];
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
-            <div className="w-full">
+            <div className="w-full layout-main">
                 <div className="smt">
                     <div className="sh h-20 flex justify-between items-center gap-x-3 mb-10">
                         <div className="flex flex-col justify-start">

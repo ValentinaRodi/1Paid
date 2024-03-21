@@ -10,9 +10,16 @@ function Feedbacks() {
         navigate('/');
     };
 
+    useEffect(() => {
+        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+        const totalHeight = headerHeight + mainHeight;
+        document.querySelector('.lf-feed').style.height = totalHeight + "px";
+    }, []);
+
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
-            <div className="w-full">
+            <div className="w-full layout-main">
                 <div className="sfb ">
                     <div className="sh flex justify-between items-center gap-x-3 ">
                         <div className="w-[252px] hidden">

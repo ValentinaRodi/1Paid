@@ -451,14 +451,6 @@ function HeaderMain(props) {
                                 </div>
                             </div>
                         )}
-                        <div className="h-bar ml-auto flex items-center gap-x-3 hidden">
-                            <button className="h-openmenu menu-open menu-open-btn">
-                                <span>
-                                </span>
-                                <span>
-                                </span>
-                            </button>
-                        </div>
                     </header>
                 </div>
             </div>

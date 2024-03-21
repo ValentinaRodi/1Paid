@@ -7,6 +7,13 @@ function HistoryViews() {
     const [btn, setBtn] = useState(true);
     const [gamesItems, setGamesItems] = useState([]);
 
+    useEffect(() => {
+        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+        const totalHeight = headerHeight + mainHeight;
+        document.querySelector('.lf-feed').style.height = totalHeight + "px";
+    }, []);
+
     // useEffect(() => {
 
     //     //запрос на отображение избранных карточек
@@ -55,7 +62,7 @@ function HistoryViews() {
     return (
         
         <div className="layout-b pb-4 min-w-0 mt-10 xl:mt-0 flex flex-wrap content-between">
-            <div className="w-full">
+            <div className="w-full layout-main">
                 <div className="sh flex justify-between items-center gap-x-3 mb-10">
                     <div className="flex flex-col justify-start">
                         <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">История просмотров</h2>

@@ -6,11 +6,18 @@ import uuid from 'react-uuid';
 
 function TopUsers() {
     
+    useEffect(() => {
+        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+        const totalHeight = headerHeight + mainHeight;
+        document.querySelector('.lf-feed').style.height = totalHeight + "px";
+    }, []);
+    
     const arr = [1,2,3,4,5,6,7,8,9,10];
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
-            <div className='w-full'>
+            <div className='w-full layout-main'>
                 <div className="sh flex justify-between items-center gap-x-3  mb-6">
                     <div className="w-[252px] hidden">
                         <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>

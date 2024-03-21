@@ -96,10 +96,18 @@ function Profile() {
         setThemesClass('nav-link');
         setShoppListClass('nav-link-prim');
     };
+
+    
+    useEffect(() => {
+        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+        const totalHeight = headerHeight + mainHeight;
+        document.querySelector('.lf-feed').style.height = totalHeight + "px";
+    }, []);
     
     return (
         <div className="layout-b flex flex-wrap content-between">
-            <div className="spf w-full">
+            <div className="spf w-full layout-main">
                 <div className="sh flex justify-between items-center gap-x-3 spf-title">
                     <div className="sh-title">
                         <div>

@@ -105,6 +105,102 @@ function LayoutColRow(props) {
             "img_card": "case-gold.dea4179e.png",
             "img_avatar": "avatar-example-1.efb6cc72.png",
             "name": "Santcese"
+        },
+        {
+            "id": 17,
+            "img_card": "case-blue.6568b466.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 18,
+            "img_card": "case-violet.2050f5bf.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 19,
+            "img_card": "case-pink.17c520f2.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 20,
+            "img_card": "case-gold.dea4179e.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 21,
+            "img_card": "case-blue.6568b466.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 22,
+            "img_card": "case-violet.2050f5bf.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 23,
+            "img_card": "case-pink.17c520f2.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 24,
+            "img_card": "case-gold.dea4179e.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 25,
+            "img_card": "case-blue.6568b466.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 26,
+            "img_card": "case-violet.2050f5bf.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 27,
+            "img_card": "case-pink.17c520f2.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 28,
+            "img_card": "case-gold.dea4179e.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 29,
+            "img_card": "case-blue.6568b466.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 30,
+            "img_card": "case-violet.2050f5bf.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 31,
+            "img_card": "case-pink.17c520f2.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
+        },
+        {
+            "id": 32,
+            "img_card": "case-gold.dea4179e.png",
+            "img_avatar": "avatar-example-1.efb6cc72.png",
+            "name": "Santcese"
         }
     ];
 
