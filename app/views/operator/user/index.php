@@ -22,14 +22,16 @@ $this->registerLinkTag([
 <div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <div>hello</div>
 
+    <?php if ($editing) { ?>
 
-    <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <p>
+            <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
 
-<!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php } ?>
+
+    <!--    --><?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

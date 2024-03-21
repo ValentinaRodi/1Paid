@@ -18,12 +18,16 @@ $jsOptions = ['position' => \yii\web\View::POS_HEAD];
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Permission', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php if ($editing) { ?>
+
+        <p>
+            <?= Html::a('Create Permission', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+
+    <?php } ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <?php  ?>
+    <?php ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -38,10 +42,10 @@ $jsOptions = ['position' => \yii\web\View::POS_HEAD];
 
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action,  $model, $key, $index, $column) {
+                'urlCreator' => function ($action, $model, $key, $index, $column) {
 
                     return Url::toRoute([$action, 'id' => $model['id']]);
-                 }
+                }
             ],
         ],
     ]); ?>

@@ -19,11 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email_verified_at')->textInput() ?>
 
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'secret_word')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'remember_token')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'created_at')->textInput(['readonly' => true]) ?>
 

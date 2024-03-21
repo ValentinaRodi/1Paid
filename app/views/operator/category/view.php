@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="category-view">
 
     <h1>Category ID:<?= Html::encode($this->title) ?></h1>
-
+    <?php if ($editing) { ?>
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?php } ?>
     </p>
 
     <?= DetailView::widget([

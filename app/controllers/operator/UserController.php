@@ -3,10 +3,11 @@
 namespace app\controllers\operator;
 
 use app\forms\AvatarForm;
-use app\models\File;
 use app\models\User;
 use app\search\UserSearch;
 use app\services\FileService;
+use app\services\RbacService;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -18,6 +19,8 @@ use yii\web\UploadedFile;
 class UserController extends Controller
 {
     public $layout = 'operator';
+    public string $viewing = 'user_viewing';
+    public string $editing = 'user_editing';
 
     /**
      * @inheritDoc
@@ -26,6 +29,40 @@ class UserController extends Controller
     {
         return array_merge(
             parent::behaviors(),
+            [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index', 'view', 'create', 'update', 'delete'], // Устанавливаем правила только для site/user и site/admin. К site/index имеют доступ все.
+                    'rules' => [
+                        [
+                            'allow' => true, // Разрешаем доступ.
+                            'actions' => ['index', 'view'], // К действию site/admin
+                            'verbs' => ['GET'], // Через HTTP методы GET, POST и PUT.
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                return RbacService::getRole($this->viewing);
+                            },
+                            'denyCallback' => function () {
+                                // Если пользователь не подпадает под все условия, то завершаем работы и выдаем своё сообщение.
+                                die('Эта страница доступна только администратору!');
+                            },
+                        ],
+                        [
+                            'allow' => true, // Разрешаем доступ.
+                            'actions' => ['index', 'view', 'create', 'update', 'delete', 'add-fields'], // К действию site/admin
+                            'verbs' => ['GET', 'POST'], // Через HTTP методы GET, POST и PUT.
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                return RbacService::getRole($this->editing);
+                            },
+                            'denyCallback' => function () {
+                                // Если пользователь не подпадает под все условия, то завершаем работы и выдаем своё сообщение.
+                                die('Эта страница доступна только администратору!');
+                            },
+                        ],
+                    ],
+                ],
+            ],
             [
                 'verbs' => [
                     'class' => VerbFilter::className(),
@@ -48,6 +85,8 @@ class UserController extends Controller
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
+            'editing' => RbacService::getRole($this->editing),
+            'viewing' => RbacService::getRole($this->viewing),
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -62,6 +101,8 @@ class UserController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
+            'editing' => RbacService::getRole($this->editing),
+            'viewing' => RbacService::getRole($this->viewing),
             'model' => $this->findModel($id),
         ]);
     }
