@@ -42,7 +42,6 @@ class FieldSearch extends Field
     {
         $query = Field::find();
 
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -70,5 +69,18 @@ class FieldSearch extends Field
             ->andFilterWhere(['like', 'value', $this->value]);
 
         return $dataProvider;
+    }
+
+    public static function searchNewFields(){
+//        $query = Field::find();
+//        $query->asArray()->all();
+//        var_dump($query);
+//        $query2 = Field::find()
+//            ->addSelect(['field.id'])
+//            ->join('LEFT JOIN', 'field_category', 'field_category.field_id = field.id')
+//            ->join('LEFT JOIN', 'category', 'category.id = field_category.category_id')
+//            ->where(['field_category.category_id' => 5])->asArray()->all();
+//        // add conditions that should always apply here
+//        var_dump($query2);
     }
 }

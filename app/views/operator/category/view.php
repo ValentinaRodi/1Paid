@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -13,8 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <h1>Category ID:<?= Html::encode($this->title) ?></h1>
+    <?php if ($editing) { ?>
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -24,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?php } ?>
     </p>
 
     <?= DetailView::widget([
@@ -39,4 +41,25 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+
+</div>
+<div>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn',
+//            'input' => 'test'
+            ],
+
+            'id',
+            'seo_name',
+            'lang_id',
+            'type',
+            'created_at',
+            'updated_at',
+            'search',
+
+        ],
+    ]); ?>
 </div>

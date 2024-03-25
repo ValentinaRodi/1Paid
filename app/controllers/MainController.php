@@ -14,9 +14,7 @@ use app\forms\{
 use app\models\{
     User
 };
-use app\services\{
-    GameService
-};
+use app\services\{GameService, RbacService};
 
 class MainController extends Controller
 {
@@ -105,6 +103,7 @@ class MainController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
+
             $user = User::findIdentity(\Yii::$app->user->id);
             return $this->asJson([
                 'success' => true,
@@ -113,7 +112,8 @@ class MainController extends Controller
                 'balance' => $user->balance,
                 'bonus' => $user->bonus,
                 'registerDate' => $user->created_at,
-                'logged' => !Yii::$app->user->isGuest
+                'logged' => !Yii::$app->user->isGuest,
+                'permissions' => RbacService::getUserPermission()
             ]);
         }
         $model = new LoginForm();
@@ -130,6 +130,8 @@ class MainController extends Controller
                 'bonus' => $user->bonus,
                 'registerDate' => $user->created_at,
                 'logged' => !Yii::$app->user->isGuest,
+                'permissions' => RbacService::getUserPermission()
+
             ]);
         }
 
@@ -199,6 +201,8 @@ class MainController extends Controller
                     'bonus' => $user->bonus,
                     'registerDate' => $user->created_at,
                     'logged' => !Yii::$app->user->isGuest,
+                    'permissions' => RbacService::getUserPermission()
+
                 ]);
             }
             return $this->asJson([

@@ -128,9 +128,11 @@ function Authorisation(props) {
                         localStorage.setItem('avatar', data.avatar);
                         localStorage.setItem('balance', data.balance);
                         localStorage.setItem('bonus', data.bonus);
+                        localStorage.setItem('permissions', JSON.stringify(data.permissions));
                         
+                        // props.changeLogged();
                         props.closeModal();
-                        
+
                         setAuth(true);
                         window.location.reload();
                         

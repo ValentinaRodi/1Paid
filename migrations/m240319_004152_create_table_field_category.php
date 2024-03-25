@@ -3,14 +3,11 @@
 use yii\db\Migration;
 
 /**
- * Class m240305_152027_create_table__user_permission
+ * Class m240319_004152_create_table_field_category
  */
-class m240305_152027_create_table__user_permission extends Migration
+class m240319_004152_create_table_field_category extends Migration
 {
-
-
-    /** @var string  */
-    protected $tableName = '{{%user_permission}}';
+    protected $tableName = '{{%field_category}}';
 
     /**
      * {@inheritdoc}
@@ -23,20 +20,20 @@ class m240305_152027_create_table__user_permission extends Migration
         }
 
         $this->createTable($this->tableName, [
-            'user_id' => $this->integer()->unsigned()->notNull(),
-            'permission_id' => $this->integer()->unsigned()->notNull(),
+            'field_id' => $this->integer()->unsigned()->notNull(),
+            'category_id' => $this->integer()->unsigned()->notNull(),
         ], $collation);
 
         $this->createIndex(
-            'idx-field-permission-permission_id',
+            'idx-field-field-field_id',
             $this->tableName,
-            'permission_id'
+            'field_id'
         );
 
         $this->createIndex(
-            'idx-field-user-user_id',
+            'idx-field-category-category_id',
             $this->tableName,
-            'user_id'
+            'category_id'
         );
     }
 
@@ -45,7 +42,7 @@ class m240305_152027_create_table__user_permission extends Migration
      */
     public function safeDown()
     {
-        echo "m240305_152027_create_table__user_permission cannot be reverted.\n";
+        echo "m240319_004152_create_table_field_category cannot be reverted.\n";
 
         return false;
     }
@@ -59,7 +56,7 @@ class m240305_152027_create_table__user_permission extends Migration
 
     public function down()
     {
-        echo "m240305_152027_create_table__user_permission cannot be reverted.\n";
+        echo "m240319_004152_create_table_field_category cannot be reverted.\n";
 
         return false;
     }

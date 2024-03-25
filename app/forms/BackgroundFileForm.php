@@ -7,17 +7,17 @@ use Yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
-class AvatarForm extends Model
+class BackgroundFileForm extends Model
 {
     /**
      * @var UploadedFile
      */
-    public $imageFile;
+    public $background;
 
     public function rules()
     {
         return [
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['background'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 

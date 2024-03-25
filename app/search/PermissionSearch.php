@@ -5,6 +5,7 @@ namespace app\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Permission;
+use yii\db\Query;
 
 /**
  * PermissionSearch represents the model behind the search form of `app\models\Permission`.
@@ -17,7 +18,8 @@ class PermissionSearch extends Permission
     public function rules()
     {
         return [
-            [['id', 'lang_id'], 'integer'],
+            [['id', 'lang_id'], 'integer']
+
         ];
     }
 
@@ -39,9 +41,13 @@ class PermissionSearch extends Permission
      */
     public function search($params)
     {
-        $query = Permission::find();
 
-        // add conditions that should always apply here
+        $query = new Query;
+        // compose the query
+        $query->select(['permission.id', 'lang.russian', 'lang.english', 'lang.created_at', 'lang.updated_at'])
+            ->from('permission')
+            ->join('LEFT JOIN', 'lang', 'lang.id = permission.lang_id')
+            ->where('lang.id = permission.lang_id');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,7 +63,7 @@ class PermissionSearch extends Permission
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'permission.id' => $this->id,
             'lang_id' => $this->lang_id,
         ]);
 

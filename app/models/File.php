@@ -15,6 +15,7 @@ use Yii;
  * @property int $size
  * @property string|null $created_at
  * @property string|null $updated_at
+ * @property string|null $path
  */
 class File extends \yii\db\ActiveRecord
 {
@@ -34,7 +35,7 @@ class File extends \yii\db\ActiveRecord
         return [
             [['original_name', 'hashed_name', 'extension', 'user_id', 'size'], 'required'],
             [['user_id', 'size'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at', 'updated_at', 'path'], 'safe'],
             [['original_name', 'hashed_name', 'extension'], 'string', 'max' => 190],
         ];
     }

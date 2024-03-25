@@ -3,11 +3,10 @@
 namespace app\services;
 
 use Yii;
-use app\models\{
-    File
-};
+use app\models\{File, Game};
 use yii\base\ErrorException;
 use yii\base\Security;
+use yii\db\Query;
 
 class FileService
 {
@@ -35,9 +34,85 @@ class FileService
 
     }
 
-    public static function uploadImage($fileData): array
+    public static function uploadGameImage($fileData, $game_id, $img_id_name, $size)
     {
         $validateFile = self::validateImage($fileData);
+        if ($validateFile['success'] == true) {
+
+
+//            $size = 256;
+            $path = $_SERVER["DOCUMENT_ROOT"] . "/uploads/files/games";
+
+            // запись файла в бд, получение его id
+            // запись нового id в табл. game - icon_id
+            try {
+                $img = self::resizeImage($fileData, $size[0], $size[1]);
+
+                $hashedName = Yii::$app->getSecurity()->generateRandomString();
+                $directoryAndFileName = $path . '/' . $hashedName . '.png';
+
+                imagepng($img, $directoryAndFileName);
+
+                // Освобождаем память
+                imagedestroy($img);
+                imagedestroy($img);
+
+                $file = new File();
+                $file->original_name = preg_replace('/\.[^.]+$/', '', $fileData['name']);;
+                $file->hashed_name = $hashedName;
+                $file->extension = 'png';
+                $file->user_id = Yii::$app->user->id;
+                $file->size = $fileData['size'];
+                $file->created_at = date('Y-m-d H:i:s');
+                $file->path = '/files/games';
+                $file->save();
+
+                    $sql = 'UPDATE game
+                        SET ' . $img_id_name . '=' . $file->id .
+                        ' WHERE id=' . $game_id;
+//var_dump($file->id);
+//var_dump($sql);
+//die();
+                    \Yii::$app->db->createCommand($sql)->execute();
+//                    $game = Game::findOne(['background_id' => 1]);
+//                    $game->icon_id = $file->id;
+//                    $game->save();
+
+
+                if (!isset($file['_errors'])) {
+
+
+                    return [
+                        'success' => true,
+                        'file_id' => $file->id
+                    ];
+                }
+                return [
+                    'success' => false,
+                    'errors' => $file['_errors']
+                ];
+            } catch (ErrorException $error) {
+                var_dump($error);
+                return [
+                    'success' => false,
+                    'errors' => $error
+                ];
+            }
+        }
+        return [
+            'success' => false,
+            'errors' => $validateFile['errors']
+        ];
+    }
+
+    public static function uploadImage($fileData, $user_id = null): array
+    {
+
+        $validateFile = self::validateImage($fileData);
+
+        if (empty($user_id)) {
+            $user_id = Yii::$app->user->id;
+        }
 
         if ($validateFile['success'] == true) {
             $path = $_SERVER["DOCUMENT_ROOT"] . "/uploads/avatars/";
@@ -69,8 +144,10 @@ class FileService
                     $file->original_name = preg_replace('/\.[^.]+$/', '', $fileData['name']);;
                     $file->hashed_name = $hashedName;
                     $file->extension = 'png';
-                    $file->user_id = Yii::$app->user->id;
+                    $file->user_id = $user_id;
                     $file->size = $fileData['size'];
+                    $file->created_at = date('Y-m-d H:i:s');
+                    $file->path = '/avatars/' . $directory;
                     $file->save();
 
                     $fileNamesList[$directory] = $hashedName;
@@ -102,6 +179,65 @@ class FileService
             'success' => false,
             'errors' => $validateFile['errors']
         ];
+    }
+
+    public static function deleteFile($id)
+    {
+        $path = $_SERVER["DOCUMENT_ROOT"] . "/uploads";
+        $fileData = File::find()
+            ->where(['id' => $id])
+            ->asArray()->all();
+        $fileData = $fileData[0];
+
+        if ($fileData['path'] != '0' && unlink($path . $fileData['path'] . '/' . $fileData['hashed_name'] . '.' . $fileData['extension'])) {
+
+            return [
+                'success' => 'true',
+            ];
+        } else {
+
+            $full_path_with_file_name = self::searchFileFolder($path, $fileData['hashed_name'] . '.' . $fileData['extension']);
+            if (unlink($full_path_with_file_name[0])) {
+                return [
+                    'success' => 'true',
+                ];
+            }
+
+            return [
+                'success' => 'false',
+                'error' => 'path not found'
+            ];
+        }
+    }
+
+    public static function searchFileFolder($folderName, $fileName)
+    {
+        $found = array();
+        $folderName = rtrim($folderName, '/');
+
+        $dir = opendir($folderName); // открываем текущую папку
+
+        // перебираем папку, пока есть файлы
+        while (($file = readdir($dir)) !== false) {
+            $file_path = "$folderName/$file";
+
+            if ($file == '.' || $file == '..') continue;
+
+            // это файл проверяем имя
+            if (is_file($file_path)) {
+                // если имя файла искомое, то вернем путь до него
+                if (false !== strpos($file, $fileName)) $found[] = $file_path;
+            } // это папка, то рекурсивно вызываем search_file
+            elseif (is_dir($file_path)) {
+                $res = self::searchFileFolder($file_path, $fileName);
+                $found = array_merge($found, $res);
+            }
+
+        }
+
+        closedir($dir); // закрываем папку
+
+        return $found;
     }
 
     public static function resizeImage($fileData, $sizeWidth, $sizeHeight)
