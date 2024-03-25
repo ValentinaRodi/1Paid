@@ -4,6 +4,9 @@ namespace app\controllers\operator;
 
 use app\models\Field;
 use app\search\FieldSearch;
+use app\services\FieldService;
+use app\services\RbacService;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,6 +17,9 @@ use yii\filters\VerbFilter;
 class FieldController extends Controller
 {
     public $layout = 'operator';
+    public string $viewing = 'field_viewing';
+    public string $editing = 'field_editing';
+
 
     /**
      * @inheritDoc
@@ -22,6 +28,40 @@ class FieldController extends Controller
     {
         return array_merge(
             parent::behaviors(),
+            [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'only' => ['index', 'view', 'create', 'update', 'delete'], // Устанавливаем правила только для site/user и site/admin. К site/index имеют доступ все.
+                    'rules' => [
+                        [
+                            'allow' => true, // Разрешаем доступ.
+                            'actions' => ['index', 'view'], // К действию site/admin
+                            'verbs' => ['GET'], // Через HTTP методы GET, POST и PUT.
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                return RbacService::getRole($this->viewing);
+                            },
+                            'denyCallback' => function () {
+                                // Если пользователь не подпадает под все условия, то завершаем работы и выдаем своё сообщение.
+                                die('Эта страница доступна только администратору!');
+                            },
+                        ],
+                        [
+                            'allow' => true, // Разрешаем доступ.
+                            'actions' => ['index', 'view', 'create', 'update', 'delete', 'add-fields'], // К действию site/admin
+                            'verbs' => ['GET', 'POST'], // Через HTTP методы GET, POST и PUT.
+                            'roles' => ['@'],
+                            'matchCallback' => function () {
+                                return RbacService::getRole($this->editing);
+                            },
+                            'denyCallback' => function () {
+                                // Если пользователь не подпадает под все условия, то завершаем работы и выдаем своё сообщение.
+                                die('Эта страница доступна только администратору!');
+                            },
+                        ],
+                    ],
+                ],
+            ],
             [
                 'verbs' => [
                     'class' => VerbFilter::className(),
@@ -44,6 +84,8 @@ class FieldController extends Controller
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
+            'editing' => RbacService::getRole($this->editing),
+            'viewing' => RbacService::getRole($this->viewing),
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -58,6 +100,8 @@ class FieldController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
+            'editing' => RbacService::getRole($this->editing),
+            'viewing' => RbacService::getRole($this->viewing),
             'model' => $this->findModel($id),
         ]);
     }
@@ -113,9 +157,26 @@ class FieldController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+//        $this->findModel($id)->delete();
+// удалить запись из field_category
 
         return $this->redirect(['index']);
+    }
+
+    public function actionCheckboxDelete()
+    {
+        $data = \Yii::$app->request->post();
+        $selection = $data['selection'];
+        $category_id = $data['category_id'];
+
+        foreach ($selection as $field_id) {
+
+            FieldService::deleteFieldFromCategory($field_id, $category_id);
+//            $this->findModel($field_id)->delete();
+        }
+        die();
+        return $this->redirect(['index']);
+
     }
 
     /**

@@ -73,7 +73,7 @@ class GameForm extends Model
     {
         //$model->upload();
         $game = new Game();
-        $game->name = $this->name;
+        $game->seo_name = $this->name;
         $game->icon_id = 1;
         $game->background_id = 2;
         $game->lang_id = LangService::setLangs($this->lang);

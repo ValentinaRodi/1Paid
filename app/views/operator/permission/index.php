@@ -12,17 +12,22 @@ use yii\grid\GridView;
 
 $this->title = 'Permissions';
 $this->params['breadcrumbs'][] = $this->title;
+$jsOptions = ['position' => \yii\web\View::POS_HEAD];
 ?>
 <div class="permission-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Permission', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php if ($editing) { ?>
+
+        <p>
+            <?= Html::a('Create Permission', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+
+    <?php } ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <?php ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -30,12 +35,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'lang_id',
+            'russian',
+            'english',
+            'created_at',
+            'updated_at',
+
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Permission $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'urlCreator' => function ($action, $model, $key, $index, $column) {
+
+                    return Url::toRoute([$action, 'id' => $model['id']]);
+                }
             ],
         ],
     ]); ?>
