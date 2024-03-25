@@ -58,11 +58,14 @@ function HeaderMain(props) {
             setBalance(localStorage.getItem('balance'));
             setBonus(localStorage.getItem('bonus'));
             let permissions = JSON.parse(localStorage.getItem('permissions'));
-            for (let permission of  permissions){
-                if (permission === 'operator_viewing'){
-                    setOperator(true);
+            if (permissions){
+                for (let permission of  permissions){
+                    if (permission === 'operator_viewing'){
+                        setOperator(true);
+                    }
                 }
             }
+
 
             
             // if(localStorage.getItem('avatar') !== 'null' && localStorage.getItem('avatar')) {
