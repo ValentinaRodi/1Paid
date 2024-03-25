@@ -13,11 +13,10 @@ function Main() {
     }, []);
 
     return (
-       
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
             <div className='w-full layout-main'>
                 <Prsl />
-                <div className="sh flex justify-between items-center gap-x-3 mt-0 sm:mt-4 xl:mt-6 mb-0 sm:mb-6">
+                <div className="sh flex justify-between gap-x-3 mt-4 items-center sm:mt-4 xl:mt-6 mb-0 sm:mb-6">
                     <div className="w-[252px] hidden">
                         <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>
                     </div>

@@ -1,52 +1,21 @@
 import { useState, useEffect } from 'react';
+import TimerCircle from '../timerСircle/TimerCircle';
 
 function PrslTop() {
     //const [orient, setOrient] = useState('_lf-row');
     
     return (
-        <div className="prsl-top rounded-md min-h-[122px] flex justify-between items-center px-6"> 
+        <div className="prsl-top rounded-md min-h-[122px] flex justify-center sm:justify-between items-center px-0 sm:px-6 py-2 sm:py-4 flex-wrap gap-y-2 gap-x-4"> 
             <div className="prsl-item-inf ">
-                <div className="font-primary-italic mb-[8px] text-gradient font-bold text-lg italic text-[linear-gradient(90deg,#8CD23C_0%,#417A00_100%)]">Успей занять призовые места!</div>
-                <div className="font-primary-italic font-bold text-3xl text-white italic">Статистика обновляется каждые 30 дней</div>
+                <div className="font-primary-italic mb-0 sm:mb-2 text-gradient text-sm sm:text-base xl:text-lg text-center sm:text-start text-[linear-gradient(90deg,#8CD23C_0%,#417A00_100%)]">Успей занять призовые места!</div>
+                <div className="font-primary-italic text-sm sm:text-xl xl:text-3xl text-white text-center sm:text-start">Статистика обновляется каждые 30 дней</div>
             </div>
             <div className="prsl-item-bar flex justify-center items-center gap-4 ">
                 <div className="timer flex items-center gap-1">
-                    <div className="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px]">
-                        <div className="circle-progress" data-percent="5" data-measure="67" data-measure-640="44">
-                            <img src="/img/icon-circle-progress.svg" alt="circle-progress"/>
-                        </div>
-                        <div className="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
-                            <div className="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">30</div>
-                            <div className="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">дней</div>
-                        </div>
-                    </div>
-                    <div className="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px]">
-                        <div className="circle-progress" data-percent="80" data-measure="67" data-measure-640="44">
-                            <img src="/img/icon-circle-progress.svg" alt="circle-progress"/>
-                        </div>
-                        <div className="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
-                            <div className="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">24</div>
-                            <div className="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">часа</div>
-                        </div>
-                    </div>
-                    <div className="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px]">
-                        <div className="circle-progress mt-4" data-percent="60" data-measure="67" data-measure-640="44">
-                            <img src="/img/icon-circle-progress-2.svg" alt="circle-progress"/>
-                        </div>
-                        <div className="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
-                            <div className="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">44</div>
-                            <div className="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">минуты</div>
-                        </div>
-                    </div>
-                    <div className="timer-item relative flex-shrink-0 flex justify-center items-center w-[67px] h-[67px]">
-                        <div className="circle-progress" data-percent="5" data-measure="67" data-measure-640="44">
-                            <img src="/img/icon-circle-progress-3.svg" alt="circle-progress"/>
-                        </div>
-                        <div className="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
-                            <div className="timer-value font-primary-med text-center text-lg text-white leading-none 3sm:text-xs">05</div>
-                            <div className="timer-value font-primary-bold text-center text-[11px] text-white/60 leading-none 3sm:hidden">секунд</div>
-                        </div>
-                    </div>
+                    <TimerCircle timeNumber='30' timeString='дней' imgCircle='icon-circle-progress.svg'/>
+                    <TimerCircle timeNumber='24' timeString='часа' imgCircle='icon-circle-progress.svg'/>
+                    <TimerCircle timeNumber='44' timeString='минуты' imgCircle='icon-circle-progress.svg'/>
+                    <TimerCircle timeNumber='05' timeString='секунд' imgCircle='icon-circle-progress-3.svg'/>
                 </div>
             </div>
         </div>

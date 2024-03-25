@@ -62,7 +62,7 @@ function Prsl() {
     }, [modalEl]);
 
     return (
-        <div id="prsl" className="prsl rounded-md min-h-[100px] flex justify-between items-center mt-0 min-[640px]:mt-6 min-[1200px]:mt-0">
+        <div id="prsl" className="prsl rounded-md min-h-[100px] flex justify-between items-center mt-1 min-[640px]:mt-6 min-[1200px]:mt-0">
             <Swiper
                 loop={true}
                 onBeforeInit={(swiper) => {
@@ -72,6 +72,7 @@ function Prsl() {
                 autoplay={{delay: 3000, disableOnInteraction: false}}
                 modules={[Navigation, Pagination, Autoplay]}
                 speed={800}
+                spaceBetween={30}
                 className='min-h-[100px]'
                 style={{
                     "--swiper-pagination-bullet-horizontal-gap": "20px",
@@ -81,14 +82,14 @@ function Prsl() {
                     "--swiper-pagination-bullet-height": "10px",
                     "--swiper-pagination-bullet-width": "10px",
                     "--swiper-pagination-bottom": "5px",
-                    "padding" : "16px 0"
+                    "padding" : "16px 0",
                 }}
             >
                 {
                     (components.length !== 0) ? (
                         components.map((component, index) => (
-                            <SwiperSlide className="w-full h-full mr-1" key={uuid()}>
-                                <div className=" w-full flex items-center justify-between gap-4 max-[1375px]:flex-wrap max-[1375px]:justify-center">
+                            <SwiperSlide className="w-full h-full " key={uuid()}>
+                                <div className="p-x-4 w-full flex items-center justify-between gap-4 max-[1375px]:flex-wrap max-[1375px]:justify-center">
                                     <div className="flex justify-center items-center gap-4 ">
                                         <div className="prsl-item-award-pic w-[180px] flex justify-center items-center max-[640px]:w-[100px] ">
                                             <img className="w-full" src="/img/raffle.161f3412.png" alt="raffle"/>

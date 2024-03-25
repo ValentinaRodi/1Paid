@@ -13,21 +13,23 @@ function TopBanner(props) {
 
 
     return (
-        <div className='w-[33%] h-[100px] rounded-xl  bg-white'>
-            <div className={`${color} w-36 h-[22px] rounded-b-xl ml-6 text-white text-xs flex items-center justify-center`}>{props.money} РУБЛЕЙ</div>
-            <div className='flex justify-between items-center'>
-                <div className={`bg-[url(${props.user_foto})]`}>
-                    <div className='font-bold font-secondary-bold text-lg mb-2'>{props.name}</div>
-                    <div className={`${color} rounded-[100px] w-16 h-[22px] font-bold font-secondary-bold text-white text-xs flex items-center justify-center`}>{props.rank} место</div>
-                    <img src='/img/shape.svg' alt='shape'/>
+        <div className='min-w-[33%] h-[100px] rounded-xl  bg-white relative'>
+            <div className={`${color} absolute top-0 left-6 w-28 sm:w-36 h-[22px] rounded-b-xl text-white text-[10px] sm:text-xs flex items-center justify-center`}>{props.money} РУБЛЕЙ</div>
+            <div className='flex justify-between items-center h-full'>
+                <div className={`h-full bg-[url('/img/${props.userFoto}')] bg-cover rounded-xl pl-6 flex flex-col h-full justify-center w-[148px]`}>
+                    <div className='font-bold font-secondary-bold text-base sm:text-lg mb-2'>{props.name}</div>
+                    <div className={`${color} relative rounded-[100px] w-14 sm:w-16 h-[22px] font-bold font-secondary-bold text-white text-[10px] sm:text-xs flex items-center justify-center`}>
+                        3 место
+                        <img className='opacity-20 block absolute top-1 left-[23px]' src='/img/shape.svg' alt='shape'/>
+                    </div>
                 </div>
-                <div className='border-x-solid border-x border-x-[#DBE0ED] px-4'>
-                    <div className='font-bold font-secondary-bold text-base mb-2'>{props.tovar}</div>
-                    <div className='font-bold font-secondary-bold text-[#B4BAD2] text-xs'>Купленные товары</div>
+                <div className='border-x-solid border-x border-x-[#DBE0ED] px-4 flex flex-col '>
+                    <div className='font-bold font-secondary-bold text-sm sm:text-base mb-2'>{props.tovar}</div>
+                    <div className='font-bold font-secondary-bold text-[#B4BAD2] text-[10px] sm:text-xs'>Купленные товары</div>
                 </div>
                 <div className='px-4'>
-                    <div className='font-bold font-secondary-bold text-base mb-2'>{props.moneyGet}₽</div>
-                    <div className='font-bold font-secondary-bold text-[#B4BAD2] text-xs'>Заработанно</div>
+                    <div className='font-bold font-secondary-bold text-sm sm:text-base mb-2 flex flex-col'>{props.moneyGet}</div>
+                    <div className='font-bold font-secondary-bold text-[#B4BAD2] text-[10px] sm:text-xs'>Заработанно</div>
                 </div>
             </div>
         </div>
