@@ -9,6 +9,7 @@ import Registration from '../../components/registration/Registration';
 import RecPass from '../../components/recpass/Recpass';
 import { useNavigate  } from 'react-router-dom';
 import RandomCard from '../../components/randomCard/RandomCard';
+import Title from '../../components/title/Title';
 
 function RandomItems() {
     const [modalEl, setModalEl] = useState('');
@@ -89,17 +90,7 @@ function RandomItems() {
             <div className="w-full layout-main">
                 <Prsl />
                 <div className="sri mt-5">
-                    <div className="sh flex justify-between items-center gap-x-3 mb-6">
-                        <div className="w-[252px] hidden">
-                            <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>
-                        </div>
-                        <div className="sh-title ">
-                            <div >
-                                <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Случайные предметы</h2>
-                                <div className="sh-title-line mt-2 rounded-full w-9 h-1 bg-gradient-primary"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <Title title='Случайные предметы'/>
                     <div className="sri-grid grid grid-cols-3 gap-3 ">
                         <RandomCard clickRoulette={clickRoulette} iconBg='case-card-bg-pink.97f9baea.png' icon='case-pink.17c520f2.png' name='rose' price='1990' />
                         <RandomCard clickRoulette={clickRoulette} iconBg='case-card-bg-pink.97f9baea.png' icon='case-pink.17c520f2.png' name='rose' price='1990' />

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
 import { Link } from 'react-router-dom';
 
-
 function Pagination() {
 
     return (

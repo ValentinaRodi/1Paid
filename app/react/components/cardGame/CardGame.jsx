@@ -48,7 +48,7 @@ function CardGame(props) {
     };
 
     return (
-        <div className="pc-card max-h-[414px] max-w-[310px] rounded-lg bg-white min-w-[240px]">
+        <div className="pc-card max-h-[414px] w-full max-w-full sm:w-auto sm:max-w-[310px] rounded-lg bg-white min-w-[240px]">
             <div className='pc-plate-container h-[22px] w-[79px] flex items-center justify-center'>
                 <div className={(props.new === '1') ? 'pc-plate bg-gradient-primary _shadow-primary h-full w-full flex items-center justify-center font-bold bg-gradient-primary' : 'hidden'}>new</div>
             </div>

@@ -20,7 +20,7 @@ function CardGameString(props) {
                     <img className="pc-preview-pic w-full" src={`/img/${props.icon}`} alt="picture"/>
                 </div>
             </Link>
-            <Link to={`${props.id}-${props.seo_name}`} className="pc-info ml-2">
+            <Link to={`${props.id}-${props.seo_name}`} className="pc-info">
                 <div className="pc-title font-bold font-secondary-bold text-[13px] text-black">{props.name}</div>
                 <div className="pc-subtitle mt-1 font-secondary-bold font-bold text-xs text-[#A6B1C7]">{props.description}</div>
             </Link>
@@ -58,7 +58,7 @@ function CardGameString(props) {
                     </div>
                 </div>
             </div>
-            <div className="pc-ibar flex justify-end items-center flex-wrap gap-3 mr-3">
+            <div className="pc-ibar flex justify-end items-start md:items-center flex-wrap gap-3 mr-3">
                 <label className="pc-btn-like">
                     <input type="checkbox"/>
                     <div className="btn-icon btn-icon-none-shadow">
