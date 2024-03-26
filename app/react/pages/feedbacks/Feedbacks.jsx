@@ -23,12 +23,7 @@ function Feedbacks() {
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
             <div className="w-full layout-main">
                 <div className="sfb ">
-                    <div className="sh flex justify-between items-center gap-x-3 ">
-                        <div className="w-[252px] hidden">
-                            <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>
-                        </div>
-                        <Title title='Отзывы'/>
-                    </div>
+                    <Title title='Отзывы'/>
                     <div className="sfb-total font-secondary-bold text-sm sm:text-lg text-black/20 ">Количество отзывов:  753</div>
                     <div className="sfb-inner mt-4 flex gap-3 ">
                         <div className="sfb-feed flex-grow grid grid-cols-1 gap-3">

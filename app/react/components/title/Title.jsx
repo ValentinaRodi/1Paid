@@ -4,14 +4,10 @@ function Title(props) {
     return (
 
         <div className="sh flex justify-between gap-x-3 mt-4 items-center sm:mt-4 xl:mt-6 mb-0 sm:mb-6">
-            <div className="w-[252px] hidden">
-                <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>
-            </div>
             <div className="sh-title ">
-                <div >
-                    <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">{props.title}</h2>
-                    <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
-                    </div>
+                <div>
+                    <h2 className="sh-title-text font-secondary-bold text-bold text-lg sm:text-2xl text-black">{props.title}</h2>
+                    <div className={`${props.green ? 'bg-gradient-secondary' : 'bg-gradient-primary'} sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2`}></div>
                 </div>
             </div>
             {props.search ?

@@ -6,11 +6,6 @@ function TopBanner(props) {
     useEffect(() => {
         (props.rank === '1') ? setColor('bg-gold') : (props.rank === '2') ? setColor('bg-silver') : setColor('bg-bronze');
     }, []);
-    console.log('props1', props.rank === '1');
-    console.log('props2', props.rank === '2');
-
-    console.log('props3', props.rank === '3');
-
 
     return (
         <div className='min-w-[33%] h-[100px] rounded-xl  bg-white relative'>
