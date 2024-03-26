@@ -3,6 +3,7 @@ import PrslTop from '../../components/prslTop/PrslTop';
 import TopBanner from '../../components/topBanner/TopBanner';
 import LayoutBtn from '../../components/LayoutBtn';
 import uuid from 'react-uuid';
+import Title from '../../components/title/Title';
 
 function TopUsers() {
     
@@ -22,13 +23,7 @@ function TopUsers() {
                     <div className="w-[252px] hidden">
                         <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>
                     </div>
-                    <div className="sh-title ">
-                        <div>
-                            <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Топ Юзеров</h2>
-                            <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
-                            </div>
-                        </div>
-                    </div>
+                    <Title title='Топ Юзеров'/>
                 </div>
                 <PrslTop />
                 <div className='flex justify-center mt-3 flex-wrap gap-2'>

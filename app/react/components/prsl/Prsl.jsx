@@ -9,6 +9,7 @@ import Authorisation from '../authorisation/Authorisation';
 import 'swiper/less';
 import 'swiper/less/navigation';
 import 'swiper/less/pagination';
+import TimerCircle from '../timerСircle/TimerCircle';
 
 function Prsl() {
     const components = [1,2,3];
@@ -100,39 +101,15 @@ function Prsl() {
                                             </div>
                                             <div className="">
                                                 <div className=" font-secondary-bold text-xs text-white sm:text-base">Аккаунт Warface</div>
-                                                <div className=" mt-1.5 font-secondary-bold text-[10px] text-white/40 sm:text-sm">25 Ранг</div>
+                                                <div className="mt-0 xl:mt-1.5 font-secondary-bold text-[10px] text-white/40 sm:text-sm">25 Ранг</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="flex justify-end items-center gap-x-4 ">
                                         <div className="timer flex items-center gap-1">
-                                            <div className="timer-item relative flex-shrink-0 flex justify-center items-center w-14 h-14 sm:w-[67px] sm:h-[67px]">
-                                                <div className="circle-progress" data-percent="80" data-measure="67" data-measure-640="44">
-                                                    <img src="/img/icon-circle-progress.svg" alt="circle-progress"/>
-                                                </div>
-                                                <div className="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
-                                                    <div className="timer-value font-primary-med text-center text-sm text-white leading-none sm:text-lg">24</div>
-                                                    <div className="timer-value font-primary-bold text-center text-[9px] text-white/60 leading-none sm:text-[11px]">часа</div>
-                                                </div>
-                                            </div>
-                                            <div className="timer-item relative flex-shrink-0 flex justify-center items-center w-14 h-14 sm:w-[67px] sm:h-[67px]">
-                                                <div className="circle-progress mt-4" data-percent="60" data-measure="67" data-measure-640="44">
-                                                    <img src="/img/icon-circle-progress-2.svg" alt="circle-progress"/>
-                                                </div>
-                                                <div className="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
-                                                    <div className="timer-value font-primary-med text-center text-sm text-white leading-none sm:text-lg">44</div>
-                                                    <div className="timer-value font-primary-bold text-center text-[9px] text-white/60 leading-none sm:text-[11px]">минуты</div>
-                                                </div>
-                                            </div>
-                                            <div className="timer-item relative flex-shrink-0 flex justify-center items-center w-14 h-14 sm:w-[67px] sm:h-[67px]">
-                                                <div className="circle-progress" data-percent="5" data-measure="67" data-measure-640="44">
-                                                    <img src="/img/icon-circle-progress-3.svg" alt="circle-progress"/>
-                                                </div>
-                                                <div className="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
-                                                    <div className="timer-value font-primary-med text-center text-sm text-white leading-none sm:text-lg">05</div>
-                                                    <div className="timer-value font-primary-bold text-center text-[9px] text-white/60 leading-none sm:text-[11px]">секунд</div>
-                                                </div>
-                                            </div>
+                                            <TimerCircle timeNumber='24' timeString='часа' imgCircle='icon-circle-progress.svg'/>
+                                            <TimerCircle timeNumber='44' timeString='минуты' imgCircle='icon-circle-progress.svg'/>
+                                            <TimerCircle timeNumber='05' timeString='секунд' imgCircle='icon-circle-progress-3.svg'/>
                                         </div>
                                         <button onClick={joinGiveAway} className="btn flex justify-center items-center btn-primary rounded h-9 font-secondary-med text-[10px] text-white sm:text-[15px] sm:h-10 w-28 sm:w-[160px] 2xl:w-[186px]">Присоединиться</button>
                                     </div>

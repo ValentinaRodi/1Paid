@@ -3,6 +3,8 @@ import LayoutBtn from '../../components/LayoutBtn';
 import { Link } from 'react-router-dom';
 import { useNavigate  } from 'react-router-dom';
 import Pagination from '../../components/pagination/Pagination';
+import FeedbacksItem from '../../components/feedbacksItem/FeedbacksItem';
+import Title from '../../components/title/Title';
 
 function Feedbacks() {
     const navigate = useNavigate();
@@ -25,88 +27,17 @@ function Feedbacks() {
                         <div className="w-[252px] hidden">
                             <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>
                         </div>
-                        <div className="sh-title ">
-                            <div >
-                                <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Отзывы</h2>
-                                <div className="sh-title-line mt-2 rounded-full w-9 h-1 bg-gradient-primary"></div>
-                            </div>
-                        </div>
+                        <Title title='Отзывы'/>
                     </div>
-                    <div className="sfb-total font-secondary-bold text-lg text-black/20 ">Количество отзывов:  753</div>
+                    <div className="sfb-total font-secondary-bold text-sm sm:text-lg text-black/20 ">Количество отзывов:  753</div>
                     <div className="sfb-inner mt-4 flex gap-3 ">
                         <div className="sfb-feed flex-grow grid grid-cols-1 gap-3">
-                            <div className="fbc rounded-xl p-6 flex items-start gap-4 bg-white ">
-                                <div className="fbc-info flex-shrink-0 flex gap-3 ">
-                                    <div className="fbc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                        <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
-                                    </div>
-                                    <div className="fbc-info-inner">
-                                        <div className="fbc-username font-secondary-bold text-lg text-[#1D222C]  ">Sansa</div>
-                                        <div className="fbc-date font-secondary-med text-xs text-[#CDCFE5] ">01:05 27.12.2019</div>
-                                    </div>
-                                </div>
-                                <div className="fbc-text h-full h-full flex-grow border-l border-solid border-[#E7EAF3] pl-4 font-secondary-med text-[10px] text-[#595E72]  ">Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр. Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр.</div>
-                            </div>
-                            <div className="fbc rounded-xl p-6 flex items-start gap-4 bg-white ">
-                                <div className="fbc-info flex-shrink-0 flex gap-3 ">
-                                    <div className="fbc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                        <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
-                                    </div>
-                                    <div className="fbc-info-inner">
-                                        <div className="fbc-username font-secondary-bold text-lg text-[#1D222C] ">Sansa</div>
-                                        <div className="fbc-date font-secondary-med text-xs text-[#CDCFE5] ">01:05 27.12.2019</div>
-                                    </div>
-                                </div>
-                                <div className="fbc-text h-full flex-grow border-l border-solid border-[#E7EAF3] pl-4 font-secondary-med text-[10px] text-[#595E72] ">Я очень доволен магазином игр, который я недавно посетил.</div>
-                            </div>
-                            <div className="fbc rounded-xl p-6 flex items-start gap-4 bg-white ">
-                                <div className="fbc-info flex-shrink-0 flex gap-3 ">
-                                    <div className="fbc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                        <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
-                                    </div>
-                                    <div className="fbc-info-inner">
-                                        <div className="fbc-username font-secondary-bold text-lg text-[#1D222C] ">Sansa</div>
-                                        <div className="fbc-date font-secondary-med text-xs text-[#CDCFE5] ">01:05 27.12.2019</div>
-                                    </div>
-                                </div>
-                                <div className="fbc-text h-full flex-grow border-l border-solid border-[#E7EAF3] pl-4 font-secondary-med text-[10px] text-[#595E72] ">Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр. Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр.</div>
-                            </div>
-                            <div className="fbc rounded-xl p-6 flex items-start gap-4 bg-white ">
-                                <div className="fbc-info flex-shrink-0 flex gap-3">
-                                    <div className="fbc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                        <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
-                                    </div>
-                                    <div className="fbc-info-inner">
-                                        <div className="fbc-username font-secondary-bold text-lg text-[#1D222C] ">Sansa</div>
-                                        <div className="fbc-date font-secondary-med text-xs text-[#CDCFE5]">01:05 27.12.2019</div>
-                                    </div>
-                                </div>
-                                <div className="fbc-text h-full flex-grow border-l border-solid border-[#E7EAF3] pl-4 font-secondary-med text-[10px] text-[#595E72]">Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит.</div>
-                            </div>
-                            <div className="fbc rounded-xl p-6 flex items-start gap-4 bg-white ">
-                                <div className="fbc-info flex-shrink-0 flex gap-3 ">
-                                    <div className="fbc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                        <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
-                                    </div>
-                                    <div className="fbc-info-inner">
-                                        <div className="fbc-username font-secondary-bold text-lg text-[#1D222C] ">Sansa</div>
-                                        <div className="fbc-date font-secondary-med text-xs text-[#CDCFE5]">01:05 27.12.2019</div>
-                                    </div>
-                                </div>
-                                <div className="fbc-text h-full flex-grow border-l border-solid border-[#E7EAF3] pl-4 font-secondary-med text-[10px] text-[#595E72]">Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр. Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр.</div>
-                            </div>
-                            <div className="fbc rounded-xl p-6 flex items-start gap-4 bg-white">
-                                <div className="fbc-info flex-shrink-0 flex gap-3 ">
-                                    <div className="fbc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                        <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
-                                    </div>
-                                    <div className="fbc-info-inner">
-                                        <div className="fbc-username font-secondary-bold text-lg text-[#1D222C]">Sansa</div>
-                                        <div className="fbc-date font-secondary-med text-xs text-[#CDCFE5]">01:05 27.12.2019</div>
-                                    </div>
-                                </div>
-                                <div className="fbc-text h-full flex-grow border-l border-solid border-[#E7EAF3] pl-4 font-secondary-med text-[10px] text-[#595E72]">Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр. Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр.</div>
-                            </div>
+                            <FeedbacksItem name='Sansa' time='01:05 27.12.2019' avatar='avatar-example-4.6cd623f4.png' text='Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр. Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр.'/>
+                            <FeedbacksItem name='Sansa' time='10:05 27.12.2020' avatar='avatar-example-4.6cd623f4.png' text='Я очень доволен магазином игр, который я недавно посетил.'/>
+                            <FeedbacksItem name='Sansa' time='01:05 27.12.2019' avatar='avatar-example-4.6cd623f4.png' text='Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр. Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр.'/>
+                            <FeedbacksItem name='Sansa' time='01:05 27.12.2019' avatar='avatar-example-4.6cd623f4.png' text='Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит.'/>
+                            <FeedbacksItem name='Sansa' time='01:05 27.12.2019' avatar='avatar-example-4.6cd623f4.png' text='Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр. Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр.'/>
+                            <FeedbacksItem name='Sansa' time='01:05 27.12.2019' avatar='avatar-example-4.6cd623f4.png' text='Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр. Я очень доволен магазином игр, который я недавно посетил. Здесь я нашел огромный выбор игр для всех платформ, включая последние релизы. Цены были весьма конкурентными, а персонал оказался очень дружелюбным и помог мне выбрать игру, которая мне подходит. Я также был приятно удивлен быстрой доставкой моего заказа, который я получил уже на следующий день после покупки. В целом, мне очень понравился этот магазин игр и я бы порекомендовал его всем любителям видеоигр.'/>
                         </div>
                         <div className="sfb-inner-form flex-shrink-0 w-[317px]">
                             <div className="sfb-form sticky top-3 rounded-lg p-6 bg-white w-full">
@@ -114,8 +45,8 @@ function Feedbacks() {
                                     <div className="sfb-form-title font-secondary-bold text-lg text-black">Оставить отзыв</div>
                                     <div className="sfb-btn-close flex-shrink-0 w-4 h-4 [&amp;_svg]:w-[100%] [&amp;_svg]:h-[100%] text-[#D6D9EA] cursor-pointer hidden">
                                         <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0.424023 17.576C-0.0462888 17.1028 -0.0462888 16.3387 0.424023 15.8656L15.8656 0.424038C16.1621 0.0778742 16.6275 -0.0729097 17.0706 0.0336795C17.5137 0.140269 17.8597 0.486241 17.9663 0.929353C18.0729 1.37247 17.9221 1.83793 17.5759 2.13438L2.13436 17.576C1.66124 18.0463 0.897141 18.0463 0.424023 17.576Z" fill="currentColor"></path>
-                                        <path d="M0.424023 0.424023C0.897141 -0.0462888 1.66124 -0.0462888 2.13436 0.424023L17.5759 15.8656C17.9221 16.1621 18.0729 16.6275 17.9663 17.0706C17.8597 17.5137 17.5137 17.8597 17.0706 17.9663C16.6275 18.0729 16.1621 17.9221 15.8656 17.5759L0.424023 2.13436C-0.0462888 1.66124 -0.0462888 0.897141 0.424023 0.424023Z" fill="currentColor"></path>
+                                            <path d="M0.424023 17.576C-0.0462888 17.1028 -0.0462888 16.3387 0.424023 15.8656L15.8656 0.424038C16.1621 0.0778742 16.6275 -0.0729097 17.0706 0.0336795C17.5137 0.140269 17.8597 0.486241 17.9663 0.929353C18.0729 1.37247 17.9221 1.83793 17.5759 2.13438L2.13436 17.576C1.66124 18.0463 0.897141 18.0463 0.424023 17.576Z" fill="currentColor"></path>
+                                            <path d="M0.424023 0.424023C0.897141 -0.0462888 1.66124 -0.0462888 2.13436 0.424023L17.5759 15.8656C17.9221 16.1621 18.0729 16.6275 17.9663 17.0706C17.8597 17.5137 17.5137 17.8597 17.0706 17.9663C16.6275 18.0729 16.1621 17.9221 15.8656 17.5759L0.424023 2.13436C-0.0462888 1.66124 -0.0462888 0.897141 0.424023 0.424023Z" fill="currentColor"></path>
                                         </svg>
                                     </div>
                                 </div>
