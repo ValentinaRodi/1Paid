@@ -38,8 +38,8 @@ function Profile() {
 
         let loggedInUser = localStorage.getItem('logged');
 
-        if (loggedInUser === null) {
-            window.location = '/';  
+        if (isAuthenticated === null) {
+            window.location = '/';
         }
 
         if (loggedInUser) {
