@@ -56,7 +56,7 @@ function CardsGame() {
 
     return (
         <div className="sgc">
-            <div  className="sgc-grid grid grid-cols-2 gap-[30px]">
+            <div  className="sgc-grid grid grid-cols-1 sm:grid-cols-2 gap-[30px]">
                 {
                     (gamesObj.length > 0) ? (
                         gamesObj.map((card) => (

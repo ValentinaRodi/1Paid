@@ -4,6 +4,7 @@ import CardGame from "../../components/cardGame/CardGame";
 import CardGameString from "../../components/cardGame/CardGameString";
 import uuid from 'react-uuid';
 import LayoutBtn from '../../components/LayoutBtn';
+import Title from '../../components/title/Title';
 
 function HistorySales() {
     const [btn, setBtn] = useState(true);
@@ -104,28 +105,7 @@ function HistorySales() {
         
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 mt-10 xl:mt-0">
             <div className="w-full layout-main">
-                <div className="sh flex justify-between items-center gap-x-3 mb-10">
-                    <div className="flex flex-col justify-start">
-                        <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">История покупок и продаж</h2>
-                        <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
-                        </div>
-                    </div>
-                    <div className='flex justify-between items-center gap-2'>
-                        <button onClick={changeViewCards} className=" rounded-full bg-[#e8eaf7] hover:bg-[#dcdff1] w-11 h-11 flex justify-center items-center">
-                            <div className="w-[50%] h-[50%] flex justify-center items-center">
-                                <img src={cardsViewImg} alt="icon-card"/>
-                            </div>
-                        </button>
-                        <div className="sh-bar flex items-center gap-2 2md:w-full 2md:flex-row-reverse">
-                            <div className="sh-search rounded-full h-[45px] px-6 max-w-[270px] w-full flex items-center bg-[#E8EAF7] 2md:max-w-none 2md:flex-grow 2md:h-10 2md:px-3">
-                                <button className="sh-search-icon cursor-pointer bg-inherit flex-shrink-0 w-4 h-full [&amp;_svg]:w-full flex justify-center items-center text-[#B8BACF] duration-100 hover:text-black">
-                                    <img src="/img/icon-sh-search-icon.svg" alt="sh-search-icon"/>
-                                </button>
-                                <input className="sh-search-input flex-grow ml-2.5 w-full h-full bg-transparent font-primary-med text-base text-black 2md:text-sm" placeholder="Поиск"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Title title='Мои закладки' search='true' viewCards='true' changeViewCards={changeViewCards} cardsViewImg={cardsViewImg}/>
                 <div className="flex items-start py-4 justify-between rounded-lg bg-white px-6 mb-3">
                     <div id="parent" className="nav-show pt-2 h-full w-full flex items-center justify-start">
                         <nav id="nav" className="nav-item pb-2.5 flex gap-x-6 flex-wrap gap-y-6">
@@ -141,21 +121,23 @@ function HistorySales() {
                                 (cardView) ? 
                                     (cardsSales.length !== 0 && cardsSales.items !== undefined) ?    
                                         cardsSales.items.map((card) => {
-                                        return (cardsView) ? 
-                                            <CardGame key={uuid()} new={card.new} rank={card.rank} id={card.id} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/> 
-                                        : 
-                                            <CardGameString key={uuid()} rank={card.rank} id='1' new={card.new} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/>  
-                                        }) 
-                                    : (<div className='text-[#FF5343]'>not found</div>)
+                                            return (cardsView) ? 
+                                                <CardGame key={uuid()} new={card.new} rank={card.rank} id={card.id} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/> 
+                                            : 
+                                                <CardGameString key={uuid()} rank={card.rank} id='1' new={card.new} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/>  
+                                            }
+                                        ) 
+                                    : <div className='text-[#FF5343]'>not found</div>
                                 : 
                                     (cardsPurchase.length !== 0 && cardsPurchase.items !== undefined) ?    
                                         cardsSales.items.map((card) => {
-                                    return (cardsView) ? 
-                                        <CardGame key={uuid()} new='1' rank={card.rank} id={card.id} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/> 
-                                    : 
-                                        <CardGameString key={uuid()} rank={card.rank} id='1' new={card.new} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/>  
-                                    }) 
-                                    : (<div className='text-[#FF5343]'>not found</div>)
+                                            return (cardsView) ? 
+                                                <CardGame key={uuid()} new='1' rank={card.rank} id={card.id} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/> 
+                                            : 
+                                                <CardGameString key={uuid()} rank={card.rank} id='1' new={card.new} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/>  
+                                            }
+                                        ) 
+                                    : <div className='text-[#FF5343]'>not found</div>
                             }
                         </div>
                         {(!btn) ? null :

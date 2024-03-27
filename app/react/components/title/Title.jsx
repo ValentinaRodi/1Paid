@@ -10,7 +10,7 @@ function Title(props) {
                     <div className={`${props.green ? 'bg-gradient-secondary' : 'bg-gradient-primary'} sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2`}></div>
                 </div>
             </div>
-            <div className='flex sm:w-auto justify-between items-center gap-2'>
+            <div className='flex w-full sm:w-auto justify-between items-center gap-2'>
                 {props.viewCards ?
                     <button onClick={props.changeViewCards} className=" rounded-full bg-[#e8eaf7] hover:bg-[#dcdff1] w-11 h-11 flex justify-center items-center">
                         <div className="w-[50%] h-[50%] flex justify-center items-center">
