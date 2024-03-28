@@ -27,6 +27,7 @@ import MyMessages from '../pages/myMessages/MyMessages';
 import GiveAway from '../pages/giveaway/GiveAway';
 import Roulette from '../pages/roulette/Roulette';
 import CardTovar from '../pages/cardTovar/CardTovar';
+import Forum from '../pages/forum/Forum';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -81,7 +82,7 @@ export const useRoutes = () => {
         <Route path='/my-messages' element={<MyMessages />} />
         <Route path='/giveaway' element={<GiveAway />} />
         <Route path='/roulette' element={<Roulette />} />
-        
+        <Route path='/forum' element={<Forum />} />
       </Route>
     </Routes> 
   );

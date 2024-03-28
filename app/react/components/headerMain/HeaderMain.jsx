@@ -252,19 +252,19 @@ function HeaderMain(props) {
                             <span></span><span></span></button>
                         <nav className="nav flex mx-6 justify-between gap-x-5 gap-y-5 flex-wrap ">
                             <Link to='/' id='link0' onClick={clickLink}
-                                  className={`${link[0]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Главная</Link>
+                                className={`${link[0]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Главная</Link>
                             <Link to='/top_users' id='link1' onClick={clickLink}
-                                  className={`${link[1]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Топ
+                                className={`${link[1]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Топ
                                 юзеров</Link>
                             <Link to='/feedbacks' id='link2' onClick={clickLink}
-                                  className={`${link[2]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Отзывы</Link>
+                                className={`${link[2]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Отзывы</Link>
                             <Link to='/guarantees' id='link3' onClick={clickLink}
-                                  className={`${link[3]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Гарантии</Link>
+                                className={`${link[3]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Гарантии</Link>
                             <Link to='/random-items' id='link4' onClick={clickLink}
-                                  className={`${link[4]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Случайные
+                                className={`${link[4]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Случайные
                                 предметы</Link>
-                            <Link to='#' id='link5' onClick={clickLink}
-                                  className={`${link[5]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Форум</Link>
+                            <Link to='/forum' id='link5' onClick={clickLink}
+                                className={`${link[5]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Форум</Link>
                         </nav>
                         {!isAuthenticated ? (
                             <div className="flex gap-4">
@@ -1021,19 +1021,19 @@ function HeaderMain(props) {
                     <nav
                         className="nav flex  mr-2 gap-x-5 gap-y-5 flex-wrap mx-4 3xl:gap-x-2.5 lg:flex-col lg:items-start lg:gap-y-8">
                         <Link to='/' onClick={closeMenu}
-                              className="nav-link-hed nav-link nav-link-prim-hed font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Главная</Link>
+                            className="nav-link-hed nav-link nav-link-prim-hed font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Главная</Link>
                         <Link to='/top_users' onClick={closeMenu}
-                              className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Топ
+                            className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Топ
                             юзеров</Link>
                         <Link to='/feedbacks' onClick={closeMenu}
-                              className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-white/30">Отзывы</Link>
+                            className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-white/30">Отзывы</Link>
                         <Link to='/guarantees' onClick={closeMenu}
-                              className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Гарантии</Link>
+                            className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Гарантии</Link>
                         <Link to='/random-items' onClick={closeMenu}
-                              className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Случайные
+                            className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Случайные
                             предметы</Link>
-                        <Link to='#' onClick={closeMenu}
-                              className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Форум</Link>
+                        <Link to='/forum' onClick={closeMenu}
+                            className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Форум</Link>
                     </nav>
                 </div>
                 <div className="mmenu-pnav pt-8 max-w-[400px]">

@@ -3,6 +3,7 @@ import LayoutBtn from '../../components/LayoutBtn';
 import { useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Rating from '../../components/rating/Rating';
+import Title from '../../components/title/Title';
 
 function Profile() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -108,14 +109,7 @@ function Profile() {
     return (
         <div className="layout-b flex flex-wrap content-between">
             <div className="spf w-full layout-main">
-                <div className="sh flex justify-between items-center gap-x-3 spf-title">
-                    <div className="sh-title">
-                        <div>
-                            <h2 className="sh-title-text font-secondary-bold text-2xl text-black ">Личный профиль</h2>
-                            <div className="sh-title-line mt-3 rounded-full w-9 h-1 bg-gradient-primary"></div>
-                        </div>
-                    </div>
-                </div>
+                <Title title='Мой профиль'/>
                 <div className="spf-main flex w-full mt-[20px] gap-[12px]">
                     <div className="spf-bar flex flex-col items-start max-w-[290px] gap-[12px]">
                         <div className="sps-bar flex flex-col items-start font-secondary-bold">

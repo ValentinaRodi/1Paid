@@ -6312,7 +6312,6 @@ input[type="checkbox"] {
 
 
 .fm-message-text {
-    width: 230px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -7619,12 +7618,6 @@ input[type="checkbox"] {
 
 
 
-.fm-message-text {
-    width: 230px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
 
 .chat-head-info {
     width: 275px;
@@ -9413,13 +9406,6 @@ input[type="checkbox"] {
 }
 
 
-.fm-message-text {
-    width: 230px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .chat-head-info {
     width: 275px;
     -ms-flex-wrap: wrap;
@@ -10795,12 +10781,6 @@ input[type="checkbox"] {
     box-shadow: 0px 15px 36px 14px rgba(255, 255, 255, 0.3);
 }
 
-.fm-message-text {
-    width: 230px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
 
 .chat-head-info {
     width: 275px;
@@ -11234,6 +11214,17 @@ top: -6px;
         grid-row: 2/3;
     }
 }
+
+
+
+#form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
+      #input:focus { outline: none; }
+      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
+
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages > li { padding: 0.5rem 1rem; }
+      #messages > li:nth-child(odd) { background: #efefef; }
 
 
 // <svg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'>
