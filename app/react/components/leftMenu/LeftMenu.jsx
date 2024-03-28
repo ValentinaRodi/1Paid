@@ -126,6 +126,8 @@ function LeftMenu(props) {
             
             const containerModal = document.createElement("div");
             const root = createRoot(containerModal);
+            console.log(containerModal)
+            console.log(root)
             root.render(modalEl);
             modal.appendChild(containerModal);   
         };

@@ -6,14 +6,26 @@ import uuid from 'react-uuid';
 import CardGame from '../../components/cardGame/CardGame';
 import AddProduct from '../../components/addProduct/AddProduct';
 import { createRoot } from "react-dom/client";
+import Title from '../../components/title/Title';
 
 function MyTovars() {
+    const [modalOpen, setModalOpen] = useState(false);
     const [formValue, setFormValue] = useState({});
     const [resetFilter, setResetFilter] = useState(false);
-    const [modalEl, setModalEl] = useState('');
-    const [modalOpen, setModalOpen] = useState(false);
     const [showDelModal, setShowDelModal] = useState(false);
     const body = document.querySelector('body');
+    
+    const closeModal = () =>{
+        document.getElementById('modal').classList.remove('modal_view');
+        body.style.overflow = 'auto';
+        setModalOpen(false);
+    };
+
+    const sellProduct = () => {
+        document.getElementById('modal').classList.add('modal_view');
+        body.style.overflow = 'hidden';
+        setModalOpen(true);
+    };
 
    // Функция для обновления объекта formValue
    const changeFormValue = (key, value) => {
@@ -31,76 +43,33 @@ function MyTovars() {
         setResetFilter(false);
     };
 
-    const openSellProduct = () => {
-        body.style.overflow = 'hidden';
-        setModalEl(<AddProduct
-            closeModal={closeModal}
-        />);
-        setModalOpen(true);
-    };
-
-    useEffect(() => {
-        const modal = document.getElementById('modal');
-
-        if(modalOpen) {
-            modal.classList.add('modal');
-            modal.textContent = '';
-            
-            const containerModal = document.createElement("div");
-            const root = createRoot(containerModal);
-            root.render(modalEl);
-            modal.appendChild(containerModal);   
-        };
-
-        if(!modalOpen) {
-            modal.classList.remove('modal');
-            modal.textContent = '';
-        };
-        
-    }, [modalEl]);
-
-    const closeModal = () =>{
-        body.style.overflow = 'auto';
-        setModalOpen(false);
-        setModalEl('');
-    };
-
     const clickCancelDelTovar = () => {
         setShowDelModal(false);
     };
 
-    
-    
-    
     const arr = ['Warface', 'New game', 'GTA', 'New game'];
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
+            <div className={(showDelModal) ? 'h-full w-56 rounded-md bg-white p-3 flex items-center justify-between' : 'hidden'}>
+                <div>
+                    <img src='/img/icon-time-tovars.svg' alt='time' />
+                </div>
+                <div>
+                    <div className='font-secondary-bold font-bold text-sm mb-2'>Удаление товара</div>
+                    <button onClick={clickCancelDelTovar} className='bg-inherit font-secondary-med text-xs text-[#C5CFE4] '>Отменить удаление</button>
+                    <div className='w-full h-[0.5px] bg-[#C5CFE4] mt-[-3px]'></div>
+                </div>
+            </div>
             <div className="w-full layout-main">
                 <div className="smt">
-                    <div className="sh h-20 flex justify-between items-center gap-x-3 mb-10">
-                        <div className="flex flex-col justify-start">
-                            <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Мои товары</h2>
-                            <div className="sh-title-line mt-2 rounded-full w-9 h-1 bg-gradient-primary">
-                            </div>
-                        </div>
-                        <div className={(showDelModal) ? 'h-full w-56 rounded-md bg-white p-3 flex items-center justify-between' : 'hidden'}>
-                            <div>
-                                <img src='/img/icon-time-tovars.svg' alt='time' />
-                            </div>
-                            <div>
-                                <div className='font-secondary-bold font-bold text-sm mb-2'>Удаление товара</div>
-                                <button onClick={clickCancelDelTovar} className='bg-inherit font-secondary-med text-xs text-[#C5CFE4] '>Отменить удаление</button>
-                                <div className='w-full h-[0.5px] bg-[#C5CFE4] mt-[-3px]'></div>
-                            </div>
-                        </div>
-                    </div>
+                    <Title title='Мои товары'/>
                     <div className="smt-tab flex bg-white p-[24px] rounded-lg justify-between items-center w-full mb-[32px]">
                         <div className="smt-tab-text font-primary-bold text-lg text-[#A6B1C7]">Всего доступно для продажи
                             <br />20 товаров одного типа.
                         </div>
                         <div className="smt-tab-actions flex items-center">
-                            <button onClick={openSellProduct} className="smt-tab-btn flex justify-center items-center font-secondary-bold text-[14px] mr-[12px] text-white bg-gradient-secondary rounded-full py-2 px-4 min-w-[170px]">Добавить товар
+                            <button onClick={sellProduct} className="smt-tab-btn flex justify-center items-center btn font-secondary-bold text-[14px] mr-[12px] text-white bg-gradient-secondary rounded-full py-2 px-4 min-w-[170px]">Добавить товар
                                 <div className="smt-tab-btn-icon ml-[8px]">
                                     <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0.570322 7.96147C0.568324 7.56276 0.869736 7.22785 1.26645 7.18799H13.7968C14.224 7.18799 14.5703 7.53429 14.5703 7.96147C14.5703 8.38865 14.224 8.73495 13.7968 8.73495H1.26645C0.869736 8.69508 0.568324 8.36018 0.570322 7.96147Z" fill="white" stroke="white"  strokeWidth="0.4"></path>
@@ -108,7 +77,7 @@ function MyTovars() {
                                     </svg>
                                 </div>
                             </button>
-                            <button className="smt-tab-btn flex justify-center items-center font-secondary-bold text-[14px] text-white bg-gradient-primary rounded-full py-2 px-4 min-w-[170px]">Поднять в ТОП
+                            <button className="smt-tab-btn btn flex justify-center items-center font-secondary-bold text-[14px] text-white bg-gradient-primary rounded-full py-2 px-4 min-w-[170px]">Поднять в ТОП
                                 <div className="smt-tab-btn-icon ml-[8px]">
                                     <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M6.43529 16.4716L6.43529 3.28162L9.37529 5.63162C9.58314 5.79827 9.84889 5.87509 10.1136 5.84505C10.3783 5.81502 10.6201 5.6806 10.7853 5.47162C11.1256 5.04025 11.0542 4.41507 10.6253 4.07162L6.53529 0.791618C6.09689 0.440618 5.47369 0.440618 5.03529 0.791618L0.945292 4.07162C0.516384 4.41507 0.444935 5.04025 0.785292 5.47162C0.950512 5.6806 1.19229 5.81502 1.45699 5.84505C1.7217 5.87509 1.98745 5.79827 2.19529 5.63162L4.43529 3.83162L4.43529 16.4716C4.43529 17.0239 4.88301 17.4716 5.43529 17.4716C5.98758 17.4716 6.43529 17.0239 6.43529 16.4716Z" fill="white"/>
@@ -125,7 +94,7 @@ function MyTovars() {
                                     <Select key={uuid()} reset={resetFilter} changeFormValue={changeFormValue} arr={arr} keyValue='Тип товара' name='Тип товара'/>
                                 </div>
                                 <div className="sm-filter-actions w-full max-w-[270px]">
-                                    <button className="sm-filter-btn flex justify-center items-center bg-gradient-primary rounded-[4px] py-4 w-full mb-[12px]">
+                                    <button className="btn sm-filter-btn flex justify-center items-center bg-gradient-primary rounded-[4px] py-4 w-full mb-[12px]">
                                         <div className="sm-filter-btn-icon flex-shrink-0 w-[14px] h-[14px]  flex justify-center items-center mr-[8px]">
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path  fillRule="evenodd" clipRule="evenodd" d="M12.9872 0.8L12.9872 7.2L12.9872 7.272C11.9195 7.5396 11.1707 8.49924 11.1707 9.6C11.1707 10.7008 11.9195 11.6604 12.9872 11.928L12.9872 12L12.9872 15.2C12.9872 15.6418 13.3454 16 13.7872 16C14.2291 16 14.5872 15.6418 14.5872 15.2L14.5872 12C14.5949 11.9282 14.5949 11.8558 14.5872 11.784C15.443 11.3941 15.9922 10.5404 15.9922 9.6C15.9922 8.65963 15.443 7.80589 14.5872 7.416C14.5949 7.3442 14.5949 7.2718 14.5872 7.2L14.5872 0.8C14.5872 0.358172 14.2291 -7.70681e-08 13.7872 -9.6381e-08C13.3454 -1.15694e-07 12.9872 0.358172 12.9872 0.8ZM14.3633 9.6C14.3633 10.0418 14.0051 10.4 13.5633 10.4C13.1215 10.4 12.7633 10.0418 12.7633 9.6C12.7633 9.15817 13.1215 8.8 13.5633 8.8C14.0051 8.8 14.3633 9.15817 14.3633 9.6Z" fill="white"></path>
@@ -135,7 +104,7 @@ function MyTovars() {
                                         </div>
                                         <div className="sm-filter-btn-text font-secondary-bold text-[14px] text-white">Применить фильтр</div>
                                     </button>
-                                    <button onClick={cancelFilter} className="sm-filter-btn flex justify-center items-center bg-[#EAEBF8] border border-[#CED0E8] rounded-[4px] py-4 w-full ">
+                                    <button onClick={cancelFilter} className="btn sm-filter-btn flex justify-center items-center bg-[#EAEBF8] border border-[#CED0E8] rounded-[4px] py-4 w-full ">
                                         <div className="sm-filter-btn-icon flex-shrink-0 w-[14px] h-[14px]  flex justify-center items-center mr-[8px]">
                                         <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M0.424023 17.576C-0.0462888 17.1028 -0.0462888 16.3387 0.424023 15.8656L15.8656 0.424038C16.1621 0.0778742 16.6275 -0.0729097 17.0706 0.0336795C17.5137 0.140269 17.8597 0.486241 17.9663 0.929353C18.0729 1.37247 17.9221 1.83793 17.5759 2.13438L2.13436 17.576C1.66124 18.0463 0.897141 18.0463 0.424023 17.576Z" fill="currentColor"></path>
@@ -156,6 +125,11 @@ function MyTovars() {
                     </div>
             </div>
             <LayoutBtn toTop='true'/>
+            {modalOpen && 
+                (<div className='w-screen h-screen'>
+                    <AddProduct closeModal={closeModal} />
+                </div>)
+            }
         </div>
     );
 };
