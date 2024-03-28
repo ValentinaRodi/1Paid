@@ -186,13 +186,6 @@ function Catalog() {
         (cardsViewDiv === '') ? setCardsViewDiv('_view-list') : setCardsViewDiv(''); 
     };
 
-    useEffect(() => {
-        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
-        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
-        const totalHeight = headerHeight + mainHeight;
-        document.querySelector('.lf-feed').style.height = totalHeight + "px";
-    }, []);
-
     return (
         
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 mt-10 xl:mt-0">

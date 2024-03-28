@@ -8,12 +8,7 @@ function HistoryViews() {
     const [btn, setBtn] = useState(true);
     const [gamesItems, setGamesItems] = useState([]);
 
-    useEffect(() => {
-        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
-        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
-        const totalHeight = headerHeight + mainHeight;
-        document.querySelector('.lf-feed').style.height = totalHeight + "px";
-    }, []);
+    
 
     // useEffect(() => {
 

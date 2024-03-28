@@ -7,24 +7,12 @@ import Title from '../../components/title/Title';
 
 function TopUsers() {
     
-    useEffect(() => {
-        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
-        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
-        const totalHeight = headerHeight + mainHeight;
-        document.querySelector('.lf-feed').style.height = totalHeight + "px";
-    }, []);
-    
     const arr = [1,2,3,4,5,6,7,8,9,10];
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
             <div className='w-full layout-main'>
-                <div className="sh flex justify-between items-center gap-x-3   mb-0 sm:mb-6">
-                    <div className="w-[252px] hidden">
-                        <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>
-                    </div>
-                    <Title title='Топ Юзеров'/>
-                </div>
+                <Title title='Топ Юзеров'/>
                 <PrslTop />
                 <div className='flex justify-center mt-3 flex-wrap gap-2'>
                     <TopBanner name='Santchezz' rank='1' tovar='342 819' money='10 000' moneyGet='118 523' userFoto='user_foto.png'/>

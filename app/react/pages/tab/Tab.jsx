@@ -19,12 +19,7 @@ function Tab() {
         (cardsViewDiv === '') ? setCardsViewDiv('_view-list') : setCardsViewDiv(''); 
     };
 
-    useEffect(() => {
-        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
-        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
-        const totalHeight = headerHeight + mainHeight;
-        document.querySelector('.lf-feed').style.height = totalHeight + "px";
-    }, []);
+    
 
     const arr = [0,1,2,3,4,5,6,7]
 

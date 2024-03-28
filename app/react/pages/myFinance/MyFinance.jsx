@@ -55,12 +55,7 @@ function MyFinance() {
         setModalEl('');
     };
 
-    useEffect(() => {
-        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
-        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
-        const totalHeight = headerHeight + mainHeight;
-        document.querySelector('.lf-feed').style.height = totalHeight + "px";
-    }, []);
+    
 
     const arr = ['За все время', 'За месяц', 'За неделю', 'За день'];
     const navArr =['Все операции', 'История пополнения', 'История вывода', 'Расходы', 'Заработанно'];

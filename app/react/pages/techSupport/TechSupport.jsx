@@ -15,12 +15,7 @@ function TechSupport() {
         bottomRef.current.scrollTo(0, bottomRef.current.scrollHeight);
     }, []);
 
-    useEffect(() => {
-        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
-        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
-        const totalHeight = headerHeight + mainHeight;
-        document.querySelector('.lf-feed').style.height = totalHeight + "px";
-    }, []);
+    
  
     return (
         

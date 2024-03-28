@@ -6,7 +6,7 @@ function LayoutColRow(props) {
     const [components, setComponents] = useState([]);
     const [shifted, setShifted] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const slider = document.getElementById("slider");
+    const tape = document.getElementById("tape");
     const parentBlock = useRef();
 
     const arr = [
@@ -211,9 +211,7 @@ function LayoutColRow(props) {
     useEffect(() => {
         const timer = setTimeout(() => {
             //смещаем ленту
-            
-            //slider.classList.add("slider-transform");
-            slider.firstChild.classList.add("slider-transform");
+            tape.firstChild.classList.add("slider-transform");
             setShifted(true); 
 
             setTimeout(() => {
@@ -225,6 +223,17 @@ function LayoutColRow(props) {
 
         return () => clearTimeout(timer); // очищаем таймер при размонтировании компонента
     }, [components]);
+
+    useEffect(() => {
+        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+        const totalHeight = headerHeight + mainHeight;
+        document.querySelector('.lf-feed').style.height = totalHeight + "px";
+    }, []);
+
+    const deleteHeightBlock = () => {
+        document.querySelector('.lf-feed').style.height = 100 + '%';
+    };
 
     return (
         <div className='layout-lf'>
@@ -240,7 +249,7 @@ function LayoutColRow(props) {
                                 <div className="lf-inf-ind-label">Online</div>
                             </div>
                         </div>
-                        <button onClick={props.changeOrient} className="lf-toggle bg-inherit" title="Переключить вид">
+                        <button onClick={() => {props.changeOrient(); deleteHeightBlock()}} className="lf-toggle bg-inherit" title="Переключить вид">
                             <svg width="4" height="22" viewBox="0 0 4 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="2" cy="20" r="2" transform="rotate(-90 2 20)" fill="currentColor"></circle>
                                 <circle cx="2" cy="11" r="2" transform="rotate(-90 2 11)" fill="currentColor"></circle>
@@ -268,7 +277,7 @@ function LayoutColRow(props) {
                     </div>
                 </div>
                 <div className="lf-feed">
-                    <div id="slider" ref={parentBlock} className="lf-feed-track slider-lite">
+                    <div id="tape" ref={parentBlock} className="lf-feed-track slider-lite">
                         {
                             (components.length !== 0) ? (
                                 components.map(component => (

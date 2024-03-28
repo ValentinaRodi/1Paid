@@ -17,12 +17,7 @@ function GiveAway() {
         (registVk) ? setJoin(true) : null;
     };
 
-    useEffect(() => {
-        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
-        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
-        const totalHeight = headerHeight + mainHeight;
-        document.querySelector('.lf-feed').style.height = totalHeight + "px";
-    }, []);
+    
 
     const arr = [1,2,3,4,5,6,7,8,9,10];
 
