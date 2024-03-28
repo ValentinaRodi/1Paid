@@ -15,7 +15,6 @@ function Main() {
             </div>
             <LayoutBtn toTop='true'/>
         </div>  
-          
     );
 }
 

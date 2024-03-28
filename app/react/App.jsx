@@ -10,6 +10,7 @@ import LayoutColRow from './components/LayoutColRow';
 import Registration from './components/registration/Registration';
 import Authorization from "./components/authorisation/Authorisation";
 import RecPass from './components/recpass/Recpass';
+import FooterMain from './components/footerMain/FooterMain';
 
 import useAuth from './hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -111,15 +112,40 @@ function App() {
     (leftMenuDisplay === '') ? setleftMenuDisplay('_hide') : setleftMenuDisplay('');
   };
 
+  
+
+  // const [isLoading, setLoading] = useState(true);
+
+  //   function fakeRequest() {
+  //       return new Promise(resolve => setTimeout(() => resolve(), 2500));
+  //   };
+
+  //   useEffect(() => {
+  //       fakeRequest().then(() => {
+  //         const el = document.querySelector(".root");
+  //         if (el) {
+  //           el.remove();
+  //           setLoading(!isLoading);
+  //         }
+  //       });
+  //   }, []);
+    
+  //   if (isLoading) {
+  //       return null;
+  //   }
+
 
   return (
-    <div className={`layout-grid ${orient}`}>
-      <LeftMenu leftMenuDisplay={leftMenuDisplay} /> 
-      <div id='layout-page' className={`layout-page ${orient}`}>
-        <LayoutColRow changeOrient={changeOrient} orient={orient}/>
-        <HeaderMain closeLeftMenu={closeLeftMenu} leftMenuOpen={leftMenuOpen} openAuthorization={openAuthorization} />
-        {routes}
+    <div>
+      <div className={`layout-grid ${orient}`}>
+        <LeftMenu leftMenuDisplay={leftMenuDisplay} /> 
+        <div id='layout-page' className={`layout-page ${orient}`}>
+          <LayoutColRow changeOrient={changeOrient} orient={orient}/>
+          <HeaderMain closeLeftMenu={closeLeftMenu} leftMenuOpen={leftMenuOpen} openAuthorization={openAuthorization} />
+          {routes}
+        </div>
       </div>
+      <FooterMain />
     </div>
   )
 };

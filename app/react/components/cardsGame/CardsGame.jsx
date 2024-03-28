@@ -98,7 +98,7 @@ function CardsGame() {
                                 </div>
                             : null
                         ))
-                    ) : <div className='text-[#FF5343]'>error - game not found</div>
+                    ) : <div className='text-[#FF5343]'></div>
                 }
             </div>
             <div className="sgc-f flex justify-center mt-10 ">
