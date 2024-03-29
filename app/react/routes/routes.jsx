@@ -28,6 +28,7 @@ import GiveAway from '../pages/giveaway/GiveAway';
 import Roulette from '../pages/roulette/Roulette';
 import CardTovar from '../pages/cardTovar/CardTovar';
 import Forum from '../pages/forum/Forum';
+import Contacts from '../pages/contacts/Сontacts';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -66,6 +67,8 @@ export const useRoutes = () => {
       <Route path='/random-items' element={<RandomItems />} />
       <Route path='/faq' element={<Faq />} />
       <Route path='/catalog/Warface/1-account' element={<CardTovar />} />
+      <Route path='/contacts' element={<Contacts />} />
+      
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />

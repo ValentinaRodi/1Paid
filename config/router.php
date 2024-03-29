@@ -21,6 +21,7 @@ return [
     'GET,HEAD giveaway' => 'main/index',
     'GET,HEAD roulette' => 'main/index',
     'GET,HEAD forum' => 'main/index',
+    'GET,HEAD contacts' => 'main/index',
     'GET,HEAD catalog/Warface/1-account' => 'main/index',
     'GET,HEAD profile' => 'main/profile',
     'GET,HEAD profile/edit' => 'profile/get',

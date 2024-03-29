@@ -14,8 +14,6 @@ function TechSupport() {
     useEffect(() => {
         bottomRef.current.scrollTo(0, bottomRef.current.scrollHeight);
     }, []);
-
-    
  
     return (
         
