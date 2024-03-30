@@ -3,10 +3,7 @@
 namespace app\services;
 
 use Yii;
-use app\models\{
-    Item,
-//    Lang
-};
+use app\models\{Field, Item};
 use app\services\{
 //CategoryService,
     FileService,
@@ -16,12 +13,13 @@ use app\services\{
 
 class ItemService
 {
-    public static function getList($categoryId) {
+    public static function getList($categoryId)
+    {
         if (isset($categoryId) && !empty($categoryId)) {
             $items = Item::find()
-                    ->where(['category_id' => $categoryId])
-                    ->orderBy(['sort' => SORT_DESC])
-                    ->asArray()->all();
+                ->where(['category_id' => $categoryId])
+                ->orderBy(['sort' => SORT_DESC])
+                ->asArray()->all();
             return self::formatItems($items);
         }
         return false;
@@ -72,15 +70,47 @@ class ItemService
         $categoryId = CategoryService::getIDbySEO($gameId, $params['category']);
         if (isset($categoryId) && !empty($categoryId)) {
             $items = Item::find()
-                    ->where([
-                        'category_id' => $categoryId,
-                        'id' => $params['id'],
-                        'seo_name' => $params['item'],
-                        ])
-                    ->orderBy(['sort' => SORT_DESC])
-                    ->asArray()->one();
+                ->where([
+                    'category_id' => $categoryId,
+                    'id' => $params['id'],
+                    'seo_name' => $params['item'],
+                ])
+                ->orderBy(['sort' => SORT_DESC])
+                ->asArray()->one();
             return self::formatItems([$items])[0];
         }
         return false;
+    }
+
+    public static function saveItem($item_data)
+    {
+        $gameId = GameService::getIDbySEO($item_data['game']);
+        $categoryId = CategoryService::getIDbySEO($gameId, $item_data['category']);
+        var_dump($gameId);
+        var_dump($categoryId);
+        if (isset($categoryId) && !empty($categoryId) && !empty($item_data['items'])) {
+            $fields_seo_names = null;
+//            получить привязанные
+
+            foreach ($item_data['items'] as $item_fields) {
+                foreach ($item_fields as $field_seo_name => $field) {
+                    if (!empty($fields_seo_names)) {
+                        $fields_seo_names = $fields_seo_names . ', ' . $field_seo_name;
+                    } else {
+                        $fields_seo_names = $field_seo_name;
+                    }
+                }
+            }
+
+
+            $fields = Field::find()
+                ->where(['in', 'seo_name', $fields_seo_names])
+                ->asArray()->all();
+
+            var_dump($fields);
+            die();
+
+
+        }
     }
 }

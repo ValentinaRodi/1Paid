@@ -96,4 +96,18 @@ class ItemController extends Controller
         $this->render('item', ['item' => $item]);
     }
 
+    public function actionSave()
+    {
+        var_dump('save-action');
+        $item_data = Yii::$app->request->post();
+        var_dump($item_data);
+        if ($item_data) {
+            ItemService::saveItem($item_data);
+        }
+        return $this->asJson([
+            'success' => true,
+//            'category_id' => $model->save()
+        ]);
+    }
+
 }
