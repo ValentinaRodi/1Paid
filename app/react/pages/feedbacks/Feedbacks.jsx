@@ -12,8 +12,6 @@ function Feedbacks() {
         navigate('/');
     };
 
-    
-
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
             <div className="w-full layout-main">

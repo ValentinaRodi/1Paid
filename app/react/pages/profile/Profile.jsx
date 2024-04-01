@@ -4,6 +4,10 @@ import { useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Rating from '../../components/rating/Rating';
 import Title from '../../components/title/Title';
+import ProfileItems from '../../components/profileItems/ProfileItems';
+import uuid from 'react-uuid';
+import FeedbacksItem from '../../components/feedbacksItem/FeedbacksItem';
+import CardGameString from "../../components/cardGame/CardGameString";
 
 function Profile() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -17,6 +21,11 @@ function Profile() {
     const [feedbackClass, setFeedbackClass] = useState('nav-link-prim');
     const [themesClass, setThemesClass] = useState('nav-link');
     const [shoppListClass, setShoppListClass] = useState('nav-link');
+    const [indexAchievement, setIndexAchievement] = useState(2);
+    const [indexOnSale, setIndexOnSale] = useState(1);
+    const [feedback, setFeedback] = useState(true);
+    const [themes, setThemes] = useState(false);
+    const [shoppList, setShoppList] = useState(false);
 
     useEffect(() => {
 
@@ -84,22 +93,93 @@ function Profile() {
         setFeedbackClass('nav-link-prim');
         setThemesClass('nav-link');
         setShoppListClass('nav-link');
+        setFeedback(true);
+        setShoppList(false);
+        setThemes(false);
     };
 
     const clickThemes = () => {
         setFeedbackClass('nav-link');
         setThemesClass('nav-link-prim');
         setShoppListClass('');
+        setFeedback(false);
+        setShoppList(false);
+        setThemes(true);
     };
 
     const clickShoppList = () => {
         setFeedbackClass('nav-link');
         setThemesClass('nav-link');
         setShoppListClass('nav-link-prim');
+        setFeedback(false);
+        setShoppList(true);
+        setThemes(false);
     };
 
-    
-    
+    const showAllAchievement = () => {
+        (indexAchievement === 2) ? setIndexAchievement(10000) : setIndexAchievement(2);
+    };
+
+    const showOnSale = () => {
+        (indexOnSale === 1) ? setIndexOnSale(10000) : setIndexOnSale(1);
+    };
+
+    const arr = [
+        {
+            'name': 'Very rare global gold',
+            'text':'Золотой глобус WF с шоколадным акцентом, для лучшего покупателя'
+        },
+        {
+            'name': 'Global Gold',
+            'text':'Золотой глобус WF'
+        },
+        {
+            'name': 'Global Gold',
+            'text':'Золотой глобус WF'
+        },
+        {
+            'name': 'Global Gold',
+            'text':'Золотой глобус WF'
+        },
+        {
+            'name': 'Global Gold',
+            'text':'Золотой глобус WF'
+        },
+        {
+            'name': 'Very rare global gold',
+            'text':'Золотой глобус WF с шоколадным акцентом, для лучшего покупателя'
+        }
+    ];
+
+    const onSale = [
+        {
+            'name': 'Аккаунт Warface за хорошие деньги, плюс бону',
+            'text':'525 000'
+        },
+        {
+            'name': 'Аккаунт Warface',
+            'text':'500'
+        },
+        {
+            'name': 'Аккаунт Warface за хорошие деньги, плюс бону',
+            'text':'525 000'
+        },
+        {
+            'name': 'Аккаунт Warface',
+            'text':'500'
+        },
+        {
+            'name': 'Аккаунт Warface за хорошие деньги, плюс бону',
+            'text':'525 000'
+        },
+        {
+            'name': 'Аккаунт Warface',
+            'text':'500'
+        }
+    ];
+
+    const feedbacks = [0,1,2];
+    const arrshoppList = [0,1,2,3,4];
     
     return (
         <div className="layout-b flex flex-wrap content-between">
@@ -129,60 +209,33 @@ function Profile() {
                         <div className="puic flex flex-col font-secondary-bold text-black">
                             <div className="puic-head flex justify-between mb-[16px]">
                                 <div className="puic-title text-[14px]">Достижения</div>
-                                <div className="puic-action text-[#ACB6CC] text-[12px] border-b border-[#ACB6CC] cursor-pointer">Показать всё</div>
+                                <button onClick={showAllAchievement} className="bg-inherit text-[#ACB6CC] text-[12px] rounded-none border-0 border-b border-[#ACB6CC] border-solid cursor-pointer">Показать всё</button>
                             </div>
-                            <div className="puic-list"></div>
-                            <div className="puic-item flex items-start mb-[12px]">
-                                <div className="puic-image flex-shrink-0 flex justify-center items-center w-[45px] h-[45px] rounded-full">
-                                    <img className="puic-image-pic w-full h-full" src='/img/Rectangle2.png' alt="puic-image" />
-                                </div>
-                                <div className="puic-item-info flex flex-col">
-                                    <div className="puic-item-label leading-tight text-[14px]">Very rare global gold</div>
-                                    <div className="puic-item-text leading-tight font-secondary-med text-[12px] text-[#CDCFE5]">Золотой глобус WF с шоколадным акцентом, для лучшего покупаца</div>
-                                </div>
-                            </div>
-                            <div className="puic-item flex items-start mb-[12px] last:mb-0">
-                                <div className="puic-image flex-shrink-0 flex justify-center items-center w-[45px] h-[45px] rounded-full">
-                                    <img className="puic-image-pic w-full h-full" src='/img/Rectangle2.png' alt="puic-image" />
-                                </div>
-                                <div className="puic-item-info flex flex-col">
-                                    <div className="puic-item-label leading-tight text-[14px]">Global Gold</div>
-                                    <div className="puic-item-text leading-tight font-secondary-med text-[12px] text-[#CDCFE5]">Золотой глобус WF</div>
-                                </div>
-                            </div>
-                            <div className="puic-item flex items-start mb-[12px] last:mb-0">
-                                <div className="flex-shrink-0 flex justify-center items-center w-[45px] h-[45px] rounded-full">
-                                    <img className="w-full h-full" src='/img/Rectangle2.png' alt="puic-image" />
-                                </div>
-                                <div className="puic-item-info flex flex-col">
-                                    <div className="puic-item-label leading-tight text-[14px]">Global Gold</div>
-                                    <div className="puic-item-text leading-tight font-secondary-med text-[12px] text-[#CDCFE5]">Золотой глобус WF</div>
-                                </div>
+                            <div className="puic-list flex flex-col gap-3">
+                                {arr.length !==0 ?
+                                    arr.map((item, index) => {
+                                        if(index <= indexAchievement) {
+                                            return (<ProfileItems key={uuid()} name={item.name} text={item.text} icon='Rectangle2.png'/>);
+                                        }
+                                    })
+                                    : null
+                                }
                             </div>
                         </div>
                         <div className="puic flex flex-col font-secondary-bold text-black py-[24px]">
                             <div className="puic-head flex justify-between mb-[16px]">
                                 <div className="puic-title text-[14px]">В продаже</div>
-                                <div className="puic-action text-[#ACB6CC] text-[12px] border-b border-[#ACB6CC] cursor-pointer">Показать всё</div>
+                                <button onClick={showOnSale} className="bg-inherit text-[#ACB6CC] text-[12px] rounded-none border-0 border-b border-[#ACB6CC] border-solid cursor-pointer">Показать всё</button>
                             </div>
-                            <div className="puic-list"></div>
-                            <div className="puic-item flex items-start mb-[12px] last:mb-0">
-                                <div className="puic-image flex-shrink-0 flex justify-center items-center w-[45px] h-[45px] rounded-full">
-                                    <img className="puic-image-pic w-full h-full object-contain" src='/img/icon-shopping-card-gradient.ff3dca76.svg' alt="puic-image" />
-                                </div>
-                                <div className="puic-item-info flex flex-col">
-                                    <div className="puic-item-label leading-tight text-[14px]">Аккаунт Warface за хорошие деньги, плюс бонус</div>
-                                    <div className="puic-item-text leading-tight font-secondary-med text-[12px] text-[#CDCFE5]">525 000₽</div>
-                                </div>
-                            </div>
-                            <div className="puic-item flex items-start mb-[12px] last:mb-0">
-                                <div className="puic-image flex-shrink-0 flex justify-center items-center w-[45px] h-[45px] rounded-full">
-                                    <img className="puic-image-pic w-full h-full object-contain" src='/img/icon-shopping-card-gradient.ff3dca76.svg' alt="puic-image" />
-                                </div>
-                                <div className="puic-item-info flex flex-col">
-                                    <div className="puic-item-label leading-tight text-[14px]">Аккаунт Warface</div>
-                                    <div className="puic-item-text leading-tight font-secondary-med text-[12px] text-[#CDCFE5]">500₽</div>
-                                </div>
+                            <div className="puic-list flex flex-col gap-3">
+                                {onSale.length !==0 ?
+                                    onSale.map((item, index) => {
+                                        if(index <= indexOnSale) {
+                                            return (<ProfileItems key={uuid()} name={item.name}  text={`${item.text} ₽`} icon='icon-shopping-card-gradient.ff3dca76.svg'/>);
+                                        }
+                                    })
+                                    : null
+                                }
                             </div>
                         </div>
                     </div>
@@ -237,89 +290,39 @@ function Profile() {
                                 </button>
                             </div>
                         </div>
-                        <div className="spf-feedbacks grid grid-cols-1 gap-y-[12px]">
-                            <div className="fbc rounded-xl flex flex-wrap items-start gap-4 bg-white">
-                                <div className='w-full flex p-6'>
-                                    <div className="fbc-info pr-[16px] flex-shrink-0 flex gap-3">
-                                        <div className="fbc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                            <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user" />
-                                        </div>
-                                        <div className="fbc-info-inner">
-                                            <div className="fbc-username font-secondary-bold text-lg text-[#1D222C] ">Sansa</div>
-                                            <div className="fbc-date font-secondary-med text-xs text-[#CDCFE5] ">01:05 27.12.2019</div>
-                                        </div>
-                                    </div>
-                                    <div className="fbc-text flex-grow border-l border-solid border-[#E7EAF3] pl-4 font-secondary-med text-[10px] text-[#595E72] ">Потрясный сайт! <br />Без обманов, с реальным процентом полезных выигрышей,даже самое слабое из возможных оправдывает свои деньги! Сделано потрясающе! Спасибо ребятам.важно обращать внимание на отзывы покупателей, репутацию продавца, а также наличие гарантий и защиты покупателя. Также стоит убедиться, что сайт не продает пиратские копии игр и что покупка осуществляется в безопасной среде.</div>
-                                </div>
-                                <div className='w-full h-[36px] bg-[#F9F9FC] flex justify-end items-center px-6 rounded-b-[12px]'>
-                                    <div className='flex justify-between items-center'>
-                                        <button className='bg-inherit font-secondary-med text-[#C5CFE4] text-xs mr-[24px]'>
-                                            Показать ответ
-                                        </button>
-                                        <button className='bg-inherit font-secondary-med text-[#C5CFE4] underline text-xs mr-[10px]'>
-                                            Ответить
-                                        </button>
-                                        <button className='bg-inherit font-secondary-med text-[#C5CFE4] text-xs'>
-                                            <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/icon-profile.svg" alt="icon" />
-                                        </button>
-                                    </div>
-                                </div>
+                        {feedback ?
+                            <div className="spf-feedbacks grid grid-cols-1 gap-y-[12px]">
+                                {feedbacks.length !== 0 ? (
+                                    feedbacks.map(item => {
+                                        return <FeedbacksItem key={uuid()} nameAnswer='Shenderro' avatarAnswer='avatar-example-5.00d4721a.png' timeAnswer='12 Фев. 22:15' answer='Потрясный человек! Без обманов, с реальным процентом полезных выигрышей с реальным процентом полезных выигрышей Потрясный человек! Без обманов, с реальным процентом полезных выигрышей с реальным процентом полезных выигрышей' rank='4.8' name='Sansa' time='01:05 27.12.2019' avatar='avatar-example-4.6cd623f4.png' text='Потрясный сайт! Без обманов, с реальным процентом полезных выигрышей,даже самое слабое из возможных оправдывает свои деньги! Сделано потрясающе! Спасибо ребятам.важно обращать внимание на отзывы покупателей, репутацию продавца, а также наличие гарантий и защиты покупателя. Также стоит убедиться, что сайт не продает пиратские копии игр и что покупка осуществляется в безопасной среде.'/>   
+                                    })
+                                    ) : null
+                                }
                             </div>
-                            <div className="fbc rounded-xl flex flex-wrap items-start gap-4 bg-white">
-                                <div className='w-full flex p-6'>
-                                    <div className="fbc-info pr-[16px] flex-shrink-0 flex gap-3">
-                                        <div className="fbc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                            <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user" />
-                                        </div>
-                                        <div className="fbc-info-inner">
-                                            <div className="fbc-username font-secondary-bold text-lg text-[#1D222C] ">Sansa</div>
-                                            <div className="fbc-date font-secondary-med text-xs text-[#CDCFE5] ">01:05 27.12.2019</div>
-                                        </div>
-                                    </div>
-                                    <div className="fbc-text flex-grow border-l border-solid border-[#E7EAF3] pl-4 font-secondary-med text-[10px] text-[#595E72] ">Потрясный сайт! <br />Без обманов, с реальным процентом полезных выигрышей.</div>
-                                </div>
-                                <div className='w-full h-[36px] bg-[#F9F9FC] flex justify-end items-center px-6 rounded-b-[12px]'>
-                                    <div className='flex justify-between items-center'>
-                                        <button className='bg-inherit font-secondary-med text-[#C5CFE4] text-xs mr-[24px]'>
-                                            Показать ответ
-                                        </button>
-                                        <button className='bg-inherit font-secondary-med text-[#C5CFE4] underline text-xs mr-[10px]'>
-                                            Ответить
-                                        </button>
-                                        <button className='bg-inherit font-secondary-med text-[#C5CFE4] text-xs'>
-                                            <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/icon-profile.svg" alt="icon" />
-                                        </button>
-                                    </div>
-                                </div>
+                            : null
+                        }
+                        {shoppList ?
+                            <div className='_view-list pcg-grid view-grid grid gap-3 grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3'>
+                                {arrshoppList.length !== 0 ?   
+                                    arrshoppList.map(item => {
+                                        return <CardGameString key={uuid()} rank='4.8' id='1' new='new' seoName='Аккаунт Warface' icon='product-preview-1.fcb96f91.png' name='Аккаунт Warface' description='за хорошие деньги, плюс бонус' price='120 000'/> 
+                                    }) 
+                                    : null
+                                }
                             </div>
-                            <div className="fbc rounded-xl flex flex-wrap items-start gap-4 bg-white">
-                                <div className='w-full flex p-6'>
-                                    <div className="fbc-info pr-[16px] flex-shrink-0 flex gap-3">
-                                        <div className="fbc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                            <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user" />
-                                        </div>
-                                        <div className="fbc-info-inner">
-                                            <div className="fbc-username font-secondary-bold text-lg text-[#1D222C] ">Sansa</div>
-                                            <div className="fbc-date font-secondary-med text-xs text-[#CDCFE5] ">01:05 27.12.2019</div>
-                                        </div>
-                                    </div>
-                                    <div className="fbc-text flex-grow border-l border-solid border-[#E7EAF3] pl-4 font-secondary-med text-[10px] text-[#595E72] ">Потрясный сайт! <br />Без обманов, с реальным процентом полезных выигрышей,даже самое слабое из возможных оправдывает свои деньги! Сделано потрясающе! Спасибо ребятам.важно обращать внимание на отзывы покупателей, репутацию продавца, а также наличие гарантий и защиты покупателя. Также стоит убедиться, что сайт не продает пиратские копии игр и что покупка осуществляется в безопасной среде.</div>
-                                </div>
-                                <div className='w-full h-[36px] bg-[#F9F9FC] flex justify-end items-center px-6 rounded-b-[12px]'>
-                                    <div className='flex justify-between items-center'>
-                                        <button className='bg-inherit font-secondary-med text-[#C5CFE4] text-xs mr-[24px]'>
-                                            Показать ответ
-                                        </button>
-                                        <button className='bg-inherit font-secondary-med text-[#C5CFE4] underline text-xs mr-[10px]'>
-                                            Ответить
-                                        </button>
-                                        <button className='bg-inherit font-secondary-med text-[#C5CFE4] text-xs'>
-                                            <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/icon-profile.svg" alt="icon" />
-                                        </button>
-                                    </div>
-                                </div>
+                            : null
+                        }
+                        {themes ?
+                            <div className='_view-list pcg-grid view-grid grid gap-3 grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3'>
+                                {/* {arrshoppList.length !== 0 ?   
+                                    arrshoppList.map(item => {
+                                        return <CardGameString key={uuid()} rank='4.8' id='1' new='new' seoName='Аккаунт Warface' icon='product-preview-1.fcb96f91.png' name='Аккаунт Warface' description='за хорошие деньги, плюс бонус' price='120 000'/> 
+                                    }) 
+                                    : null
+                                } */}
                             </div>
-                        </div>
+                            : null
+                        }
                     </div>
                 </div>
             </div>
