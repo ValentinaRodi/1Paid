@@ -4,7 +4,7 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 import "./authorisation.less";
-import {useState} from "react";
+import { useState, useEffect } from "react";
 import arrow from "../../../../web/img/icon-arrow-round.svg";
 import closeEye from "../../../../web/img/icon-close-eye.svg";
 import openEye from "../../../../web/img/icon-open-eye.svg";
@@ -19,10 +19,10 @@ function Authorisation(props) {
     const [errorEmail, setErrorEmail] = useState("");
     const [errorPassword, setErrorPassword] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
     const [passwordShown, setPasswordShown] = useState(false);
     const [notVisible, setNotVisible] = useState("hidden");
     const [visible, setVisible] = useState("");
+    const [textError, setTextError] = useState("");
 
     const togglePasswordVisiblity = (e) => {
         e.preventDefault();
@@ -65,7 +65,6 @@ function Authorisation(props) {
 
     const { setAuth } = useAuth()
 
-
     const handleSubmit = (e) => {
        
         e.preventDefault();
@@ -76,18 +75,21 @@ function Authorisation(props) {
         if (!validateEmail(email) && !validatePassword(password)) {
             setErrorEmail("border-[#FF5343] border-[1px] border-solid");
             setErrorPassword("border-[#FF5343] border-[1px] border-solid");
+            setTextError('Неправильно указан логин и/или пароль');
             return;
-        }
+        };
 
         if (!validateEmail(email)) {
             setErrorEmail("border-[#FF5343] border-[1px] border-solid");
+            setTextError('Неправильно указан логин');
             return;
-        }
+        };
 
         if (!validatePassword(password)) {
             setErrorPassword("border-[#FF5343] border-[1px] border-solid");
+            setTextError('Неправильно указан пароль');
             return;
-        }
+        };
 
         const formData = {
             email,
@@ -117,8 +119,9 @@ function Authorisation(props) {
                     return res.json();
                 })
                 .then((data) => {
-                    //console.log('data', data);
-            
+                    // console.log('data', data);
+                    // console.log('data success', data.success);
+                    // console.log('data message', data.message.password[0]);
                     if (data.success === true) {
                         setSuccessMessage(data.message);
                         console.log('data', data);
@@ -136,19 +139,22 @@ function Authorisation(props) {
                         setAuth(true);
                         window.location.reload();
                         
-                    } else {
-                        setErrorMessage(data.message);
-                        // console.log(errorMessage);
-                    }
+                    };
+                    
+                    if(data.success === false) {
+                        setTextError('Неправильно указан пароль');
+                    };
                 })
                 .catch((error) => {
                     console.log(error);
-                    setErrorMessage("An error occurred");
                 });
         };
 
         getCSRFToken();
     };
+
+    useEffect(() => {
+    }, [textError]);
     
     return (
         <div className="fixed inset-x-0 inset-y-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0">
@@ -185,7 +191,7 @@ function Authorisation(props) {
                         </label>
                     </div>
                     <div
-                        className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6 flex items-center justify-between`}
+                        className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-2 flex items-center justify-between`}
                     >
                         <div className="w-full">
                             <input
@@ -217,6 +223,7 @@ function Authorisation(props) {
                             <img src={openEye} alt="close password" />
                         </button>
                     </div>
+                    <div className="w-full text-[#FF5343] text-sm mb-6">{textError}</div>
                     <div className="flex justify-between mb-8">
                         <div className="flex gap-2 ">
                             <input
