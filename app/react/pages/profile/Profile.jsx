@@ -8,6 +8,7 @@ import ProfileItems from '../../components/profileItems/ProfileItems';
 import uuid from 'react-uuid';
 import FeedbacksItem from '../../components/feedbacksItem/FeedbacksItem';
 import CardGameString from "../../components/cardGame/CardGameString";
+import Pagination from '../../components/pagination/Pagination'
 
 function Profile() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -185,15 +186,15 @@ function Profile() {
         <div className="layout-b flex flex-wrap content-between">
             <div className="spf w-full layout-main">
                 <Title title='Мой профиль'/>
-                <div className="spf-main flex w-full mt-[20px] gap-[12px]">
-                    <div className="spf-bar flex flex-col items-start max-w-[290px] gap-[12px]">
-                        <div className="sps-bar flex flex-col items-start font-secondary-bold">
-                            <div className="sps-avatar flex-shrink-0 w-[258px] h-[258px] mb-[12px] overflow-hidden rounded-[12px] relative">
+                <div className="spf-main flex flex-wrap lg:flex-nowrap w-full gap-[12px]">
+                    <div className="spf-bar flex flex-row flex-wrap sm:flex-nowrap lg:flex-col items-start w-full lg:w-[290px] gap-[12px]">
+                        <div className="sps-bar w-full sm:w-auto flex flex-col items-start font-secondary-bold h-auto sm:h-full min-[850px]:h-auto">
+                            <div className="sps-avatar self-center flex-shrink-0 w-[258px] h-[258px] mb-[12px] overflow-hidden rounded-[12px] relative">
                                 <img className="sps-avatar-pic w-full h-full object-cover" src='img/avatar-example-5.00d4721a.png' alt="user" />
                             </div>
                             <div className="sps-user flex flex-col w-full font-secondary-bold">
                                 <div className="sps-user-info flex justify-between items-center mb-[8px] w-full">
-                                <div className="sps-user-username text-lg text-black">Cool Designer</div>
+                                <div className="sps-user-username text-base sm:text-lg text-black">Cool Designer</div>
                                 <button className="sps-user-link flex justify-center items-center bg-gradient-primary w-[20px] h-[20px] rounded-full">
                                     <div className="sps-user-link-icon flex-shrink-0 w-[10px] h-[5px] [&amp;_svg]:w-full flex justify-center items-center">
                                         <img className="sps-avatar-pic w-full h-full object-cover" src="/img/icon-vk-profile.svg" alt="user" />
@@ -201,84 +202,86 @@ function Profile() {
                                 </button>
                                 </div>
                             </div>
-                            <span className="sps-user-status block text-[12px] max-w-max py-[2px] px-[8px] mb-[12px] text-[#8CD23C] text-center border border-[#8CD23C] rounded-full">В сети</span>
+                            <span className="sps-user-status block text-xs max-w-max py-[2px] px-[8px] mb-[12px] text-[#8CD23C] text-center border border-[#8CD23C] rounded-full">В сети</span>
                             <div className="sps-user-actions w-full pt-[12px] border-t border-[#DBE0ED]">
-                                <button onClick={changeLoggedFalse} className="sps-user-action bg-inherit text-[#ACB6CC] text-[14px]">Выйти из аккаунта</button>
+                                <button onClick={changeLoggedFalse} className="sps-user-action bg-inherit text-[#ACB6CC] text-xs sm:text-sm">Выйти из аккаунта</button>
                             </div>
                         </div>
-                        <div className="puic flex flex-col font-secondary-bold text-black">
-                            <div className="puic-head flex justify-between mb-[16px]">
-                                <div className="puic-title text-[14px]">Достижения</div>
-                                <button onClick={showAllAchievement} className="bg-inherit text-[#ACB6CC] text-[12px] rounded-none border-0 border-b border-[#ACB6CC] border-solid cursor-pointer">Показать всё</button>
+                        <div className='flex flex-row lg:flex-col w-full gap-3 flex-wrap min-[850px]:flex-nowrap'>
+                            <div className="puic flex flex-col font-secondary-bold text-black w-full min-[850px]:w-[49%] lg:w-auto ">
+                                <div className="puic-head flex justify-between mb-[16px]">
+                                    <div className="puic-title text-xs sm:text-sm">Достижения</div>
+                                    <button onClick={showAllAchievement} className="bg-inherit text-[#ACB6CC] text-[10px] sm:text-xs rounded-none border-0 border-b border-[#ACB6CC] border-solid cursor-pointer">Показать всё</button>
+                                </div>
+                                <div className="puic-list flex flex-col gap-3">
+                                    {arr.length !==0 ?
+                                        arr.map((item, index) => {
+                                            if(index <= indexAchievement) {
+                                                return (<ProfileItems key={uuid()} name={item.name} text={item.text} icon='Rectangle2.png'/>);
+                                            }
+                                        })
+                                        : null
+                                    }
+                                </div>
                             </div>
-                            <div className="puic-list flex flex-col gap-3">
-                                {arr.length !==0 ?
-                                    arr.map((item, index) => {
-                                        if(index <= indexAchievement) {
-                                            return (<ProfileItems key={uuid()} name={item.name} text={item.text} icon='Rectangle2.png'/>);
-                                        }
-                                    })
-                                    : null
-                                }
-                            </div>
-                        </div>
-                        <div className="puic flex flex-col font-secondary-bold text-black py-[24px]">
-                            <div className="puic-head flex justify-between mb-[16px]">
-                                <div className="puic-title text-[14px]">В продаже</div>
-                                <button onClick={showOnSale} className="bg-inherit text-[#ACB6CC] text-[12px] rounded-none border-0 border-b border-[#ACB6CC] border-solid cursor-pointer">Показать всё</button>
-                            </div>
-                            <div className="puic-list flex flex-col gap-3">
-                                {onSale.length !==0 ?
-                                    onSale.map((item, index) => {
-                                        if(index <= indexOnSale) {
-                                            return (<ProfileItems key={uuid()} name={item.name}  text={`${item.text} ₽`} icon='icon-shopping-card-gradient.ff3dca76.svg'/>);
-                                        }
-                                    })
-                                    : null
-                                }
+                            <div className="puic flex flex-col font-secondary-bold text-black py-4 sm:py-6 w-full min-[850px]:w-[49%] lg:w-auto">
+                                <div className="puic-head flex justify-between mb-[16px]">
+                                    <div className="puic-title text-xs sm:text-sm">В продаже</div>
+                                    <button onClick={showOnSale} className="bg-inherit text-[#ACB6CC] text-[10px] sm:text-xs rounded-none border-0 border-b border-[#ACB6CC] border-solid cursor-pointer">Показать всё</button>
+                                </div>
+                                <div className="puic-list flex flex-col gap-3">
+                                    {onSale.length !==0 ?
+                                        onSale.map((item, index) => {
+                                            if(index <= indexOnSale) {
+                                                return (<ProfileItems key={uuid()} name={item.name}  text={`${item.text} ₽`} icon='icon-shopping-card-gradient.ff3dca76.svg'/>);
+                                            }
+                                        })
+                                        : null
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="spf-block flex flex-col w-full gap-[12px]">
+                    <div className="spf-block flex flex-col w-full gap-[12px] ">
                         <div className="spf-user flex flex-wrap justify-between font-secondary-bold text-[14px] text-[#C1CCE0]">
-                            <div className='w-full p-[24px] flex flex-wrap gap-x-[62px] gap-y-[20px]'>
+                            <div className='w-full p-4 sm:p-6 flex flex-wrap gap-x-[62px] gap-y-[10px] sm:gap-y-[20px]'>
                                 <div className="spf-info-wrapper flex flex-col">
-                                    <div className="spf-info flex mb-[20px]">
-                                    <div className="spf-info-block flex flex-col pr-[20px] mr-[20px] border-r border-[#DBE0ED]">
-                                        <div className="spf-info-label">Имя</div>
-                                        <div className="spf-info-value text-[16px] text-black">Никита</div>
+                                    <div className="spf-info gap-y-[10px] flex mb-[20px] flex-wrap sm:flex-nowrap">
+                                        <div className="spf-info-block flex flex-col pr-[20px] mr-[20px] border-r border-[#DBE0ED]">
+                                            <div className="spf-info-label text-xs sm:text-sm">Имя</div>
+                                            <div className="spf-info-value text-sm sm:text-base text-black">Никита</div>
+                                        </div>
+                                        <div className="spf-info-block flex flex-col pr-[20px] mr-[20px] border-r border-[#DBE0ED]">
+                                            <div className="spf-info-label text-xs sm:text-sm">Группа</div>
+                                            <div className="spf-info-value text-sm sm:text-base text-black">Легенда</div>
+                                        </div>
+                                        <div className="spf-info-block flex flex-col">
+                                            <div className="spf-info-label text-xs sm:text-sm">Кол-во лайков</div>
+                                            <div className="spf-info-value text-sm sm:text-base text-black">452</div>
+                                        </div>
                                     </div>
-                                    <div className="spf-info-block flex flex-col pr-[20px] mr-[20px] border-r border-[#DBE0ED]">
-                                        <div className="spf-info-label">Группа</div>
-                                        <div className="spf-info-value text-[16px] text-black">Легенда</div>
+                                    <div className="spf-info gap-y-[10px] flex w-full flex-wrap sm:flex-nowrap">
+                                        <div className="spf-info-block flex flex-col pr-[20px] mr-[20px] border-r border-[#DBE0ED]">
+                                            <div className="spf-info-label text-xs sm:text-sm">Создано тем на форуме</div>
+                                            <div className="spf-info-value text-sm sm:text-base text-black">2,938</div>
+                                        </div>
+                                        <div className="spf-info-block flex flex-col pr-[20px] mr-[20px] border-r border-[#DBE0ED]">
+                                            <div className="spf-info-label text-xs sm:text-sm">Покупок</div>
+                                            <div className="spf-info-value text-sm sm:text-base text-black">344</div>
+                                        </div>
+                                        <div className="spf-info-block flex flex-col pr-[20px] mr-[20px] border-r border-[#DBE0ED]">
+                                            <div className="spf-info-label text-xs sm:text-sm">Продаж </div>
+                                            <div className="spf-info-value text-sm sm:text-base text-black">104</div>
+                                        </div>
+                                        <div className="spf-info-block flex flex-col">
+                                            <div className="spf-info-label text-xs sm:text-sm">Дата регистрации</div>
+                                            <div className="spf-info-value text-sm sm:text-base text-black">22:12 27.12.2019</div>
+                                        </div>
                                     </div>
-                                    <div className="spf-info-block flex flex-col">
-                                        <div className="spf-info-label">Кол-во лайков</div>
-                                        <div className="spf-info-value text-[16px] text-black">452</div>
-                                    </div>
-                                    </div>
-                                    <div className="spf-info flex w-full">
-                                    <div className="spf-info-block flex flex-col pr-[20px] mr-[20px] border-r border-[#DBE0ED]">
-                                        <div className="spf-info-label">Создано тем на форуме</div>
-                                        <div className="spf-info-value text-[16px] text-black">2,938</div>
-                                    </div>
-                                    <div className="spf-info-block flex flex-col pr-[20px] mr-[20px] border-r border-[#DBE0ED]">
-                                        <div className="spf-info-label">Покупок</div>
-                                        <div className="spf-info-value text-[16px] text-black">344</div>
-                                    </div>
-                                    <div className="spf-info-block flex flex-col pr-[20px] mr-[20px] border-r border-[#DBE0ED]">
-                                        <div className="spf-info-label">Продаж </div>
-                                        <div className="spf-info-value text-[16px] text-black">104</div>
-                                    </div>
-                                    <div className="spf-info-block flex flex-col">
-                                        <div className="spf-info-label">Дата регистрации</div>
-                                        <div className="spf-info-value text-[16px] text-black">22:12 27.12.2019</div>
-                                    </div>
-                                </div>
                                 </div>
                                 <Rating seller='продавца' reviews='1555' rank='4.8'/>
                             </div>
-                            <div className="tabs gap-x-[24px] gap-y-[16px] w-full flex items-center font-primary-bold text-[14px] overflow-hidden flex-wrap text-[#8A98B3] ">
+                            <div className="tabs gap-x-[24px] gap-y-[16px] w-full flex items-center font-primary-bold text-xs sm:text-sm overflow-hidden flex-wrap text-[#8A98B3] ">
                                 <button onClick={clickFeedback} className="tabs-tab bg-inherit block uppercase ">
                                     <div className={`${feedbackClass} nav-link-tab tabs-tab-text text-[#8A98B3]`}>Отзывы о продажах</div>
                                 </button>
@@ -298,6 +301,7 @@ function Profile() {
                                     })
                                     ) : null
                                 }
+                                <Pagination />
                             </div>
                             : null
                         }
@@ -309,6 +313,7 @@ function Profile() {
                                     }) 
                                     : null
                                 }
+                                <Pagination />
                             </div>
                             : null
                         }
@@ -319,7 +324,8 @@ function Profile() {
                                         return <CardGameString key={uuid()} rank='4.8' id='1' new='new' seoName='Аккаунт Warface' icon='product-preview-1.fcb96f91.png' name='Аккаунт Warface' description='за хорошие деньги, плюс бонус' price='120 000'/> 
                                     }) 
                                     : null
-                                } */}
+                                } 
+                                <Pagination />*/}
                             </div>
                             : null
                         }

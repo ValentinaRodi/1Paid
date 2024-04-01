@@ -4,8 +4,10 @@ function CardGameString(props) {
     
     return (
         <div className="pc rounded-lg bg-white">
-            <div className={(props.new === '1') ? 'pc-plate-container h-[22px]' : 'hidden'}>
-                <div className="pc-plate bg-gradient-primary _shadow-primary px-3 bg-gradient-primary flex items-center">new</div>
+            <div className={(props.new === '1') ? 'pc-plate-container w-full' : 'hidden'}>
+                <div className='flex items-center justify-start'>
+                    <div className="pc-plate bg-gradient-primary _shadow-primary h-[22px] w-[79px] bg-gradient-primary flex justify-center items-center">new</div>
+                </div>
             </div>
             <div className="pc-supinfo mt-1 font-secondary-bold text-[13px] text-black ">
                 <div className="pc-rating flex gap-1 items-center">
@@ -24,21 +26,21 @@ function CardGameString(props) {
                 <div className="pc-title font-bold font-secondary-bold text-[13px] text-black">{props.name}</div>
                 <div className="pc-subtitle mt-1 font-secondary-bold font-bold text-xs text-[#A6B1C7]">{props.description}</div>
             </Link>
-            <div className="pc-subinfo text-[#BEC1DB] flex flex-col gap-2 3sm:gap-1">
+            <div className="pc-subinfo text-[#BEC1DB] flex flex-col gap-1 sm:gap-2">
                 <div className="pc-subinfo-value font-secondary-med text-[10px]">Тип: Оружие</div>
                 <div className="pc-subinfo-value font-secondary-med text-[10px]">Кол: 33</div>
                 <div className="pc-subinfo-value font-secondary-med text-[10px]">Продажа от: 33 шт</div>
                 <div className="pc-subinfo-value font-secondary-med text-[10px]">Срок: Навсегда</div>
             </div>
             <div className="pc-tbar">
-                <div className="pc-tbar-inner flex items-center gap-3 ">
+                <div className="pc-tbar-inner flex items-center gap-3 justify-end">
                     <div className="pc-source flex-shrink-0 w-11 h-11">
                         <div className="pc-source-user w-full h-full relative">
                             <div className="pc-source-status _green"></div>
                             <img className="w-full h-full object-cover object-center" src="/img/avatar-example-3.347bde69.png" alt="picture"/>
                         </div>
                     </div>
-                    <div className="pc-total flex-grow h-11 rounded-full border border-solid border-[#F3F7FF] flex items-center justify-between pl-4 gap-2 3sm:h-10 3sm:pl-3 3sm:w-full">
+                    <div className="pc-total sm:flex-grow h-11 rounded-full border border-solid border-[#F3F7FF] flex items-center justify-between pl-0 sm:pl-4 gap-0 sm:gap-2">
                         <div className="pc-total-inf flex flex-wrap gap-x-[5px] flex mr-5">
                             <div className="text-[#BEC1DB] font-secondary-bold text-xs">Цена</div>
                             {props.priceDouble === 'true' 
@@ -46,7 +48,7 @@ function CardGameString(props) {
                                 : <div className="text-black font-bold font-secondary-bold text-xs">{props.price} ₽</div>
                             }
                         </div>
-                        <div className="pc-total-btn-wrap flex-shrink-0 w-11 h-11 ">
+                        <div className="pc-total-btn-wrap flex-shrink-0 w-9 sm:w-11 h-9 sm:h-11 ">
                             <a className="btn btn-secondary pc-total-btn rounded-full w-full h-full justify-center" href="#">
                                 <div className="btn-icon w-1/2 [&amp;_svg]:w-full text-white">
                                     <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +60,7 @@ function CardGameString(props) {
                     </div>
                 </div>
             </div>
-            <div className="pc-ibar flex justify-end items-start md:items-center flex-wrap gap-3 mr-3">
+            <div className="pc-ibar flex justify-end h-full items-end min-[768px]:items-center flex-wrap gap-3 mr-3">
                 <label className="pc-btn-like">
                     <input type="checkbox"/>
                     <div className="btn-icon btn-icon-none-shadow">

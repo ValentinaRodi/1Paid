@@ -5,6 +5,7 @@ function FeedbacksItem(props) {
 
     const showAnswer = () => {
         setAnswerVisible(!answerVisible);
+        setAnswerVisibleNew(false);
     };
 
 
@@ -37,6 +38,7 @@ function FeedbacksItem(props) {
 
     const toAnswer = () => {
         setAnswerVisibleNew(!answerVisibleNew);
+        setAnswerVisible(false);
     };
 
     const handleEditNew = () => {
@@ -54,8 +56,8 @@ function FeedbacksItem(props) {
     return (
         <div className='flex flex-col gap-1 items-end'>
             <div className="fbc rounded-xl flex flex-col bg-white ">
-                <div className="p-6 flex items-start gap-4 flex-wrap sm:flex-nowrap">
-                    <div className="flex flex-col gap-3">
+                <div className="p-4 sm:p-6 flex items-start gap-4 flex-wrap sm:flex-nowrap h-full">
+                    <div className="flex flex-row justify-between items-start w-full sm:w-auto sm:flex-col gap-3">
                         <div className="fbc-info flex-shrink-0 flex gap-3 ">
                             <div className="fbc-avatar flex-shrink-0 rounded-full w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] overflow-hidden ">
                                 <img className="fbc-avatar-pic w-full h-full object-cover" src={`/img/${props.avatar}`} alt="user"/>
@@ -75,7 +77,7 @@ function FeedbacksItem(props) {
                             :null
                         }
                     </div>
-                    <div className="fbc-text h-full flex-grow border-0 sm:border-l border-solid border-[#E7EAF3] pl-0 sm:pl-4 font-secondary-med text-[10px] text-[#595E72]  ">{props.text}</div>
+                    <div className="border-0 sm:border-l border-solid border-[#E7EAF3] pl-0 sm:pl-4 font-secondary-med text-[10px] text-[#595E72]">{props.text}</div>
                 </div>
                 {props.answer ?
                     <div className='w-full h-[36px] bg-[#F9F9FC] flex justify-end items-center px-2 rounded-b-[12px]'>
@@ -95,11 +97,11 @@ function FeedbacksItem(props) {
                 }
             </div> 
             {answerVisible ?
-                <div className='flex gap-4 items-center mr-[11.5%]'>
-                    <div className='w-1.5 h-3'>
+                <div className='flex gap-4 items-center w-full sm:w-auto sm:mr-[11.5%]'>
+                    <div className='w-1.5 h-3 flex-shrink-0'>
                         <img className="fbc-avatar-pic w-full h-full object-cover" src='/img/icon-arrow-left-3.svg' alt="arrow"/>
                     </div>
-                    <div className='w-[496px] h-full bg-white p-3 rounded-xl flex items-start justify-between relative'>
+                    <div className='w-auto sm:w-[496px] h-full bg-white p-3 rounded-xl flex items-start justify-between relative'>
                         <div className="fbc-avatar flex-shrink-0 rounded-full w-9 h-9 sm:w-11 sm:h-11 overflow-hidden mr-3">
                             <img className="fbc-avatar-pic w-full h-full object-cover" src={`/img/${props.avatarAnswer}`} alt="user"/>
                         </div>
@@ -129,14 +131,14 @@ function FeedbacksItem(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className='absolute triangle top-[-11px] right-[36px]'></div>
+                        <div className='absolute triangle top-[-11px] right-[160px] sm:right-[36px]'></div>
                     </div>
                 </div>
                 : null
             }
             {answerVisibleNew ?
-                <div className='flex gap-4 items-center'>
-                    <div className='w-[496px] h-full bg-white p-3 rounded-xl flex items-start justify-between relative'>
+                <div className='flex gap-4 items-center w-full sm:w-auto'>
+                    <div className='w-full sm:w-[496px] h-full bg-white p-3 rounded-xl flex items-start justify-between relative'>
                         <div className='w-full h-full flex flex-col gap-1'>
                             <div className='gap-2 w-full h-full flex items-end justify-between'>
                                 <textarea type="text" value={textAnswerNew} onChange={handleChangeNew} className='resize-none p-2 min-h-[24px] font-secondary-med leading-[12px] border border-solid border-[#E7EAF3] rounded-lg text-[#A2AEC8] text-[10px] w-full h-auto'>{textAnswerNew}</textarea>
