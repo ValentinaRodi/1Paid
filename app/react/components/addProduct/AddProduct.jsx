@@ -30,7 +30,9 @@ function AddProduct(props) {
 
         if (title === '') {
           setError('border-[#FF5343] border-[1px] border-solid');
-        };
+        } else {
+            props.openModalUpTop();
+        }
     };
 
     // Функция для обновления объекта formValue

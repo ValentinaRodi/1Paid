@@ -11,7 +11,7 @@ function CardGame(props) {
     const openChangeModalTovar = () => {
         body.style.overflow = 'hidden';
         setModalEl(<ModalChangeTovar
-            closeModal={closeModal} name={props.name} description={props.description} price={props.price}
+            closeModal={closeModal} name={props.name} description={props.description} price={props.price} clickDelTovar={clickDelTovar}
         />);
         setModalOpen(true);
     };
@@ -44,7 +44,7 @@ function CardGame(props) {
 
     const clickDelTovar = () => {
         console.log(props.seoName);
-        props.showDelModal(true);
+        props.cliclShowDelModal();
     };
 
     return (
@@ -61,13 +61,11 @@ function CardGame(props) {
                         <span>{props.rank}</span>
                     </div>
                 </div>
-                <div className='flex items-center justify-between gap-3'>
+                <div className='flex items-center justify-between gap-3 sm:gap-1 min-[1855px]:gap-3'>
                     {(props.change === 'true') ?
                         (
-                            <button onClick={openChangeModalTovar} className='bg-inherit'>
-                                <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M17.2006 7.88717L7.96108 17.1267C7.40327 17.6852 6.64649 17.9993 5.85714 18H0.0712891V12.2142C0.071984 11.4248 0.386117 10.668 0.944625 10.1102L10.1841 0.870716C11.3465 -0.290239 13.2296 -0.290239 14.392 0.870716L17.2006 3.67928C18.3615 4.84168 18.3615 6.72477 17.2006 7.88717ZM2.29269 11.4698C2.10934 11.6547 2.00598 11.9042 2.00488 12.1645L2.0545 16.0151H5.8555C6.11585 16.014 6.36535 15.9107 6.5502 15.7273L15.75 6.42828C16.1348 6.04119 16.1348 5.41604 15.75 5.02895L12.9414 2.22039C12.5543 1.8356 11.9292 1.8356 11.5421 2.22039L2.29269 11.4698Z" fill="#C5CFE4"/>
-                                </svg>
+                            <button onClick={openChangeModalTovar} className='bg-inherit w-4 h-4 md:w-[19px] md:h-[18px]'>
+                                <img src="/img/icon-change-card.svg" alt="icon change card"/>
                             </button>
                         )
                         : null
@@ -87,11 +85,8 @@ function CardGame(props) {
                     </div>
                     {(props.change === 'true') ?
                         (
-                            <button onClick={clickDelTovar} className='bg-inherit'>
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0.424023 17.576C-0.0462888 17.1028 -0.0462888 16.3387 0.424023 15.8656L15.8656 0.424038C16.1621 0.0778742 16.6275 -0.0729097 17.0706 0.0336795C17.5137 0.140269 17.8597 0.486241 17.9663 0.929353C18.0729 1.37247 17.9221 1.83793 17.5759 2.13438L2.13436 17.576C1.66124 18.0463 0.897141 18.0463 0.424023 17.576Z" fill="#C5CFE4"/>
-                                    <path d="M0.424023 0.424023C0.897141 -0.0462888 1.66124 -0.0462888 2.13436 0.424023L17.5759 15.8656C17.9221 16.1621 18.0729 16.6275 17.9663 17.0706C17.8597 17.5137 17.5137 17.8597 17.0706 17.9663C16.6275 18.0729 16.1621 17.9221 15.8656 17.5759L0.424023 2.13436C-0.0462888 1.66124 -0.0462888 0.897141 0.424023 0.424023Z" fill="#C5CFE4"/>
-                                </svg>
+                            <button onClick={clickDelTovar} className='bg-inherit w-3.5 h-3.5 md:w-[18px] md:h-[18px]'>
+                                <img src="/img/icon-del-card.svg" alt="icon delete card"/>
                             </button>
                         )
                         : null
@@ -108,7 +103,7 @@ function CardGame(props) {
                     <div className="pc-title font-secondary-bold font-bold text-[13px] text-black">{props.name}</div>
                     <div className="pc-subtitle mt-1 font-secondary-med text-xs text-[#A6B1C7] 3sm:text-[10px]">{props.description}</div>
                 </div>
-                <div className="pc-subinfo text-[#BEC1DB] flex flex-col gap-2 3sm:gap-1">
+                <div className="pc-subinfo text-[#BEC1DB] flex flex-col gap-0 sm:gap-2 3sm:gap-1">
                     <div className="pc-subinfo-value font-secondary-med text-[10px]">Тип: Оружие</div>
                     <div className="pc-subinfo-value font-secondary-med text-[10px]">Кол: 33</div>
                     <div className="pc-subinfo-value font-secondary-med text-[10px]">Продажа от: 33 шт</div>

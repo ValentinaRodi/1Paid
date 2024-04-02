@@ -13,6 +13,7 @@ function Tab() {
     const [cardsViewImg, setCardsViewImg] = useState('/img/icon-cards-stroke.svg');
     const [cardsViewDiv, setCardsViewDiv] = useState('');
 
+    //Для отображения товаров карточки/строка
     const changeViewCards = () => {
         (cardsView) ? setCardsView(false) : setCardsView(true);
         (cardsViewImg === '/img/icon-card-tile.svg') ? setCardsViewImg('/img/icon-cards-stroke.svg') : setCardsViewImg('/img/icon-card-tile.svg');
@@ -40,16 +41,9 @@ function Tab() {
                                             <CardGameString key={uuid()} rank='4.8' id='1' new='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
                                         )
                                     }) 
-                                : <div className='text-[#FF5343]'>not found</div>
+                                : <div className='text-[#FF5343]'></div>
                             } 
                         </div>
-                        {(!btn) ? null :
-                            <div className="hidden sgc-f flex justify-center mt-10 ">
-                                <button className="sgc-btn-more rounded-full h-[60px] flex items-center justify-center px-12 bg-[#E3E9F5] duration-200 hover:bg-[#d3d7e0]">
-                                    <div className="btn-text font-secondary-bold text-base text-[#B9C3D6]">Показать еще 25</div>
-                                </button>
-                            </div>
-                        }
                     </div>
                 </div>
                 <Pagination />

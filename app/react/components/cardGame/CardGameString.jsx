@@ -1,9 +1,54 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { createRoot } from "react-dom/client";
+import ModalChangeTovar from '../modalChangeTovar/ModalChangeTovar';
 
 function CardGameString(props) {
+    const [modalEl, setModalEl] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
+    const body = document.querySelector('body');
+
+    const openChangeModalTovar = () => {
+        body.style.overflow = 'hidden';
+        setModalEl(<ModalChangeTovar
+            closeModal={closeModal} name={props.name} description={props.description} price={props.price} clickDelTovar={clickDelTovar}
+        />);
+        setModalOpen(true);
+    };
+
+    const closeModal = () =>{
+        body.style.overflow = 'auto';
+        setModalOpen(false);
+        setModalEl('');
+    };
+
+    useEffect(() => {
+        const modal = document.getElementById('modal');
+
+        if(modalOpen) {
+            modal.classList.add('modal');
+            modal.textContent = '';
+            
+            const containerModal = document.createElement("div");
+            const root = createRoot(containerModal);
+            root.render(modalEl);
+            modal.appendChild(containerModal);   
+        };
+
+        if(!modalOpen) {
+            modal.classList.remove('modal');
+            modal.textContent = '';
+        };
+        
+    }, [modalEl]);
+
+    const clickDelTovar = () => {
+        console.log(props.seoName);
+        props.cliclShowDelModal();
+    };
     
     return (
-        <div className="pc rounded-lg bg-white">
+        <div className="pc rounded-lg bg-white w-full md:w-auto">
             <div className={(props.new === '1') ? 'pc-plate-container w-full' : 'hidden'}>
                 <div className='flex items-center justify-start'>
                     <div className="pc-plate bg-gradient-primary _shadow-primary h-[22px] w-[79px] bg-gradient-primary flex justify-center items-center">new</div>
@@ -61,17 +106,35 @@ function CardGameString(props) {
                 </div>
             </div>
             <div className="pc-ibar flex justify-end h-full items-end min-[768px]:items-center flex-wrap gap-3 mr-3">
-                <label className="pc-btn-like">
-                    <input type="checkbox"/>
-                    <div className="btn-icon btn-icon-none-shadow">
-                        <svg className="_default" viewBox="0 0 23 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M6.00689 10.4136L11.0819 15.0674V15.0674L16.1568 10.4136V10.4136L19.0394 7.77019C20.4408 6.48508 20.4408 4.4015 19.0394 3.11639C17.638 1.83128 15.3659 1.83128 13.9644 3.11639L11.0819 5.77836L8.19927 3.135C6.79786 1.84989 4.52572 1.84989 3.1243 3.135C1.72289 4.42012 1.72289 6.50369 3.1243 7.78881L6.00689 10.4136ZM12.5024 1.82265C14.6914 -0.184698 18.2405 -0.184698 20.4295 1.82265C22.6185 3.82999 22.6185 7.08454 20.4295 9.09189L18.9882 10.4136V10.4136L11.0814 17.6828V17.6828L3.15434 10.4136V10.4136L1.71305 9.09189C-0.475963 7.08454 -0.475963 3.82999 1.71305 1.82265C3.90205 -0.184698 7.45114 -0.184698 9.64015 1.82265L11.0814 3.14433L12.5024 1.82265Z" fill="currentColor"></path>
-                        </svg>
-                        <svg className="_checked" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M12.5717 1.5605C14.7284 -0.520167 18.2251 -0.520167 20.3817 1.5605C22.5384 3.64117 22.5384 7.0146 20.3817 9.09527L18.9617 10.4652L11.1717 18L3.36172 10.4652L1.94172 9.09527C-0.214949 7.0146 -0.214949 3.64117 1.94172 1.5605C4.09839 -0.520167 7.59505 -0.520167 9.75172 1.5605L11.1717 2.93046L12.5717 1.5605Z" fill="currentColor"></path>
-                        </svg>
-                    </div>
-                </label>
+                <div className='flex flex-col gap-5 h-full pt-3 md:pt-0'>
+                    {(props.change === 'true') ?
+                        (
+                            <button onClick={openChangeModalTovar} className='bg-inherit w-4 h-4 md:w-[19px] md:h-[18px]'>
+                                <img src="/img/icon-change-card.svg" alt="icon change card"/>
+                            </button>
+                        )
+                        : null
+                    }
+                    <label className="pc-btn-like">
+                        <input type="checkbox"/>
+                        <div className="btn-icon btn-icon-none-shadow">
+                            <svg className="_default" viewBox="0 0 23 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M6.00689 10.4136L11.0819 15.0674V15.0674L16.1568 10.4136V10.4136L19.0394 7.77019C20.4408 6.48508 20.4408 4.4015 19.0394 3.11639C17.638 1.83128 15.3659 1.83128 13.9644 3.11639L11.0819 5.77836L8.19927 3.135C6.79786 1.84989 4.52572 1.84989 3.1243 3.135C1.72289 4.42012 1.72289 6.50369 3.1243 7.78881L6.00689 10.4136ZM12.5024 1.82265C14.6914 -0.184698 18.2405 -0.184698 20.4295 1.82265C22.6185 3.82999 22.6185 7.08454 20.4295 9.09189L18.9882 10.4136V10.4136L11.0814 17.6828V17.6828L3.15434 10.4136V10.4136L1.71305 9.09189C-0.475963 7.08454 -0.475963 3.82999 1.71305 1.82265C3.90205 -0.184698 7.45114 -0.184698 9.64015 1.82265L11.0814 3.14433L12.5024 1.82265Z" fill="currentColor"></path>
+                            </svg>
+                            <svg className="_checked" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M12.5717 1.5605C14.7284 -0.520167 18.2251 -0.520167 20.3817 1.5605C22.5384 3.64117 22.5384 7.0146 20.3817 9.09527L18.9617 10.4652L11.1717 18L3.36172 10.4652L1.94172 9.09527C-0.214949 7.0146 -0.214949 3.64117 1.94172 1.5605C4.09839 -0.520167 7.59505 -0.520167 9.75172 1.5605L11.1717 2.93046L12.5717 1.5605Z" fill="currentColor"></path>
+                            </svg>
+                        </div>
+                    </label>
+                    {(props.change === 'true') ?
+                        (
+                            <button onClick={clickDelTovar} className='bg-inherit w-3.5 h-3.5 md:w-[18px] md:h-[18px]'>
+                                <img src="/img/icon-del-card.svg" alt="icon delete card"/>
+                            </button>
+                        )
+                        : null
+                    }
+                </div>
             </div>
         </div>
     );

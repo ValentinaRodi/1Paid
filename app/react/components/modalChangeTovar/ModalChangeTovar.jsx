@@ -21,6 +21,8 @@ function ModalChangeTovar(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        props.closeModal();
+
         setError('');
 
         if (title === '') {
@@ -30,14 +32,20 @@ function ModalChangeTovar(props) {
         //console.log('formValue', formValue);
     };
 
-     // Функция для обновления объекта formValue
-     const changeFormValue = (key, value) => {
+    // Функция для обновления объекта formValue
+    const changeFormValue = (key, value) => {
         (key in formValue) ? formValue[key] = value : formValue[key] = value;
        
         if(value === '') {
             delete formValue[`${key}`];
         }
     };
+
+    const handleDelTovar = () => {
+        props.clickDelTovar();
+        props.closeModal();
+    };
+    
 
     return (
         <div className="h-screen fixed inset-x-0 inset-y-0 overflow-scroll flex justify-center pt-[2%] pb-[3%] px-[2%]">
@@ -71,7 +79,7 @@ function ModalChangeTovar(props) {
                         <button onClick={handleSubmit} className="bg-gradient-primary px-0 text-base rounded-lg w-full h-[60px] text-white">Сохранить изменения</button>
                     </div>
                     <div className='flex justify-center items-center h-[60px] mt-2'>
-                        <button onClick={handleSubmit} className="px-0 font-primary-bold font-bold text-base text-[#FF1C1C] bg-inherit">Удалить товар</button>
+                        <button onClick={handleDelTovar} className="px-0 font-primary-bold font-bold text-base text-[#FF1C1C] bg-inherit">Удалить товар</button>
                     </div>
                 </div>
             </div>      

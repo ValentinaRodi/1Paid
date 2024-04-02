@@ -6,6 +6,7 @@ import Registration from '../../components/registration/Registration';
 import Authorisation from "../authorisation/Authorisation";
 import RecPass from '../../components/recpass/Recpass';
 import AddProduct from "../addProduct/AddProduct";
+import ModalUpTop from "../modalUpTop/ModalUpTop";
 import useAuth from '../../hooks/useAuth';
 
 function LeftMenu(props) {
@@ -45,10 +46,16 @@ function LeftMenu(props) {
         />);
     };
 
+    const openModalUpTop = () => {
+        setModalEl(<ModalUpTop 
+            closeModal={closeModal}
+        />);
+    };
+
     const openSellProduct = () => {
         body.style.overflow = 'hidden';
         setModalEl(<AddProduct
-            closeModal={closeModal}
+            closeModal={closeModal} openModalUpTop={openModalUpTop}
         />);
         setModalOpen(true);
     };
