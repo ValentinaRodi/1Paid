@@ -3,7 +3,7 @@ function Title(props) {
 
     return (
 
-        <div className="sh flex justify-between gap-x-3 mt-4 items-center sm:mt-4 xl:mt-6 mb-0 sm:mb-6">
+        <div className="sh flex justify-between gap-x-3 items-center mb-0 sm:mb-6">
             <div className="h-[85px] flex items-center justify-between w-full sm:w-auto">
                 <div>
                     <h2 className="sh-title-text font-secondary-bold text-bold text-lg sm:text-2xl text-black">{props.title}</h2>
