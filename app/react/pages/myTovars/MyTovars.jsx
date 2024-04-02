@@ -7,6 +7,7 @@ import CardGame from '../../components/cardGame/CardGame';
 import AddProduct from '../../components/addProduct/AddProduct';
 import { createRoot } from "react-dom/client";
 import Title from '../../components/title/Title';
+import Pagination from '../../components/pagination/Pagination';
 
 function MyTovars() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -48,6 +49,7 @@ function MyTovars() {
     };
 
     const arr = ['Warface', 'New game', 'GTA', 'New game'];
+    const arrCard = [0,1,2,3,4,5,6,7];
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
@@ -118,12 +120,18 @@ function MyTovars() {
                             <span className="block w-full font-secondary-med text-[14px] text-[#A6B1C7]">Если вы хотите поднять в Топ какой то товар с определенного раздела ,то сначала вам нужно выбрать фильтр и далее нажать на поднять в топ ,если фильтр не выбран то вы поднимите все товары в топ</span></div>
                             <div className="pcg w-full">
                                 <div className="pcg-grid view-grid grid gap-3 grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3">
-                                    <CardGame key={uuid()} showDelModal={setShowDelModal} rank='4.8' id='1' change='true' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
+                                    {arrCard.length !==0 ?
+                                        arrCard.map((item, index) => { 
+                                            return (<CardGame key={uuid()} showDelModal={setShowDelModal} rank='4.8' id='1' change='true' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> );
+                                        })
+                                        : null
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-            </div>
+                    <Pagination />
+                </div>
             <LayoutBtn toTop='true'/>
             {modalOpen && 
                 (<div className='w-screen h-screen'>

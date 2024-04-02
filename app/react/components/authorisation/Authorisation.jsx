@@ -142,7 +142,7 @@ function Authorisation(props) {
                     };
                     
                     if(data.success === false) {
-                        setTextError('Неправильно указан пароль');
+                        setTextError('Неправильно указан логин и/или пароль');
                     };
                 })
                 .catch((error) => {
