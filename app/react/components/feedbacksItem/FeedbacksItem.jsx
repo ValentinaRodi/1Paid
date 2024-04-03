@@ -55,9 +55,9 @@ function FeedbacksItem(props) {
 
     return (
         <div className='flex flex-col gap-1 items-end'>
-            <div className="fbc rounded-xl flex flex-col bg-white ">
+            <div className="fbc rounded-xl flex flex-col bg-white w-full">
                 <div className="p-4 sm:p-6 flex items-start gap-4 flex-wrap sm:flex-nowrap h-full">
-                    <div className="flex flex-row justify-between items-start w-full sm:w-auto sm:flex-col gap-3">
+                    <div className="flex max-w-[125px] flex-row justify-between items-start w-full sm:w-auto sm:flex-col gap-3">
                         <div className="fbc-info flex-shrink-0 flex gap-3 ">
                             <div className="fbc-avatar flex-shrink-0 rounded-full w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] overflow-hidden ">
                                 <img className="fbc-avatar-pic w-full h-full object-cover" src={`/img/${props.avatar}`} alt="user"/>
@@ -77,7 +77,7 @@ function FeedbacksItem(props) {
                             :null
                         }
                     </div>
-                    <div className="border-0 sm:border-l border-solid border-[#E7EAF3] pl-0 sm:pl-4 font-secondary-med text-[10px] text-[#595E72]">{props.text}</div>
+                    <div className="h-full border-0 sm:border-l border-solid border-[#E7EAF3] pl-0 sm:pl-4 font-secondary-med text-[10px] text-[#595E72]">{props.text}</div>
                 </div>
                 {props.answer ?
                     <div className='w-full h-[36px] bg-[#F9F9FC] flex justify-end items-center px-2 rounded-b-[12px]'>

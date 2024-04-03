@@ -183,8 +183,8 @@ const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, rese
 
     return (
         <div>
-            <h3 className="sh-title-text font-secondary-bold text-bold text-xs text-black">{name}</h3>
-            <div className="range mt-4 mb-6 relative">
+            <h3 className="sh-title-text mb-[-8px] min-[880px]:mb-0 font-secondary-bold text-bold text-xs text-black">{name}</h3>
+            <div className="range mt-0 min-[880px]:mt-4 mb-4 sm:mb-6 relative">
                 <div className={`${styleDiv} h-[3px] absolute w-full left-0 top-0 h-[3px]`} ></div>
                 <div
                     id='rangeWidht'
@@ -197,6 +197,7 @@ const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, rese
                 >
                     <label htmlFor="min"></label>
                     <input
+                        id="min"
                         className={`min ${styleIcon}`}
                         style={styles.min}
                         name="min"
@@ -209,6 +210,7 @@ const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, rese
                     />
                     <label htmlFor="max"></label>
                     <input
+                        id="max"
                         className={`max ${styleIcon}`}
                         style={styles.max}
                         name="max"
@@ -220,14 +222,14 @@ const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, rese
                         onChange={({ target }) => [setMaxVal(Number(target.value)), setMaxValInput(Number(target.value))]}
                     />
                 </div>
-                <div  className='flex justify-between items-center mb-3 pt-6'>
+                <div  className='flex justify-between items-center mb-1 sm:mb-3 pt-6'>
                     <div ref={inputMinRef} className='flex justify-between items-center gap-[5px]'>
                         <p className='text-sm text-[#A6B1C7] font-secondary-bold'>от</p>
-                        <input type="text" value={(reset === true) ? min.toLocaleString('ru-RU') : minValInput.toLocaleString('ru-RU')} onClick={clearInputMin} onChange={changeMinValue} placeholder={min.toLocaleString('ru-RU')} className='flex items-center h-[33px] w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'/>
+                        <input name="minVal" type="text" value={(reset === true) ? min.toLocaleString('ru-RU') : minValInput.toLocaleString('ru-RU')} onClick={clearInputMin} onChange={changeMinValue} placeholder={min.toLocaleString('ru-RU')} className='flex items-center h-[33px] w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'/>
                     </div>
                     <div ref={inputMaxRef} className='flex justify-between items-center gap-[5px]'>
                         <p className='text-sm text-[#A6B1C7] font-secondary-bold'>до</p>
-                        <input type="text" value={(reset === true) ? max.toLocaleString('ru-RU') : maxValInput.toLocaleString('ru-RU')} onClick={clearInputMax} onChange={changeMaxValue} placeholder={max.toLocaleString('ru-RU')} className='flex items-center h-[33px] w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'/>
+                        <input name="maxVal" type="text" value={(reset === true) ? max.toLocaleString('ru-RU') : maxValInput.toLocaleString('ru-RU')} onClick={clearInputMax} onChange={changeMaxValue} placeholder={max.toLocaleString('ru-RU')} className='flex items-center h-[33px] w-[85px] rounded-[4px] font-secondary-bold text-bold bg-[#EAEBF8] border-solid border-[1px] border-[rgb(206,208,232,0.25)] text-sm px-2'/>
                     </div>
                 </div>
                 <div className="flex justify-between">

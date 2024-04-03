@@ -12,7 +12,6 @@ function ModalOrder(props) {
     const [time, setTime] = useState(["Навсегда", "На год", "На месяц"]);
     const [categ, setCateg] = useState(["Аккаунты", "Пин-коды", "Буст PM","Спецоперации"]);
     const [formValue, setFormValue] = useState({});
-
    
     const [gamesObj, setGamesObj] = useState([]);
     const [games, setGames] = useState([]);
@@ -27,6 +26,8 @@ function ModalOrder(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        props.closeModal();
 
         setError('');
 

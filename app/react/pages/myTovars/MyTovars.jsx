@@ -163,7 +163,6 @@ function MyTovars() {
                                 </div>
                                 : null
                             }
-                            
                         </div>
                     </div>
                     <div className="smt-main flex gap-x-3">

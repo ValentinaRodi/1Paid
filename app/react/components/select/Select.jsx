@@ -58,8 +58,8 @@ function Select(props) {
     }, [selectRef]);
   
     return (
-        <div className="mb-6" ref={selectRef}>
-            <p className='block sh-title-text font-secondary-bold text-bold text-xs text-black mb-4'>{props.name}</p>
+        <div className="mb-4 sm:mb-6" ref={selectRef}>
+            <p className='block sh-title-text font-secondary-bold text-bold text-xs text-black mb-2 sm:mb-4'>{props.name}</p>
             <div className="popup custom-select">
                 <div onClick={openModal} className="flex justify-between select-selected text-base font-secondary-bold">{(props.reset === true) ? "Не выбрано" : valueSelect}
                 <span><img className={rotate} src='/img/icon-arrow-down.svg' alt='arrow'/></span></div>

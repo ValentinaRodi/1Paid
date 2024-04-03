@@ -207,7 +207,7 @@ function Catalog() {
                                 <button className="sh-search-icon cursor-pointer bg-inherit flex-shrink-0 w-4 h-full [&amp;_svg]:w-full flex justify-center items-center text-[#B8BACF] duration-100 hover:text-black">
                                     <img src="/img/icon-sh-search-icon.svg" alt="sh-search-icon"/>
                                 </button>
-                                <input className="sh-search-input flex-grow ml-2.5 w-full h-full bg-transparent font-primary-med text-base text-black 2md:text-sm" placeholder="Поиск"/>
+                                <input name="search" className="sh-search-input flex-grow ml-2.5 w-full h-full bg-transparent font-primary-med text-base text-black 2md:text-sm" placeholder="Поиск"/>
                             </div>
                         </div>
                     </div>
@@ -231,7 +231,7 @@ function Catalog() {
                     <p className="w-[80%] font-primary-bold text-sm text-[#8A98B3]">Всего доступно для продажи 20 товаров одного типа. Всего доступно для продажи 20 товаров одного типа. Всего доступно для продажи 20 товаров одного типа. Всего доступно для продажи 20 товаров одного типа. Всего доступно для продажи 20 товаров одного типа.</p>
                 </div>
                 <div className='flex gap-2'>
-                    <div className='filter bg-white rounded-[8px] min-w-[317px] p-6'>
+                    <div className='filter h-fit bg-white rounded-[8px] min-w-[317px] p-6'>
                         {
                             (filterObj.length !== 0) ? (
                                 filterObj.map(filter => {

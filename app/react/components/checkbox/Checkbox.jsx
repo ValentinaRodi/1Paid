@@ -22,13 +22,13 @@ function Checkbox(props) {
 
     return (
         <div className="mb-2">
-            <h3 className="mb-4 sh-title-text font-secondary-bold text-bold text-xs text-black">Продавец</h3>
+            <h3 className="mb-2 sm:mb-4 sh-title-text font-secondary-bold text-bold text-xs text-black">Продавец</h3>
             <div className="smt-filter-type-content flex flex-col">
-                <label className="custom-checkbox mb-[12px] font-secondary-bold text-xs">Онлайн
+                <label htmlFor="checkbox1" className="custom-checkbox mb-3 sm:mb-3 font-secondary-bold text-xs">Онлайн
                     <input id="checkbox1" onChange={changeCheckOn} type="checkbox" name="online" checked={(props.reset) ? "" : (checked1) ? "checked" : ""}/>
                     <span className="custom-checkmark"></span>
                 </label>
-                <label className="custom-checkbox font-secondary-bold text-xs">Офлайн
+                <label htmlFor="checkbox2" className="custom-checkbox mb-3 sm:mb-5 font-secondary-bold text-xs">Офлайн
                     <input id="checkbox2" onChange={changeCheckOff} type="checkbox" name="offline" checked={(props.reset) ? "" : (checked2) ? "checked" : ""}/>
                     <span className="custom-checkmark"></span>
                 </label>

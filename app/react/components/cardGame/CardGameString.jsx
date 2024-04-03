@@ -85,11 +85,14 @@ function CardGameString(props) {
                             <img className="w-full h-full object-cover object-center" src="/img/avatar-example-3.347bde69.png" alt="picture"/>
                         </div>
                     </div>
-                    <div className="pc-total sm:flex-grow h-11 rounded-full border border-solid border-[#F3F7FF] flex items-center justify-between pl-0 sm:pl-4 gap-0 sm:gap-2">
-                        <div className="pc-total-inf flex flex-wrap gap-x-[5px] flex mr-5">
+                    <div className="pc-total min-h-11 rounded-full border border-solid border-[#F3F7FF] flex items-center justify-end gap-4">
+                        <div className="pc-total-inf flex flex-nowrap md:flex-wrap gap-x-[5px] flex">
                             <div className="text-[#BEC1DB] font-secondary-bold text-xs">Цена</div>
                             {props.priceDouble === 'true' 
-                                ? <div className='font-secondary-bold font-bold text-xs'>от {props.price1} ₽ до {props.price2} ₽</div>
+                                ?   <div className='font-secondary-bold font-bold text-xs w-max md:w-auto flex flex-nowrap md:flex-wrap gap-x-2'>
+                                        <div className='flex-shrink-0'>от {props.price1} ₽</div>
+                                        <div className='flex-shrink-0'>до {props.price2} ₽</div>
+                                    </div>
                                 : <div className="text-black font-bold font-secondary-bold text-xs">{props.price} ₽</div>
                             }
                         </div>
@@ -105,8 +108,8 @@ function CardGameString(props) {
                     </div>
                 </div>
             </div>
-            <div className="pc-ibar flex justify-end h-full items-end min-[768px]:items-center flex-wrap gap-3 mr-3">
-                <div className='flex flex-col gap-5 h-full pt-3 md:pt-0'>
+            <div className="pc-ibar flex justify-end h-full items-end min-[768px]:items-center flex-wrap gap-3">
+                <div className='flex flex-col gap-5 justify-center h-full pt-3 md:pt-0'>
                     {(props.change === 'true') ?
                         (
                             <button onClick={openChangeModalTovar} className='bg-inherit w-4 h-4 md:w-[19px] md:h-[18px]'>
@@ -116,7 +119,7 @@ function CardGameString(props) {
                         : null
                     }
                     <label className="pc-btn-like">
-                        <input type="checkbox"/>
+                        <input name="like" type="checkbox"/>
                         <div className="btn-icon btn-icon-none-shadow">
                             <svg className="_default" viewBox="0 0 23 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M6.00689 10.4136L11.0819 15.0674V15.0674L16.1568 10.4136V10.4136L19.0394 7.77019C20.4408 6.48508 20.4408 4.4015 19.0394 3.11639C17.638 1.83128 15.3659 1.83128 13.9644 3.11639L11.0819 5.77836L8.19927 3.135C6.79786 1.84989 4.52572 1.84989 3.1243 3.135C1.72289 4.42012 1.72289 6.50369 3.1243 7.78881L6.00689 10.4136ZM12.5024 1.82265C14.6914 -0.184698 18.2405 -0.184698 20.4295 1.82265C22.6185 3.82999 22.6185 7.08454 20.4295 9.09189L18.9882 10.4136V10.4136L11.0814 17.6828V17.6828L3.15434 10.4136V10.4136L1.71305 9.09189C-0.475963 7.08454 -0.475963 3.82999 1.71305 1.82265C3.90205 -0.184698 7.45114 -0.184698 9.64015 1.82265L11.0814 3.14433L12.5024 1.82265Z" fill="currentColor"></path>
