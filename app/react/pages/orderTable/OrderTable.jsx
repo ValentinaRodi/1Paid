@@ -6,6 +6,7 @@ import ModalOrder from "../../components/modalOrder/ModalOrder";
 import Order from "../../components/orderTable/Order"; 
 import Market from "../../components/orderTable/Market";
 import Pagination from '../../components/pagination/Pagination';
+import Title from "../../components/title/Title";
 
 function OrderTable() {
     const [tabClass, setTabClass] = useState(true);
@@ -63,8 +64,14 @@ function OrderTable() {
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 mt-10 xl:mt-0">
-            <div className="w-full layout-main">
-                <div className="sh flex justify-between items-center gap-x-3 mb-10">
+            <div className="w-full layout-main relative">
+                <Title title='Стол заказов' search='true'/>
+                {(tabItem) ?
+                    <button onClick={openModalOrder} className=" absolute top-[17px] right-[265px] rounded-[40px] bg-white hover:bg-[#dcdff1] w-32 h-[50px] flex justify-center items-center text-[#8A98B3] text-sm font-secondary-bold font-bold flex items-center justify-center border border-solid border-[#C0C2DC59]">Выбор игры</button>
+                    :
+                    null
+                }
+                {/* <div className="sh flex justify-between items-center gap-x-3 mb-10">
                     <div className="flex flex-col justify-start">
                         <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Стол заказов</h2>
                         <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
@@ -85,7 +92,7 @@ function OrderTable() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="flex items-start py-4 justify-between rounded-lg bg-white px-6 mb-3">
                     <div id="parent" className="nav-show pt-2 h-full w-full flex items-center justify-start">
                         <nav id="nav" className="nav-item pb-2.5 flex gap-x-6 flex-wrap gap-y-6">

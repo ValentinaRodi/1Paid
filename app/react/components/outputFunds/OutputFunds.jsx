@@ -32,7 +32,7 @@ function OutputFunds(props) {
                 </div>
                 <form className='mt-[-10px]'>
                     <label htmlFor="sum" className='block family-bold text-black font-bold text-xs mb-4'>Сумма</label>
-                    <input type="text" name="sum" id='sum' placeholder="20005 Рублей" className='family-bold placeholder:text-[#BAC9E5] text-[13px] rounded px-4 mb-2 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
+                    <input type="text" name="sum" id='sum' placeholder="2000 Рублей" className='family-bold placeholder:text-[#BAC9E5] text-[13px] rounded px-4 mb-2 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
                     <p className='text-[10px] text-[#BEC1DB] mb-5'>Минимальная сумма для пополнения от 10 рублей.</p>
                     <Select arr={arr} changeFormValue={changeFormValue} keyValue='Способ вывода' name='Способ вывода'/>                       
                     <label htmlFor="numberCard" className='block family-bold text-black font-bold text-xs mb-4'>Реквизиты для вывода</label>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import uuid from 'react-uuid';
 
+
 function Order() {
     const [arr, setArr] = useState([1,2]);
 
@@ -49,8 +50,8 @@ function Order() {
                                                 <img src="/img/icon-circle-progress.svg" alt="circle-progress"/>
                                             </div>
                                             <div className="top-[-3px] left-[-6px] absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
-                                                <div className="timer-value font-primary-med text-center text-lg text-[#FF5343] leading-none 3sm:text-xs">24</div>
-                                                <div className="timer-value font-primary-bold text-center text-[11px] text-[#FF5343] leading-none 3sm:hidden">часа</div>
+                                                <div className="timer-value font-primary-med text-center text-base text-black leading-none 3sm:text-xs">24</div>
+                                                <div className="timer-value font-primary-bold text-center text-[11px] text-black leading-none 3sm:hidden">часа</div>
                                             </div>
                                         </div>
                                     </div>

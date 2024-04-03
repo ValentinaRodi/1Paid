@@ -19,7 +19,7 @@ function FooterMain() {
   };
 
   return (
-    <footer className="footer flex justify-between items-center gap-8 text-sm z-[100] relative">
+    <footer className="footer flex justify-between items-center gap-8 text-sm z-[50] relative">
       <div className="footer-copy max-w-sm ">1paid.ru — Маркетплейс по продажам цифровых товаров. © 2023, Все права защищены.</div>
       <div className="footer-list flex  gap-x-8 gap-y-2.5 flex-wrap">
         <button className="hover:text-white duration-200 bg-inherit">Пользовательское соглашение</button>

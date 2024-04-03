@@ -194,7 +194,7 @@ function LeftMenu(props) {
                                             </svg>
                                         </div>
                                     </div>
-                                    <div className="navpin-text uppercase ml-7 text-xs 2xl:text-sm">Продать товар</div>
+                                    <div className="navpin-text text-left uppercase ml-7 text-xs 2xl:text-sm">Продать товар</div>
                                 </button>
                                 <button onClick={goTab} className="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
                                     <div className="navpin-plate"><img className="navpin-plate-pic" src="/img/link-pin-plate.6d928d3b.svg" alt="dots"/>
@@ -206,7 +206,7 @@ function LeftMenu(props) {
                                             </svg>
                                         </div>
                                     </div>
-                                    <div className="navpin-text uppercase ml-7 text-xs 2xl:text-sm">Закладки</div>
+                                    <div className="navpin-text text-left uppercase ml-7 text-xs 2xl:text-sm">Закладки</div>
                                 </button>
                                 <button onClick={goHistory} className="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
                                     <div className="navpin-plate">
@@ -224,7 +224,7 @@ function LeftMenu(props) {
                                             </svg>
                                         </div>
                                     </div>
-                                    <div className="navpin-text uppercase ml-7 text-xs 2xl:text-sm">История просмотра</div>
+                                    <div className="navpin-text text-left uppercase ml-7 text-xs 2xl:text-sm">История просмотра</div>
                                 </button>
                                 <button onClick={goHistorySales} className="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
                                     <div className="navpin-plate">
@@ -244,7 +244,7 @@ function LeftMenu(props) {
                                             </svg>
                                         </div>
                                     </div>
-                                    <div className="navpin-text uppercase ml-7 text-xs 2xl:text-sm">История покупок и продаж</div>
+                                    <div className="navpin-text text-left uppercase ml-7 text-xs 2xl:text-sm">История покупок и продаж</div>
                                 </button>
                                 </div>
                             </div>
