@@ -220,7 +220,7 @@ function Catalog() {
                                     gamesObj.categories.map((categ) => (
                                         <Link to={`/catalog/${game}/${categ.seo_name}`} state={{ game: game,  category: categ.seo_name, categoryId: categ.id, gamesObjAdd: gamesObj }} key={uuid()} className={`${(categ.id === categoryId) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase`}>{categ.name}</Link> 
                                     ))
-                                ) : (<div className='text-[#FF5343]'>categories not found</div>)
+                                ) : (<div className='text-[#FF5343]'></div>)
                             }
                         </nav>
                     </div>
@@ -278,7 +278,7 @@ function Catalog() {
                                     : 
                                         <CardGameString key={uuid()} rank={card.rank} id='1' new={card.new} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/> 
                                     }) 
-                                : (<div className='text-[#FF5343]'>game not found</div>)
+                                : <div className='text-[#FF5343]'></div>
                             }
                         </div>
                         {(!btn) ? null :

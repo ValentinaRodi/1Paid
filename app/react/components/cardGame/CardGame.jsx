@@ -103,7 +103,7 @@ function CardGame(props) {
                     <div className="pc-title font-secondary-bold font-bold text-[13px] text-black">{props.name}</div>
                     <div className="pc-subtitle mt-1 font-secondary-med text-xs text-[#A6B1C7] 3sm:text-[10px]">{props.description}</div>
                 </div>
-                <div className="pc-subinfo text-[#BEC1DB] flex flex-col gap-0 sm:gap-2 3sm:gap-1">
+                <div className="pc-subinfo text-[#A6B1C7] flex flex-col gap-0 sm:gap-2 3sm:gap-1">
                     <div className="pc-subinfo-value font-secondary-med text-[10px]">Тип: Оружие</div>
                     <div className="pc-subinfo-value font-secondary-med text-[10px]">Кол: 33</div>
                     <div className="pc-subinfo-value font-secondary-med text-[10px]">Продажа от: 33 шт</div>
