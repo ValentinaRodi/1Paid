@@ -1,5 +1,6 @@
 import "./profileEdit.less";
 import {useState, useEffect} from 'react';
+import Title from "../title/Title";
 
 function ProfileEdit(props) {
 
@@ -12,16 +13,8 @@ function ProfileEdit(props) {
 
     return (
         <div className="layout-b pb-4 px-9 3xl:px-4 min-w-0 px-5 ">
-            <div className="sps mt-11 2md:mt-5 layout-main">
-                <div
-                    className="sh flex justify-between items-center gap-x-3 2md:flex-col-reverse 2md:items-start 2md:gap-y-5 sps-title">
-                    <div className="flex-col items-baseline flex-1 h-[85px]">
-                        <h2 className="sh-title-text font-secondary-bold text-2xl text-black 2md:text-xl">
-                            Настройки профиля</h2>
-                        <div className="sh-title-line mt-3 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
-                        </div>
-                    </div>
-                </div>
+            <div className="sps layout-main">
+                <Title title='Настройки профиля'/>
                 <div className="sps-main flex w-full rounded-xl  bg-white pr-[24px] pl-[16px]">
                     <div className="sps-bar flex flex-col items-start mr-[27px] pt-[26px]">
                         <div className="sps-bar flex flex-col items-start font-secondary-bold py-[16px]">

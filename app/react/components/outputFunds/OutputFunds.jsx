@@ -15,6 +15,11 @@ function OutputFunds(props) {
         }
     };
 
+    const outPutFunds = (e) => {
+        e.preventDefault();
+        props.closeModal();
+    };
+
     return (
         <div className='fixed inset-x-0 inset-y-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0'>
             <div className='shadow-[0px_25px_35px_0px_#E2E3F3A6] w-full sm:w-[443px] bg-white rounded-lg px-6 pb-6'>
@@ -45,7 +50,7 @@ function OutputFunds(props) {
                         <p className='family-bold text-xs leading-[14px] font-bold ml-2'>Запомнить мои реквезиты для последующего <br/>вывода средств.</p>
                     </div>
                     <div className='flex justify-between gap-1 items-center'>
-                        <button className="p-btn px-0 text-base rounded-lg w-full h-[60px] text-white">Вывести средства</button>
+                        <button onClick={outPutFunds} className="p-btn px-0 text-base rounded-lg w-full h-[60px] text-white">Вывести средства</button>
                     </div>
                 </form>
             </div>
