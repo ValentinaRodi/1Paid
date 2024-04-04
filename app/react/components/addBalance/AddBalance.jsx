@@ -1,5 +1,4 @@
-import  './addBalance.less'; 
-
+ 
 function AddBalance(props) {
  
   return (

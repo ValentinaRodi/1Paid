@@ -60,8 +60,6 @@ function OrderTable() {
         setModalOpen(true);
     };
 
-    
-
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 mt-10 xl:mt-0">
             <div className="w-full layout-main relative">

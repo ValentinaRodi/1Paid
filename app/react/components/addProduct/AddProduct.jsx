@@ -1,4 +1,3 @@
-import  './addProduct.less';
 import { useState, useEffect } from 'react';
 import Select from '../select/Select';
 import uuid from 'react-uuid';
