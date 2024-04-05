@@ -21,7 +21,7 @@ function Navigation(props) {
     }, [link]);
 
     return (
-        <div className="flex items-start py-4 justify-between rounded-lg bg-white px-4 sm:px-6 mb-3 sm:mb-5">
+        <div className="flex items-start w-full py-4 justify-between rounded-lg bg-white px-4 sm:px-6 mb-3 sm:mb-5">
             <div className='nav-show pt-2 h-full w-full flex items-center justify-start'>
                 <nav className='nav-item pb-2.5 flex gap-4 sm:gap-6 flex-wrap'>
                     {

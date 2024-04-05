@@ -86,7 +86,7 @@ function RandomItems() {
                 <Prsl />
                 <div className="sri mt-5">
                     <Title title='Случайные предметы'/>
-                    <div className="sri-grid grid grid-cols-3 gap-3 ">
+                    <div className="sri-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 ">
                         <RandomCard clickRoulette={clickRoulette} iconBg='case-card-bg-pink.97f9baea.png' icon='case-pink.17c520f2.png' name='rose' price='1990' />
                         <RandomCard clickRoulette={clickRoulette} iconBg='case-card-bg-pink.97f9baea.png' icon='case-pink.17c520f2.png' name='rose' price='1990' />
                         <RandomCard clickRoulette={clickRoulette} iconBg='case-card-bg-pink.97f9baea.png' icon='case-pink.17c520f2.png' name='rose' price='1990' />

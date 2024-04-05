@@ -10,14 +10,15 @@ import uuid from 'react-uuid';
 import RouletteTape from "../../components/rouletteItems/RouletteTape";
 import RouletteCards from "../../components/rouletteItems/RouletteCards";
 import RouletteDrum from "../../components/rouletteItems/RouletteDrum";
+import Title from '../../components/title/Title';
 
 function Roulette() {
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
     const body = document.querySelector('body');
-    const [rouletteTape, setMRouletteTape] = useState(true);
+    const [rouletteTape, setMRouletteTape] = useState(false);
     const [rouletteCards, setRouletteCards] = useState(false);
-    const [rouletteDrum, setRouletteDrum] = useState(false);
+    const [rouletteDrum, setRouletteDrum] = useState(true);
 
     //Закрытие модального окна
     const closeModal = () =>{
@@ -46,7 +47,7 @@ function Roulette() {
         
     }, [modalEl]);
 
-    const clickRoulette = (item) => {
+    const clickNav = (item) => {
         if(item === 0) {
             setMRouletteTape(true);
             setRouletteCards(false);
@@ -71,54 +72,61 @@ function Roulette() {
     const navArr =['лента', 'карточки', 'барабан'];
 
     const arrRoulet = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-    const arrRouletExamplу = [0,1,2,3,4,5];
+    const arrRouletExamplу = [0,1,2,3,4,5,6,7,8,9];
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 mt-10">
             <div className="w-full layout-main">
-                <div className="w-full mb-[68px]">
-                    <div className="sh flex justify-between items-center gap-x-3 mb-10">
-                        <div className="flex flex-col justify-start">
-                            <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Кейс DG</h2>
-                            <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary"></div>
-                        </div>
-                    </div>
-                    <Navigation clickRoulette={clickRoulette} navArr={navArr}/>
+                <div className="w-full flex flex-col items-center">
+                    <Title title='Кейс DG'/>
+                    <Navigation clickNav={clickNav} navArr={navArr}/>
                     <div className="scd-main flex flex-col items-center w-full gap-3">
                         {rouletteTape ? <RouletteTape arrRoulet={arrRoulet}/> : null}
                         {rouletteCards ? <RouletteCards arrRoulet={arrRoulet}/> : null}
                         {rouletteDrum ? <RouletteDrum arrRoulet={arrRoulet}/> : null}
                     </div>
-                    <div className="scd-actions flex items-center gap-2 mt-3 justify-center ml-[11%]">
-                        <button className="scd-btn font-secondary-bold text-sm bg-btn_light-green text-[#7FB145] rounded-full py-5 px-8 min-w-[92px]">Демо</button>
-                        <button className="scd-btn btn font-secondary-bold text-sm text-white bg-gradient-secondary rounded-full py-5 px-8 min-w-[184px]">Крутить за 149₽</button>
-                        <button className="scd-btn flex text-black gap-2 border border-solid font-bold border-[#C0C2DC59] rounded-full py-5 px-8 min-w-[144px]">
-                            <div className="cm-f-bar-item-label font-secondary-bold text-sm">Крутить за баллы</div>
-                            <div className="cm-f-bar-item-icon w-5 h-5">
+                    <div className="scd-actions flex items-center flex-wrap sm:flex-nowrap gap-2 mt-3 justify-center ml-0 sm:ml-[142px]">
+                        <button className="scd-btn font-secondary-bold text-xs md:text-sm bg-btn_light-green text-[#7FB145] rounded-full py-3 md:py-5 px-6 md:px-8 ">Демо</button>
+                        <button className="scd-btn btn font-secondary-bold text-xs md:text-sm text-white bg-gradient-secondary rounded-full py-3 md:py-5 px-6 md:px-8 ">{rouletteCards ? 'Открыть' :'Крутить'} за 149₽</button>
+                        <button className="scd-btn flex items-center justify-center text-black gap-2 border border-solid font-bold border-[#C0C2DC59] rounded-full py-3 md:py-5 px-6 md:px-8 ">
+                            <div className="cm-f-bar-item-label font-secondary-bold text-xs md:text-sm">{rouletteCards ? 'Открыть' :'Крутить'} за баллы</div>
+                            <div className="cm-f-bar-item-icon w-5 h-5 flex-shrink-0">
                                 <img className="w-full h-full" src='/img/icon-arrow-up.png' alt='arrow'/>
                             </div>
                         </button>
                     </div>
-                    <div className="w-full mt-[68px]">
-                        <div className="sh flex justify-between items-center gap-x-3 mb-11">
-                            <div className="flex flex-col justify-start">
-                                <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Что можно выиграть?</h2>
-                                <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary"></div>
-                            </div>
-                        </div>
-                        <div className="scd-list flex items-center justify-center bg-white rounded-2xl py-6 gap-2">
+                    <div className="w-full mt-4 md:mt-6">
+                        <Title title='Что можно выиграть?'/>
+                        <div className="scd-list flex items-center justify-center bg-white rounded-2xl p-4 md:p-6 gap-2">
                             {
                                 (arrRouletExamplу.length !== 0) ? (
-                                    arrRouletExamplу.map((item, index) => (
-                                        <div key={uuid()} className="scd-item flex flex-col px-2 pt-2 pb-3 border border-black/20 rounded-[12px] gap-2">
-                                            <div className="scd-image flex-shrink-0 ">
-                                                <img className="scd-image-pic w-full h-full object-cover" src="/img/case-item.d663c019.png" alt="user"/></div>
-                                            <div className="scd-item-info flex flex-col">
-                                                <div className="scd-item-label font-secondary-bold text-black text-[13px]">Ранг 20</div>
-                                                <div className="scd-item-description font-secondary-med text-xs text-[#A6B1C7]">Уровень</div>
-                                            </div>
-                                        </div>
-                                    ))
+                                    arrRouletExamplу.map((item, index) => {
+                                        if(index < 6) {
+                                            if(index > 3) {
+                                                return (
+                                                    <div key={uuid()} className="scd-item min-w-16 hidden sm:flex flex-col px-2 pt-2 pb-3 border border-black/20 rounded-[12px] gap-2">
+                                                        <div className="scd-image shrink md:flex-shrink-0 ">
+                                                            <img className="scd-image-pic w-full h-full object-cover" src="/img/case-item.d663c019.png" alt="user"/></div>
+                                                        <div className="scd-item-info flex flex-col">
+                                                            <div className="scd-item-label font-secondary-bold text-black text-[11px] md:text-[13px]">Ранг 20</div>
+                                                            <div className="scd-item-description font-secondary-med text-[10px] md:text-xs text-[#A6B1C7]">Уровень</div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            } else {
+                                                return (
+                                                    <div key={uuid()} className="scd-item min-w-16 flex flex-col px-2 pt-2 pb-3 border border-black/20 rounded-[12px] gap-2">
+                                                        <div className="scd-image shrink md:flex-shrink-0 ">
+                                                            <img className="scd-image-pic w-full h-full object-cover" src="/img/case-item.d663c019.png" alt="user"/></div>
+                                                        <div className="scd-item-info flex flex-col">
+                                                            <div className="scd-item-label font-secondary-bold text-black text-[11px] md:text-[13px]">Ранг 20</div>
+                                                            <div className="scd-item-description font-secondary-med text-[10px] md:text-xs text-[#A6B1C7]">Уровень</div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        }
+                                    })
                                 ) : null
                             }
                         </div>    
