@@ -115,6 +115,10 @@ function LeftMenu(props) {
             top: 0,  
         }); 
     };
+
+    const goMain = () => {
+        navigate('/');
+    };
   
     // useEffect(() => {
     //     let loggedInUser = localStorage.getItem('logged');
@@ -151,10 +155,10 @@ function LeftMenu(props) {
                 <div className="cm-inner">
                     <div className="cm-h relative pt-8 bg-center bg-[url('/img/fon-logo.svg')]">
                     <div className="cm-h-inner flex justify-between items-center">
-                        <div className="logo w-[180px] 3xl:w-[150px] xl:w-[120px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
+                        <button onClick={goMain} className="logo bg-inherit w-[180px] 3xl:w-[150px] xl:w-[120px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
                             <img className="logo__dots lg:h-[100%] xl:w-1/2" src="/img/dots-1.82560447.svg" alt="1paid.ru"/>
                             <img className="logo-pic" src="/img/logo.7fb09570.svg" alt="1paid.ru"/>
-                        </div>
+                        </button>
                     </div>
                     {/* <div className="rectangle absolute inset-0 h-[86%] w-full shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]"></div> */}
                     </div>

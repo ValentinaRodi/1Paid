@@ -50,6 +50,7 @@ function MyTovars() {
 
     //Сброс фильтра
     const cancelFilter = () => { 
+        setFilterMob(false);
         setResetFilter(true);
         setFormValue({});
         setResetFilter(false);
@@ -131,10 +132,10 @@ function MyTovars() {
                                 </button>
                             </div>
                             <button onClick={showFilter} className='flex-shrink-0 flex min-[880px]:hidden justify-center items-center w-11 h-11 rounded-full bg-[#e8eaf7] hover:bg-[#dcdff1]'>
-                                <img className='w-[50%]' src='/img/icon-filter.svg' alt='filter' />
+                                <img className='w-[40%] sm:w-[50%]' src='/img/icon-filter.svg' alt='filter' />
                             </button>
                             {filterMob ?
-                                <div className='absolute top-[90px] right-0 z-10 shadow-2xl w-[300px] bg-white p-[24px] rounded-lg'>
+                                <div className='absolute top-[90px] right-0 block min-[880px]:hidden z-[100] shadow-2xl w-[300px] bg-white p-[24px] rounded-lg'>
                                     <div className="sm-filter-types max-w-[270px] w-full">
                                         <Select key={uuid()} reset={resetFilter} changeFormValue={changeFormValue} arr={arr} keyValue='Игра' name='Игра'/>
                                         <Select key={uuid()} reset={resetFilter} changeFormValue={changeFormValue} arr={arr} keyValue='Тип товара' name='Тип товара'/>

@@ -1,8 +1,8 @@
 function CardGameMin(props) {
 
     return (
-        <div className="max-h-[414px] max-w-[310px] rounded-lg bg-white min-w-[240px] relative">
-            <div className='pc-plate-container h-[22px] w-[79px] flex items-center justify-center'>
+        <div className="w-full md:max-w-[310px] rounded-lg bg-white min-w-[240px] relative">
+            <div className='pc-plate-container h-5 sm:h-[22px] w-[70px] sm:w-20 flex items-center justify-start'>
                 {(props.new === '1') ? 
                     <div className='pc-plate bg-gradient-primary h-full w-full flex items-center justify-center font-bold bg-gradient-primary'>new</div>
                     : null
@@ -22,9 +22,9 @@ function CardGameMin(props) {
                     </div>
                 </div>
             </div>
-            <div className='px-6 pb-6 pt-3 w-full'>
-                <div className=" flex justify-center items-center mb-3">
-                    <div className=" max-w-[80px] h-[80px]">
+            <div className='px-4 sm:px-6 pb-4 sm:pb-6 pt-3 w-full gap-y-3 gap-x-6 flex flex-row md:flex-col items-center'>
+                <div className=" flex justify-center items-center">
+                    <div className="max-w-[100px] sm:max-w-[120px] ">
                         <img className=" w-full" src={`/img/${props.icon}`} alt="picture"/>
                     </div>
                 </div>

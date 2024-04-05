@@ -26,6 +26,7 @@ function Market() {
 
     //Отправка фильтра
     const submitFilter = () => {
+        setFilterMob(false);
         console.log('formValue', formValue);
     };
 
@@ -58,10 +59,10 @@ function Market() {
     return (
         <div className="relative">
             <button onClick={showFilter} className='absolute top-[-55px] sm:top-[-69px] right-[14px] flex-shrink-0 flex min-[880px]:hidden justify-center items-center w-9 sm:w-11 h-9 sm:h-11 rounded-full bg-[#e8eaf7] hover:bg-[#dcdff1]'>
-                <img className='w-[45%] sm:w-[50%]' src='/img/icon-filter.svg' alt='filter' />
+                <img className='w-[40%] sm:w-[50%]' src='/img/icon-filter.svg' alt='filter' />
             </button>
             {filterMob ?
-                <div className='absolute top-0 right-0 z-[100] shadow-2xl w-[300px] bg-white p-4 sm:p-6 rounded-lg'>
+                <div className='absolute top-0 right-0 z-[100] block min-[880px]:hidden shadow-2xl w-[300px] bg-white p-4 sm:p-6 rounded-lg'>
                     <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
                     <Select key={uuid()} reset={resetFilter} arr={game} changeFormValue={changeFormValue} keyValue='Выбор игры' name='Выбор игры'/>
                     <Select key={uuid()} reset={resetFilter} arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>

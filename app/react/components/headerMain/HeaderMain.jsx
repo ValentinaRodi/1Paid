@@ -645,12 +645,11 @@ function HeaderMain(props) {
             <div className="hm">
                 <div className="hm-inner px-5 lg:px-9 flex items-center justify-between">
                     <div className="hm-logo">
-                        <div
-                            className="logo w-[180px] 3xl:w-[150px] xl:w-[120px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
+                        <button onClick={goMain} className="logo bg-inherit w-[180px] 3xl:w-[150px] xl:w-[120px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
                             <img className="logo__dots lg:h-[100%] xl:w-1/2" src="/img/dots-1.82560447.svg"
                                  alt="1paid.ru"/>
                             <img className="logo-pic" src="/img/logo.7fb09570.svg" alt="1paid.ru"/>
-                        </div>
+                        </button>
                     </div>
                     <div className="hm-bar flex items-center gap-2.5">
                         {!isAuthenticated ? (
