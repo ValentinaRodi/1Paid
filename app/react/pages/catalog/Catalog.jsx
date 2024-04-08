@@ -9,6 +9,7 @@ import CardGame from "../../components/cardGame/CardGame";
 import CardGameString from "../../components/cardGame/CardGameString";
 import Checkbox from "../../components/checkbox/Checkbox";
 import Title from "../../components/title/Title";
+import listenForOutsideClick from "../../components/listenForOutsideClicks";
 
 function Catalog() {
     const [btn, setBtn] = useState(true);
@@ -204,7 +205,14 @@ function Catalog() {
                 </button>
                 {filterMob ?
                     <div className='absolute top-[134px] sm:top-[85px] right-0 z-[100] block min-[880px]:hidden shadow-2xl w-[357px] bg-white p-[24px] rounded-lg'>
-                         {
+                        <div className='flex justify-end'>
+                            <button onClick={showFilter} className='p-0 bg-inherit hover:bg-[rgba(241,245,249,1)]'>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 6L6 18M6 6L18 18" stroke="#B8B8B8" strokeWidth="1.5" strokeLinecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        {
                             (filterObj.length !== 0) ? (
                                 filterObj.map(filter => {
                                     if(filter.type === 'options') {

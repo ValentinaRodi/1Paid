@@ -236,36 +236,23 @@ function Settings() {
     };
     
     return (
-                <ProfileEdit
-                    user={user}
-                    handleName={handleName}
-                    handleEmail={handleEmail}
-                    handleSecretWord={handleSecretWord}
-                    handleNotifySound={handleNotifySound}
-                    handleMailing={handleMailing}
+        <ProfileEdit
+            user={user}
+            handleName={handleName}
+            handleEmail={handleEmail}
+            handleSecretWord={handleSecretWord}
+            handleNotifySound={handleNotifySound}
+            handleMailing={handleMailing}
 
-                    errorName={errorName}
-                    errorEmail={errorEmail}
-                    errorSecretWord={errorSecretWord}
+            errorName={errorName}
+            errorEmail={errorEmail}
+            errorSecretWord={errorSecretWord}
 
-                    onSubmit={onSubmit}
-                    openUploadModal={openUploadModal}
-                    openPasswordEditPopup={openPasswordEditPopup}
-                />
+            onSubmit={onSubmit}
+            openUploadModal={openUploadModal}
+            openPasswordEditPopup={openPasswordEditPopup}
+        />
     );
 }
 
-/*
-        <div className={`layout-grid ${orient}`}>
-            <LeftMenu/>
-            <div id='layout-page' className={`layout-page ${orient}`}>
-                <LayoutColRow changeOrient={changeOrient} orient={orient}/>
-                <HeaderMain/>
-                <div className="layout-b pb-4 px-9 3xl:px-4 min-w-0 sm:px-3">
-
-                </div>
-            </div>
-        </div>
-
-*/
 export default Settings;

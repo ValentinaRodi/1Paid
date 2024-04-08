@@ -31,7 +31,6 @@ function HeaderMain(props) {
     const [modalOpen, setModalOpen] = useState(false);
     const body = document.querySelector('body');
     const [rotate, setRotate] = useState(false);
-    //const [link, setLink] = useState(['nav-link-prim', 'nav-link', 'nav-link', 'nav-link', 'nav-link', 'nav-link']);
     const navigate = useNavigate();
     const [link, setLink] = useState(JSON.parse(localStorage.getItem('activeLink')) || ['nav-link-prim', 'nav-link', 'nav-link', 'nav-link', 'nav-link', 'nav-link']);
 
@@ -65,14 +64,11 @@ function HeaderMain(props) {
                     }
                 }
             }
-
-
             
             // if(localStorage.getItem('avatar') !== 'null' && localStorage.getItem('avatar')) {
             //     console.log('avatar',localStorage.getItem('avatar'))
             //     setAvatar(localStorage.getItem('avatar'))
             // };
-
         }
     }, []);
 

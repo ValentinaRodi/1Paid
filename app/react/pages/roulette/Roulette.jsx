@@ -16,9 +16,9 @@ function Roulette() {
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
     const body = document.querySelector('body');
-    const [rouletteTape, setMRouletteTape] = useState(false);
+    const [rouletteTape, setMRouletteTape] = useState(true);
     const [rouletteCards, setRouletteCards] = useState(false);
-    const [rouletteDrum, setRouletteDrum] = useState(true);
+    const [rouletteDrum, setRouletteDrum] = useState(false);
 
     //Закрытие модального окна
     const closeModal = () =>{

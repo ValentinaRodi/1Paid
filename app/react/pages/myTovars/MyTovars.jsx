@@ -136,6 +136,13 @@ function MyTovars() {
                             </button>
                             {filterMob ?
                                 <div className='absolute top-[90px] right-0 block min-[880px]:hidden z-[100] shadow-2xl w-[300px] bg-white p-[24px] rounded-lg'>
+                                    <div className='flex justify-end'>
+                                        <button onClick={showFilter} className='p-0 bg-inherit hover:bg-[rgba(241,245,249,1)]'>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M18 6L6 18M6 6L18 18" stroke="#B8B8B8" strokeWidth="1.5" strokeLinecap="round"/>
+                                            </svg>
+                                        </button>
+                                    </div>
                                     <div className="sm-filter-types max-w-[270px] w-full">
                                         <Select key={uuid()} reset={resetFilter} changeFormValue={changeFormValue} arr={arr} keyValue='Игра' name='Игра'/>
                                         <Select key={uuid()} reset={resetFilter} changeFormValue={changeFormValue} arr={arr} keyValue='Тип товара' name='Тип товара'/>

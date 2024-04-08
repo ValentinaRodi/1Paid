@@ -3,7 +3,7 @@ import "./inputRange.less";
 
 var thumbsize = 14;
 
-const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, reset, changeStateRangeFalse}) => {
+const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, reset, changeStateRangeFalse, idInput}) => {
     const [avg, setAvg] = useState((min + max) / 2);
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
@@ -13,7 +13,7 @@ const InputRange = ({ name, changeFormValue, min, max, styleIcon, styleDiv, rese
     let minNumber = (reset === true) ? min : (minVal === '') ? 1 : minVal;
     let avgWid = (reset === true) ? ((min + max) / 2) : avg;
 
-    const parentDiv = document.getElementById('rangeWidht');
+    const parentDiv = document.getElementById(idInput ? idInput : 'rangeWidht');
 
     let width = 0;
     let styles = {};

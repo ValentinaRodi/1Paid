@@ -145,7 +145,7 @@ function ModalOrder(props) {
 
 
     return (
-        <div className="h-screen fixed inset-x-0 inset-y-0 overflow-scroll flex justify-center pt-[2%] pb-[3%] px-[2%]">
+        <div className="z-[100] h-screen fixed inset-x-0 inset-y-0 overflow-scroll flex justify-center pt-[2%] pb-[3%] px-[2%]">
             <div className='shadow-[0px_25px_35px_0px_#E2E3F3A6] h-fit w-full md:w-[758px] bg-white rounded-lg px-6 pb-6'>
                     <div className='flex justify-end mb-5 pt-0 sm:pt-6'>
                         <button onClick={props.closeModal} className='p-0 bg-inherit hover:bg-[rgba(241,245,249,1)]'>
@@ -205,8 +205,8 @@ function ModalOrder(props) {
                             </div>
                         </div>
                         <div className='h-px w-full bg-[#E9EAF4] mb-6'></div>
-                        <div>
-                            <InputRange changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
+                        <div id='rangeWidhtModal'>
+                            <InputRange changeFormValue={changeFormValue} idInput='rangeWidhtModal' min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
                         </div>
                         <div className='flex justify-between gap-1 items-center'>
                             <button onClick={handleSubmit} className="bg-gradient-primary shadow-primary px-0 text-base rounded-lg w-full h-[60px] text-white">Заказать товар</button>

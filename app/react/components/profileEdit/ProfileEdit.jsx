@@ -1,6 +1,7 @@
 import "./profileEdit.less";
 import {useState, useEffect} from 'react';
 import Title from "../title/Title";
+import LayoutBtn from '../../components/LayoutBtn';
 
 function ProfileEdit(props) {
 
@@ -11,127 +12,150 @@ function ProfileEdit(props) {
         document.querySelector('.lf-feed').style.height = totalHeight + "px";
     }, []);
 
+    const changeLoggedFalse = () => {
+        
+        localStorage.clear();
+
+        fetch("/logout", {
+            method: "GET",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            //console.log('data', data);
+            setAuth(false);
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    };
+
+
     return (
         <div className="layout-b pb-4 px-9 3xl:px-4 min-w-0 px-5 ">
             <div className="sps layout-main">
                 <Title title='Настройки профиля'/>
-                <div className="sps-main flex w-full rounded-xl  bg-white pr-[24px] pl-[16px]">
-                    <div className="sps-bar flex flex-col items-start mr-[27px] pt-[26px]">
-                        <div className="sps-bar flex flex-col items-start font-secondary-bold py-[16px]">
-                            <div
-                                className="sps-avatar flex-shrink-0 w-[258px] h-[258px] mb-[12px] overflow-hidden rounded-[12px] relative">
-                                <img id="img_user_avatar" className="sps-avatar-pic w-full h-full object-cover"
-                                     src={props.user.avatarBig} alt="user"/>
-                                <div onClick={props.openUploadModal}
-                                    className="sps-avatar-action flex justify-center items-center bg-black/40 top-0 left-0 w-full h-full absolute cursor-pointer">
+                <div className="sps-main bg-none lg:bg-white flex flex-wrap gap-3 lg:flex-nowrap w-full rounded-xl">
+                    <div className="sps-bar p-4 bg-white flex flex-col items-start font-secondary-bold ">
+                        <div
+                            className="sps-avatar flex-shrink-0 w-[258px] h-[258px] mb-[12px] overflow-hidden rounded-[12px] relative">
+                            <img id="img_user_avatar" className="sps-avatar-pic w-full h-full object-cover"
+                                    src={props.user.avatarBig} alt="user"/>
+                            <div onClick={props.openUploadModal}
+                                className="sps-avatar-action flex justify-center items-center bg-black/40 top-0 left-0 w-full h-full absolute cursor-pointer">
 
+                                <div
+                                    className="sps-avatar-icon flex justify-center items-center flex-shrink-0 w-[56px] h-[56px] [&amp;_svg]:w-full">
+                                    <svg width="56" height="49" viewBox="0 0 56 49" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                        <path fillRule="evenodd" clipRule="evenodd"
+                                                d="M7.63636 7.63623H48.3636C52.5811 7.63623 56 11.0551 56 15.2726V40.7271C56 44.9446 52.5811 48.3635 48.3636 48.3635H7.63636C3.41892 48.3635 0 44.9446 0 40.7271V15.2726C0 11.0551 3.41892 7.63623 7.63636 7.63623ZM48.3647 43.2717C49.7706 43.2717 50.9102 42.132 50.9102 40.7262V15.2717C50.9102 13.8659 49.7706 12.7262 48.3647 12.7262H7.63747C6.23165 12.7262 5.09201 13.8659 5.09201 15.2717V40.7262C5.09201 42.132 6.23165 43.2717 7.63747 43.2717H48.3647Z"
+                                                fill="#D7D7D7"></path>
+                                        <path
+                                            d="M44.0083 21.9669C45.4142 21.9669 46.5538 20.8272 46.5538 19.4214C46.5538 18.0156 45.4142 16.876 44.0083 16.876C42.6025 16.876 41.4629 18.0156 41.4629 19.4214C41.4629 20.8272 42.6025 21.9669 44.0083 21.9669Z"
+                                            fill="#D7D7D7"></path>
+                                        <path fillRule="evenodd" clipRule="evenodd"
+                                                d="M18.5537 27.0583C18.5537 21.435 23.1123 16.8765 28.7355 16.8765C34.3588 16.8765 38.9173 21.435 38.9173 27.0583C38.9173 32.6815 34.3588 37.2401 28.7355 37.2401C23.1123 37.2401 18.5537 32.6815 18.5537 27.0583ZM23.6457 27.0584C23.6457 29.87 25.925 32.1493 28.7366 32.1493C31.5483 32.1493 33.8275 29.87 33.8275 27.0584C33.8275 24.2467 31.5483 21.9675 28.7366 21.9675C25.925 21.9675 23.6457 24.2467 23.6457 27.0584Z"
+                                                fill="#D7D7D7"></path>
+                                        <path
+                                            d="M8.3726 0C6.96679 0 5.82715 1.13964 5.82715 2.54545C5.82715 3.95127 6.96679 5.09091 8.3726 5.09091H18.5544C19.9602 5.09091 21.0999 3.95127 21.0999 2.54545C21.0999 1.13964 19.9602 0 18.5544 0H8.3726Z"
+                                            fill="#D7D7D7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="sps-user flex flex-col w-full font-secondary-bold">
+                            <div className="sps-user-info flex justify-between items-center mb-[8px] w-full">
+                                <div className="sps-user-username text-lg text-black">{props.user.name}</div>
+                                <button
+                                    className="sps-user-link flex justify-center items-center bg-gradient-primary w-[20px] h-[20px] rounded-full">
                                     <div
-                                        className="sps-avatar-icon flex justify-center items-center flex-shrink-0 w-[56px] h-[56px] [&amp;_svg]:w-full">
-                                        <svg width="56" height="49" viewBox="0 0 56 49" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
+                                        className="sps-user-link-icon flex-shrink-0 w-[10px] h-[5px] [&amp;_svg]:w-full flex justify-center items-center">
+                                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
                                             <path fillRule="evenodd" clipRule="evenodd"
-                                                  d="M7.63636 7.63623H48.3636C52.5811 7.63623 56 11.0551 56 15.2726V40.7271C56 44.9446 52.5811 48.3635 48.3636 48.3635H7.63636C3.41892 48.3635 0 44.9446 0 40.7271V15.2726C0 11.0551 3.41892 7.63623 7.63636 7.63623ZM48.3647 43.2717C49.7706 43.2717 50.9102 42.132 50.9102 40.7262V15.2717C50.9102 13.8659 49.7706 12.7262 48.3647 12.7262H7.63747C6.23165 12.7262 5.09201 13.8659 5.09201 15.2717V40.7262C5.09201 42.132 6.23165 43.2717 7.63747 43.2717H48.3647Z"
-                                                  fill="#D7D7D7"></path>
-                                            <path
-                                                d="M44.0083 21.9669C45.4142 21.9669 46.5538 20.8272 46.5538 19.4214C46.5538 18.0156 45.4142 16.876 44.0083 16.876C42.6025 16.876 41.4629 18.0156 41.4629 19.4214C41.4629 20.8272 42.6025 21.9669 44.0083 21.9669Z"
-                                                fill="#D7D7D7"></path>
-                                            <path fillRule="evenodd" clipRule="evenodd"
-                                                  d="M18.5537 27.0583C18.5537 21.435 23.1123 16.8765 28.7355 16.8765C34.3588 16.8765 38.9173 21.435 38.9173 27.0583C38.9173 32.6815 34.3588 37.2401 28.7355 37.2401C23.1123 37.2401 18.5537 32.6815 18.5537 27.0583ZM23.6457 27.0584C23.6457 29.87 25.925 32.1493 28.7366 32.1493C31.5483 32.1493 33.8275 29.87 33.8275 27.0584C33.8275 24.2467 31.5483 21.9675 28.7366 21.9675C25.925 21.9675 23.6457 24.2467 23.6457 27.0584Z"
-                                                  fill="#D7D7D7"></path>
-                                            <path
-                                                d="M8.3726 0C6.96679 0 5.82715 1.13964 5.82715 2.54545C5.82715 3.95127 6.96679 5.09091 8.3726 5.09091H18.5544C19.9602 5.09091 21.0999 3.95127 21.0999 2.54545C21.0999 1.13964 19.9602 0 18.5544 0H8.3726Z"
-                                                fill="#D7D7D7"></path>
+                                                    d="M9.88275 9.90579C9.88275 9.90579 10.2076 9.87083 10.374 9.69771C10.5263 9.53908 10.521 9.23975 10.521 9.23975C10.521 9.23975 10.5008 7.842 11.1707 7.63562C11.831 7.43265 12.6788 8.98732 13.5786 9.58514C14.2582 10.0371 14.7741 9.9382 14.7741 9.9382L17.1785 9.90579C17.1785 9.90579 18.4356 9.83074 17.8396 8.87304C17.7903 8.79458 17.4919 8.16436 16.0525 6.8698C14.5444 5.51468 14.7469 5.73386 16.5622 3.38949C17.668 1.96189 18.1099 1.09032 17.9717 0.71764C17.8405 0.361166 17.027 0.455828 17.027 0.455828L14.3207 0.472031C14.3207 0.472031 14.12 0.445594 13.9712 0.531727C13.826 0.616155 13.7318 0.813154 13.7318 0.813154C13.7318 0.813154 13.3039 1.91754 12.7325 2.85733C11.5273 4.83926 11.0457 4.94416 10.8485 4.82135C10.3898 4.53395 10.5043 3.66835 10.5043 3.05348C10.5043 1.1321 10.8054 0.331318 9.91884 0.124085C9.62479 0.0550078 9.40822 0.00980903 8.6555 0.00213375C7.68972 -0.00724713 6.87273 0.00554498 6.40965 0.224717C6.10151 0.370547 5.86381 0.696319 6.00907 0.715081C6.18779 0.738107 6.59276 0.820829 6.80758 1.10396C7.0849 1.46982 7.07521 2.29022 7.07521 2.29022C7.07521 2.29022 7.23456 4.55186 6.70281 4.83244C6.33833 5.02517 5.83828 4.63203 4.76333 2.83346C4.2131 1.91242 3.79756 0.894171 3.79756 0.894171C3.79756 0.894171 3.71744 0.703995 3.57394 0.601658C3.4005 0.478001 3.1584 0.439624 3.1584 0.439624L0.586807 0.455828C0.586807 0.455828 0.20032 0.466061 0.0585791 0.628947C-0.0673154 0.773072 0.0488949 1.07241 0.0488949 1.07241C0.0488949 1.07241 2.06233 5.63578 4.34251 7.9358C6.43342 10.0439 8.80692 9.90579 8.80692 9.90579H9.88275Z"
+                                                    fill="white"></path>
                                         </svg>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="sps-user flex flex-col w-full font-secondary-bold">
-                                <div className="sps-user-info flex justify-between items-center mb-[8px] w-full">
-                                    <div className="sps-user-username text-lg text-black">{props.user.name}</div>
-                                    <button
-                                        className="sps-user-link flex justify-center items-center bg-gradient-primary w-[20px] h-[20px] rounded-full">
-                                        <div
-                                            className="sps-user-link-icon flex-shrink-0 w-[10px] h-[5px] [&amp;_svg]:w-full flex justify-center items-center">
-                                            <svg width="18" height="10" viewBox="0 0 18 10" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                      d="M9.88275 9.90579C9.88275 9.90579 10.2076 9.87083 10.374 9.69771C10.5263 9.53908 10.521 9.23975 10.521 9.23975C10.521 9.23975 10.5008 7.842 11.1707 7.63562C11.831 7.43265 12.6788 8.98732 13.5786 9.58514C14.2582 10.0371 14.7741 9.9382 14.7741 9.9382L17.1785 9.90579C17.1785 9.90579 18.4356 9.83074 17.8396 8.87304C17.7903 8.79458 17.4919 8.16436 16.0525 6.8698C14.5444 5.51468 14.7469 5.73386 16.5622 3.38949C17.668 1.96189 18.1099 1.09032 17.9717 0.71764C17.8405 0.361166 17.027 0.455828 17.027 0.455828L14.3207 0.472031C14.3207 0.472031 14.12 0.445594 13.9712 0.531727C13.826 0.616155 13.7318 0.813154 13.7318 0.813154C13.7318 0.813154 13.3039 1.91754 12.7325 2.85733C11.5273 4.83926 11.0457 4.94416 10.8485 4.82135C10.3898 4.53395 10.5043 3.66835 10.5043 3.05348C10.5043 1.1321 10.8054 0.331318 9.91884 0.124085C9.62479 0.0550078 9.40822 0.00980903 8.6555 0.00213375C7.68972 -0.00724713 6.87273 0.00554498 6.40965 0.224717C6.10151 0.370547 5.86381 0.696319 6.00907 0.715081C6.18779 0.738107 6.59276 0.820829 6.80758 1.10396C7.0849 1.46982 7.07521 2.29022 7.07521 2.29022C7.07521 2.29022 7.23456 4.55186 6.70281 4.83244C6.33833 5.02517 5.83828 4.63203 4.76333 2.83346C4.2131 1.91242 3.79756 0.894171 3.79756 0.894171C3.79756 0.894171 3.71744 0.703995 3.57394 0.601658C3.4005 0.478001 3.1584 0.439624 3.1584 0.439624L0.586807 0.455828C0.586807 0.455828 0.20032 0.466061 0.0585791 0.628947C-0.0673154 0.773072 0.0488949 1.07241 0.0488949 1.07241C0.0488949 1.07241 2.06233 5.63578 4.34251 7.9358C6.43342 10.0439 8.80692 9.90579 8.80692 9.90579H9.88275Z"
-                                                      fill="white"></path>
-                                            </svg>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                            <span
-                                className="sps-user-status block text-[14px] max-w-max py-[2px] px-[8px] mb-[12px] text-[#8CD23C] text-center border border-[#8CD23C] rounded-full">В сети</span>
-                            <div className="sps-user-actions w-full pt-[12px] border-t border-[#DBE0ED]">
-                                <button
-                                    className="sps-user-action self-start text-[#ACB6CC] text-[14px] border-b border-[#ACB6CC]">Выйти
-                                    из аккаунта
                                 </button>
                             </div>
                         </div>
+                        <span
+                            className="sps-user-status block text-[14px] max-w-max py-[2px] px-[8px] mb-[12px] text-[#8CD23C] text-center border border-[#8CD23C] rounded-full">В сети</span>
+                        <div className="sps-user-actions w-full pt-[12px] border-t border-[#DBE0ED]">
+                            <button onClick={changeLoggedFalse}
+                                className="sps-user-action self-start text-[#ACB6CC] text-[14px] border-b border-[#ACB6CC]">Выйти
+                                из аккаунта
+                            </button>
+                        </div>
                     </div>
-                    <div className="sps-form flex flex-col w-full pl-[56px] border-l border-[#DBE0ED] pt-[26px]">
-                            <div className="sps-fields grid grid-cols-2 gap-[24px] mb-[64px]">
+                    <div className="bg-white py-4 lg:py-6 pr-4 lg:pr-6 sps-form flex flex-col w-full pl-4 lg:pl-6 lg:pl-[56px] rounded-xl border-none lg:border-l border-solid border-[#DBE0ED]">
+                            <div className="sps-fields grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-[64px]">
                                 <div className="input-wrapper flex flex-col font-secondary-bold text-black">
-                                    <label className="input-label mb-[16px] text-[14px]">Имя пользователя</label>
+                                    <label className="input-label mb-2 sm:mb-4 text-xs sm:text-sm">Имя пользователя</label>
                                     <input onChange={props.handleName} id="input_user_name"
-                                           className="bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]"
+                                           className="bg-[#EAEBF8] p-[12px] text-xs sm:text-sm border border-[#CED0E8] rounded-[4px]"
                                            type="text" placeholder={props.user.name}/>
-                                    <span className={ `${props.errorName}  text-[14px] text-red-600`}>Количество символов должно соответсвовать диапазону от 8 до 40.</span>
+                                    <span className={ `${props.errorName}  text-xs sm:text-sm text-red-600`}>Количество символов должно соответсвовать диапазону от 8 до 40.</span>
                                 </div>
                                 <div className="input-wrapper flex flex-col font-secondary-bold text-black">
-                                    <label className="input-label mb-[16px] text-[14px]">Секретное слово</label>
+                                    <label className="input-label mb-2 sm:mb-4 text-xs sm:text-sm">Секретное слово</label>
                                     <input onChange={props.handleSecretWord} id="input_user_secret_word"
-                                           className={` bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]`}
+                                           className={` bg-[#EAEBF8] p-[12px] text-xs sm:text-sm border border-[#CED0E8] rounded-[4px]`}
                                            type="text" placeholder={props.user.secret_word}/>
-                                    <span className={ `${props.errorSecretWord}  text-[14px] text-red-600`}>Секретное слово введено некорректно.</span>
+                                    <span className={ `${props.errorSecretWord} text-xs sm:text-sm text-red-600`}>Секретное слово введено некорректно.</span>
                                 </div>
                                 <div id='pass_edit' className="input-wrapper flex flex-col font-secondary-bold text-black">
-                                    <label className="input-label mb-[16px] text-[14px]">Пароль</label>
+                                    <label className="input-label mb-2 sm:mb-4 text-xs sm:text-sm">Пароль</label>
                                     <input id="input_user_password"
-                                           className="bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]"
+                                           className="bg-[#EAEBF8] p-[12px] text-xs sm:text-sm border border-[#CED0E8] rounded-[4px]"
                                            type="password" value={props.user.password} disabled/>
-                                    <button onClick={props.openPasswordEditPopup} className="text-[14px]">Изменить
+                                    <button onClick={props.openPasswordEditPopup} className="text-xs sm:text-sm mt-px bg-inherit text-[#8991a3]">Изменить
                                     </button>
                                 </div>
                                 <div className="input-wrapper flex flex-col font-secondary-bold text-black">
-                                    <label className="input-label mb-[16px] text-[14px]">Почта</label>
+                                    <label className="input-label mb-2 sm:mb-4 text-xs sm:text-sm">Почта</label>
                                     <input onChange={props.handleEmail} id="input_user_email"
-                                           className={`bg-[#EAEBF8] p-[12px] text-sm border border-[#CED0E8] rounded-[4px]`}
+                                           className={`bg-[#EAEBF8] p-[12px] text-xs sm:text-sm border border-[#CED0E8] rounded-[4px]`}
                                            type="text" placeholder={props.user.email}/>
-                                    <span className={ `${props.errorEmail}  text-[14px] text-red-600`}>Email введен некорректно</span>
+                                    <span className={ `${props.errorEmail}  text-xs sm:text-sm text-red-600`}>Email введен некорректно</span>
                                 </div>
-                                <div className="switch-wrapper flex flex-col font-secondary-bold text-black">
-                                    <span className="switch-label mb-[16px] text-[14px]">Звуки уведомления</span>
+                                <div className="switch-wrapper flex flex-col gap-2 sm:gap-3 font-secondary-bold text-black">
+                                    <span className="switch-label text-xs sm:text-sm">Звуки уведомления</span>
                                     <div className="switch flex items-center">
                                         <input
                                             defaultChecked={props.user.notify_sound}
                                             onChange={props.handleNotifySound}
                                             id="switch1" type="checkbox" value="1"/>
                                         <label htmlFor="switch1">toggle</label>
-                                        <span className="inline-block switch-text ml-[8px] text-[14px]">Включено</span>
+                                        <span className="inline-block switch-text ml-[8px] text-xs sm:text-sm">Включено</span>
                                         <input type="checkbox"
 
                                         />
                                     </div>
                                 </div>
-                                <div className="switch-wrapper flex flex-col font-secondary-bold text-black">
-                                    <span className="switch-label mb-[16px] text-[14px]">Рассылка на почту</span>
+                                <div className="switch-wrapper flex flex-col gap-2 sm:gap-3 font-secondary-bold text-black">
+                                    <span className="switch-label text-xs sm:text-sm">Рассылка на почту</span>
                                     <div className="switch flex items-center">
                                         <input
                                             defaultChecked={props.user.mailing}
                                             onChange={props.handleMailing}
                                             id="switch2" type="checkbox" value="1"/>
                                         <label htmlFor="switch2">toggle</label>
-                                        <span className="inline-block switch-text ml-[8px] text-[14px]">Включено</span>
+                                        <span className="inline-block switch-text ml-[8px] text-xs sm:text-sm">Включено</span>
                                     </div>
                                 </div>
                             </div>
                             <div className="sps-form-actions flex w-full">
                                 <button onClick={props.onSubmit}
-                                        className="sm-filter-btn btn flex justify-center items-center bg-gradient-primary rounded-[4px] py-4 w-full mb-[12px]">
+                                        className="sm-filter-btn btn btn-primary flex justify-center items-center bg-gradient-primary rounded-[4px] py-4 w-full mb-[12px]">
                                     <div
                                         className="sm-filter-btn-icon flex-shrink-0 w-[14px] h-[14px] [&amp;_svg]:w-full flex justify-center items-center mr-[8px]">
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -148,7 +172,7 @@ function ProfileEdit(props) {
                                         </svg>
                                     </div>
                                     <div
-                                        className="sm-filter-btn-text font-secondary-bold text-[14px] text-white">Применить
+                                        className="sm-filter-btn-text btn  font-secondary-bold text-[14px] text-white">Применить
                                         изменения
                                     </div>
                                 </button>
@@ -156,6 +180,7 @@ function ProfileEdit(props) {
                     </div>
                 </div>
             </div>
+            <LayoutBtn />
         </div>
     );
 }

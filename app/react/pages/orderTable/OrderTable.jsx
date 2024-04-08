@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from 'react-router-dom';
-import { createRoot } from "react-dom/client";
 import LayoutBtn from '../../components/LayoutBtn';
 import ModalOrder from "../../components/modalOrder/ModalOrder";
 import Order from "../../components/orderTable/Order"; 
@@ -27,36 +26,14 @@ function OrderTable() {
 
     //Закрытие модального окна
     const closeModal = () =>{
+        document.getElementById('modal').classList.remove('modal_view');
         body.style.overflow = 'auto';
         setModalOpen(false);
-        setModalEl('');
     };
 
-    //Открытие модального окна
-    useEffect(() => {
-        const modal = document.getElementById('modal');
-
-        if(modalOpen) {
-            modal.classList.add('modal');
-            modal.textContent = '';
-            
-            const containerModal = document.createElement("div");
-            const root = createRoot(containerModal);
-            root.render(modalEl);
-            modal.appendChild(containerModal);   
-        };
-        if(!modalOpen) {
-            modal.classList.remove('modal');
-            modal.textContent = '';
-        };
-        
-    }, [modalEl]);
-
     const openModalOrder = () => {
+        document.getElementById('modal').classList.add('modal_view');
         body.style.overflow = 'hidden';
-        setModalEl(<ModalOrder
-            closeModal={closeModal}
-        />);
         setModalOpen(true);
     };
 
@@ -85,6 +62,11 @@ function OrderTable() {
                 <Pagination />
             </div>
             <LayoutBtn toTop='true'/>
+            {modalOpen && 
+                (<div className='w-screen h-screen'>
+                    <ModalOrder closeModal={closeModal} />
+                </div>)
+            }
         </div>  
        
     );

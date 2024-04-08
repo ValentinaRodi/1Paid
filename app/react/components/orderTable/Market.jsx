@@ -63,6 +63,13 @@ function Market() {
             </button>
             {filterMob ?
                 <div className='absolute top-0 right-0 z-[100] block min-[880px]:hidden shadow-2xl w-[300px] bg-white p-4 sm:p-6 rounded-lg'>
+                    <div className='flex justify-end'>
+                        <button onClick={showFilter} className='p-0 bg-inherit hover:bg-[rgba(241,245,249,1)]'>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="#B8B8B8" strokeWidth="1.5" strokeLinecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
                     <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
                     <Select key={uuid()} reset={resetFilter} arr={game} changeFormValue={changeFormValue} keyValue='Выбор игры' name='Выбор игры'/>
                     <Select key={uuid()} reset={resetFilter} arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>
