@@ -73,6 +73,12 @@ class ItemService
         $categoryId = CategoryService::getIDbySEO($gameId, $params['category']);
         if (isset($categoryId) && !empty($categoryId)) {
             $items = Item::find()
+                ->select(['item.id', 'item.seo_name', 'item.category_id', 'item.user_id', 'item.icon_id',
+                    'item.new', 'item.sort', 'item.price', 'item.rank', 'item.description',
+                    'item.created_at', 'item.updated_at', 'lang.russian', 'lang.english',
+                     'favorite.item_id as favorite'])
+                ->join('LEFT JOIN', 'favorite', 'favorite.item_id = item.id')
+                ->join('LEFT JOIN', 'lang', 'item.lang_id = lang.id')
                 ->where([
                     'category_id' => $categoryId,
                     'id' => $params['id'],
@@ -146,10 +152,11 @@ class ItemService
         $query->select(['item.id', 'item.seo_name', 'item.category_id', 'item.user_id', 'item.icon_id',
             'item.new', 'item.sort', 'item.price', 'item.rank', 'item.description',
             'item.created_at', 'item.updated_at', 'lang.russian', 'lang.english',
-            'category.game_id'])
+            'category.game_id', 'favorite.item_id as favorite'])
             ->from('item')
             ->join('LEFT JOIN', 'lang', 'item.lang_id = lang.id')
             ->join('LEFT JOIN', 'category', 'item.category_id = category.id')
+            ->join('LEFT JOIN', 'favorite', 'favorite.item_id = item.id')
             ->where(['in', 'item.id', $items]);
         $command = $query->createCommand();
         return $command->queryAll();

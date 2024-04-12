@@ -13,9 +13,15 @@ class FavoriteService
             $favorite = Favorite::find()
                 ->where([$by_user_id_or_favorite_id => $id])
                 ->asArray()->all();
+            if ($favorite){
+                return [
+                    'success' => true,
+                    'favorite' => $favorite
+                ];
+            }
             return [
-                'success' => true,
-                'favorite' => $favorite
+                'success' => false,
+                'favorite' => 'not found'
             ];
         } catch (Exception $e) {
             return [
@@ -25,6 +31,54 @@ class FavoriteService
             ];
         }
 
+    }
+    public static function getByItem($user_id, $item_id)
+    {
+        try {
+            $favorite = Favorite::find()
+                ->where(['user_id' => $user_id, 'item_id'=>$item_id])
+                ->asArray()->all();
+            if ($favorite){
+                return [
+                    'success' => true,
+                    'favorite' => $favorite
+                ];
+            }
+            return [
+                'success' => false,
+                'favorite' => 'not found'
+            ];
+        } catch (Exception $e) {
+            return [
+                'success' => false,
+                'errors' => $e
+
+            ];
+        }
+    }
+    public static function getAll($user_id)
+    {
+        try {
+            $favorite = Favorite::find()
+                ->where(['user_id' => $user_id])
+                ->asArray()->all();
+            if ($favorite){
+                return [
+                    'success' => true,
+                    'favorite' => $favorite
+                ];
+            }
+            return [
+                'success' => false,
+                'favorite' => 'not found'
+            ];
+        } catch (Exception $e) {
+            return [
+                'success' => false,
+                'errors' => $e
+
+            ];
+        }
     }
 
     public static function add($item_id, $user_id): array

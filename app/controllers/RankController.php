@@ -2,15 +2,13 @@
 
 namespace app\controllers;
 
-use app\services\FavoriteService;
-use app\services\FileService;
+use app\services\RankService;
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 
 
-class FavoriteController extends Controller
+class RankController extends Controller
 {
     public $layout = 'main.twig';
 
@@ -39,60 +37,65 @@ class FavoriteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'get-list' => ['get', 'head'],
+//                    'get-list' => ['get', 'head'],
                 ],
             ],
         ];
     }
 
-    public function actionGet()
-    {
-
-        if (Yii::$app->request->isAjax) {
-            $user_id = Yii::$app->user->identity->id;
-            return $this->asJson(FavoriteService::getBy('user_id', $user_id));
-        }
-    }
-
-    public function actionGetByItem()
+    public function actionGetUser()
     {
         if (Yii::$app->request->isAjax) {
             $data = Yii::$app->request->post();
-            $user_id = Yii::$app->user->identity->id;
-            return $this->asJson(FavoriteService::getByItem($user_id, $data['item_id']));
+
+            $object = 0;
+            $object_id = $data['object_id'];
+            return $this->asJson(RankService::get($object, $object_id));
         }
     }
 
-    public function actionGetAll()
+    public function actionGetUserAverageRank()
     {
         if (Yii::$app->request->isAjax) {
-            $user_id = Yii::$app->user->identity->id;
-            return $this->asJson(FavoriteService::getAll($user_id));
+            $data = Yii::$app->request->post();
+
+            $object = 0;
+            $object_id = $data['object_id'];
+            return $this->asJson(RankService::getAverageRank($object, $object_id));
+        }
+    }
+
+    public function actionGetItem()
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+
+            $object = 1;
+            $object_id = $data['object_id'];
+            return $this->asJson(RankService::get($object, $object_id));
+        }
+    }
+
+    public function actionGetItemAverageRank()
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+
+            $object = 1;
+            $object_id = $data['object_id'];
+            return $this->asJson(RankService::getAverageRank($object, $object_id));
         }
     }
 
 
     public function actionAdd()
     {
-
         if (Yii::$app->request->isAjax) {
             $data = Yii::$app->request->post();
-            $user_id = Yii::$app->user->identity->id;
-            $favorite = FavoriteService::add($data['item_id'], $user_id);
-
-            return $this->asJson($favorite);
-
-        }
-    }
-
-    public function actionDelete()
-    {
-
-        if (Yii::$app->request->isAjax) {
-            $data = Yii::$app->request->post();
-            $favorite = FavoriteService::deleteBy('item_id', $data['item_id']);
-
-            return $this->asJson($favorite);
+            $rank = $data['rank'];
+            $object = $data['object'];
+            $object_id = $data['object_id'];
+            return $this->asJson(RankService::add($rank, $object, $object_id));
 
         }
     }
