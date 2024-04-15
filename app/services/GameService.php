@@ -78,7 +78,7 @@ class GameService
         return Game::find()
                 ->select('id')
                 ->where(['seo_name' => $seoName])
-                ->asArray()->one()['id'];
+                ->asArray()->one()['id'];// throw new
     }
 
     public static function getGamesArray()

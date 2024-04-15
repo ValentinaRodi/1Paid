@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "4dfd61df-e96b-4ea6-9674-6bb3b74887cc",
+		"_postman_id": "66cd3c0a-e1f7-4f8b-bddb-95991c330f97",
 		"name": "1paid - REST API yii2",
 		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26367961"
+		"_exporter_id": "32693167"
 	},
 	"item": [
 		{
@@ -99,41 +99,48 @@
 			"name": "Login",
 			"event": [
 				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"if (pm.request.method !== 'GET') {\r",
-							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
-							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
-							"        let xsrfCookie = cookies.one('_csrf');\r",
-							"        let xsrfJson = res.json();\r",
-							"        if (xsrfJson) {\r",
-							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
-							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
-							"            pm.request.headers.upsert({\r",
-							"                key: 'X-CSRF-Token',\r",
-							"                value: xsrfToken,\r",
-							"            });\r",
-							"            pm.request.headers.upsert({\r",
-							"                key: '_csrf',\r",
-							"                value: xsrfCookieToken,\r",
-							"            });\r",
-							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
-							"        }\r",
-							"    });\r",
-							"}\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
 					"listen": "test",
 					"script": {
 						"exec": [
 							"pm.test(\"Successful POST request\", function () {",
 							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
 							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    if(pm.environment.get('XSRF-TOKEN')) {\r",
+							"        pm.request.headers.upsert({\r",
+							"            key: 'X-CSRF-Token',\r",
+							"            value: pm.environment.get('XSRF-TOKEN'),\r",
+							"        });\r",
+							"    } else { \r",
+							"        let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"        pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"            let xsrfCookie = cookies.one('_csrf');\r",
+							"            let xsrfJson = res.json();\r",
+							"            if (xsrfJson) {\r",
+							"                let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"                let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"                pm.request.headers.upsert({\r",
+							"                    key: 'X-CSRF-Token',\r",
+							"                    value: xsrfToken,\r",
+							"                });\r",
+							"                pm.request.headers.upsert({\r",
+							"                    key: '_csrf',\r",
+							"                    value: xsrfCookieToken,\r",
+							"                });\r",
+							"                pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"            }\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
 							""
 						],
 						"type": "text/javascript"
@@ -233,22 +240,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/csrf",
+					"raw": "{{base_url}}/sanctum/csrf-cookie",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"csrf"
+						"sanctum",
+						"csrf-cookie"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Catalog",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Items",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -263,108 +268,14 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "{{base_url}}/catalog/Warface",
+					"raw": "{{base_url}}/item/get",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"catalog",
-						"Warface"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Catalog category",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "X-Requested-With",
-						"value": "XMLHttpRequest",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/catalog/Warface/accwarface",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"catalog",
-						"Warface",
-						"accwarface"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Catalog category item",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "X-Requested-With",
-						"value": "XMLHttpRequest",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/catalog/Warface/accwarface/1-account",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"catalog",
-						"Warface",
-						"accwarface",
-						"1-account"
+						"item",
+						"get"
 					]
 				}
 			},
@@ -372,9 +283,6 @@
 		},
 		{
 			"name": "Games",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -389,22 +297,13 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "{{base_url}}/game/get",
+					"raw": "{{base_url}}/item/get",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"game",
+						"item",
 						"get"
 					]
 				}
@@ -521,94 +420,7 @@
 			"response": []
 		},
 		{
-			"name": "Fields",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "X-Requested-With",
-						"value": "XMLHttpRequest",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"game_id\": 1\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/field/get-list/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"field",
-						"get-list",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Fields filters",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "X-Requested-With",
-						"value": "XMLHttpRequest",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"game_id\": 1\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/field/get-list-filters/1",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"field",
-						"get-list-filters",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Category Top",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -623,23 +435,14 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"game_id\": 1\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "{{base_url}}/category/get-one-top",
+					"raw": "{{base_url}}/item/get",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"category",
-						"get-one-top"
+						"item",
+						"get"
 					]
 				}
 			},
@@ -661,15 +464,6 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "{{base_url}}/item",
 					"host": [
@@ -683,75 +477,6 @@
 			"response": []
 		},
 		{
-			"name": "Field add",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							"if (pm.request.method !== 'GET') {\r",
-							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
-							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
-							"        let xsrfCookie = cookies.one('_csrf');\r",
-							"        let xsrfJson = res.json();\r",
-							"        if (xsrfJson) {\r",
-							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
-							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
-							"            pm.request.headers.upsert({\r",
-							"                key: 'X-CSRF-Token',\r",
-							"                value: xsrfToken,\r",
-							"            });\r",
-							"            pm.request.headers.upsert({\r",
-							"                key: '_csrf',\r",
-							"                value: xsrfCookieToken,\r",
-							"            });\r",
-							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
-							"        }\r",
-							"    });\r",
-							"}\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "X-Requested-With",
-						"value": "XMLHttpRequest",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"seo_name\": \"server\",\r\n    \"type\": \"options\",\r\n    \"value\": \"wf1|wf2|wf3\",\r\n    \"category\": \"accwarface\",\r\n    \"game\": \"Warface\",\r\n    \"search\": 1,\r\n    \"lang\": {\r\n        \"russian\": \"Сервер\",\r\n        \"english\": \"Server\"\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{base_url}}/field/post",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"field",
-						"post"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Category",
 			"event": [
 				{
@@ -759,24 +484,18 @@
 					"script": {
 						"exec": [
 							"if (pm.request.method !== 'GET') {\r",
-							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
-							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
-							"        let xsrfCookie = cookies.one('_csrf');\r",
-							"        let xsrfJson = res.json();\r",
-							"        if (xsrfJson) {\r",
-							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
-							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
-							"            pm.request.headers.upsert({\r",
-							"                key: 'X-CSRF-Token',\r",
-							"                value: xsrfToken,\r",
-							"            });\r",
-							"            pm.request.headers.upsert({\r",
-							"                key: '_csrf',\r",
-							"                value: xsrfCookieToken,\r",
-							"            });\r",
-							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
-							"        }\r",
-							"    });\r",
+							"        let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/sanctum/csrf-cookie';\r",
+							"        pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"            let xsrfCookie = cookies.one('XSRF-TOKEN');\r",
+							"            if (xsrfCookie) {\r",
+							"                let xsrfToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"                pm.request.headers.upsert({\r",
+							"                    key: 'x-xsrf-token',\r",
+							"                    value: xsrfToken,\r",
+							"                });                \r",
+							"                pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"            }\r",
+							"        });\r",
 							"}"
 						],
 						"type": "text/javascript"
@@ -799,7 +518,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"lang\": {\r\n        \"russian\": \"Аккаунты\",\r\n        \"english\": \"Accounts\"\r\n    },\r\n    \"name\": \"accwarface\",\r\n    \"game_id\": \"2\"\r\n}",
+					"raw": "{\r\n    \"lang\": {\r\n        \"russian\": \"Аккаунты\",\r\n        \"english\": \"Accounts\"\r\n    },\r\n    \"name\": \"accwarface\",\r\n    \"game_id\": \"1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -835,13 +554,916 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/profile/get",
+					"raw": "{{base_url}}/item/get",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"item",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/profile/edit",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"profile",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditPassword",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\": \"asd87fHJHG!\",\r\n    \"password_confirmation\": \"asd87fHJHG!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/profile/edit-password",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"profile",
+						"edit-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ItemSave",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"game\":\"test1\",\r\n    \"category\":\"test\",\r\n    \"items\":{\r\n        \"0\":{\r\n            \"field1\":\"ееепк\",\r\n            \"fiel200\":\"ысысы\"\r\n        },\r\n        \"1\":{\r\n            \"fieldd300\":\"паапвппввым\",\r\n            \"field11111111\":\"value1-new\"\r\n        },\r\n        \"2\":{\r\n             \"field11213213213\":\"value1-nww\",\r\n            \"fiel2234234243\":\"222\"\r\n        }\r\n    },\r\n    \"about\":\"seo_name-about\",\r\n    \"price\":\"7700\",\r\n    \"title\":\"товар top6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/item/save",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"item",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetItemsByParams",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"field1\": \"value\",\r\n        \"fieldd3\": {\r\n            \"min\": \"1\",\r\n            \"max\": \"5\"\r\n            }\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/item/get-items-by-params",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"item",
+						"get-items-by-params"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetFavorite",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/favorite/get",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"favorite",
 						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByItemFavorite",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item_id\":\"5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/favorite/get-by-item",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"favorite",
+						"get-by-item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllFavorite",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/favorite/get",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"favorite",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddFavorite",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item_id\":\"8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/favorite/add",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"favorite",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteFavorite",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item_id\":\"8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/favorite/delete",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"favorite",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserRank",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"object_id\":\"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/rank/get-user",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rank",
+						"get-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetItemRank",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"object_id\":\"5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/rank/get-item",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rank",
+						"get-item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserAverageRank",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"object_id\":\"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/rank/get-user-average-rank",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rank",
+						"get-user-average-rank"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetItemAverageRank",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"object_id\":\"5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/rank/get-item-average-rank",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rank",
+						"get-item-average-rank"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddRank",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (pm.request.method !== 'GET') {\r",
+							"    let csrfRequestUrl = pm.collectionVariables.get('base_url') + '/csrf';\r",
+							"    pm.sendRequest(csrfRequestUrl, function(err, res, {cookies}) {\r",
+							"        let xsrfCookie = cookies.one('_csrf');\r",
+							"        let xsrfJson = res.json();\r",
+							"        if (xsrfJson) {\r",
+							"            let xsrfToken = decodeURIComponent(xsrfJson['_csrf']);\r",
+							"            let xsrfCookieToken = decodeURIComponent(xsrfCookie['value']);\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: 'X-CSRF-Token',\r",
+							"                value: xsrfToken,\r",
+							"            });\r",
+							"            pm.request.headers.upsert({\r",
+							"                key: '_csrf',\r",
+							"                value: xsrfCookieToken,\r",
+							"            });\r",
+							"            pm.environment.set('XSRF-TOKEN', xsrfToken);\r",
+							"        }\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rank\":\"5\",\r\n    \"object\":\"1\",\r\n    \"object_id\":\"6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/rank/add",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rank",
+						"add"
 					]
 				}
 			},

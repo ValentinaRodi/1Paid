@@ -10,7 +10,7 @@ use lhs\Yii2SaveRelationsBehavior\SaveRelationsTrait;
  * This is the model class for table "item".
  *
  * @property int $id
- * @property string $name
+ * @property string $seo_name
  * @property int $category_id
  * @property int $lang_id
  * @property int $user_id
