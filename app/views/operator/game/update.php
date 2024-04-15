@@ -7,19 +7,16 @@ use yii\helpers\Html;
 /** @var app\models\File $file_icon */
 /** @var app\models\File $file_background */
 
-$this->title = 'Update Game: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Games', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Обновить игру: ' . $model->seo_name;
+$this->params['breadcrumbs'][] = ['label' => 'Игры', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->seo_name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="game-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
-        'file_icon' => $file_icon,
-        'file_background' => $file_background
+        'file' => $file,
     ]) ?>
 
 </div>

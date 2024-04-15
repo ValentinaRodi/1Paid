@@ -12,9 +12,10 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'game_id')->textInput() ?>
+    <?= $form->field($model, 'game_id')->dropDownList($games) ?>
 
-    <?= $form->field($model, 'lang_id')->textInput() ?>
+    <?= $form->field($model->lang, 'russian')->textInput() ?>
+    <?= $form->field($model->lang, 'english')->textInput() ?>
 
     <?= $form->field($model, 'seo_name')->textInput(['maxlength' => true]) ?>
 

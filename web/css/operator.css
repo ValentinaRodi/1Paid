@@ -76,3 +76,37 @@ input[readonly] {
     width: 100%;
     visibility: visible;
 }
+
+.breadcrumb > li {
+    padding: 2px;
+}
+
+.breadcrumb > li:after {
+    content: '  /';
+}
+
+.breadcrumb > li:last-child:after {
+    content: '';
+}
+
+.form-group {
+    margin-top: 3px;
+}
+
+.date-label {
+    position: relative;
+}
+
+.date-hint {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.date-hint-text {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 1px #000 solid;
+    background-color: #fff;
+    border-radius: 20px;
+}

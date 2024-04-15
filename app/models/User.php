@@ -72,8 +72,27 @@ class User extends ActiveRecord implements IdentityInterface
             [['name', 'email', 'password', 'secret_word'], 'required'],
             ['email', 'email'],
             ['email', 'unique', 'targetClass' => self::className(), 'message' => 'Email already exists!'],
-            [['created_at', 'updated_at', 'email_verified_at'], 'safe'],
+            [['created_at', 'updated_at', 'email_verified_at', 'balance', 'bonus'], 'safe'],
             [['name', 'password', 'secret_word', 'remember_token'], 'string', 'max' => 191],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Имя',
+            'email' => 'Email',
+            'status' => 'Статус',
+            'password' => 'Пароль',
+            'secret_word' => 'Секретное слово',
+            'email_verified' => 'Email подтвержден',
+            'email_verified_at' => 'Дата подтверждения',
+            'created_at' => 'Создан',
+            'updated_at' => 'Изменен',
         ];
     }
 

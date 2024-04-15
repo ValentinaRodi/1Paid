@@ -41,4 +41,8 @@ class Permission extends \yii\db\ActiveRecord
             'lang_id' => 'Lang ID',
         ];
     }
+
+    public function getLang() {
+        return $lang = $this->hasOne(Lang::class, ['id' => 'lang_id']);
+    }
 }

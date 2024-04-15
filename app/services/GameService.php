@@ -9,7 +9,7 @@ use app\models\{
 use app\services\{
     CategoryService,
     FileService,
-	LangService
+    LangService
 };
 
 class GameService
@@ -81,4 +81,10 @@ class GameService
                 ->asArray()->one()['id'];
     }
 
+    public static function getGamesArray()
+    {
+        return Game::find()
+                ->select(['id', 'seo_name'])
+                ->asArray()->all();
+    }
 }

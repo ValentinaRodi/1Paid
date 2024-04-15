@@ -10,17 +10,15 @@ use yii\grid\GridView;
 /** @var app\search\LangSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Langs';
+$this->title = 'Языки';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lang-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?php if ($editing) { ?>
 
         <p>
-            <?= Html::a('Create Lang', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Создать языковую запись', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
     <?php } ?>

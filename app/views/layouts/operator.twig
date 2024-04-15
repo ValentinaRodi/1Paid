@@ -1,5 +1,7 @@
 {{ use('app/assets/OperatorAsset') }}
 {{ register_operator_asset() }}
+{{ use('yii/widgets/Breadcrumbs') }}
+{{ use('yii/bootstrap5/Alert') }}
 {{ void(this.beginPage()) }}
 <!DOCTYPE html>
 <html lang="{{ app.language }}" xmlns="http://www.w3.org/1999/html">
@@ -471,7 +473,15 @@
         </div>
     </div>
     <div class="main">
-
+        {{ alert_widget() }}
+        {{ breadcrumbs_widget({
+              'homeLink' : { 
+                              'label' : Yii.t('yii', 'Dashboard'),
+                              'url' : Yii.app.homeUrl,
+                         },
+              'links' : this.params['breadcrumbs'],
+           }) | raw
+        }}
         {{ content | raw }}
     </div>
 </div>

@@ -11,6 +11,12 @@ use app\models\Field;
  */
 class FieldSearch extends Field
 {
+    public function attributes()
+    {
+        // add related fields to searchable attributes
+        return array_merge(parent::attributes(), ['lang.russian', 'lang.english']);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -18,7 +24,7 @@ class FieldSearch extends Field
     {
         return [
             [['id', 'lang_id', 'search'], 'integer'],
-            [['seo_name', 'type', 'value', 'created_at', 'updated_at'], 'safe'],
+            [['seo_name', 'lang', 'type', 'value', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -38,7 +44,7 @@ class FieldSearch extends Field
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $add = false)
     {
         $query = Field::find();
 
@@ -46,6 +52,25 @@ class FieldSearch extends Field
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['lang.russian'] = [
+              'asc' => ['lang.russian' => SORT_ASC],
+              'desc' => ['lang.russian' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['lang.english'] = [
+              'asc' => ['lang.english' => SORT_ASC],
+              'desc' => ['lang.english' => SORT_DESC],
+        ];
+        $query->joinWith(['lang']);
+
+        if ($add) {
+            $query->joinWith(['categories']);
+            $query->where(['<>', 'category.id', $params['id']])
+                    ->orWhere(['is', 'category.id', null]);
+        } else if (isset($params['id']) && !empty($params['id'])) {
+            $query->joinWith(['categories']);
+            $query->where(['category.id' => $params['id']]);
+        }
 
         $this->load($params);
 
@@ -66,21 +91,19 @@ class FieldSearch extends Field
 
         $query->andFilterWhere(['like', 'seo_name', $this->seo_name])
             ->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'value', $this->value]);
+            ->andFilterWhere(['like', 'value', $this->value])
+            ->andFilterWhere([
+                'like',
+                'lang.russian',
+                 $this->getAttribute('lang.russian')
+            ])
+            ->andFilterWhere([
+                'like',
+                'lang.english',
+                 $this->getAttribute('lang.english')
+            ]);
 
         return $dataProvider;
     }
 
-    public static function searchNewFields(){
-//        $query = Field::find();
-//        $query->asArray()->all();
-//        var_dump($query);
-//        $query2 = Field::find()
-//            ->addSelect(['field.id'])
-//            ->join('LEFT JOIN', 'field_category', 'field_category.field_id = field.id')
-//            ->join('LEFT JOIN', 'category', 'category.id = field_category.category_id')
-//            ->where(['field_category.category_id' => 5])->asArray()->all();
-//        // add conditions that should always apply here
-//        var_dump($query2);
-    }
 }

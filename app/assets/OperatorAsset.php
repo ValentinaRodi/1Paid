@@ -13,6 +13,7 @@ class OperatorAsset extends AssetBundle
     //    ['css/print.css', 'media' => 'print'],
     ];
     public $js = [
+        'js/operator.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

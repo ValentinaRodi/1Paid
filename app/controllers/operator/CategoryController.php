@@ -2,17 +2,26 @@
 
 namespace app\controllers\operator;
 
-use app\models\Category;
-use app\models\Field;
-use app\search\CategorySearch;
-use app\search\FieldSearch;
-use app\services\FieldService;
-use app\services\RbacService;
-use yii\db\Query;
+use app\models\{
+    Category,
+    Field,
+    Lang
+};
+use app\search\{
+    CategorySearch,
+    FieldSearch
+};
+use app\services\{
+    CategoryService,
+    FieldService,
+    RbacService,
+    GameService
+};
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -101,15 +110,15 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
-        $searchFieldModel = new CategorySearch();
-        $dataProvider = $searchFieldModel->fieldSearch($id);
+        $searchFieldModel = new FieldSearch();
+        $dataFieldProvider = $searchFieldModel->search($this->request->queryParams);
 
         return $this->render('view', [
             'editing' => RbacService::getRole($this->editing),
             'viewing' => RbacService::getRole($this->viewing),
             'model' => $this->findModel($id),
-            'searchModel' => $searchFieldModel,
-            'dataProvider' => $dataProvider,
+            'searchFieldModel' => $searchFieldModel,
+            'dataFieldProvider' => $dataFieldProvider,
         ]);
     }
 
@@ -121,10 +130,15 @@ class CategoryController extends Controller
     public function actionCreate()
     {
         $model = new Category();
+        $model->lang = new Lang();
+        $games = ArrayHelper::map(GameService::getGamesArray(), 'id', 'seo_name');
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                \Yii::$app->session->setFlash('success', 'Игра успешно добавлена.');
                 return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                \Yii::$app->session->setFlash('error', $model->errors);
             }
         } else {
             $model->loadDefaultValues();
@@ -132,6 +146,7 @@ class CategoryController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'games' => $games,
         ]);
     }
 
@@ -145,16 +160,17 @@ class CategoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $searchFieldModel = new CategorySearch();
-        $dataProvider = $searchFieldModel->fieldSearch($id);
+        $games = ArrayHelper::map(GameService::getGamesArray(), 'id', 'seo_name');
+        $searchFieldModel = new FieldSearch();
+        $dataProvider = $searchFieldModel->search($this->request->queryParams);
 
-//        $fields_arr = $this->findFields($id);
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'games' => $games,
             'searchModel' => $searchFieldModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -177,20 +193,20 @@ class CategoryController extends Controller
     /**
      * Add fields an existing Category model.
      * If adding is successful, the browser will be redirected to the 'update' page.
-     * @param int $category_id ID
+     * @param int $id ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionAddFields($category_id)
+    public function actionAddFields($id)
     {
         $searchFieldModel = new FieldSearch();
-        $dataProvider = $searchFieldModel->search([]);
+        $dataProvider = $searchFieldModel->search($this->request->queryParams, true);
 
         if ($this->request->isPost) {
-            $res = FieldService::addFieldsToCategory($this->request->post()['selection'], $category_id);
+            $res = FieldService::addFieldsToCategory($this->request->post()['selection'], $id);
 
             if ($res['success']) {
-                return $this->redirect(['update', 'id' => $category_id]);
+                return $this->redirect(['update', 'id' => $id]);
             } else {
                 var_dump($res['errors']);
                 die();
@@ -199,7 +215,7 @@ class CategoryController extends Controller
         }
 
         return $this->render('add-fields', [
-            'model' => $this->findModel($category_id),
+            'model' => $this->findModel($id),
             'searchModel' => $searchFieldModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -221,35 +237,9 @@ class CategoryController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    /**
-     * Finds the Fields model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $category_id ID
-     * @return Field the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findFields($category_id)
+    public function actionUnlink($id, $field_id)
     {
-        $query = new Query();
-        $query->select(['field_category.field_id', 'field_category.category_id',
-            'field.id', 'field.seo_name', 'field.lang_id',
-            'field.type', 'field.created_at', 'field.updated_at', 'field.search'])
-            ->from('field_category')
-            ->join('LEFT JOIN', 'field', 'field.id = field_category.field_id')
-            ->where(['field_category.category_id' => $category_id]);
-
-        $fields_arr = $query->all();
-        $command = $query->createCommand();
-        $fields_arr = $command->queryAll();
-
-        if (!empty($rows)) {
-            return $fields_arr;
-        }
-
-//        if (($model = Field::findOne(['id' => $category_id])) !== null) {
-//            return $model;
-//        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
+        CategoryService::unlinkField($id, $field_id);
+        return $this->redirect(['view', 'id' => $id]);
     }
 }

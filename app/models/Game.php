@@ -2,7 +2,9 @@
 
 namespace app\models;
 
-use Yii;
+//use Yii;
+use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
+use lhs\Yii2SaveRelationsBehavior\SaveRelationsTrait;
 
 /**
  * This is the model class for table "game".
@@ -21,6 +23,7 @@ use Yii;
  */
 class Game extends \yii\db\ActiveRecord
 {
+    use SaveRelationsTrait;
     /**
      * {@inheritdoc}
      */
@@ -41,6 +44,12 @@ class Game extends \yii\db\ActiveRecord
                 'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
             ],
+            'saveRelations' => [
+                'class'     => SaveRelationsBehavior::className(),
+                'relations' => [
+                    'lang' => ['cascadeDelete' => true],
+                ],
+            ],
         ];
     }
 
@@ -54,7 +63,7 @@ class Game extends \yii\db\ActiveRecord
             [['icon_id', 'background_id', 'lang_id', 'new'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['seo_name'], 'string', 'max' => 100],
-            [['icon', 'background'], 'string'],
+            [['lang'], 'safe'],
         ];
     }
 
@@ -67,11 +76,18 @@ class Game extends \yii\db\ActiveRecord
             'id' => 'ID',
             'icon_id' => 'Icon ID',
             'background_id' => 'Background ID',
-            'seo_name' => 'SEO name',
+            'seo_name' => 'SEO',
             'lang_id' => 'Lang ID',
-            'new' => 'New',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'new' => 'Новая игра',
+            'created_at' => 'Создано',
+            'updated_at' => 'Обновлено',
+        ];
+    }
+
+    public function transactions()
+    {
+        return [
+            self::SCENARIO_DEFAULT => self::OP_ALL,
         ];
     }
 
@@ -82,12 +98,17 @@ class Game extends \yii\db\ActiveRecord
 
     public function getIcon()
     {
-        return $icon = $this->hasOne(File::class, ['icon_id' => 'id']);
+        return $icon = $this->hasOne(File::class, ['id' => 'icon_id']);
     }
 
     public function getBackground()
     {
-        return $background = $this->hasOne(File::class, ['background_id' => 'id']);
+        return $background = $this->hasOne(File::class, ['id' => 'background_id']);
+    }
+
+    public function getCategories()
+    {
+        return $lang = $this->hasMany(Category::class, ['game_id' => 'id']);
     }
 
 }

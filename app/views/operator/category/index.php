@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Category;
+//use app\models\Category;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -10,16 +10,14 @@ use yii\grid\GridView;
 /** @var app\search\CategorySearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Categories';
+$this->title = 'Категории';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?php if ($editing) { ?>
         <p>
-            <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Создать категорию', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
     <?php } ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,14 +28,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'game_name',
-//            'english',
-            'lang_id',
             'seo_name',
+            'lang.russian',
+            'lang.english',
+            [
+                'attribute' => 'game.seo_name',
+                'label' => 'SEO игры',
+            ],
             'sort',
-            //'created_at',
-            //'updated_at',
+            [
+                'attribute' => 'created_at',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, $model, $key, $index, $column) {

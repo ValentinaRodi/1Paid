@@ -6,10 +6,12 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\models\Field $model */
 
-$this->title = $model->id;
+$this->title = $model->seo_name;
 $this->params['breadcrumbs'][] = ['label' => 'Fields', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+//echo '<pre>' . print_r($model->lang, true) . '</pre>';die();
+
 ?>
 <div class="field-view">
 
@@ -34,12 +36,42 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'seo_name',
-            'lang_id',
-            'type',
+            'lang.russian',
+            'lang.english',
+            [
+                'attribute' => 'type',
+                'value' => function ($model){
+                    switch ($model->type) {
+                        case 'options' : return 'Опция';
+                        case 'string' : return 'Строка';
+                        case 'integer' : return 'Целое';
+                        case 'float' : return 'Дробное';
+                        case 'file' : return 'Файл';
+                    }
+                },
+            ],
             'value',
-            'created_at',
-            'updated_at',
-            'search',
+            [
+                'attribute' => 'search',
+                'filter' => [
+                    '0' => 'Нет',
+                    '1' => 'Да'
+                    ],
+                'value' => function ($model){
+                    switch ($model->search) {
+                        case '0' : return 'Нет';
+                        case '1' : return 'Да';
+                    }
+                },
+            ],
+            [
+                'attribute' => 'created_at',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
         ],
     ]) ?>
 
