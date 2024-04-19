@@ -68,10 +68,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'created_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Создано</span></div>',
                 'format' => ['datetime', 'php:d.m.Y H:i:s']
             ],
             [
                 'attribute' => 'updated_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Изменено</span></div>',
                 'format' => ['datetime', 'php:d.m.Y H:i:s']
             ],
             [

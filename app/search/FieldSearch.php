@@ -24,7 +24,7 @@ class FieldSearch extends Field
     {
         return [
             [['id', 'lang_id', 'search'], 'integer'],
-            [['seo_name', 'lang', 'type', 'value', 'created_at', 'updated_at'], 'safe'],
+            [['seo_name', 'lang', 'type', 'value', 'created_at', 'updated_at', 'lang.russian', 'lang.english'], 'safe'],
         ];
     }
 
@@ -66,7 +66,7 @@ class FieldSearch extends Field
         if ($add) {
             $query->joinWith(['categories']);
             $query->where(['<>', 'category.id', $params['id']])
-                    ->orWhere(['is', 'category.id', null]);
+                  ->orWhere(['is', 'category.id', null]);
         } else if (isset($params['id']) && !empty($params['id'])) {
             $query->joinWith(['categories']);
             $query->where(['category.id' => $params['id']]);
@@ -83,15 +83,22 @@ class FieldSearch extends Field
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'lang_id' => $this->lang_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
             'search' => $this->search,
         ]);
 
         $query->andFilterWhere(['like', 'seo_name', $this->seo_name])
             ->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'value', $this->value])
+            ->andFilterWhere([
+                'like',
+                'field.created_at',
+                $this->getAttribute('created_at')
+            ])
+            ->andFilterWhere([
+                'like',
+                'field.updated_at',
+                $this->getAttribute('updated_at')
+            ])
             ->andFilterWhere([
                 'like',
                 'lang.russian',

@@ -87,19 +87,27 @@ class ItemSearch extends Item
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
-            'lang_id' => $this->lang_id,
-            'user_id' => $this->user_id,
-            'icon_id' => $this->icon_id,
+//            'lang_id' => $this->lang_id,
+//            'user_id' => $this->user_id,
+//            'icon_id' => $this->icon_id,
             'new' => $this->new,
             'sort' => $this->sort,
             'price' => $this->price,
             'rank' => $this->rank,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'item.seo_name', $this->seo_name])
             ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere([
+                'like',
+                'item.created_at',
+                $this->getAttribute('created_at')
+            ])
+            ->andFilterWhere([
+                'like',
+                'item.updated_at',
+                $this->getAttribute('updated_at')
+            ])
             ->andFilterWhere([
                 'like',
                 'lang.russian',

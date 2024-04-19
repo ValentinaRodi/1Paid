@@ -71,7 +71,8 @@ class User extends ActiveRecord implements IdentityInterface
 //            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED, self::STATUS_BANNED]],
             [['name', 'email', 'password', 'secret_word'], 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => self::className(), 'message' => 'Email already exists!'],
+            ['email', 'unique', 'targetClass' => self::className(), 'message' => 'Такая почта уже зарегестрирована.'],
+            ['name', 'unique', 'targetClass' => self::className(), 'message' => 'Такое имя уже зарегестрировано.'],
             [['created_at', 'updated_at', 'email_verified_at', 'balance', 'bonus'], 'safe'],
             [['name', 'password', 'secret_word', 'remember_token'], 'string', 'max' => 191],
         ];

@@ -80,9 +80,9 @@ class ItemService
                 ->join('LEFT JOIN', 'favorite', 'favorite.item_id = item.id')
                 ->join('LEFT JOIN', 'lang', 'item.lang_id = lang.id')
                 ->where([
-                    'category_id' => $categoryId,
-                    'id' => $params['id'],
-                    'seo_name' => $params['item'],
+                    'item.category_id' => $categoryId,
+                    'item.id' => $params['id'],
+                    'item.seo_name' => $params['item'],
                 ])
                 ->orderBy(['sort' => SORT_DESC])
                 ->asArray()->one();

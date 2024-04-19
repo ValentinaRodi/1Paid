@@ -67,8 +67,6 @@ class GameSearch extends Game
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 //echo '<pre>' . print_r($this->created_at, true) . '</pre>';die();
@@ -76,8 +74,6 @@ class GameSearch extends Game
         $query->andFilterWhere([
             'id' => $this->id,
             'new' => $this->new,
-//            'game.created_at' => $this->created_at,
-//            'game.updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'seo_name', $this->seo_name])

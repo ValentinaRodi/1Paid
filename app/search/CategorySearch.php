@@ -63,23 +63,30 @@ class CategorySearch extends Category
               'desc' => ['lang.english' => SORT_DESC],
         ];
         $query->joinWith(['lang']);
+        $query->joinWith(['game']);
 
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
         // grid filtering conditions
         $query->andFilterWhere([
             'sort' => $this->sort,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'seo_name', $this->seo_name])
+              ->andFilterWhere([
+                'like',
+                'category.created_at',
+                 $this->getAttribute('created_at')
+            ])
+              ->andFilterWhere([
+                'like',
+                'category.updated_at',
+                 $this->getAttribute('updated_at')
+            ])
               ->andFilterWhere([
                 'like',
                 'lang.russian',

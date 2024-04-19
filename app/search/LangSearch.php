@@ -59,12 +59,20 @@ class LangSearch extends Lang
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'russian', $this->russian])
-            ->andFilterWhere(['like', 'english', $this->english]);
+            ->andFilterWhere(['like', 'english', $this->english])
+            ->andFilterWhere([
+                'like',
+                'lang.created_at',
+                $this->getAttribute('created_at')
+            ])
+            ->andFilterWhere([
+                'like',
+                'lang.updated_at',
+                $this->getAttribute('updated_at')
+            ]);
 
         return $dataProvider;
     }

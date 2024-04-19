@@ -91,7 +91,16 @@ class ItemController extends Controller
         $get = Yii::$app->request->get();
         $item = ItemService::get($get);
         if (Yii::$app->request->isAjax) {
-            return $this->asJson($item);
+            if (!$item) {
+                return $this->asJson([
+                    'success' => false,
+                ]);
+            }
+//            return $this->asJson($item);
+            return $this->asJson([
+                'success' => true,
+                'item' => $item,
+            ]);
         }
         $this->render('item', ['item' => $item]);
     }

@@ -55,6 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'updated_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Изменено</span></div>',
                 'format' => ['datetime', 'php:d.m.Y H:i:s']
             ],
             [

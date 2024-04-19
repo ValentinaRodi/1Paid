@@ -150,14 +150,14 @@ class GameController extends Controller
                 if (isset($background) && !empty($background)) {
                     $background->delete();
                 }
-
+/*
 echo '<pre>' . print_r([
     'Game' => $model->errors,
     'Icon' => $icon->errors,
     'Background' => $background->errors,
     'IconFile' => $file->icon->error,
     'BackgroundFile' => $file->background->error,
-], true) . '</pre>';die();
+], true) . '</pre>';die();*/
 
                 \Yii::$app->session->setFlash('error', array_merge($model->errors, $icon->errors, $background->errors));
             }

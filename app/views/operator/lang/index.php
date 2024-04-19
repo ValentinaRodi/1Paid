@@ -34,8 +34,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'russian',
             'english',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'created_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Создано</span></div>',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'updated_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Изменено</span></div>',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Lang $model, $key, $index, $column) {
