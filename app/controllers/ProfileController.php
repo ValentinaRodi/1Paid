@@ -53,7 +53,6 @@ class ProfileController extends Controller
 
     public function actionGet()
     {
-echo '<pre>' . print_r('huj', true) . '</pre>';die();
         $profile = ProfileService::get();
         if ($profile) {
             if (Yii::$app->request->isAjax) {
