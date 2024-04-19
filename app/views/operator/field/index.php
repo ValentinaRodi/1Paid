@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\search\FieldSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Fields';
+$this->title = 'Поля';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="field-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if ($editing) { ?>
 
         <p>
-            <?= Html::a('Create Field', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Создать поле', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
     <?php } ?>

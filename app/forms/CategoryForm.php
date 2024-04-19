@@ -20,7 +20,7 @@ use app\services\{
  */
 class CategoryForm extends Model
 {
-    public $name;
+    public $seo_name;
     public $lang;
     public $game_id;
 
@@ -30,8 +30,8 @@ class CategoryForm extends Model
     public function rules()
     {
         return [
-            [['name', 'lang'], 'required', 'message' => 'Required'],
-            ['name', 'string', 'length' => [4, 191], 'message' => "Some strings is not in 8..191"],
+            [['seo_name', 'lang'], 'required', 'message' => 'Required'],
+            ['seo_name', 'string', 'length' => [4, 191], 'message' => "Some strings is not in 8..191"],
             ['game_id', 'integer'],
             ['game_id', 'validateGame'],
             ['lang', 'validateLang'],
@@ -55,7 +55,7 @@ class CategoryForm extends Model
     public function save()
     {
         $category = new Category();
-        $category->name = $this->name;
+        $category->seo_name = $this->seo_name;
         $category->lang_id = LangService::setLangs($this->lang);
         $category->game_id = $this->game_id;
         $category->save();

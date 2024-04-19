@@ -61,7 +61,7 @@ class Item extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['seo_name', 'category_id', 'lang_id', 'user_id', 'new', 'sort', 'price', 'rank', 'description'], 'required'],
+            [['seo_name', 'category_id', 'lang_id', 'user_id', 'new', 'sort', 'price', 'rank', 'description'], 'required', 'message' => 'Поле не может быть пустым'],
             [['category_id', 'lang_id', 'user_id', 'icon_id', 'new', 'sort'], 'integer'],
             [['price', 'rank'], 'number'],
             [['description'], 'string'],

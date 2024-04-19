@@ -31,7 +31,7 @@ class RegisterForm extends Model
             'name' => 'Имя',
             'email' => 'Почта',
             'password' => 'Пароль',
-            'password_confirmation' => 'Пароль',
+            'password_confirmation' => 'Повторный пароль',
             'secret_word' => 'Секретное слово',
         ];
     }
@@ -46,14 +46,13 @@ class RegisterForm extends Model
             [
                 ['password', 'password_confirmation', 'secret_word'],
                 'string',
-                'length' => [8, 191],
+                'length' => [8],
                 'tooShort' => "{attribute} должен быть от 8 символов",
-                'tooLong' => "{attribute} должен быть до 190 символов",
             ],
             ['email', 'email', 'message' => "Почта не верная."],
             ['email', 'unique', 'targetClass' => User::className(), 'message' => 'Такая почта уже зарегестрирована'],
             ['name', 'unique', 'targetClass' => User::className(), 'message' => 'Такое имя уже зарегестрировано'],
-            ['name', 'string', 'length' => [8, 40], 'message' => "Имя должно быть от 8 до 40 символов"],
+            [['name', 'secret_word'], 'string', 'length' => [8, 16], 'message' => '{attribute} должно быть от 8 до 16 символов'],
             //[['password', 'password_confirmation'], 'validatePassword'],
             ['password_confirmation', 'compare', 'compareAttribute' => 'password', 'message' => "Пароли не совпадают"],
         ];

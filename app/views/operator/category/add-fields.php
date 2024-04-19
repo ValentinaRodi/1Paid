@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= Html::beginForm(['operator/category/add-fields?category_id='. $model->id], 'post'); ?>
+    <?= Html::beginForm(['operator/category/add-fields?id='. $model->id], 'post'); ?>
     <?= Html::submitButton('Добавить выбранные', ['class' => 'btn btn-success mt-3 mb-3', 'data-confirm' =>
         Yii::t('yii', 'Вы уверены, что хотите добавить данные поля?'),]);
     ?>

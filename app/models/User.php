@@ -69,12 +69,16 @@ class User extends ActiveRecord implements IdentityInterface
         return [
 //            ['status', 'default', 'value' => self::STATUS_INACTIVE],
 //            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED, self::STATUS_BANNED]],
-            [['name', 'email', 'password', 'secret_word'], 'required'],
+            [['name', 'email', 'password', 'secret_word'], 'required', 'message' => '{attribute} не может быть пустым'],
             ['email', 'email'],
             ['email', 'unique', 'targetClass' => self::className(), 'message' => 'Такая почта уже зарегестрирована.'],
             ['name', 'unique', 'targetClass' => self::className(), 'message' => 'Такое имя уже зарегестрировано.'],
             [['created_at', 'updated_at', 'email_verified_at', 'balance', 'bonus'], 'safe'],
-            [['name', 'password', 'secret_word', 'remember_token'], 'string', 'max' => 191],
+            [['name', 'secret_word'], 'string', 'min' => 8, 'message' => '{attribute} должно быть от 8 символов'],
+            ['password', 'string', 'min' => 8, 'message' => '{attribute} должен быть от 8 символов'],
+            [['name', 'secret_word'], 'string', 'max' => 16, 'message' => '{attribute} должно быть до 16 символов'],
+            ['remember_token', 'string', 'max' => 191],
+            
         ];
     }
 
@@ -94,6 +98,8 @@ class User extends ActiveRecord implements IdentityInterface
             'email_verified_at' => 'Дата подтверждения',
             'created_at' => 'Создан',
             'updated_at' => 'Изменен',
+            'bonus' => 'Бонусные баллы',
+            'balance' => 'Баланс',
         ];
     }
 

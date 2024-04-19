@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Field $model */
 
-$this->title = 'Create Field';
-$this->params['breadcrumbs'][] = ['label' => 'Fields', 'url' => ['index']];
+$this->title = 'Создать поле';
+$this->params['breadcrumbs'][] = ['label' => 'Поля', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="field-create">

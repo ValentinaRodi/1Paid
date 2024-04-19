@@ -41,8 +41,8 @@ class Rank extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'rank' => 'Rank',
-            'object' => 'Object',
+            'rank' => 'Ранк',
+            'object' => 'Объект', // 0 - User, 1 - Item
             'object_id' => 'Object ID',
             'user_id' => 'User ID',
         ];

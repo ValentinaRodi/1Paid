@@ -15,13 +15,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="item-index">
 
-    <?php if ($editing) { ?>
+    <?php /*if ($editing) { ?>
 
         <p>
             <?= Html::a('Создать товар', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
-    <?php } ?>
+    <?php } */?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -69,6 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => ActionColumn::className(),
+                'template' => '{view}',
                 'urlCreator' => function ($action, Item $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                 }

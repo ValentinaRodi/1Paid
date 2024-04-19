@@ -55,7 +55,7 @@ class Field extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['seo_name', 'lang_id', 'type', 'search'], 'required'],
+            [['seo_name', 'lang_id', 'type', 'search'], 'required', 'message' => 'Поле не может быть пустым'],
             [['lang_id', 'search'], 'integer'],
             [['lang', 'categories', 'created_at', 'updated_at'], 'safe'],
             [['seo_name', 'type', 'value'], 'string', 'max' => 190],

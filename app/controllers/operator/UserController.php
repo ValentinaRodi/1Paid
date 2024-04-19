@@ -121,7 +121,7 @@ class UserController extends Controller
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
-echo '<pre>' . print_r($model->errors, true) . '</pre>';die();
+//echo '<pre>' . print_r($model->errors, true) . '</pre>';die();
             }
         } else {
             $model->loadDefaultValues();

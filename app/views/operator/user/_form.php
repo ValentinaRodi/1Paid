@@ -18,24 +18,24 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true])->label('Имя*') ?>
     <?php
 //    echo '<pre>' . print_r($new, true) . '</pre>';die();
     if ($new == true) {
-        echo $form->field($model, 'password')->textInput(['maxlength' => true]);
+        echo $form->field($model, 'password')->textInput(['maxlength' => true])->label('Пароль*');
     }
     ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true])->label('Почта*') ?>
 
-    <?= $form->field($model, 'secret_word')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'secret_word')->textInput(['maxlength' => true])->label('Секретное слово*') ?>
 
     <?= $form->field($model, 'balance')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'bonus')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
     <?php ActiveForm::end(); ?>
     <?php /* $formSave = ActiveForm::begin() ?>

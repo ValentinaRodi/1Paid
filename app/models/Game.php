@@ -59,7 +59,7 @@ class Game extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['icon_id', 'background_id', 'seo_name', 'lang_id', 'new'], 'required'],
+            [['icon_id', 'background_id', 'seo_name', 'lang_id', 'new'], 'required', 'message' => 'Поле не может быть пустым'],
             [['icon_id', 'background_id', 'lang_id', 'new'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['seo_name'], 'string', 'max' => 100],

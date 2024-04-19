@@ -7,11 +7,26 @@ use yii\db\Migration;
  */
 class m240419_040014_create_table_comment extends Migration
 {
+    protected $tableName = '{{%comment}}';
+
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
+        $this->createTable($this->tableName, [
+            'id' => $this->primaryKey(),
+            'object' => $this->smallInteger()->unsigned()->notNull(),
+            'object_id' => $this->integer()->unsigned()->notNull(), // 0 - User, 1 - Item
+            'user_id' => $this->integer()->unsigned()->notNull(),
+            'comment' => $this->text()->notNull(),
+        ]);
+
+        $this->createIndex(
+            'idx-rank-object_id',
+            $this->tableName,
+            'object_id'
+        );
 
     }
 

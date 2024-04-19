@@ -56,7 +56,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['game_id', 'lang_id', 'seo_name'], 'required'],
+            [['game_id', 'lang_id', 'seo_name'], 'required', 'message' => 'Поле не может быть пустым'],
             [['game_id', 'lang_id', 'sort'], 'integer'],
             [['game', 'lang', 'created_at', 'updated_at'], 'safe'],
             [['seo_name'], 'string', 'max' => 190],

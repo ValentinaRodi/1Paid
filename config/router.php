@@ -43,7 +43,7 @@ return [
         'defaults' => ['game' => 'Warface', 'category' => ''],
         'verb' => ['GET', 'HEAD'],
     ],
-    'GET,HEAD item/<game>/<category>/<id>-<item>' => 'item/get',
+    'GET,HEAD catalog/<game>/<category>/<id>-<item>' => 'item/get',
 //    'GET,HEAD item/get' => 'item/get',
     'GET,HEAD field/get-list/<category>' => 'field/get-list',
     'GET,HEAD field/get-list-filters/<category>' => 'field/get-list-filters',

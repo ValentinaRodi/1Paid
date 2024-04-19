@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\search\FileSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Files';
+$this->title = 'Файлы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="file-index">
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'extension',
 //            'user_id',
 //            'path',
-            //'size',
+            'size',
             //'created_at',
             //'updated_at',
 /*            [

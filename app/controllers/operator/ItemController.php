@@ -36,7 +36,7 @@ class ItemController extends Controller
             [
                 'access' => [
                     'class' => AccessControl::class,
-                    'only' => ['index', 'view', 'create', 'update', 'delete'], // Устанавливаем правила только для site/user и site/admin. К site/index имеют доступ все.
+                    'only' => ['index', 'view', 'create', 'update', 'delete'],
                     'rules' => [
                         [
                             'allow' => true, // Разрешаем доступ.

@@ -9,9 +9,9 @@ use yii\helpers\Url;
 /** @var app\models\Category $model */
 
 $this->title = 'Обновить: ' . $model->seo_name;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Категории', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->seo_name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Обновить';
 $category_id = $model['id'];
 ?>
 <div class="category-update">

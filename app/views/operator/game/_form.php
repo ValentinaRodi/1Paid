@@ -14,15 +14,18 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'seo_name')->textInput() ?>
+    <?= $form->field($model, 'seo_name')->textInput()->label('SEO метка*') ?>
 
-    <?= $form->field($model->lang, 'russian')->textInput() ?>
+    <?= $form->field($model->lang, 'russian')->textInput()->label('Название на русском*') ?>
     <?= $form->field($model->lang, 'english')->textInput() ?>
 
-    <?= $form->field($model, 'new')->textInput() ?>
+    <?= $form->field($model, 'new')->dropDownList([
+        0 => 'Нет',
+        1 => 'Да',
+    ]) ?>
     
     <?= $form->field($file, 'icon')->fileInput(['class' => 'form-control'])->label('Иконка', ['class' => 'form-label']) ?>
-    <?= $form->field($file, 'background')->fileInput(['class' => 'form-control'])->label('Задник', ['class' => 'form-label']) ?>
+    <?= $form->field($file, 'background')->fileInput(['class' => 'form-control'])->label('Фон', ['class' => 'form-label']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

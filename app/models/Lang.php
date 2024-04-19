@@ -31,6 +31,7 @@ class Lang extends \yii\db\ActiveRecord
         return [
             [['created_at', 'updated_at'], 'safe'],
             [['russian', 'english'], 'string', 'max' => 190],
+            ['russian', 'required', 'message' => 'Поле не может быть пустым']
         ];
     }
 
