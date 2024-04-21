@@ -12,13 +12,18 @@ const Input = (props) => {
        
             if(isnum) {
                 setValInput(value);
+                props.changeFormValue(props.keyValue, value, props.blockId)
             };
         } else {
             setValInput(value);
+            props.changeFormValue(props.keyValue, value, props.blockId)
+
         };
         
         if(value === '')  {
             setValInput(value);
+            props.changeFormValue(props.keyValue, value, props.blockId)
+
         };
         
     }

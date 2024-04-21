@@ -54,7 +54,7 @@ class CategoryController extends Controller
                             },
                             'denyCallback' => function () {
                                 // Если пользователь не подпадает под все условия, то завершаем работы и выдаем своё сообщение.
-                                die('Эта страница доступна только администратору!');
+                                throw new \yii\web\NotFoundHttpException(404);
                             },
                         ],
                         [
@@ -67,7 +67,7 @@ class CategoryController extends Controller
                             },
                             'denyCallback' => function () {
                                 // Если пользователь не подпадает под все условия, то завершаем работы и выдаем своё сообщение.
-                                die('Эта страница доступна только администратору!');
+                                throw new \yii\web\NotFoundHttpException(404);
                             },
                         ],
                     ],

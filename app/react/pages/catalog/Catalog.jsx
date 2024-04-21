@@ -10,6 +10,7 @@ import CardGameString from "../../components/cardGame/CardGameString";
 import Checkbox from "../../components/checkbox/Checkbox";
 import Title from "../../components/title/Title";
 import listenForOutsideClick from "../../components/listenForOutsideClicks";
+import fetchFunc from "../../services/fetch";
 
 function Catalog() {
     const [btn, setBtn] = useState(true);
@@ -162,6 +163,20 @@ function Catalog() {
     const submitFilter = () => {
         setFilterMob(false);
         console.log('formValue', formValue);
+        let fields ={ fields :formValue}
+
+
+        fetchFunc('/item/get-items-by-params', 'POST', fields)
+            .then((data) => {
+                if (data.success === true) {
+                    console.log('data:', data);
+                    // props.openModalUpTop();
+                } else {
+                    console.log(data.errors)
+                }
+            }).catch((error) => {
+            console.log('ERRR:', error);
+        });
     };
 
     //Сброс фильтра
@@ -224,10 +239,10 @@ function Catalog() {
                             ) : (<div></div>)
                         }
                         <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
-                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='Сервер' name='Сервер'/>
+                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='server' name='Сервер'/>
                         <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={30000} styleIcon={'slider-icon_green'} styleDiv={'gradient-green'} keyValue='Ранг' name='Ранг'/>
                         <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} keyValue='Количество доната' name='Количество доната'/>
-                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='' name='Тип аккаунта'/>
+                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='account_type' name='Тип аккаунта'/>
                         <Checkbox changeFormValue={changeFormValue} reset={resetCheck} changeCheck={changeCheck}/>
                         <div>
                             <button onClick={submitFilter} className="mb-4 btn gap-2 justify-center flex items-center text-white w-full h-[57px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)] shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]">
@@ -274,10 +289,10 @@ function Catalog() {
                             ) : (<div></div>)
                         }
                         <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
-                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='Сервер' name='Сервер'/>
+                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='server' name='Сервер'/>
                         <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={30000} styleIcon={'slider-icon_green'} styleDiv={'gradient-green'} keyValue='Ранг' name='Ранг'/>
                         <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} keyValue='Количество доната' name='Количество доната'/>
-                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='' name='Тип аккаунта'/>
+                        <Select key={uuid()} reset={resetFilter} arr={arr} changeFormValue={changeFormValue} keyValue='account_type' name='Тип аккаунта'/>
                         <Checkbox changeFormValue={changeFormValue} reset={resetCheck} changeCheck={changeCheck}/>
                         <div>
                             <button onClick={submitFilter} className="mb-4 btn gap-2 justify-center flex items-center text-white w-full h-[57px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)] shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]">

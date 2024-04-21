@@ -106,7 +106,12 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getAvatar()
     {
-        return $this->hasOne(File::class, ['avatar' => 'id']);
+        $users = User::find()
+            ->select(['avatar'])
+            ->where(['id' => $this->id])
+            ->asArray()->all();
+        return $users[0]['avatar'];
+//        return $this->hasOne(User::class, ['avatar' => 'avatar']);
     }
 
     /**

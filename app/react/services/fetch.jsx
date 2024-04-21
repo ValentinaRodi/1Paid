@@ -22,6 +22,15 @@ async function fetchFunc(url, method, body = null, img = null) {
             // при отправке файла, заголовки подставляются автоматически
             init.headers["Content-Type"] = 'application/json';
             init.body = JSON.stringify(body);
+            console.log(init.body);
+            let d = {
+                "game": "Warface",
+                "category": "Аккаунты",
+                "items": {"0": {"account_rating": "4", "server": "wf2"}, "1": {}, "2": {}},
+                "title": "11",
+                "about": "111",
+                "price": "1111"
+            }
         } else {
             init.body = body;
         }

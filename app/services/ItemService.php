@@ -174,6 +174,9 @@ class ItemService
             $title_english = self::translit($item_data['title']);
             $title_russian = $item_data['title'];
 
+            if (empty($item_data['about'])){
+                $item_data['about'] = 'null';
+            }
             foreach ($item_data['items'] as $item_fields) {
                 foreach ($item_fields as $field_seo_name => $field_value) {
                     $fields_seo_names[] = $field_seo_name;

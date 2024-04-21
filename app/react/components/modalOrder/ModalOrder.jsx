@@ -173,9 +173,11 @@ function ModalOrder(props) {
                                             )
                                         };
                                         if(item.type === 'options') {
+
+                                            console.log('TARGETitem:', item);
                                             return (
                                                 <div key={item.id} className='w-[32%] '>
-                                                    <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
+                                                    <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1TEST#3' + '-' + item.id} name={item.seo_name}/>
                                                 </div>
                                             )
                                         }

@@ -74,7 +74,7 @@ function Select(props) {
                             <div
                                 key={uuid()}
                                 className="font-secondary-med text-base"
-                                onClick={() => [selectItem(item), props.changeFormValue(props.keyValue, item)]}
+                                onClick={() => [selectItem(item), props.changeFormValue(props.keyValue, item, props.blockId)]}
                             >
                                 {item}
                             </div>
