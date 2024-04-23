@@ -31,6 +31,7 @@ class Lang extends \yii\db\ActiveRecord
         return [
             [['created_at', 'updated_at'], 'safe'],
             [['russian', 'english'], 'string', 'max' => 190],
+            ['russian', 'required', 'message' => 'Поле не может быть пустым']
         ];
     }
 
@@ -41,10 +42,16 @@ class Lang extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'russian' => 'Russian',
+            'russian' => 'Русский',
             'english' => 'English',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'created_at' => 'Создано',
+            'updated_at' => 'Обновлено',
         ];
     }
+
+    public function getGame()
+    {
+        return $game = $this->hasOne(Game::class, ['lang_id' => 'id']);
+    }
+
 }

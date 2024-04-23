@@ -7,13 +7,11 @@ use yii\widgets\DetailView;
 /** @var app\models\User $model */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="user-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if ($editing) { ?>
 
@@ -22,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a('Delete', ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
-                    'confirm' => 'Are you sure you want to delete this item?',
+                    'confirm' => 'Вы хотите удали пользователя?',
                     'method' => 'post',
                 ],
             ]) ?>
@@ -33,22 +31,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'name',
             'email:email',
             'email_verified:email',
             'email_verified_at:email',
-            'password',
             'secret_word',
-            'remember_token',
-            'created_at',
-            'updated_at',
-            'avatar',
             'balance',
             'bonus',
             'status',
-            'mailing',
-            'notify_sound',
+            [
+                'attribute' => 'created_at',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
         ],
     ]) ?>
 

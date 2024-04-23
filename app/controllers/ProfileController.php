@@ -31,13 +31,7 @@ class ProfileController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                //'only' => ['get'],
                 'rules' => [
-                    /*                    [
-                                            'actions' => ['logout'],
-                                            'allow' => true,
-                                            'roles' => ['?'],
-                                        ],*/
                     [
                         'allow' => true,
                         'actions' => ['get', 'post', 'edit-password', 'upload-image'], //
@@ -59,14 +53,17 @@ class ProfileController extends Controller
 
     public function actionGet()
     {
-//        echo '<pre>' . print_r('huj', true) . '</pre>';
-//        return $this->asJson(ProfileService::get());
-
-        if (Yii::$app->request->isAjax) {
-            return $this->asJson(ProfileService::get());
+        $profile = ProfileService::get();
+        if ($profile) {
+            if (Yii::$app->request->isAjax) {
+                return $this->asJson($profile);
+            }
+            return $this->render('edit', [
+                'profile' => json_encode($profile),
+            ]);
         }
-        return $this->render('edit', [
-            'profile' => json_encode(ProfileService::get()),
+        return $this->asJson([
+            'success' => false,
         ]);
     }
 

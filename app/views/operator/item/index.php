@@ -10,20 +10,18 @@ use yii\grid\GridView;
 /** @var app\search\ItemSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Items';
+$this->title = 'Товары';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="item-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?php if ($editing) { ?>
+    <?php /*if ($editing) { ?>
 
         <p>
-            <?= Html::a('Create Item', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Создать товар', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
-    <?php } ?>
+    <?php } */?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -33,21 +31,45 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'seo_name',
-            'category_id',
-            'lang_id',
-            'user_id',
+            [
+                'attribute' => 'category.seo_name',
+                'label' => 'SEO категории'
+            ],
+            'lang.russian',
+            'lang.english',
+            'user.name',
             //'icon_id',
-            //'new',
-            //'sort',
-            //'price',
-            //'rank',
+            [
+                'attribute' => 'new',
+                'filter' => [
+                    '0' => 'Нет',
+                    '1' => 'Да'
+                    ],
+                'value' => function ($model){
+                    switch ($model->new) {
+                        case '0' : return 'Нет';
+                        case '1' : return 'Да';
+                    }
+                },
+            ],
+            'sort',
+            'price',
+            'rank',
             //'description:ntext',
-            //'created_at',
-            //'updated_at',
+            [
+                'attribute' => 'created_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Создано</span></div>',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'updated_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Изменено</span></div>',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
             [
                 'class' => ActionColumn::className(),
+                'template' => '{view}',
                 'urlCreator' => function ($action, Item $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                 }

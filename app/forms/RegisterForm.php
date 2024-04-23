@@ -25,6 +25,17 @@ class RegisterForm extends Model
 
     private $_user = false;
 
+    public function attributeLabels()
+    {
+        return [
+            'name' => 'Имя',
+            'email' => 'Почта',
+            'password' => 'Пароль',
+            'password_confirmation' => 'Повторный пароль',
+            'secret_word' => 'Секретное слово',
+        ];
+    }
+
     /**
      * @return array the validation rules.
      */
@@ -32,11 +43,18 @@ class RegisterForm extends Model
     {
         return [
             [['email', 'name', 'password', 'password_confirmation', 'secret_word'], 'required'],
-            [['password', 'password_confirmation', 'secret_word'], 'string', 'length' => [8, 191], 'message' => "Some strings is not in 8..191"],
-            ['email', 'email', 'message' => "Email is wrong"],
-            ['name', 'string', 'length' => [8, 40]],
+            [
+                ['password', 'password_confirmation', 'secret_word'],
+                'string',
+                'length' => [8],
+                'tooShort' => "{attribute} должен быть от 8 символов",
+            ],
+            ['email', 'email', 'message' => "Почта не верная."],
+            ['email', 'unique', 'targetClass' => User::className(), 'message' => 'Такая почта уже зарегестрирована'],
+            ['name', 'unique', 'targetClass' => User::className(), 'message' => 'Такое имя уже зарегестрировано'],
+            [['name', 'secret_word'], 'string', 'length' => [8, 16], 'message' => '{attribute} должно быть от 8 до 16 символов'],
             //[['password', 'password_confirmation'], 'validatePassword'],
-            ['password_confirmation', 'compare', 'compareAttribute' => 'password', 'message' => "Passwords don't match"],
+            ['password_confirmation', 'compare', 'compareAttribute' => 'password', 'message' => "Пароли не совпадают"],
         ];
     }
 

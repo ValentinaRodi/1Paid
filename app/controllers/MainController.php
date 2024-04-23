@@ -26,13 +26,13 @@ class MainController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
+/*            'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout', 'login', 'register'],
+                'only' => ['logout', 'login', 'register', 'profile'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
                         'allow' => true,
+                        'actions' => ['logout'],
                         'roles' => ['@'],
                     ],
                     [
@@ -41,7 +41,7 @@ class MainController extends Controller
                         'roles' => ['?'],
                     ],
                 ],
-            ],
+            ],*/
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -73,7 +73,7 @@ class MainController extends Controller
 
     public function beforeAction($action)
     {
-        if (in_array($action->id, ['logout'])) {
+        if (in_array($action->id, ['logout', 'logged'])) {
             $this->enableCsrfValidation = false;
         }
         return parent::beforeAction($action);
@@ -149,7 +149,9 @@ class MainController extends Controller
      */
     public function actionLogout()
     {
-        Yii::$app->user->logout();
+        if (isset(Yii::$app->user->id)) {
+            Yii::$app->user->logout();
+        }
 
         return $this->asJson([
             'logged' => false,
@@ -206,11 +208,14 @@ class MainController extends Controller
                 ]);
             }
             return $this->asJson([
-                'success' => 0,
+                'success' => false,
                 'errors' => $user->errors,
             ]);
         }
-        return $this->asJson($model->errors);
+        return $this->asJson([
+            'success' => false,
+            'errors' => $model->errors,
+        ]);
     }
 
     public function actionCsrf()
@@ -220,8 +225,21 @@ class MainController extends Controller
             '_csrf' => $csrfToken,
         ]);
     }
-
+/*
     public function actionProfile() {
         return $this->render('index');
+    }
+*/
+    public function actionLogged() {
+        if (!Yii::$app->user->isGuest) {
+            return $this->asJson([
+                'success' => true,
+                'logged' => true,
+            ]);
+        }
+        return $this->asJson([
+            'success' => true,
+            'logged' => false,
+        ]);
     }
 }

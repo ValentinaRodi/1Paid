@@ -80,6 +80,7 @@ class PermissionController extends Controller
         $searchModel = new PermissionSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 //        var_dump($dataProvider);
+//        echo '<pre>' . print_r($dataProvider, true) . '</pre>';die();
 
         return $this->render('index', [
             'editing' => RbacService::getRole($this->editing),
@@ -181,6 +182,7 @@ class PermissionController extends Controller
 //        }
 
         if (($model = Permission::findOne(['permission.id' => $id])) !== null) {
+echo '<pre>' . print_r($model, true) . '</pre>';die();
             return $model;
         }
 

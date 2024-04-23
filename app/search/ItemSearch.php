@@ -11,6 +11,12 @@ use app\models\Item;
  */
 class ItemSearch extends Item
 {
+    public function attributes()
+    {
+        // add related fields to searchable attributes
+        return array_merge(parent::attributes(), ['lang.russian', 'lang.english', 'category.seo_name', 'user.name']);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -18,7 +24,7 @@ class ItemSearch extends Item
     {
         return [
             [['id', 'category_id', 'lang_id', 'user_id', 'icon_id', 'new', 'sort'], 'integer'],
-            [['seo_name', 'description', 'created_at', 'updated_at'], 'safe'],
+            [['seo_name', 'description', 'created_at', 'updated_at', 'lang.russian', 'lang.english', 'category.seo_name', 'user.name'], 'safe'],
             [['price', 'rank'], 'number'],
         ];
     }
@@ -49,6 +55,26 @@ class ItemSearch extends Item
             'query' => $query,
         ]);
 
+        $dataProvider->sort->attributes['lang.russian'] = [
+              'asc' => ['lang.russian' => SORT_ASC],
+              'desc' => ['lang.russian' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['lang.english'] = [
+              'asc' => ['lang.english' => SORT_ASC],
+              'desc' => ['lang.english' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['category.seo_name'] = [
+              'asc' => ['category.seo_name' => SORT_ASC],
+              'desc' => ['category.seo_name' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['user.name'] = [
+              'asc' => ['user.name' => SORT_ASC],
+              'desc' => ['user.seo_name' => SORT_DESC],
+        ];
+        $query->joinWith(['lang']);
+        $query->joinWith(['category']);
+        $query->joinWith(['user']);
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -61,19 +87,47 @@ class ItemSearch extends Item
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
-            'lang_id' => $this->lang_id,
-            'user_id' => $this->user_id,
-            'icon_id' => $this->icon_id,
+//            'lang_id' => $this->lang_id,
+//            'user_id' => $this->user_id,
+//            'icon_id' => $this->icon_id,
             'new' => $this->new,
             'sort' => $this->sort,
             'price' => $this->price,
             'rank' => $this->rank,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'seo_name', $this->seo_name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'item.seo_name', $this->seo_name])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere([
+                'like',
+                'item.created_at',
+                $this->getAttribute('created_at')
+            ])
+            ->andFilterWhere([
+                'like',
+                'item.updated_at',
+                $this->getAttribute('updated_at')
+            ])
+            ->andFilterWhere([
+                'like',
+                'lang.russian',
+                 $this->getAttribute('lang.russian')
+            ])
+            ->andFilterWhere([
+                'like',
+                'lang.english',
+                 $this->getAttribute('lang.english')
+            ])
+            ->andFilterWhere([
+                'like',
+                'user.name',
+                 $this->getAttribute('user.name')
+            ])
+            ->andFilterWhere([
+                'like',
+                'category.seo_name',
+                 $this->getAttribute('category.seo_name')
+            ]);
 
         return $dataProvider;
     }

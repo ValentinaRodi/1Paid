@@ -7,7 +7,7 @@ use app\models\{
     Category
 };
 use app\services\{
-    GameService,
+//    GameService,
     LangService
 };
 
@@ -78,6 +78,21 @@ class CategoryService
                     ->asArray()->one()['id'];
         }
         return false;
+    }
+
+    public static function getCategoriesArray()
+    {
+        $categories = Category::find()
+                ->select(['id', 'seo_name'])
+                ->asArray()->all();
+        return $categories;
+    }
+
+    public static function unlinkField($id, $field_id)
+    {
+        $connection = Yii::$app->getDb();
+        $command = $connection->createCommand('DELETE FROM `field_category` WHERE `category_id`=' . $id . ' AND `field_id`=' . $field_id);
+        $command->queryAll();
     }
 
     private static function formatCategories($categories)

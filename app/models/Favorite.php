@@ -5,19 +5,20 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "permission".
+ * This is the model class for table "favorite".
  *
  * @property int $id
- * @property int $lang_id
+ * @property int $item_id
+ * @property int $user_id
  */
-class Permission extends \yii\db\ActiveRecord
+class Favorite extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'permission';
+        return 'favorite';
     }
 
     /**
@@ -26,8 +27,8 @@ class Permission extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lang_id'], 'required'],
-            [['lang_id'], 'integer'],
+            [['item_id', 'user_id'], 'required'],
+            [['item_id', 'user_id'], 'integer'],
         ];
     }
 
@@ -38,11 +39,8 @@ class Permission extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'lang_id' => 'Lang ID',
+            'item_id' => 'Item ID',
+            'user_id' => 'User ID',
         ];
-    }
-
-    public function getLang() {
-        return $lang = $this->hasOne(Lang::class, ['id' => 'lang_id']);
     }
 }

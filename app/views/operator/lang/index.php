@@ -10,17 +10,15 @@ use yii\grid\GridView;
 /** @var app\search\LangSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Langs';
+$this->title = 'Языки';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lang-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?php if ($editing) { ?>
 
         <p>
-            <?= Html::a('Create Lang', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Создать языковую запись', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
     <?php } ?>
@@ -36,8 +34,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'russian',
             'english',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'created_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Создано</span></div>',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'updated_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Изменено</span></div>',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Lang $model, $key, $index, $column) {

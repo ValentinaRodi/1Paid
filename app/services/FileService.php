@@ -7,6 +7,7 @@ use app\models\{File, Game};
 use yii\base\ErrorException;
 use yii\base\Security;
 use yii\db\Query;
+use yii\web\UploadedFile;
 
 class FileService
 {
@@ -21,17 +22,35 @@ class FileService
         return $files;
     }
 
-    public static function upload($fileData)
+    public static function upload($fileData, $user_id)
     {
-
         $file = new File();
-        $file->original_name = $fileData->icon->baseName;
+//echo '<pre>' . print_r($fileData, true) . '</pre>';
+        $file->original_name = $fileData->name;
         $file->hashed_name = Yii::$app->getSecurity()->generateRandomString() . time();
-        $file->extension = $fileData->icon->extension;
-        $file->size = $fileData->icon->size;
+        $file->extension = $fileData->extension;
+        $file->size = $fileData->size;
+        $file->user_id = $user_id;
         $file->save();
+//echo '<pre>' . print_r($file, true) . '</pre>';
         return $file;
+    }
 
+    public static function saveFile(UploadedFile $file, $info, $type)
+    {
+        switch ($type) {
+            case 'icon':
+            case 'background' : 
+                $path = 'uploads/files/games/';
+                if ($file->saveAs($path . $info->hashed_name . '.' . $info->extension)) {
+                    return true;
+                } else {
+                    echo '<pre>' . print_r($file->error, true) . '</pre>';die();
+                }
+                break;
+//            case 'avatar'
+        }
+        return false;
     }
 
     public static function uploadGameImage($fileData, $game_id, $img_id_name, $size)
@@ -55,7 +74,7 @@ class FileService
 
                 // Освобождаем память
                 imagedestroy($img);
-                imagedestroy($img);
+//                imagedestroy($img);
 
                 $file = new File();
                 $file->original_name = preg_replace('/\.[^.]+$/', '', $fileData['name']);;
@@ -194,7 +213,7 @@ class FileService
             return [
                 'success' => 'true',
             ];
-        } else {
+        }/* else {
 
             $full_path_with_file_name = self::searchFileFolder($path, $fileData['hashed_name'] . '.' . $fileData['extension']);
             if (unlink($full_path_with_file_name[0])) {
@@ -207,7 +226,7 @@ class FileService
                 'success' => 'false',
                 'error' => 'path not found'
             ];
-        }
+        }*/
     }
 
     public static function searchFileFolder($folderName, $fileName)

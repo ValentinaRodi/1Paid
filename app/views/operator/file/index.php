@@ -10,16 +10,15 @@ use yii\grid\GridView;
 /** @var app\search\FileSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Files';
+$this->title = 'Файлы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="file-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php /*
-<!--    <p>-->
-<!--        --><?//= Html::a('Create File', ['create'], ['class' => 'btn btn-success']) ?>
-    <!--    </p>-->
+    <p>
+        <?= Html::a('Create File', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
  */ ?>
 
     <?php if ($editing) { ?>
@@ -37,21 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\CheckboxColumn'],
 
-            'id',
             'original_name',
             'hashed_name',
             'extension',
-            'user_id',
-            'path',
-            //'size',
+//            'user_id',
+//            'path',
+            'size',
             //'created_at',
             //'updated_at',
-            [
+/*            [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, File $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                 }
-            ],
+            ],*/
         ],
     ]); ?>
 

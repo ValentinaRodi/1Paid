@@ -9,7 +9,7 @@ use app\models\{
 use app\services\{
     CategoryService,
     FileService,
-	LangService
+    LangService
 };
 
 class GameService
@@ -78,7 +78,13 @@ class GameService
         return Game::find()
                 ->select('id')
                 ->where(['seo_name' => $seoName])
-                ->asArray()->one()['id'];
+                ->asArray()->one()['id'];// throw new
     }
 
+    public static function getGamesArray()
+    {
+        return Game::find()
+                ->select(['id', 'seo_name'])
+                ->asArray()->all();
+    }
 }

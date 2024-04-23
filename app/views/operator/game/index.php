@@ -10,17 +10,15 @@ use yii\grid\GridView;
 /** @var app\search\GameSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Games';
+$this->title = 'Игры';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="game-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?php if ($editing) { ?>
 
         <p>
-            <?= Html::a('Create Game', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Добавить игру', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
     <?php } ?>
@@ -32,14 +30,34 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'icon_id',
-            'background_id',
             'seo_name',
-            'lang_id',
-            //'new',
-            //'created_at',
-            //'updated_at',
+            'lang.russian',
+            'lang.english',
+//            'file.hashed_name',
+//            'background_id',
+            [
+                'attribute' => 'new',
+                'filter' => [
+                    '0' => 'Нет',
+                    '1' => 'Да'
+                    ],
+                'value' => function ($model){
+                    switch ($model->new) {
+                        case '0' : return 'Нет';
+                        case '1' : return 'Да';
+                    }
+                },
+            ],
+            [
+                'attribute' => 'created_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Создано</span></div>',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'updated_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Изменено</span></div>',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Game $model, $key, $index, $column) {
@@ -48,6 +66,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
 
 </div>

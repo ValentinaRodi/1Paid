@@ -14,43 +14,23 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'icon_id')->textInput() ?>
+    <?= $form->field($model, 'seo_name')->textInput()->label('SEO метка*') ?>
 
-    <?= $form->field($model, 'background_id')->textInput() ?>
+    <?= $form->field($model->lang, 'russian')->textInput()->label('Название на русском*') ?>
+    <?= $form->field($model->lang, 'english')->textInput() ?>
 
-    <?= $form->field($model, 'lang_id')->textInput() ?>
-
-    <?= $form->field($model, 'new')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput(['readonly' => true]) ?>
-
-    <?= $form->field($model, 'updated_at')->textInput(['readonly' => true]) ?>
+    <?= $form->field($model, 'new')->dropDownList([
+        0 => 'Нет',
+        1 => 'Да',
+    ]) ?>
+    
+    <?= $form->field($file, 'icon')->fileInput(['class' => 'form-control'])->label('Иконка', ['class' => 'form-label']) ?>
+    <?= $form->field($file, 'background')->fileInput(['class' => 'form-control'])->label('Фон', ['class' => 'form-label']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-    <div class="game-img-upload">
 
-        <?php $formSave = ActiveForm::begin() ?>
-
-        <?= $formSave->field($file_icon, 'imageFile')->fileInput() ?>
-
-
-        <button class="btn">Сохранить иконку</button>
-
-        <?php ActiveForm::end() ?>
-    </div>
-    <div class="game-img-upload">
-
-        <?php $formSaveBG = ActiveForm::begin() ?>
-
-        <?= $formSaveBG->field($file_background, 'background')->fileInput() ?>
-
-
-        <button class="btn">Сохранить задний фон</button>
-
-        <?php ActiveForm::end() ?>
-    </div>
 </div>

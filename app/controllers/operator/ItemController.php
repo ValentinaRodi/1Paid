@@ -2,13 +2,20 @@
 
 namespace app\controllers\operator;
 
-use app\models\Item;
+use app\models\{
+    Item,
+    Lang
+};
 use app\search\ItemSearch;
-use app\services\RbacService;
+use app\services\{
+    CategoryService,
+    RbacService
+};
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * ItemController implements the CRUD actions for Item model.
@@ -29,7 +36,7 @@ class ItemController extends Controller
             [
                 'access' => [
                     'class' => AccessControl::class,
-                    'only' => ['index', 'view', 'create', 'update', 'delete'], // Устанавливаем правила только для site/user и site/admin. К site/index имеют доступ все.
+                    'only' => ['index', 'view', 'create', 'update', 'delete'],
                     'rules' => [
                         [
                             'allow' => true, // Разрешаем доступ.
@@ -79,11 +86,13 @@ class ItemController extends Controller
     public function actionIndex()
     {
         $searchModel = new ItemSearch();
+        $categories = ArrayHelper::map(CategoryService::getCategoriesArray(), 'id', 'seo_name');
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
             'editing' => RbacService::getRole($this->editing),
             'viewing' => RbacService::getRole($this->viewing),
+            'categories' => $categories,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -112,10 +121,13 @@ class ItemController extends Controller
     public function actionCreate()
     {
         $model = new Item();
+        $model->lang = new Lang();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+echo '<pre>' . print_r($model->errors, true) . '</pre>';die();
             }
         } else {
             $model->loadDefaultValues();

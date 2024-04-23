@@ -10,17 +10,15 @@ use yii\grid\GridView;
 /** @var app\search\FieldSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Fields';
+$this->title = 'Поля';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="field-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?php if ($editing) { ?>
 
         <p>
-            <?= Html::a('Create Field', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Создать поле', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
     <?php } ?>
@@ -32,14 +30,52 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'seo_name',
-            'lang_id',
-            'type',
+            'lang.russian',
+            'lang.english',
+            [
+                'attribute' => 'type',
+                'filter' => [
+                    'options' => 'Опция',
+                    'string' => 'Строка',
+                    'integer' => 'Целое',
+                    'float' => 'Дробное',
+                    'file' => 'Файл'
+                    ],
+                'value' => function ($model){
+                    switch ($model->type) {
+                        case 'options' : return 'Опция';
+                        case 'string' : return 'Строка';
+                        case 'integer' : return 'Целое';
+                        case 'float' : return 'Дробное';
+                        case 'file' : return 'Файл';
+                    }
+                },
+            ],
             'value',
-            //'created_at',
-            //'updated_at',
-            //'search',
+            [
+                'attribute' => 'search',
+                'filter' => [
+                    '0' => 'Нет',
+                    '1' => 'Да'
+                    ],
+                'value' => function ($model){
+                    switch ($model->search) {
+                        case '0' : return 'Нет';
+                        case '1' : return 'Да';
+                    }
+                },
+            ],
+            [
+                'attribute' => 'created_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Создано</span></div>',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'updated_at',
+                'header' => '<div class="date-label"><span class="date-label-text">Изменено</span></div>',
+                'format' => ['datetime', 'php:d.m.Y H:i:s']
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Field $model, $key, $index, $column) {

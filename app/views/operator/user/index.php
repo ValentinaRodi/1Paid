@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\search\UserSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Users';
+$this->title = 'Пользователи';
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerLinkTag([
     'title' => 'style',
@@ -21,12 +21,10 @@ $this->registerLinkTag([
 ?>
 <div class="user-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?php if ($editing) { ?>
 
         <p>
-            <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
     <?php } ?>
@@ -39,7 +37,6 @@ $this->registerLinkTag([
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'name',
             'email:email',
             'email_verified:email',
@@ -50,9 +47,25 @@ $this->registerLinkTag([
             //'created_at',
             //'updated_at',
             //'avatar',
-            //'balance',
-            //'bonus',
-            //'status',
+            'balance',
+            'bonus',
+            [
+                'attribute' => 'status',
+                'filter' => [
+                    '0' => 'Удален',
+                    '1' => 'Забанен',
+                    '9' => 'Неактивен',
+                    '10' => 'Активен',
+                    ],
+                'value' => function ($model){
+                    switch ($model->status) {
+                        case '0' : return 'Удален';
+                        case '1' : return 'Неактивен';
+                        case '9' : return 'Неактивен';
+                        case '10' : return 'Активен';
+                    }
+                },
+            ],
             //'mailing',
             //'notify_sound',
             [

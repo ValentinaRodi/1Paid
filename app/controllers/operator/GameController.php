@@ -2,17 +2,27 @@
 
 namespace app\controllers\operator;
 
-use app\forms\AvatarForm;
-use app\forms\BackgroundFileForm;
-use app\models\Game;
+use app\forms\{
+    FileForm,
+};
+use app\models\{
+    Game,
+    Lang
+};
 use app\search\GameSearch;
-use app\services\FileService;
-use app\services\RbacService;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
+use app\services\{
+    FileService,
+    RbacService
+};
+use yii\filters\{
+    AccessControl,
+    VerbFilter
+};
+use yii\web\{
+    Controller,
+    NotFoundHttpException,
+    UploadedFile
+};
 
 /**
  * GameController implements the CRUD actions for Game model.
@@ -117,10 +127,39 @@ class GameController extends Controller
     public function actionCreate()
     {
         $model = new Game();
+        $model->lang = new Lang();
+        $file = new FileForm();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load(\Yii::$app->request->post())) {
+            $file->icon = UploadedFile::getInstance($file, 'icon');
+            $icon = $file->getData('icon', \Yii::$app->user->id);
+            $file->background = UploadedFile::getInstance($file, 'background');
+            $background = $file->getData('background', \Yii::$app->user->id);
+            $model->icon_id = $icon->id;
+            $model->background_id = $background->id;
+            if ($model->save() &&
+                    FileService::saveFile($file->icon, $icon, 'icon') &&
+                    FileService::saveFile($file->background, $background, 'background')
+                    ) {
+                \Yii::$app->session->setFlash('success', 'Игра успешно добавлена.');
                 return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                if (isset($background) && !empty($background)) {
+                    $icon->delete();
+                }
+                if (isset($background) && !empty($background)) {
+                    $background->delete();
+                }
+/*
+echo '<pre>' . print_r([
+    'Game' => $model->errors,
+    'Icon' => $icon->errors,
+    'Background' => $background->errors,
+    'IconFile' => $file->icon->error,
+    'BackgroundFile' => $file->background->error,
+], true) . '</pre>';die();*/
+
+                \Yii::$app->session->setFlash('error', array_merge($model->errors, $icon->errors, $background->errors));
             }
         } else {
             $model->loadDefaultValues();
@@ -128,6 +167,7 @@ class GameController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'file' => $file,
         ]);
     }
 
@@ -141,62 +181,49 @@ class GameController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $file = new AvatarForm();
-        $file_background = new BackgroundFileForm();
+        $file = new FileForm();
 
-        if ($this->request->isPost) {
-
-            if (!empty((array)UploadedFile::getInstance($file, 'imageFile'))) {
-                $fileData = (array)UploadedFile::getInstance($file, 'imageFile');
-                $fileData['full_path'] = $fileData['fullPath'];
-                $fileData['tmp_name'] = $fileData['tempName'];
-
-                $save_file = FileService::uploadGameImage($fileData, $id, 'icon_id', [126, 126]);
-
-                if ($save_file['success'] == true) {
-                    ?>
-                    <script>alert('Иконка успешно загружена')</script>
-                    <?php
-                    return $this->redirect(['index', 'id' => $model->id]);
-
-                } else {
-                    ?>
-                    <script>alert('ошибка загрузки файла')</script>
-                    <?php
-
-                }
+        if ($this->request->isPost && $model->load(\Yii::$app->request->post())) {
+            $file->icon = UploadedFile::getInstance($file, 'icon');
+            if (isset($file->icon)) {
+                $icon = $file->getData('icon', \Yii::$app->user->id);
+                $model->icon_id = $icon->id;
             }
-            if (!empty((array)UploadedFile::getInstance($file_background, 'background'))) {
-                $fileData = (array)UploadedFile::getInstance($file_background, 'background');
-
-                $fileData['full_path'] = $fileData['fullPath'];
-                $fileData['tmp_name'] = $fileData['tempName'];
-
-                $save_file = FileService::uploadGameImage($fileData, $id, 'background_id', [1260, 390]);
-
-                if ($save_file['success'] == true) {
-                    ?>
-                    <script>alert('Background успешно загружен)</script>
-                    <?php
-                    return $this->redirect(['index', 'id' => $model->id]);
-
-                } else {
-                    ?>
-                    <script>alert('ошибка загрузки файла')</script>
-                    <?php
-
-                }
+            $file->background = UploadedFile::getInstance($file, 'background');
+            if (isset($file->background)) {
+                $background = $file->getData('background', \Yii::$app->user->id);
+                $model->background_id = $background->id;
             }
-            if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-
+            if ($model->save() &&
+                    FileService::saveFile($file->icon, $icon, 'icon') &&
+                    FileService::saveFile($file->background, $background, 'background')
+                    ) {
+                \Yii::$app->session->setFlash('success', 'Игра успешно обновлена.');
                 return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                if (isset($background) && !empty($background)) {
+                    $icon->delete();
+                }
+                if (isset($background) && !empty($background)) {
+                    $background->delete();
+                }
+                /*
+echo '<pre>' . print_r([
+    'Game' => $model->errors,
+    'Icon' => $icon->errors,
+    'Background' => $background->errors,
+    'IconFile' => $file->icon->error,
+    'BackgroundFile' => $file->background->error,
+], true) . '</pre>';die();*/
+                \Yii::$app->session->setFlash('error', array_merge($model->errors, $icon->errors, $background->errors));
             }
+        } else {
+            $model->loadDefaultValues();
         }
 
         return $this->render('update', [
             'model' => $model,
-            'file_icon' => new AvatarForm(),
-            'file_background' => new BackgroundFileForm()
+            'file' => $file,
         ]);
     }
 

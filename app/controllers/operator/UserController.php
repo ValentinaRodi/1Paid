@@ -116,9 +116,12 @@ class UserController extends Controller
     {
         $model = new User();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->setPassword($model->password);
+            if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+//echo '<pre>' . print_r($model->errors, true) . '</pre>';die();
             }
         } else {
             $model->loadDefaultValues();

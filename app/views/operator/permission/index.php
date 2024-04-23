@@ -35,10 +35,10 @@ $jsOptions = ['position' => \yii\web\View::POS_HEAD];
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'russian',
-            'english',
-            'created_at',
-            'updated_at',
+            'lang.russian',
+            'lang.english',
+            'lang.created_at',
+            'lang.updated_at',
 
             [
                 'class' => ActionColumn::className(),

@@ -12,6 +12,8 @@ use yii\db\Query;
  */
 class PermissionSearch extends Permission
 {
+    public $russian;
+    public $english;
     /**
      * {@inheritdoc}
      */
@@ -42,12 +44,13 @@ class PermissionSearch extends Permission
     public function search($params)
     {
 
-        $query = new Query;
+//        $query = new Query;
         // compose the query
-        $query->select(['permission.id', 'lang.russian', 'lang.english', 'lang.created_at', 'lang.updated_at'])
-            ->from('permission')
-            ->join('LEFT JOIN', 'lang', 'lang.id = permission.lang_id')
-            ->where('lang.id = permission.lang_id');
+//        $query->select(['permission.id', 'lang.russian', 'lang.english', 'lang.created_at', 'lang.updated_at'])
+//            ->from('permission')
+//            ->join('LEFT JOIN', 'lang', 'lang.id = permission.lang_id')
+//            ->where('lang.id = permission.lang_id');
+        $query = Permission::find()->joinWith(['lang']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -64,7 +67,8 @@ class PermissionSearch extends Permission
         // grid filtering conditions
         $query->andFilterWhere([
             'permission.id' => $this->id,
-            'lang_id' => $this->lang_id,
+            'lang.russian' => $this->lang->russian,
+            'lang.english' => $this->lang->english,
         ]);
 
         return $dataProvider;

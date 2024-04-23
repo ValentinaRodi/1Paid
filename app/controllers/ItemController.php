@@ -91,9 +91,67 @@ class ItemController extends Controller
         $get = Yii::$app->request->get();
         $item = ItemService::get($get);
         if (Yii::$app->request->isAjax) {
-            return $this->asJson($item);
+            if (!$item) {
+                return $this->asJson([
+                    'success' => false,
+                ]);
+            }
+//            return $this->asJson($item);
+            return $this->asJson([
+                'success' => true,
+                'item' => $item,
+            ]);
         }
         $this->render('item', ['item' => $item]);
+    }
+
+    public function actionSave()
+    {
+        $item_data = Yii::$app->request->post();
+        if ($item_data) {
+            $save_item = ItemService::saveItem($item_data);
+
+            if ($save_item['success'] == true) {
+                return $this->asJson([
+                    'success' => true,
+                    'item_id' => $save_item['item_id']
+                ]);
+            }
+            return $this->asJson([
+                'success' => false,
+                'errors' => $save_item['errors'],
+                $save_item
+            ]);
+        }
+        return $this->asJson([
+            'success' => false,
+            'errors' => 'item data not found!'
+        ]);
+    }
+
+    public function actionGetItemsByParams()
+    {
+        $params = Yii::$app->request->post();
+
+        if ($params) {
+            $items = ItemService::getItemsByParams($params);
+
+            if ($items['success'] == true) {
+                return $this->asJson([
+                    'success' => true,
+                    'items_array' => $items['items_array']
+                ]);
+            }
+            return $this->asJson([
+                'success' => false,
+                'errors' => $items['errors'],
+            ]);
+        }
+        return $this->asJson([
+            'success' => false,
+            'errors' => 'params not found!'
+        ]);
+
     }
 
 }

@@ -76,3 +76,78 @@ input[readonly] {
     width: 100%;
     visibility: visible;
 }
+
+.breadcrumb > li {
+    padding: 2px;
+}
+
+.breadcrumb > li:after {
+    content: '  /';
+}
+
+.breadcrumb > li:last-child:after {
+    content: '';
+}
+
+.form-group {
+    margin-top: 3px;
+}
+
+.date-label {
+    position: relative;
+}
+
+.date-hint {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.date-hint:hover > .date-hint-text {
+    display: block;
+}
+
+.date-hint-text {
+    position: absolute;
+    top: 25px;
+    width: 450px;
+    height: 110px;
+    border: 1px #000 solid;
+    background-color: #fff;
+    border-radius: 20px;
+    display: none;
+}
+
+.date-hint-text > p {
+    margin: 5px;
+}
+
+.form-group.required.has-error > input {
+    border-color: var(--bs-form-invalid-border-color);
+}
+
+.form-group.required.has-error > .help-block {
+    color: var(--bs-form-invalid-border-color);
+}
+
+.grid-view > ul.pagination {
+    justify-content: center;
+}
+
+.grid-view > ul.pagination > li {
+    padding: 15px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 0px 5px;
+}
+
+.grid-view > ul.pagination > li:hover {
+    background-color: white;
+}
+
+.grid-view > ul.pagination > li.active > a {
+    font-weight: bold;
+}
+
+.grid-view > ul.pagination > li.disabled {
+    display: none;
+}

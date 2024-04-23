@@ -47,11 +47,11 @@ class File extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'original_name' => 'Original Name',
-            'hashed_name' => 'Hashed Name',
-            'extension' => 'Extension',
+            'original_name' => 'Оригинальное имя',
+            'hashed_name' => 'Уникальное имя',
+            'extension' => 'Расширение',
             'user_id' => 'User ID',
-            'size' => 'Size',
+            'size' => 'Размер',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

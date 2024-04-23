@@ -13,8 +13,6 @@ class ProfileService
     {
         if (!Yii::$app->user->isGuest) {
             $user = &Yii::$app->user->identity;
-//            var_dump($user);
-//            var_dump($user);
             return [
                 'success' => true,
                 'name' => $user->name,
@@ -29,7 +27,7 @@ class ProfileService
                 'notify_sound' => boolval($user->notify_sound)
             ];
         }
-        return ['logged' => false];
+        return false;
     }
 
     public static function edit($post): array

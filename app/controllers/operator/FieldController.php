@@ -2,7 +2,10 @@
 
 namespace app\controllers\operator;
 
-use app\models\Field;
+use app\models\{
+    Field,
+    Lang
+};
 use app\search\FieldSearch;
 use app\services\FieldService;
 use app\services\RbacService;
@@ -99,10 +102,11 @@ class FieldController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
         return $this->render('view', [
             'editing' => RbacService::getRole($this->editing),
             'viewing' => RbacService::getRole($this->viewing),
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -114,6 +118,7 @@ class FieldController extends Controller
     public function actionCreate()
     {
         $model = new Field();
+        $model->lang = new Lang();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -157,7 +162,7 @@ class FieldController extends Controller
      */
     public function actionDelete($id)
     {
-//        $this->findModel($id)->delete();
+        $this->findModel($id)->delete();
 // удалить запись из field_category
 
         return $this->redirect(['index']);
