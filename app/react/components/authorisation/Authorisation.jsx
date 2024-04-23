@@ -157,8 +157,8 @@ function Authorisation(props) {
     }, [textError]);
     
     return (
-        <div className="fixed inset-x-0 inset-y-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0">
-            <div className="z-20 bg-[#F7F7FC] w-screen min-[540px]:w-[540px] rounded-3xl px-10 pb-10 pt-5">
+        <div className="z-[1000] fixed inset-x-0 inset-y-0 flex items-start md:items-center justify-center mt-[10%] md:mt-0">
+            <div className=" bg-[#F7F7FC] w-screen min-[540px]:w-[540px] rounded-3xl px-4 sm:px-10 pb-8 sm:pb-10 pt-4 sm:pt-5">
                 <div className="flex justify-end">
                     <button
                         onClick={props.closeModal}
@@ -172,7 +172,7 @@ function Authorisation(props) {
                         Авторизация
                     </h1>
                     <div
-                        className={`${errorEmail} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6`}
+                        className={`${errorEmail} input-wrapper px-6 pt-4 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-6 flex items-center justify-between`}
                     >
                         <input
                             onChange={handleEmailChange}
@@ -181,7 +181,7 @@ function Authorisation(props) {
                             name="name"
                             id="name"
                             placeholder=" "
-                            className="input input-label family-bold h-10 w-full outline-none text-black"
+                            className="input input-label family-bold w-full outline-none text-black"
                         />
                         <label
                             htmlFor="name"
@@ -191,7 +191,7 @@ function Authorisation(props) {
                         </label>
                     </div>
                     <div
-                        className={`${errorPassword} input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-2 flex items-center justify-between`}
+                        className={`${errorPassword} input-wrapper px-6 pt-4 bg-white rounded-xl h-[70px] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mb-2 flex items-center justify-between`}
                     >
                         <div className="w-full">
                             <input
@@ -201,7 +201,7 @@ function Authorisation(props) {
                                 name="password"
                                 id="password"
                                 placeholder=" "
-                                className="input w-full input-label family-bold h-10 w-full outline-none text-black"
+                                className="input w-full input-label family-bold  w-full outline-none text-black"
                             />
                             <label
                                 htmlFor="password"
@@ -254,7 +254,7 @@ function Authorisation(props) {
                     <div className="flex justify-between gap-2 items-center">
                         <button
                             onClick={handleSubmit}
-                            className="main_btn flex justify-center items-center gap-3 px-0 text-base rounded-xl xs:rounded-lg w-[230px] h-14 sm:h-[70px] text-white uppercase"
+                            className="main_btn flex justify-center items-center gap-3 px-0 text-base rounded-xl xs:rounded-lg w-[230px] h-12 sm:h-[70px] text-white uppercase"
                         >
                             войти
                             <img src={lock} alt="open lock" className="mb-2" />
@@ -263,9 +263,9 @@ function Authorisation(props) {
                             или
                         </p>
                         <div className="flex">
-                            <button className="inst shadow-[0px_4px_15px_2px_rgba(249,181,68,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-1"></button>
-                            <button className="gmail shadow-[0px_4px_15px_2px_rgba(255,138,128,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-1"></button>
-                            <button className="p-vk shadow-[0px_4px_15px_2px_rgba(100,122,232,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-1"></button>
+                            <button className="inst shadow-[0px_4px_15px_2px_rgba(249,181,68,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-10 sm:w-12 h-10 sm:h-12 mr-1"></button>
+                            <button className="gmail shadow-[0px_4px_15px_2px_rgba(255,138,128,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-10 sm:w-12 h-10 sm:h-12 mr-1"></button>
+                            <button className="p-vk shadow-[0px_4px_15px_2px_rgba(100,122,232,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-10 sm:w-12 h-10 sm:h-12 "></button>
                         </div>
                     </div>
                 </form>
@@ -277,7 +277,7 @@ function Authorisation(props) {
                     onClick={() => {
                         props.openRegistration();
                     }}
-                    className="w-full h-[70px] bg-[#ECECF7] hover:bg-[rgba(208,216,243,1)] rounded-xl text-base text-[#9595AE] uppercase"
+                    className="w-full h-14 sm:h-[70px] bg-[#ECECF7] hover:bg-[rgba(208,216,243,1)] rounded-xl text-base text-[#9595AE] uppercase"
                 >
                     Создать аккаунт
                 </button>

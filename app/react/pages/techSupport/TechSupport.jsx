@@ -59,7 +59,7 @@ function TechSupport() {
                                 </div>
                                 <div className="chat-head-user flex gap-3">
                                     <div className="chat-head-username flex font-secondary-bold text-sm sm:text-base text-black">Support</div>
-                                    <img  src="/img/icon-comp.svg" alt="online"/>
+                                    {/* <img  src="/img/icon-comp.svg" alt="online"/> */}
                                 </div>
                             </div>
                         </div>

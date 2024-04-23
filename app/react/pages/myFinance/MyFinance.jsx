@@ -20,7 +20,7 @@ function MyFinance() {
     const addFunds = () => {
         body.style.overflow = 'hidden';
         setModalEl(<AddBalance
-            closeModal={closeModal}
+            closeModal={closeModal} title='Пополнение баланса'
         />);
         setModalOpen(true);
     };
@@ -75,9 +75,46 @@ function MyFinance() {
     const arr = ['За все время', 'За месяц', 'За неделю', 'За день'];
     const navArr =['Все операции', 'История пополнения', 'История вывода', 'Расходы', 'Заработанно'];
     const arrItem = [
-        {'balance': 'Вывод баланса'},
-        {'balance': 'Вывод баланса'},
-        {'balance': 'Пополнение баланса'},
+        {   
+            'balance': 'output',
+            'name': 'Вывод баланса',
+            'stage': 'progress',
+        },
+        {
+            'balance': 'output',
+            'name': 'Вывод баланса',
+            'stage': 'cancel',
+        },
+        {
+            'balance': 'output',
+            'name': 'Вывод баланса',
+            'stage': 'true',
+        },
+        {
+            'balance': 'add',
+            'name': 'Пополнение баланса',
+            'stage': 'progress',
+        },
+        {
+            'balance': 'add',
+            'name': 'Пополнение баланса',
+            'stage': 'true',
+        },
+        {
+            'balance': 'outlay',
+            'name': 'Расход',
+            'stage': 'false',
+        },
+        {
+            'balance': 'earn',
+            'name': 'Заработано',
+            'stage': 'false',
+        },
+        {
+            'balance': 'return',
+            'name': 'Возврат',
+            'stage': 'false',
+        },
     ];
 
     return (
@@ -106,38 +143,38 @@ function MyFinance() {
                         <div className="fh-feed mt-4 sm:mt-6 grid grid-cols-1 gap-3">
                             {(indexNav === 0 && arrItem.length !== 0) ?
                                 arrItem.map((item, index) => (
-                                    <FinanceItem key={uuid()} index={index} name={item.balance} numOper='2478271' time='48' money='+163.50' data='15.02.2023, 22:12'/>
+                                    <FinanceItem key={uuid()} index={index} stage={item.stage} balance={item.balance} name={item.name} numOper='2478271' time='48' money='+163.50' data='15.02.2023, 22:12'/>
                                 ))
-                                : null
+                               : null
                             }
                             {(indexNav === 1 && arrItem.length !== 0) ?
                                 arrItem.map((item, index) => {
-                                    if(item.balance === 'Пополнение баланса') {
-                                        return <FinanceItem key={uuid()} index={index} name={item.balance} numOper='2478271' time='48' money='+163.50' data='15.02.2023, 22:12'/>
+                                    if(item.balance === 'add') {
+                                        return <FinanceItem key={uuid()} index={index} stage={item.stage} balance={item.balance} name={item.name} numOper='2478271' time='48' money='+163.50' data='15.02.2023, 22:12'/>
                                     }
                                 })
                                 : null
                             }
                             {(indexNav === 2 && arrItem.length !== 0) ?
                                 arrItem.map((item, index) => {
-                                    if(item.balance === 'Вывод баланса') {
-                                        return <FinanceItem key={uuid()} index={index} name={item.balance} numOper='2478271' time='48' money='+163.50' data='15.02.2023, 22:12'/>
+                                    if(item.balance === 'output') {
+                                        return <FinanceItem key={uuid()} index={index} stage={item.stage} balance={item.balance} name={item.name} numOper='2478271' time='48' money='+163.50' data='15.02.2023, 22:12'/>
                                     }                                
                                 })
                                 : null
                             }
                             {(indexNav === 3 && arrItem.length !== 0) ?
                                 arrItem.map((item, index) => {
-                                    if(item.balance === 'Расходы') {
-                                        return <FinanceItem key={uuid()} index={index} name={item.balance} numOper='2478271' time='48' money='+163.50' data='15.02.2023, 22:12'/>
+                                    if(item.balance === 'outlay') {
+                                        return <FinanceItem key={uuid()} index={index} stage={item.stage} balance={item.balance} name={item.name} numOper='2478271' time='48' money='-200.50' data='15.02.2023, 22:12'/>
                                     }                                
                                 })
                                 : null
                             }
                             {(indexNav === 4 && arrItem.length !== 0) ?
                                 arrItem.map((item, index) => {
-                                    if(item.balance === 'Заработано') {
-                                        return <FinanceItem key={uuid()} index={index} name={item.balance} numOper='2478271' time='48' money='+163.50' data='15.02.2023, 22:12'/>
+                                    if(item.balance === 'earn') {
+                                        return <FinanceItem key={uuid()} index={index} stage={item.stage} balance={item.balance} name={item.name} numOper='2478271' time='48' money='+163.50' data='15.02.2023, 22:12'/>
                                     }                                
                                 })
                                 : null

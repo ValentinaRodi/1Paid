@@ -5,12 +5,12 @@ import LayoutBtn from '../../components/LayoutBtn';
 
 function ProfileEdit(props) {
 
-    useEffect(() => {
-        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
-        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
-        const totalHeight = headerHeight + mainHeight;
-        document.querySelector('.lf-feed').style.height = totalHeight + "px";
-    }, []);
+    // useEffect(() => {
+    //     const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+    //     const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+    //     const totalHeight = headerHeight + mainHeight;
+    //     document.querySelector('.lf-feed').style.height = totalHeight + "px";
+    // }, []);
 
     const changeLoggedFalse = () => {
         
@@ -39,19 +39,18 @@ function ProfileEdit(props) {
 
     return (
         <div className="layout-b pb-4 px-9 3xl:px-4 min-w-0 px-5 ">
-            <div className="sps layout-main">
+            <div className="relative sps layout-main">
                 <Title title='Настройки профиля'/>
                 <div className="sps-main bg-none lg:bg-white flex flex-wrap gap-3 lg:flex-nowrap w-full rounded-xl">
+                    
                     <div className="sps-bar p-4 bg-white flex flex-col items-start font-secondary-bold ">
-                        <div
-                            className="sps-avatar flex-shrink-0 w-[258px] h-[258px] mb-[12px] overflow-hidden rounded-[12px] relative">
-                            <img id="img_user_avatar" className="sps-avatar-pic w-full h-full object-cover"
-                                    src={props.user.avatarBig} alt="user"/>
-                            <div onClick={props.openUploadModal}
-                                className="sps-avatar-action flex justify-center items-center bg-black/40 top-0 left-0 w-full h-full absolute cursor-pointer">
-
-                                <div
-                                    className="sps-avatar-icon flex justify-center items-center flex-shrink-0 w-[56px] h-[56px] [&amp;_svg]:w-full">
+                        
+                        <div className="sps-avatar flex-shrink-0 w-[258px] h-[258px] mb-[12px] overflow-hidden rounded-[12px] relative">
+                            {/* <img id="img_user_avatar" className="sps-avatar-pic w-full h-full object-cover"
+                                    src={props.user.avatarBig} alt="user"/> */}
+                            <img className="sps-avatar-pic w-full h-full object-cover" src='img/avatar-example-5.00d4721a.png' alt="user" />
+                            <div onClick={props.openUploadModal} className="sps-avatar-action flex justify-center items-center bg-black/40 top-0 left-0 w-full h-full absolute cursor-pointer">
+                                <div className="sps-avatar-icon flex justify-center items-center flex-shrink-0 w-[56px] h-[56px] [&amp;_svg]:w-full">
                                     <svg width="56" height="49" viewBox="0 0 56 49" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                         <path fillRule="evenodd" clipRule="evenodd"
@@ -67,6 +66,7 @@ function ProfileEdit(props) {
                                             d="M8.3726 0C6.96679 0 5.82715 1.13964 5.82715 2.54545C5.82715 3.95127 6.96679 5.09091 8.3726 5.09091H18.5544C19.9602 5.09091 21.0999 3.95127 21.0999 2.54545C21.0999 1.13964 19.9602 0 18.5544 0H8.3726Z"
                                             fill="#D7D7D7"></path>
                                     </svg>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@ function ProfileEdit(props) {
                             className="sps-user-status block text-[14px] max-w-max py-[2px] px-[8px] mb-[12px] text-[#8CD23C] text-center border border-[#8CD23C] rounded-full">В сети</span>
                         <div className="sps-user-actions w-full pt-[12px] border-t border-[#DBE0ED]">
                             <button onClick={changeLoggedFalse}
-                                className="sps-user-action self-start text-[#ACB6CC] text-[14px] border-b border-[#ACB6CC]">Выйти
+                                className="sps-user-action self-start text-[#ACB6CC] bg-inherit text-[14px] border-b border-[#ACB6CC]">Выйти
                                 из аккаунта
                             </button>
                         </div>
@@ -109,13 +109,13 @@ function ProfileEdit(props) {
                                     <label className="input-label mb-2 sm:mb-4 text-xs sm:text-sm">Секретное слово</label>
                                     <input onChange={props.handleSecretWord} id="input_user_secret_word"
                                            className={` bg-[#EAEBF8] p-[12px] text-xs sm:text-sm border border-[#CED0E8] rounded-[4px]`}
-                                           type="text" placeholder={props.user.secret_word}/>
+                                           type="text" placeholder={`${props.user.secret_word} ● ● ● 1`}/>
                                     <span className={ `${props.errorSecretWord} text-xs sm:text-sm text-red-600`}>Секретное слово введено некорректно.</span>
                                 </div>
                                 <div id='pass_edit' className="input-wrapper flex flex-col font-secondary-bold text-black">
                                     <label className="input-label mb-2 sm:mb-4 text-xs sm:text-sm">Пароль</label>
                                     <input id="input_user_password"
-                                           className="bg-[#EAEBF8] p-[12px] text-xs sm:text-sm border border-[#CED0E8] rounded-[4px]"
+                                           className="bg-[#EAEBF8] px-[12px] py-[7px] text-[20px] border border-[#CED0E8] rounded-[4px]"
                                            type="password" value={props.user.password} disabled/>
                                     <button onClick={props.openPasswordEditPopup} className="text-xs sm:text-sm mt-px bg-inherit text-[#8991a3]">Изменить
                                     </button>
@@ -179,6 +179,12 @@ function ProfileEdit(props) {
                             </div>
                     </div>
                 </div>
+                {props.showModalSubmit ?
+                    <div className='absolute top-0 right-0 bg-[#0F0F0F80] rounded-xl w-[240px] h-[38px] flex items-center justify-center'>
+                        <p className='font-secondary-bold text-sm text-white'>Изменения сохранены</p>
+                    </div>
+                    : null
+                }
             </div>
             <LayoutBtn />
         </div>

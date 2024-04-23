@@ -6,7 +6,7 @@ import TopBanner from '../../components/topBanner/TopBanner';
 function GiveAway() {
     const [registVk, setRegistVk] = useState(false);
     const [join, setJoin] = useState(false);
-    const [finish, setFinish] = useState(false);
+    const [finish, setFinish] = useState(true);
 
     
     const clickRegisterVk = () => {
@@ -36,8 +36,8 @@ function GiveAway() {
                         </div>
                     </div>
                 </div>
-                <div  className="sg-head flex flex-wrap items-end gap-3 ">
-                    <div className='h-full bg-white rounded-xl flex p-5 gap-5 min-w-[780px]'>
+                <div  className="sg-head flex items-end gap-3 justify-between">
+                    <div className='h-full bg-white rounded-xl flex flex-wrap min-[1910px]:flex-nowrap items-center grow justify-between p-5 gap-5 min-w-[780px]'>
                         <div className='flex gap-3'>
                             <div  className="sg-priz-pic flex-shrink-0 w-[65px] h-[65px] overflow-hidden mt-2">
                                 <img  className="sg-priz-pic w-full h-full object-cover" src="/img/giveaway-item.19f85331.png" alt="user"/>
@@ -47,7 +47,7 @@ function GiveAway() {
                                     <div  className="sg-priz-title font-secondary-bold text-black text-[13px]">Аккаунт Warface</div>
                                     <div  className="sg-priz-description font-secondary-med text-[10px] text-[#BEC1DB]">25 Ранг</div>
                                 </div>
-                                <div className="sg-text font-primary-med text-[14px] text-[#ACBAD8] leading-4">Чтобы принять участие Вы должны подписаться на наш ВК.</div>
+                                <div className="sg-text min-w-[215px] font-primary-med text-[14px] text-[#ACBAD8] leading-4">Чтобы принять участие Вы должны подписаться на наш ВК.</div>
                             </div>
                         </div>
                         {finish ?
@@ -128,8 +128,8 @@ function GiveAway() {
                         {finish ?
                             null
                             :
-                            <div className=''>
-                                <button onClick={clickRegisterVk} className={`${registVk ? "bg-[#EFEFEF] border-solid border border-[#C7C7C7] cursor-default" : "bg-gradient-primary bg-gradient-primary-hover"} flex justify-center items-center  rounded-full  min-w-[184px] h-[41px] mb-3 gap-1`}>
+                            <div className='flex flex-col min-[2100px]:flex-row gap-x-3 gap-y-3 grow-0'>
+                                <button onClick={clickRegisterVk} className={`${registVk ? "bg-[#EFEFEF] border-solid border border-[#C7C7C7] cursor-default" : "bg-gradient-primary bg-gradient-primary-hover"} flex justify-center items-center  rounded-full  min-w-[184px] h-[41px] gap-1`}>
                                     <div  className="svk-icon flex-shrink-0 w-[18px] h-[18px] flex justify-center items-center">
                                         <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path fillRule="evenodd" clipRule="evenodd" d="M9.88275 9.90579C9.88275 9.90579 10.2076 9.87083 10.374 9.69771C10.5263 9.53908 10.521 9.23975 10.521 9.23975C10.521 9.23975 10.5008 7.842 11.1707 7.63562C11.831 7.43265 12.6788 8.98732 13.5786 9.58514C14.2582 10.0371 14.7741 9.9382 14.7741 9.9382L17.1785 9.90579C17.1785 9.90579 18.4356 9.83074 17.8396 8.87304C17.7903 8.79458 17.4919 8.16436 16.0525 6.8698C14.5444 5.51468 14.7469 5.73386 16.5622 3.38949C17.668 1.96189 18.1099 1.09032 17.9717 0.71764C17.8405 0.361166 17.027 0.455828 17.027 0.455828L14.3207 0.472031C14.3207 0.472031 14.12 0.445594 13.9712 0.531727C13.826 0.616155 13.7318 0.813154 13.7318 0.813154C13.7318 0.813154 13.3039 1.91754 12.7325 2.85733C11.5273 4.83926 11.0457 4.94416 10.8485 4.82135C10.3898 4.53395 10.5043 3.66835 10.5043 3.05348C10.5043 1.1321 10.8054 0.331318 9.91884 0.124085C9.62479 0.0550078 9.40822 0.00980903 8.6555 0.00213375C7.68972 -0.00724713 6.87273 0.00554498 6.40965 0.224717C6.10151 0.370547 5.86381 0.696319 6.00907 0.715081C6.18779 0.738107 6.59276 0.820829 6.80758 1.10396C7.0849 1.46982 7.07521 2.29022 7.07521 2.29022C7.07521 2.29022 7.23456 4.55186 6.70281 4.83244C6.33833 5.02517 5.83828 4.63203 4.76333 2.83346C4.2131 1.91242 3.79756 0.894171 3.79756 0.894171C3.79756 0.894171 3.71744 0.703995 3.57394 0.601658C3.4005 0.478001 3.1584 0.439624 3.1584 0.439624L0.586807 0.455828C0.586807 0.455828 0.20032 0.466061 0.0585791 0.628947C-0.0673154 0.773072 0.0488949 1.07241 0.0488949 1.07241C0.0488949 1.07241 2.06233 5.63578 4.34251 7.9358C6.43342 10.0439 8.80692 9.90579 8.80692 9.90579H9.88275Z" fill={registVk ? "#C7C7C7 " : "white"}></path>
@@ -175,7 +175,7 @@ function GiveAway() {
                         : null
                     }
                     {finish ?
-                        <div className="stu-total font-secondary-bold text-lg text-[#C5CFE4] gap-3 flex flex-col mb-3">Победитель
+                        <div className="stu-total min-w-[467px] font-secondary-bold text-lg text-[#C5CFE4] gap-3 flex flex-col mb-3">Победитель
                             <div className="tuc rounded-xl p-6 flex items-center gap-4 bg-white">
                                 <div className="tuc-avatar font-secondary-bold text-lg text-gradient-blue pr-6">#3213</div>
                                 <div className="tuc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">

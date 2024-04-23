@@ -5,11 +5,13 @@ import Rating from '../../components/rating/Rating';
 import uuid from 'react-uuid';
 import Pagination from '../../components/pagination/Pagination';
 import Title from "../../components/title/Title";
+import { useNavigate } from 'react-router-dom';
 
 function CardTovar() {
     const [tab, setTab] = useState([true, false, false]);
     const [donat, setDonat] = useState([true, false, false, false, false]);
-    
+    const navigate = useNavigate();
+
     const clickTab = (index) => {
         const newTab = tab.map((item, i) => i === index ? true : false);
         setTab(newTab);
@@ -19,6 +21,15 @@ function CardTovar() {
         const newDonat = donat.map((item, i) => i === index ? true : false);
         setDonat(newDonat);
     };
+
+    const openChat = () => {
+        navigate('/chat',  { state: {name:'100 первых мест в быстром варианте своими руками', description:'Оружие в идеальном состоянии, прямо из завода.', price:'3 699', newCard:'new', rank:'4.8' } });
+    };
+
+    const goMyMessages = () => {
+        navigate('/my-messages');
+    };
+
 
     const arr = [0,1,2,3,4,5,6,7,8,9];
 
@@ -78,11 +89,11 @@ function CardTovar() {
                         <div>
                             <Rating name='Shenderro' reviews='1555' rank='4.8'/>
                             <div className='flex justify-start gap-3 mt-8'>
-                                <button className='w-[154px] h-[44px] btn btn-secondary rounded-[33px] flex gap-2 items-center justify-center'>
+                                <button onClick={openChat} className='w-[154px] h-[44px] btn btn-secondary rounded-[33px] flex gap-2 items-center justify-center'>
                                     <img className="w-[20px] h-[20px]" src="/img/icon-buy.5c571de4.svg" alt="buy"/>
                                     <div className='font-secondary-bold text-white text-sm'>3 699 РУБ.</div>
                                 </button>
-                                <button className="w-11 h-11 rounded-full flex items-center justify-center bg-gradient-primary shadow-2xl">
+                                <button onClick={goMyMessages} className="w-11 h-11 btn rounded-full flex items-center justify-center bg-gradient-primary shadow-2xl">
                                     <div className="btn-icon text-[#BDC6E0] w-[22px] h-[19px] text-white">
                                         <img src="/img/icon-btn-icon-13.svg" alt="btn-icon"/>
                                     </div>

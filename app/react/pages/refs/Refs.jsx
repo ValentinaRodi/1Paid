@@ -6,15 +6,24 @@ import RefsItem from '../../components/refsItem/RefsItem';
 import uuid from 'react-uuid';
 
 function Refs() {
-
+    const [copyRef, setCopyRef] = useState(false);
     const [refs, setRefs] = useState('https://1paid.com/ref/38921');
 
     const handleCopy = () => {
+        setCopyRef(true);
         //Только по протоколу HTTPS
         if(window.isSecureContext) {
             navigator.clipboard.writeText(refs);
         };
     };
+
+    useEffect(() => {
+        if (copyRef) {
+            setTimeout(() => {
+                setCopyRef(false);
+          }, 2000);
+        }
+    }, [copyRef, setCopyRef]);
 
     const arr = [0,1,2];
 
@@ -45,9 +54,15 @@ function Refs() {
                                         <div className="srd-link-block flex items-center justify-between bg-[#EAEBF8] h-[48px] p-3 sm:p-4 rounded-[4px] gap-2">
                                             <div className="font-secondary-bold break-all text-xs sm:text-sm text-black">{refs}</div>
                                             <button onClick={handleCopy} className="srd-link-btn bg-inherit flex justify-center items-center flex-shrink-0 w-[18px] h-[18px] [&amp;_svg]:w-full text-[#BEC1DE]">
-                                                <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fillRule="evenodd" clipRule="evenodd" d="M9.89444 0.987331C9.49032 0.404796 8.82676 0.0568308 8.11778 0.0556641H2.16667C0.97005 0.0556641 0 1.02571 0 2.22233V13.7779C0 14.9745 0.97005 15.9446 2.16667 15.9446H10.8333C12.03 15.9446 13 14.9745 13 13.7779V6.12233C12.999 5.68053 12.8629 5.24961 12.61 4.88733L9.89444 0.987331ZM11.5548 13.7779C11.5548 14.1767 11.2314 14.5001 10.8325 14.5001H2.16586C1.76699 14.5001 1.44364 14.1767 1.44364 13.7779V2.22232C1.44364 1.82345 1.76699 1.5001 2.16586 1.5001H8.11697C8.3533 1.50048 8.57449 1.61647 8.7092 1.81065L11.4248 5.71065C11.509 5.83141 11.5544 5.97505 11.5548 6.12232V13.7779Z" fill="#BEC1DE"></path>
-                                                </svg>
+                                                {!copyRef ?
+                                                    <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fillRule="evenodd" clipRule="evenodd" d="M9.89444 0.987331C9.49032 0.404796 8.82676 0.0568308 8.11778 0.0556641H2.16667C0.97005 0.0556641 0 1.02571 0 2.22233V13.7779C0 14.9745 0.97005 15.9446 2.16667 15.9446H10.8333C12.03 15.9446 13 14.9745 13 13.7779V6.12233C12.999 5.68053 12.8629 5.24961 12.61 4.88733L9.89444 0.987331ZM11.5548 13.7779C11.5548 14.1767 11.2314 14.5001 10.8325 14.5001H2.16586C1.76699 14.5001 1.44364 14.1767 1.44364 13.7779V2.22232C1.44364 1.82345 1.76699 1.5001 2.16586 1.5001H8.11697C8.3533 1.50048 8.57449 1.61647 8.7092 1.81065L11.4248 5.71065C11.509 5.83141 11.5544 5.97505 11.5548 6.12232V13.7779Z" fill="#BEC1DE"></path>
+                                                    </svg>
+                                                    : 
+                                                    <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.8216 0.694128C15.994 0.895687 16.0793 1.15748 16.0587 1.42191C16.038 1.68634 15.9132 1.93174 15.7116 2.10413L6.12163 10.3341C5.62703 10.7557 4.88666 10.707 4.45163 10.2241L0.26163 5.61413C0.020476 5.34975 -0.0613165 4.9768 0.0470632 4.63577C0.155443 4.29474 0.437529 4.03743 0.787063 3.96077C1.1366 3.88411 1.50048 3.99975 1.74163 4.26413L5.41163 8.26413L14.4116 0.554128C14.617 0.385221 14.8811 0.305042 15.1457 0.331312C15.4103 0.357583 15.6535 0.48814 15.8216 0.694128Z" fill="#8CD23C"/>
+                                                    </svg>
+                                                }
                                             </button>
                                         </div>
                                     </div>

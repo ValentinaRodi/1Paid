@@ -29,6 +29,8 @@ import Roulette from '../pages/roulette/Roulette';
 import CardTovar from '../pages/cardTovar/CardTovar';
 import Forum from '../pages/forum/Forum';
 import Contacts from '../pages/contacts/Сontacts';
+import Chat from '../pages/chat/Chat';
+import LendingPage from '../pages/lending/Lending';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -68,6 +70,8 @@ export const useRoutes = () => {
       <Route path='/faq' element={<Faq />} />
       <Route path='/catalog/Warface/1-account' element={<CardTovar />} />
       <Route path='/contacts' element={<Contacts />} />
+      <Route path='/lending' element={<LendingPage />} />
+      <Route path='/forum' element={<Forum />} />
       
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
@@ -77,6 +81,7 @@ export const useRoutes = () => {
         <Route path="/history_sales" element={<HistorySales />} />
         <Route path='/my-achievements' element={<MyAchievements />} />
         <Route path='/my-notifications' element={<MyNotifications />} />
+        <Route path='/tovars' element={<CardTovar />} />
         <Route path='/my-tovars' element={<MyTovars />} />
         <Route path='/my-finance' element={<MyFinance />} />
         <Route path='/refs' element={<Refs />} />
@@ -85,7 +90,7 @@ export const useRoutes = () => {
         <Route path='/my-messages' element={<MyMessages />} />
         <Route path='/giveaway' element={<GiveAway />} />
         <Route path='/roulette' element={<Roulette />} />
-        <Route path='/forum' element={<Forum />} />
+        <Route path='/chat' element={<Chat />} />
       </Route>
     </Routes> 
   );

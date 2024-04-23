@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import Select from '../select/Select';
+import SelectCheck from '../selectCheck/SelectCheck';
 import uuid from 'react-uuid';
 import Input from '../Input';
 import { createRoot } from "react-dom/client";
+import ImageUploader from '../imageUploader/ImageUploader';
 
 function AddProduct(props) {
     const [title, setTitle] = useState('');
@@ -141,6 +143,8 @@ function AddProduct(props) {
         });
     }, []);
 
+    const arrContent = ['Содержимое1', 'Содержимое2', 'Содержимое3', 'Содержимое4','Содержимое1', 'Содержимое2', 'Содержимое3', 'Содержимое4','Содержимое1', 'Содержимое2', 'Содержимое3', 'Содержимое4','Содержимое1', 'Содержимое2', 'Содержимое3', 'Содержимое4','Содержимое1', 'Содержимое2', 'Содержимое3', 'Содержимое4',]
+
     const fieldsBlockAdd = (
         <div key={uuid()} className='rounded-xl border border-solid border-[#E9EAF4] px-3 pt-3 mb-3'>
             <div className='flex justify-end'>
@@ -165,8 +169,9 @@ function AddProduct(props) {
                                 )
                             }
                         })
-                    ) : (<div></div>)
-                }
+                    ) 
+                    : (<div></div>)
+                }        
             </div>
         </div>
     );
@@ -191,6 +196,14 @@ function AddProduct(props) {
         const parentFieldsBlock = document.getElementById('parentFieldsAdd');
         const fieldsBlock = document.getElementById(index);
         parentFieldsBlock.removeChild(fieldsBlock);
+    };
+
+    const clickAddImg = () => {
+
+    };
+
+    const clickDeleteImg = () => {
+
     };
 
     return (
@@ -227,6 +240,13 @@ function AddProduct(props) {
                                                 <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
                                             </div>
                                         )
+                                    };
+                                    if(item.type === 'options-check') {
+                                        return (
+                                            <div key={item.id} className='w-[32%] '>
+                                                <SelectCheck arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
+                                            </div>
+                                        )
                                     }
                                 })
                             ) : (<div></div>)
@@ -245,18 +265,21 @@ function AddProduct(props) {
                     <div ></div>
                     <div className='h-px w-full bg-[#E9EAF4] mb-6'></div>
                     <div>
-                        <label htmlFor="title" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Заголовок</label>
-                        <input onChange={handleTitleChange} value={title} type="text" name="title" id='title' placeholder='Продам аккаунт' className={`${error} mb-5 family-acrom-bold placeholder:text-[#BAC9E5] text-[13px] rounded px-4 mb-2 border-solid border-red-error bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black`}/>
+                        <label htmlFor="title" className='block font-secondary-bold text-black font-bold text-xs mb-4'>Заголовок</label>
+                        <input onChange={handleTitleChange} value={title} type="text" name="title" id='title' placeholder='Продам аккаунт' className={`${error} mb-5 font-secondary-bold placeholder:text-[#BAC9E5] text-[13px] rounded px-4 mb-2 border-solid border-red-error bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black`}/>
                     </div>
                     <div className='flex justify-between flex-wrap mb-6 gap-y-5'>
                         <div className='w-full sm:w-[48%]'>
-                            <label htmlFor="about" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Описание (Не обязательно)</label>
-                            <input type="text" name="about" id='about' placeholder="Описание" className='family-acrom-bold placeholder:text-[#BAC9E5] text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
+                            <label htmlFor="about" className='block font-secondary-bold text-black font-bold text-xs mb-4'>Описание (Не обязательно)</label>
+                            <input type="text" name="about" id='about' placeholder="Описание" className='font-secondary-bold placeholder:text-[#BAC9E5] text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
                         </div>
                         <div className='w-full sm:w-[48%]'>
-                            <label htmlFor="price" className='block family-acrom-bold text-black font-bold text-xs mb-4'>Цена</label>
-                            <input type="text" name="price" id='price' placeholder="2000 Рублей" className='family-acrom-bold placeholder:text-[#BAC9E5] text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
+                            <label htmlFor="price" className='block font-secondary-bold text-black font-bold text-xs mb-4'>Цена</label>
+                            <input type="text" name="price" id='price' placeholder="2000 Рублей" className='font-secondary-bold placeholder:text-[#BAC9E5] text-[13px] rounded px-4 border-solid border-[#CED0E840] bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black'/>
                         </div>
+                    </div>
+                    <div className='mb-6'>
+                        <ImageUploader />
                     </div>
                     <div className='flex justify-between gap-1 items-center'>
                         <button onClick={handleSubmit} className="p-btn px-0 text-base rounded-lg w-full h-[60px] text-white shadow-[0px_4px_24px_0px_#A63DFD40]">Продать товар</button>

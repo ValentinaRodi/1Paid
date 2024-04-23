@@ -1,24 +1,17 @@
 import { useState, useEffect } from 'react';
-import LayoutBtn from '../../components/LayoutBtn';
-import { Link } from 'react-router-dom';
-import Pagination from '../../components/pagination/Pagination';
-import Title from '../../components/title/Title';
-
+import { useNavigate } from 'react-router-dom';
 
 function RefsItem(props) {
-
-    const [refs, setRefs] = useState('https://1paid.com/ref/38921');
-
-    const handleCopy = () => {
-        //Только по протоколу HTTPS
-        if(window.isSecureContext) {
-            navigator.clipboard.writeText(refs);
-        };
+    const navigate = useNavigate();
+    
+    const goProfile = () => {
+        window.scrollTo({ top: 0 }); 
+        navigate('/profile',  { state: {userName:'заблокирован', blockUser:'true' } });
     };
 
     return (             
         <div className="srf-ref flex items-center justify-between font-secondary-bold rounded-lg bg-white w-full h-[56px] max-h-[56px] px-4 sm:px-6">
-            <div className="srf-ref-username text-[#1F62EC] text-[9px] sm:text-[13px]">{props.name}</div>
+            <div onClick={goProfile} className="cursor-pointer srf-ref-username text-[#1F62EC]  text-[9px] sm:text-[13px]">{props.name}</div>
             <div className="srf-ref-info flex flex-col sm:flex-row items-end sm:items-center justify-between text-[#969BA5] gap-3">
                 <div className="srf-ref-info-income flex gap-2 items-center text-[9px] sm:text-[13px]">Ваш доход:
                     <div className="srf-ref-info-income-count text-gradient pl-0 sm:pl-1 text-[9px] sm:text-[13px]">{props.moneyDG}DG</div>

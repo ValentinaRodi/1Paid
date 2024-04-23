@@ -31,12 +31,12 @@ function MyAchievements() {
                 <Title title='Ваши уведомления' search='true'/>
                 <div className="sntf-grid mt-0 sm:mt-11 grid grid-cols-1 gap-3 ">
                   <NotificationItems bonus='true' sum='500' date='27.02.2020 15:34'/>
-                  <NotificationItems answer='true' userName='Lacoste17' theme='Бесплатная бесконечная' date='27.02.2020 15:34'/>
-                  <NotificationItems answer='true' userName='Lacoste17' theme='Бесплатная бесконечная накрутка лайков на пост ВК. Подскажу как сделать накрутку легально' date='27.02.2020 15:34'/>
+                  <NotificationItems userName='Lacoste17' theme='Бесплатная бесконечная' date='27.02.2020 15:34'/>
+                  <NotificationItems userName='Lacoste17' theme='Бесплатная бесконечная накрутка лайков на пост ВК. Подскажу как сделать накрутку легально' date='27.02.2020 15:34'/>
                   <NotificationItems bonus='true' sum='500' date='27.02.2020 15:34'/>
                   <NotificationItems bonus='true' sum='500' date='27.02.2020 15:34'/>
                   <NotificationItems bonus='true' sum='500' date='27.02.2020 15:34'/>
-                  <NotificationItems answer='true' userName='Lacoste17' theme='Бесплатная бесконечная накрутка лайков на пост ВК. Подскажу как сделать накрутку легально' date='27.02.2020 15:34'/>
+                  <NotificationItems userName='Lacoste17' theme='Бесплатная бесконечная накрутка лайков на пост ВК. Подскажу как сделать накрутку легально' date='27.02.2020 15:34'/>
                 </div>
                 <Pagination />
               </div>

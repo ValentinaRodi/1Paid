@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import uuid from 'react-uuid';
 import LayoutBtn from '../../components/LayoutBtn';
 import Title from '../../components/title/Title';
@@ -7,6 +7,7 @@ import Title from '../../components/title/Title';
 function HistoryViews() {
     const [btn, setBtn] = useState(true);
     const [gamesItems, setGamesItems] = useState([]);
+    const navigate = useNavigate();
 
     
 
@@ -55,6 +56,10 @@ function HistoryViews() {
     //     (cardsViewDiv === '') ? setCardsViewDiv('_view-list') : setCardsViewDiv(''); 
     // }
 
+    const goTovar = () => {
+        navigate('/tovars');
+    };
+
     const arr = [0,1,2,3,4,5,6];
 
     return (
@@ -83,7 +88,7 @@ function HistoryViews() {
                                                 <div className="hvc-ibar-value font-secondary-bold text-sm sm:text-base text-[#1D222C] ">1 Ноя 2019 22:15</div>
                                             </div>
                                         </div>
-                                        <button className="hvc-btn bg-inherit rounded-full w-11 h-11 border border-solid border-black/10 flex items-center justify-center hover:bg-black/5">
+                                        <button onClick={goTovar} className="hvc-btn bg-inherit rounded-full w-11 h-11 border border-solid border-black/10 flex items-center justify-center hover:bg-black/5">
                                             <div className="btn-icon [&amp;_svg]:w-4 md:[&amp;_svg]:w-4 [&amp;_svg]:text-black">
                                                 <img src="/img/icon-arrow-history.svg" alt="arrow"/>
                                             </div>

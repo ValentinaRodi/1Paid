@@ -39,6 +39,8 @@ function Settings() {
     const location = useLocation();
     const avatarPath = 'http://1paid.local/uploads/avatars/';
 
+    const [showModalSubmit, setShowModalSubmit] = useState(false);
+
 
     const changeOrient = () => {
         if (orient === '') {
@@ -73,7 +75,7 @@ function Settings() {
 
         if (loggedInUser === null) {
             window.location = '/';
-        }
+        };
 
         if (loggedInUser) {
             setLoggedIn(true);
@@ -118,13 +120,15 @@ function Settings() {
         />);
 
         setModalOpen(true);
-    }
+    };
+
     const openPasswordEditPopup = () => {
         const body = document.querySelector('body');
         body.style.overflow = 'hidden';
         setModalEl(<NewPass
             closeModal={closeModal}
             openSaveCompletePopup={openSaveCompletePopup}
+            title='Введите новый пароль'
         />);
         setModalOpen(true);
     };
@@ -136,7 +140,7 @@ function Settings() {
             closeModal={closeModal}
         />);
         setModalOpen(true);
-    }
+    };
 
     const closeModal = () => {
         const body = document.querySelector('body');
@@ -144,25 +148,31 @@ function Settings() {
         setModalOpen(false);
         setModalEl('');
     };
+
     const handleFile = (file) => {
         setFile(file);
-    }
+    };
+
     const handleName = (e) => {
         setName(e.target.value);
-    }
+    };
+
     const handleEmail = (e) => {
         setEmail(e.target.value);
-    }
+    };
+
     const handleSecretWord = (e) => {
         setSecretWord(e.target.value);
-    }
+    };
 
     const handleNotifySound = (e) => {
         setNotifySound(!notifySound);
-    }
+    };
+
     const handleMailing = (e) => {
         setMailing(!mailing);
-    }
+    };
+
     const onSubmit = () => {
         let body = {
             'name': '',
@@ -172,8 +182,11 @@ function Settings() {
         setErrorName('hidden');
         setErrorEmail('hidden');
         setErrorSecretWord('hidden');
+        
         let isChanged = false;
         let isError = false;
+
+        setShowModalSubmit(true);
 
         if (name) {
             if (checkName(name)) {
@@ -234,10 +247,25 @@ function Settings() {
             });
         }
     };
+
+    useEffect(() => {
+        if (showModalSubmit) {
+            setTimeout(() => {
+                setShowModalSubmit(false);
+          }, 2000);
+        }
+    }, [showModalSubmit, setShowModalSubmit]);
+
+    const userTest = {
+        'name': 'Cool Designer',
+        'secret_word': 'Ba',
+        'password': '● ● ● ● ● ●',
+        'email': 'shenderro@gmail.com'
+    };
     
     return (
         <ProfileEdit
-            user={user}
+            user={userTest}
             handleName={handleName}
             handleEmail={handleEmail}
             handleSecretWord={handleSecretWord}
@@ -251,6 +279,8 @@ function Settings() {
             onSubmit={onSubmit}
             openUploadModal={openUploadModal}
             openPasswordEditPopup={openPasswordEditPopup}
+
+            showModalSubmit={showModalSubmit}
         />
     );
 }

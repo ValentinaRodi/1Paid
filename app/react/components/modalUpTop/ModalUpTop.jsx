@@ -28,7 +28,7 @@ function ModalUpTop(props) {
                     <p className="font-primary-med text-[#738099] leading-6 text-[14px]">Ваш товар успешно создан, чтобы ваш товар отображался в публичном доступе, вам надо Поднять в топ.</p>
                 </div>
                 <div className='flex justify-between gap-1 items-center'>
-                    <button onClick={props.closeModal} className="p-btn px-0 text-base rounded-lg w-full h-[60px] text-white shadow-[0px_4px_24px_0px_#A63DFD40]">Поднять в топ</button>
+                    <button onClick={props.clickUpTop} className="p-btn px-0 text-base rounded-lg w-full h-[60px] text-white shadow-[0px_4px_24px_0px_#A63DFD40]">Поднять в топ</button>
                 </div>
             </div>
         </div>

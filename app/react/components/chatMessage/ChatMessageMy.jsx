@@ -1,19 +1,26 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import uuid from 'react-uuid';
 
 
 function ChatMessageMy(props) {
+    const navigate = useNavigate();
+
+    const goProfile = () => {
+        (props.closeModalFastChat ? props.closeModalFastChat() : null);
+        window.scrollTo({ top: 0 }); 
+        (props.avatar === 'avatar-example-bot.1e9be783.png') ? navigate('/tech-support') : navigate('/profile',  { state: {userName:props.name } });
+    };
 
     return (      
         <div className={`${props.tail ? 'mt-0' : 'mt-[-24px]'} chat-message max-w-[500px] mb-7 flex items-center`}>
             <div className="chat-message-user flex self-end w-10 sm:w-12 shrink-0">
                 {(props.icon) ?
-                    <Link className="fm-message-avatar-wrapper flex-shrink-0 overflow-hidden relative bg-white rounded-full" href="#">
+                    <button onClick={goProfile} className="fm-message-avatar-wrapper flex-shrink-0 overflow-hidden relative bg-white rounded-full">
                         <div className="fm-message-avatar flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 overflow-hidden rounded-full">
                             <img className="sps-avatar-pic w-full h-full object-cover" src={`/img/${props.avatar}`} alt="user"/>
                         </div>
-                    </Link>
+                    </button>
                     : null
                 }
             </div>

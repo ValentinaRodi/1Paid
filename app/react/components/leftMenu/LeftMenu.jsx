@@ -15,6 +15,7 @@ function LeftMenu(props) {
     const body = document.querySelector('body');
     const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
+    const [color, setColor] = useState('#A1AEC8');
 
     const openAuthorization = () => {
         body.style.overflow = 'hidden';
@@ -48,8 +49,15 @@ function LeftMenu(props) {
 
     const openModalUpTop = () => {
         setModalEl(<ModalUpTop 
-            closeModal={closeModal}
+            closeModal={closeModal} clickUpTop={clickUpTop}
         />);
+    };
+
+    const clickUpTop = () => {
+        body.style.overflow = 'auto';
+        setModalOpen(false);
+        setModalEl('');
+        props.clickUpTop();
     };
 
     const openSellProduct = () => {
@@ -137,8 +145,6 @@ function LeftMenu(props) {
             
             const containerModal = document.createElement("div");
             const root = createRoot(containerModal);
-            console.log(containerModal)
-            console.log(root)
             root.render(modalEl);
             modal.appendChild(containerModal);   
         };
@@ -148,6 +154,14 @@ function LeftMenu(props) {
         };
         
     }, [modalEl]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setColor((prevColor) => (prevColor === '#A1AEC8' ? 'orange' : '#A1AEC8'));
+        }, 5000);
+    
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className={`${props.leftMenuDisplay} layout-sidebar menu`}>
@@ -166,18 +180,18 @@ function LeftMenu(props) {
                         <div className="cm-container">
                             <div className="tsc flex gap-2 p-1.5 xl:py-4 xl:px-3 mb-10">
                                 <div className="tsc-item flex gap-x-3 items-center">
-                                    <button className="btn btn-secondary tsc-item-btn flex-shrink-0 w-10 h-10 [&amp;_svg]:w-1/3 xl:w-[50px] xl:h-[50px]" disabled>
+                                    <div className=" btn-secondary tsc-item-btn flex-shrink-0 w-10 h-10 [&amp;_svg]:w-1/3 xl:w-[50px] xl:h-[50px]">
                                         <img src="/img/icon-tsc-item-btn.svg" alt="icon-tsc-item-btn"/>
-                                    </button>
+                                    </div>
                                     <div className="tsc-item-info">
                                         <div className="tsc-item-value text-black text-sm">181 924 365</div>
                                         <div className="tsc-item-label mt-0.5 text-xs">Куплено товаров</div>
                                     </div>
                                 </div>
                                 <div className="tsc-item flex gap-x-2.5 items-center">
-                                    <button className="btn btn-primary tsc-item-btn flex-shrink-0 w-10 h-10 [&amp;_svg]:w-1/3 xl:w-[50px] xl:h-[50px]" disabled>
+                                    <div className="btn-primary tsc-item-btn flex-shrink-0 w-10 h-10 [&amp;_svg]:w-1/3 xl:w-[50px] xl:h-[50px]">
                                         <img src="/img/icon-tsc-item-btn-2.svg" alt="icon-tsc-item-btn"/>
-                                    </button>
+                                    </div>
                                     <div className="tsc-item-info">
                                         <div className="tsc-item-value text-black text-sm">486 532</div>
                                         <div className="tsc-item-label mt-0.5 text-xs">Пользователей</div>
@@ -260,7 +274,7 @@ function LeftMenu(props) {
                                 <button onClick={goMyMessages} className="cm-f-bar-item bg-inherit h-12 flex items-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100 3xl:px-4 2xl:h-full justify-center" >
                                     <div className="cm-f-bar-item-icon flex-shrink-0">
                                         <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" clipRule="evenodd" d="M17.2727 5.10197H14.5455V3.28379C14.5455 1.77756 13.3244 0.556519 11.8182 0.556519H2.72727C1.22104 0.556519 0 1.77756 0 3.28379V8.73834C0 10.2446 1.22104 11.4656 2.72727 11.4656H4.13636L5.45455 12.9292V13.2565C5.45455 14.7628 6.67559 15.9838 8.18182 15.9838H11.4091L12.7818 17.5383C13.0407 17.8319 13.4132 18 13.8045 18C14.1959 18 14.5684 17.8319 14.8273 17.5383L16.2 15.9838H17.2727C18.779 15.9838 20 14.7628 20 13.2565V7.80197C19.985 6.3064 18.7684 5.1019 17.2727 5.10197ZM2.72727 9.64743C2.2252 9.64743 1.81818 9.24041 1.81818 8.73834V3.28379C1.81818 2.78171 2.2252 2.3747 2.72727 2.3747H11.8182C12.3203 2.3747 12.7273 2.78171 12.7273 3.28379V8.73834C12.7273 9.24041 12.3203 9.64743 11.8182 9.64743H8.11818L6.53636 11.4656L4.95455 9.64743H2.72727ZM17.2727 14.1929C17.7748 14.1929 18.1818 13.7859 18.1818 13.2838V7.84742C18.1818 7.34534 17.7748 6.93833 17.2727 6.93833H14.5455V8.75651C14.5455 10.2627 13.3244 11.4838 11.8182 11.4838H8.92727L7.55455 13.0383C7.4717 13.1321 7.37696 13.2146 7.27273 13.2838C7.27273 13.7859 7.67974 14.1929 8.18182 14.1929H12.2273L13.8091 16.0838L15.3909 14.1929H17.2727Z" fill="currentColor"></path>
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M17.2727 5.10197H14.5455V3.28379C14.5455 1.77756 13.3244 0.556519 11.8182 0.556519H2.72727C1.22104 0.556519 0 1.77756 0 3.28379V8.73834C0 10.2446 1.22104 11.4656 2.72727 11.4656H4.13636L5.45455 12.9292V13.2565C5.45455 14.7628 6.67559 15.9838 8.18182 15.9838H11.4091L12.7818 17.5383C13.0407 17.8319 13.4132 18 13.8045 18C14.1959 18 14.5684 17.8319 14.8273 17.5383L16.2 15.9838H17.2727C18.779 15.9838 20 14.7628 20 13.2565V7.80197C19.985 6.3064 18.7684 5.1019 17.2727 5.10197ZM2.72727 9.64743C2.2252 9.64743 1.81818 9.24041 1.81818 8.73834V3.28379C1.81818 2.78171 2.2252 2.3747 2.72727 2.3747H11.8182C12.3203 2.3747 12.7273 2.78171 12.7273 3.28379V8.73834C12.7273 9.24041 12.3203 9.64743 11.8182 9.64743H8.11818L6.53636 11.4656L4.95455 9.64743H2.72727ZM17.2727 14.1929C17.7748 14.1929 18.1818 13.7859 18.1818 13.2838V7.84742C18.1818 7.34534 17.7748 6.93833 17.2727 6.93833H14.5455V8.75651C14.5455 10.2627 13.3244 11.4838 11.8182 11.4838H8.92727L7.55455 13.0383C7.4717 13.1321 7.37696 13.2146 7.27273 13.2838C7.27273 13.7859 7.67974 14.1929 8.18182 14.1929H12.2273L13.8091 16.0838L15.3909 14.1929H17.2727Z" fill={color}></path>
                                         </svg>
                                     </div>
                                     <div className="cm-f-bar-item-label font-secondary-bold text-xs 3xl:text-sm">Мои Сообщения</div>
@@ -269,7 +283,7 @@ function LeftMenu(props) {
                                 <button onClick={goSupport} className="cm-f-bar-item bg-inherit h-12 flex items-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100 3xl:px-4 2xl:h-full justify-center">
                                     <div className="cm-f-bar-item-icon flex-shrink-0">
                                         <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fillRule="evenodd" clipRule="evenodd" d="M17.2727 4.33194H16.3636C16.1681 4.33414 15.9732 4.35545 15.7818 4.39557C14.7435 2.13731 12.4855 0.690216 10 0.690216C7.51449 0.690216 5.25645 2.13731 4.21818 4.39557C4.02678 4.35545 3.83191 4.33414 3.63636 4.33194H2.72727C1.22104 4.33194 0 5.55298 0 7.05921V10.6956C0 12.2018 1.22104 13.4228 2.72727 13.4228H3.63636C5.14259 13.4228 6.36364 12.2018 6.36364 10.6956V7.05921C6.35858 6.45136 6.15061 5.86263 5.77273 5.38648C6.45841 3.65157 8.13451 2.51175 10 2.51175C11.8655 2.51175 13.5416 3.65157 14.2273 5.38648C13.8494 5.86263 13.6414 6.45136 13.6364 7.05921V10.6956C13.6364 12.2018 14.8574 13.4228 16.3636 13.4228H17.2727C18.779 13.4228 20 12.2018 20 10.6956V7.05921C20 5.55298 18.779 4.33194 17.2727 4.33194ZM4.54545 10.6956C4.54545 11.1977 4.13844 11.6047 3.63636 11.6047H2.72727C2.2252 11.6047 1.81818 11.1977 1.81818 10.6956V7.05923C1.81818 6.55716 2.2252 6.15014 2.72727 6.15014H3.63636C4.13844 6.15014 4.54545 6.55716 4.54545 7.05923V10.6956ZM17.2727 11.6047C17.7748 11.6047 18.1818 11.1977 18.1818 10.6956V7.05923C18.1818 6.55716 17.7748 6.15014 17.2727 6.15014H16.3636C15.8616 6.15014 15.4545 6.55716 15.4545 7.05923V10.6956C15.4545 11.1977 15.8616 11.6047 16.3636 11.6047H17.2727Z" fill="currentColor"></path>
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M17.2727 4.33194H16.3636C16.1681 4.33414 15.9732 4.35545 15.7818 4.39557C14.7435 2.13731 12.4855 0.690216 10 0.690216C7.51449 0.690216 5.25645 2.13731 4.21818 4.39557C4.02678 4.35545 3.83191 4.33414 3.63636 4.33194H2.72727C1.22104 4.33194 0 5.55298 0 7.05921V10.6956C0 12.2018 1.22104 13.4228 2.72727 13.4228H3.63636C5.14259 13.4228 6.36364 12.2018 6.36364 10.6956V7.05921C6.35858 6.45136 6.15061 5.86263 5.77273 5.38648C6.45841 3.65157 8.13451 2.51175 10 2.51175C11.8655 2.51175 13.5416 3.65157 14.2273 5.38648C13.8494 5.86263 13.6414 6.45136 13.6364 7.05921V10.6956C13.6364 12.2018 14.8574 13.4228 16.3636 13.4228H17.2727C18.779 13.4228 20 12.2018 20 10.6956V7.05921C20 5.55298 18.779 4.33194 17.2727 4.33194ZM4.54545 10.6956C4.54545 11.1977 4.13844 11.6047 3.63636 11.6047H2.72727C2.2252 11.6047 1.81818 11.1977 1.81818 10.6956V7.05923C1.81818 6.55716 2.2252 6.15014 2.72727 6.15014H3.63636C4.13844 6.15014 4.54545 6.55716 4.54545 7.05923V10.6956ZM17.2727 11.6047C17.7748 11.6047 18.1818 11.1977 18.1818 10.6956V7.05923C18.1818 6.55716 17.7748 6.15014 17.2727 6.15014H16.3636C15.8616 6.15014 15.4545 6.55716 15.4545 7.05923V10.6956C15.4545 11.1977 15.8616 11.6047 16.3636 11.6047H17.2727Z" fill={color}></path>
                                         </svg>
                                     </div>
                                     <div className="cm-f-bar-item-label font-secondary-bold text-xs 3xl:text-sm">Тех. Поддержка</div>

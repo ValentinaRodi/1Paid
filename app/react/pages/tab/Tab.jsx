@@ -36,9 +36,9 @@ function Tab() {
                                 arr.length !== 0 ? 
                                     arr.map((card) => {
                                         return (cardsView ? 
-                                            <CardGame key={uuid()} rank='4.8' id='1' new='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
+                                            <CardGame key={uuid()} like='true' rank='4.8' id='1' new='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
                                         : 
-                                            <CardGameString key={uuid()} rank='4.8' id='1' new='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
+                                            <CardGameString key={uuid()} like='true' rank='4.8' id='1' new='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
                                         )
                                     }) 
                                 : <div className='text-[#FF5343]'></div>

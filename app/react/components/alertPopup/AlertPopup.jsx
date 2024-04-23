@@ -1,4 +1,3 @@
-import  './alertPopup.less';
 
 function AlertPopup(props) {
     return (

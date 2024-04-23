@@ -2,13 +2,13 @@ function CardGameMin(props) {
 
     return (
         <div className="w-full md:max-w-[310px] rounded-lg bg-white min-w-[240px] relative">
-            <div className='pc-plate-container h-5 sm:h-[22px] w-[70px] sm:w-20 flex items-center justify-start'>
+            <div className='pc-plate-container h-5 sm:h-[22px]  flex items-center justify-start'>
                 {(props.new === '1') ? 
-                    <div className='pc-plate bg-gradient-primary h-full w-full flex items-center justify-center font-bold bg-gradient-primary'>new</div>
+                    <div className='pc-plate bg-gradient-primary h-full w-[70px] sm:w-20 flex items-center justify-center font-bold bg-gradient-primary uppercase'>new</div>
                     : null
                 }
                 {(props.guarantees === '1') ? 
-                    <div className='pc-plate bg-gradient-primary h-full w-full flex items-center justify-center font-bold bg-gradient-primary'>new</div>
+                    <div className='pc-plate bg-gradient-primary h-full min-w-[120px] flex items-center justify-center font-bold bg-gradient-primary'>3 дня гарантия</div>
                     : null
                 }
             </div>

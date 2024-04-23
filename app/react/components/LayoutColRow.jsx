@@ -8,6 +8,7 @@ function LayoutColRow(props) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const tape = document.getElementById("tape");
     const parentBlock = useRef();
+    const [checked, setChecked] = useState(true);
 
     const arr = [
         {
@@ -224,6 +225,7 @@ function LayoutColRow(props) {
         return () => clearTimeout(timer); // очищаем таймер при размонтировании компонента
     }, [components]);
 
+    //высчитываем высоту ленты по высоте контента
     useEffect(() => {
         const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
         const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
@@ -235,14 +237,18 @@ function LayoutColRow(props) {
         document.querySelector('.lf-feed').style.height = 100 + '%';
     };
 
+    const changeCheck = () => {
+        setChecked(!checked);
+    };
+
     return (
         <div className='layout-lf'>
             <div className={`lf ${props.orient}`}>
                 <div className="lf-h">
                     <div className="lf-bar">
                         <div className="lf-inf">
-                            <div className="lf-inf-ind">
-                                <div className="lf-inf-ind-point"></div>
+                            <div className="lf-inf-ind relative z-10">
+                                <div className="lf-inf-ind-point pulse z-20"></div>
                             </div>
                             <div className="lf-inf-inner">
                                 <div className="lf-inf-ind-value">2 381</div>
@@ -259,7 +265,7 @@ function LayoutColRow(props) {
                     </div>
                     <div className="lf-change">
                         <label className="lf-change-item">
-                            <input type="radio" name="lf_type" value="1" defaultChecked/>
+                            <input type="radio" name="lf_type" value="1" onChange={changeCheck} checked={(checked) ? "checked" : ""} />
                             <div className="lf-change-btn">
                                 <div className="lf-change-icon">
                                     <img src="/img/icon-tsc-item-btn-2.svg" alt="lf-change-icon"/>
@@ -267,7 +273,7 @@ function LayoutColRow(props) {
                             </div>
                         </label>
                         <label className="lf-change-item">
-                            <input type="radio" name="lf_type" value="1"/>
+                            <input type="radio" name="lf_type" value="1" onChange={changeCheck} checked={(checked) ? "" : "checked"}/>
                             <div className="lf-change-btn">
                                 <div className="lf-change-icon">
                                     <img src="/img/icon-lf-change-icon-2.svg" alt="lf-change-icon"/>
@@ -278,10 +284,16 @@ function LayoutColRow(props) {
                 </div>
                 <div className="lf-feed">
                     <div id="tape" ref={parentBlock} className="lf-feed-track slider-lite">
-                        {
+                        {checked ?
                             (components.length !== 0) ? (
                                 components.map(component => (
-                                    <LifeFeedItem key={uuid()} id={component.id} imgCard={component.img_card} imgAvatar={component.img_avatar} name={component.name}/>  
+                                    <LifeFeedItem key={uuid()} id={component.id} tovar='true' imgCard='product-preview-1.fcb96f91.png' imgAvatar={component.img_avatar} name={component.name}/>  
+                                ))
+                            ) : (<div></div>)
+                            :
+                            (components.length !== 0) ? (
+                                components.map(component => (
+                                    <LifeFeedItem key={uuid()} id={component.id}  imgCard={component.img_card} imgAvatar={component.img_avatar} name={component.name}/>  
                                 ))
                             ) : (<div></div>)
                         }

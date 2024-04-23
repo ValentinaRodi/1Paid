@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate  } from 'react-router-dom';
 
 function FeedbacksItem(props) {
     const [answerVisible, setAnswerVisible] = useState(false);
+    const navigate = useNavigate();
 
     const showAnswer = () => {
         setAnswerVisible(!answerVisible);
@@ -53,6 +55,14 @@ function FeedbacksItem(props) {
         setAnswerVisibleNew(!answerVisibleNew);
     };
 
+    const goProfile = () => {
+        navigate('/profile',  { state: {userName:props.name } });
+    };
+
+    const openChat = () => {
+        navigate('/chat',  { state: {userName:props.name } });
+    };
+
     return (
         <div className='flex flex-col gap-1 items-end'>
             <div className="fbc rounded-xl flex flex-col bg-white w-full">
@@ -63,7 +73,7 @@ function FeedbacksItem(props) {
                                 <img className="fbc-avatar-pic w-full h-full object-cover" src={`/img/${props.avatar}`} alt="user"/>
                             </div>
                             <div className="fbc-info-inner">
-                                <div className="fbc-username font-secondary-bold text-sm sm:text-lg text-[#1D222C]  ">{props.name}</div>
+                                <button onClick={goProfile} className="fbc-username user-link bg-inherit font-secondary-bold text-sm sm:text-lg text-[#1D222C] h-[32px] ">{props.name}</button>
                                 <div className="fbc-date font-secondary-med text-[10px] sm:text-xs text-[#CDCFE5] ">{props.time}</div>
                             </div>
                         </div>
@@ -88,7 +98,7 @@ function FeedbacksItem(props) {
                             <button onClick={toAnswer} className='bg-inherit font-secondary-med text-[#C5CFE4] underline text-xs mr-[10px]'>
                                 Ответить
                             </button>
-                            <button className='bg-inherit font-secondary-med text-[#C5CFE4] text-xs'>
+                            <button onClick={openChat} className='bg-inherit font-secondary-med text-[#C5CFE4] text-xs'>
                                 <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/icon-profile.svg" alt="icon" />
                             </button>
                         </div>

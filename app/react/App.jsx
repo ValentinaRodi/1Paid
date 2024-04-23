@@ -12,6 +12,8 @@ import Authorization from "./components/authorisation/Authorisation";
 import RecPass from './components/recpass/Recpass';
 import FooterMain from './components/footerMain/FooterMain';
 
+import LendingPage from './pages/lending/Lending';
+
 import useAuth from './hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -27,19 +29,8 @@ function App() {
   const body = document.querySelector('body');
   const [leftMenuOpen, setleftMenuOpen] = useState('');
   const [leftMenuDisplay, setleftMenuDisplay] = useState('');
-
-  // useEffect(() => {
-  //     window.addEventListener("beforeunload", alertUser);
-  //     return () => {
-  //       window.removeEventListener("beforeunload", alertUser);
-  //     };
-  // }, []);
-  // const alertUser = (e) => {
-  //     console.log(e)
-  //     e.preventDefault();
-  //     e.returnValue = "";
-      
-  // };
+  const [modalUpTop, setModalUpTop] = useState(false);
+  const [lending, setLending] = useState(true);
 
   const changeOrient = () => {
     if(orient === '') {
@@ -112,8 +103,6 @@ function App() {
     (leftMenuDisplay === '') ? setleftMenuDisplay('_hide') : setleftMenuDisplay('');
   };
 
-  
-
   // const [isLoading, setLoading] = useState(true);
 
   //   function fakeRequest() {
@@ -134,11 +123,48 @@ function App() {
   //       return null;
   //   }
 
+  const clickUpTop = () => {
+    setModalUpTop(true);
+  };
+
+  useEffect(() => {
+    if (modalUpTop) {
+        setTimeout(() => {
+            setModalUpTop(false);
+      }, 2000);
+    }
+  }, [modalUpTop, setModalUpTop]);
+
+  // const clickMain = () => {
+  //   setLending(false);
+  // };
+
+  // const clickTopUsers = () => {
+  //   navigate('/top_users');
+  // };
+
+  // const clickFeedbacks = () => {
+  //   navigate('/feedbacks');
+  // };
+
+  // const clickGuarantees = () => {
+  //   navigate('/guarantees');
+  // };
+  
+  // const clickRandomItems = () => {
+  //   navigate('/random-items');
+  // };
+
+  // const clickForum = () => {
+  //   setLending(false);
+  //   navigate('/forum');
+  // };
 
   return (
     <div>
+      {/* <LendingPage /> */}
       <div className={`layout-grid ${orient}`}>
-        <LeftMenu leftMenuDisplay={leftMenuDisplay} /> 
+        <LeftMenu leftMenuDisplay={leftMenuDisplay} clickUpTop={clickUpTop}/> 
         <div id='layout-page' className={`layout-page ${orient}`}>
           <LayoutColRow changeOrient={changeOrient} orient={orient}/>
           <HeaderMain closeLeftMenu={closeLeftMenu} leftMenuOpen={leftMenuOpen} openAuthorization={openAuthorization} />
@@ -146,7 +172,14 @@ function App() {
         </div>
       </div>
       <FooterMain />
-    </div>
+      {modalUpTop ?
+          <div className='absolute top-[110px] right-[0] min-[397px]:right-[22px] sm:right-[35px] bg-[linear-gradient(90deg,#8cd23c_0%,#417a00_100%)] rounded-xl p-3'>
+              <p className='font-secondary-bold text-xs sm:text-sm text-white'>Товар успешно поднят</p>
+              <p className='font-secondary-bold text-xs sm:text-sm text-white'>Следующий товар может быть поднят через 4 часа</p>
+          </div>
+          : null
+      }
+    </div> 
   )
 };
 

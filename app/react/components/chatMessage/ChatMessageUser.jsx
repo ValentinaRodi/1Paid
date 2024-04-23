@@ -1,8 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import uuid from 'react-uuid';
 
 function ChatMessageUser(props) {
+    const navigate = useNavigate();
+
+    const goProfile = () => {
+        (props.closeModalFastChat ? props.closeModalFastChat() : null);
+        window.scrollTo({ top: 0 }); 
+        navigate('/profile',  { state: {userName:props.name } });
+    };
 
     return (                          
         <div className={`${props.tail ? 'mt-[-24px]' : 'mt-0'} mb-7 chat-message flex items-center max-w-[500px] chat-message-last chat-message-out`}>
@@ -17,11 +24,11 @@ function ChatMessageUser(props) {
             </div>
             <div className="chat-message-user flex justify-end w-10 sm:w-12 shrink-0">
                 {(props.avatar) ?
-                    <a className="fm-message-avatar-wrapper flex-shrink-0 overflow-hidden relative bg-white rounded-full pb-2" href="#">
+                    <button onClick={goProfile} className="fm-message-avatar-wrapper flex-shrink-0 overflow-hidden relative bg-white rounded-full pb-2">
                         <div className="fm-message-avatar flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 overflow-hidden rounded-full">
                             <img className="sps-avatar-pic w-full h-full object-cover" src={`/img/${props.avatar}`} alt="user"/>
                         </div>
-                    </a>
+                    </button>
                     : null
                 }
             </div>

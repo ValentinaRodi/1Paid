@@ -63,7 +63,7 @@ function Prsl() {
     }, [modalEl]);
 
     return (
-        <div id="prsl" className="prsl rounded-md min-h-[100px] flex justify-between items-center mt-1 min-[640px]:mt-6 min-[1200px]:mt-0 mb-8">
+        <div id="prsl" className="prsl relative rounded-md min-h-[100px] flex justify-between items-center mt-1 min-[640px]:mt-6 min-[1200px]:mt-0 mb-8">
             <Swiper
                 loop={true}
                 onBeforeInit={(swiper) => {
@@ -73,8 +73,8 @@ function Prsl() {
                 autoplay={{delay: 3000, disableOnInteraction: false}}
                 modules={[Navigation, Pagination, Autoplay]}
                 speed={800}
-                spaceBetween={30}
-                className='min-h-[100px]'
+                spaceBetween={141}
+                className='min-h-[100px] w-full px-6 sm:px-[80px] min-[900px]:px-[100px] min-[1600px]:px-[141px] pb-[33px] min-[1780px]:pb-0 pt-[26px] min-[1780px]:pt-[10px]'
                 style={{
                     "--swiper-pagination-bullet-horizontal-gap": "20px",
                     "--swiper-pagination-color": "#fff",
@@ -83,21 +83,21 @@ function Prsl() {
                     "--swiper-pagination-bullet-height": "10px",
                     "--swiper-pagination-bullet-width": "10px",
                     "--swiper-pagination-bottom": "5px",
-                    "padding" : "16px 0",
                 }}
             >
                 {
                     (components.length !== 0) ? (
                         components.map((component, index) => (
                             <SwiperSlide className="w-full h-full " key={uuid()}>
-                                <div className="p-x-4 w-full flex items-center justify-between gap-4 max-[1375px]:flex-wrap max-[1375px]:justify-center">
-                                    <div className="flex justify-center items-center gap-4 ">
+                                <div className=" w-full flex items-center justify-between gap-4 ">
+                                    <div className="flex justify-start items-center gap-x-4 gap-y-2 flex-col min-[900px]:flex-row">
                                         <div className="prsl-item-award-pic w-[180px] flex justify-center items-center max-[640px]:w-[100px] ">
                                             <img className="w-full" src="/img/raffle.161f3412.png" alt="raffle"/>
                                         </div>
                                         <div className="flex items-center gap-2">
-                                            <div className="flex-shrink-0 w-16 h-16 flex justify-center items-center ">
-                                                <img className="w-full h-full" src="/img/icon-game-rank.svg" alt="award"/>
+                                            <div className="relative flex-shrink-0 w-[77px] h-[77px] flex justify-center items-center ">
+                                                <img className="w-full h-full" src="/img/icon-circle-progress.svg" alt="award"/>
+                                                <img className="absolute top-[25px] left-[25px] w-[24px] h-[27px]" src="/img/icon-game-rank.svg" alt="award"/>
                                             </div>
                                             <div className="">
                                                 <div className=" font-secondary-bold text-xs text-white sm:text-base">Аккаунт Warface</div>
@@ -105,13 +105,13 @@ function Prsl() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex justify-end items-center gap-x-4 ">
-                                        <div className="timer flex items-center gap-1">
+                                    <div className="flex justify-end min-[900px]:justify-between items-center gap-x-6 gap-y-2 flex-col-reverse min-[1780px]:flex-row">
+                                        <button onClick={joinGiveAway} className="btn flex justify-center items-center btn-primary rounded h-7 sm:h-9 font-secondary-med text-[10px] text-white sm:text-[15px] sm:h-10 w-28 sm:w-[160px] 2xl:w-[186px]">Присоединиться</button>
+                                        <div className="timer flex items-center">
                                             <TimerCircle timeNumber='24' timeString='часа' imgCircle='icon-circle-progress.svg'/>
                                             <TimerCircle timeNumber='44' timeString='минуты' imgCircle='icon-circle-progress.svg'/>
                                             <TimerCircle timeNumber='05' timeString='секунд' imgCircle='icon-circle-progress-3.svg'/>
                                         </div>
-                                        <button onClick={joinGiveAway} className="btn flex justify-center items-center btn-primary rounded h-9 font-secondary-med text-[10px] text-white sm:text-[15px] sm:h-10 w-28 sm:w-[160px] 2xl:w-[186px]">Присоединиться</button>
                                     </div>
                                 </div>
                             </SwiperSlide>
@@ -119,13 +119,12 @@ function Prsl() {
                     ) : (<div></div>)
                 }
             </Swiper>
-            <div className="swiper-pagination"></div>
-            <button onClick={() => swiperRef.current?.slidePrev()} className="bg-inherit prsl-btn prsl-btn-prev custom-prev-button">
+            <button onClick={() => swiperRef.current?.slidePrev()} className="absolute top-[50%] left-0 bg-inherit prsl-btn prsl-btn-prev custom-prev-button">
                 <div className="bg-inherit">
                     <img src="/img/icon-btn-icon.svg" alt="btn-icon"/>
                 </div>
             </button>
-            <button onClick={() => swiperRef.current?.slideNext()} className="bg-inherit prsl-btn prsl-btn-next custom-next-button">
+            <button onClick={() => swiperRef.current?.slideNext()} className="absolute top-[50%] right-0 bg-inherit prsl-btn prsl-btn-next custom-next-button">
                 <div className="bg-inherit">
                     <img src="/img/icon-btn-icon-4.svg" alt="btn-icon"/>
                 </div>

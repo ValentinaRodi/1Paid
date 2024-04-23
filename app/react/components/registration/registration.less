@@ -54,35 +54,3 @@
     background-image: url("/img/p-vk.svg");
     background-size: 80px 80px !important;
 }
-
-.input-wrapper {
-    position: relative;
-}
-
-.input-label {
-    display: block;
-}
-
-.label {
-    position: absolute;
-    transition: all 0.2s ease;
-    bottom: 25px;
-    pointer-events: none;
-    white-space: nowrap;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 14px;
-    text-transform: uppercase;
-}
-
-.check {
-    line-height: 20px !important;
-}
-
-.input-wrapper .input:not(:placeholder-shown) + .label,
-.input-wrapper .input:focus + .label {
-    bottom: 55%;
-    font-size: 12px;
-    text-transform: none;
-}

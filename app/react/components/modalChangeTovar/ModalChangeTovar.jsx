@@ -13,7 +13,6 @@ function ModalChangeTovar(props) {
     const [access, setAccess] = useState(['Публичный доступ', 'Приватный доступ']);
     const [formValue, setFormValue] = useState({});
     
-    
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
     };
@@ -46,7 +45,6 @@ function ModalChangeTovar(props) {
         props.closeModal();
     };
     
-
     return (
         <div className="h-screen fixed inset-x-0 inset-y-0 overflow-scroll flex justify-center pt-[2%] pb-[3%] px-[2%]">
             <div className='shadow-[0px_25px_35px_0px_#E2E3F3A6] h-fit w-[310px] bg-white rounded-lg px-6 pb-6'>
@@ -62,19 +60,19 @@ function ModalChangeTovar(props) {
                 </div>
                 <div  className='mt-[-10px] w-full flex flex-col'>
                     <div className='w-full'>
-                        <Input key={uuid()} widht='w-full' changeFormValue={changeFormValue} keyValue={props.name} value={props.name} />
+                        <Input key={uuid()} widht='w-full' max='45' changeFormValue={changeFormValue} keyValue={props.name} value={props.name} />
                     </div>
                     <div className='w-full mb-5'>
-                        <Input key={uuid()} widht='w-full' changeFormValue={changeFormValue} keyValue={props.description} value={props.description} />
+                        <Input key={uuid()} widht='w-full' max='94' changeFormValue={changeFormValue} keyValue={props.description} value={props.description} />
                     </div>
                     <div className='w-full mb-5'>
-                        <Input key={uuid()} widht='w-full' changeFormValue={changeFormValue} keyValue='Цена' name='Цена' value={props.price} />
+                        <Input key={uuid()} widht='w-full' max='7' changeFormValue={changeFormValue} keyValue='Цена' name='Цена' value={props.price} />
                     </div>
                     <Select arr={categ} changeFormValue={changeFormValue} keyValue='Игра' name='Категория'/>
                     <Select arr={server} changeFormValue={changeFormValue} keyValue='Сервер' name='Сервер'/>   
                     <Select arr={mode} changeFormValue={changeFormValue} keyValue='Режим' name='Режим'/>   
                     <div className='w-full h-px bg-[#E9EAF4] mb-5'></div>
-                    <Select arr={access} changeFormValue={changeFormValue} keyValue='Отображение товара' name='Отображение товара'/>   
+                    <Select arr={access} changeFormValue={changeFormValue} keyValue='Отображение товара' name='Отображение товара' notChange='Публичный доступ'/>   
                     <div className='flex justify-between items-center'>
                         <button onClick={handleSubmit} className="bg-gradient-primary px-0 text-base rounded-lg w-full h-[60px] text-white">Сохранить изменения</button>
                     </div>

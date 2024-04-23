@@ -17,17 +17,18 @@ function Market() {
 
     // Функция для обновления объекта formValue
     const changeFormValue = (key, value) => {
+        
         (key in formValue) ? formValue[key] = value : formValue[key] = value;
        
         if(value === '') {
             delete formValue[`${key}`];
-        }
+        };
+
     };
 
     //Отправка фильтра
     const submitFilter = () => {
         setFilterMob(false);
-        console.log('formValue', formValue);
     };
 
     //Сброс фильтра
@@ -72,7 +73,9 @@ function Market() {
                     </div>
                     <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
                     <Select key={uuid()} reset={resetFilter} arr={game} changeFormValue={changeFormValue} keyValue='Выбор игры' name='Выбор игры'/>
-                    <Select key={uuid()} reset={resetFilter} arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>
+                    
+                        <Select key={uuid()} reset={resetFilter} arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>
+                        
                     <Checkbox changeFormValue={changeFormValue} reset={resetCheck} changeCheck={changeCheck}/>
                     <div>
                         <button onClick={submitFilter} className="mb-3 mt-[-8px] btn gap-2 text-sm justify-center flex items-center text-white w-full h-[47px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)] shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]">
@@ -96,7 +99,9 @@ function Market() {
                 <div className='hidden h-fit min-[880px]:flex flex-col  filter bg-white rounded-[8px] min-w-[317px] p-4 sm:p-6'> 
                     <InputRange changeStateRangeFalse={changeStateRangeFalse} reset={resetRange} changeFormValue={changeFormValue} min={1} max={150000} styleIcon={'slider-icon_blue'} styleDiv={'gradient-blue'} name='Цена'/>
                     <Select key={uuid()} reset={resetFilter} arr={game} changeFormValue={changeFormValue} keyValue='Выбор игры' name='Выбор игры'/>
-                    <Select key={uuid()} reset={resetFilter} arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>
+                    
+                        <Select key={uuid()} reset={resetFilter} arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>
+                        
                     <Checkbox changeFormValue={changeFormValue} reset={resetCheck} changeCheck={changeCheck}/>
                     <div>
                         <button onClick={submitFilter} className="mb-4 btn gap-2 justify-center flex items-center text-white w-full h-[57px] rounded-[4px] bg-[linear-gradient(36.87deg,#339CFC_18.57%,#1E61EB_80.26%)] shadow-[0px_4px_35px_0px_rgba(51,156,252,0.45)]">

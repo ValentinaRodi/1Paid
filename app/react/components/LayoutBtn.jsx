@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate  } from 'react-router-dom';
 import { createRoot } from "react-dom/client";
 import Authorisation from './authorisation/Authorisation';
 import Registration from './registration/Registration';
 import RecPass from './recpass/Recpass';
+import ModalChat from './modalChat/ModalChat';
+import ModalPetition from './modalPetition/ModalPetition';
 
 function LayoutBtn(props) {
     const navigate = useNavigate();
@@ -12,8 +14,9 @@ function LayoutBtn(props) {
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
     const body = document.querySelector('body');
+    const [fastChat, setFastChat] = useState(false);
 
-    const scrollToTop = () =>{ 
+    const scrollToTop = () => { 
         window.scrollTo({ 
             top: 0,  
             behavior: 'smooth'
@@ -50,17 +53,6 @@ function LayoutBtn(props) {
         />);
     };
 
-    const goMyMessages = () => {
-        if(!isAuthenticated) {
-            openAuthorization();
-        } else {
-            navigate('/my-messages');
-        };
-        window.scrollTo({ 
-            top: 0,  
-        }); 
-    };
-
     useEffect(() => {
         const modal = document.getElementById('modal');
 
@@ -79,7 +71,56 @@ function LayoutBtn(props) {
         };
         
     }, [modalEl]);
-    
+
+    const clickOpenFastChat = () =>{
+        scrollToTop();
+        const modal = document.getElementById('modal');
+        modal.classList.add('modal-light');
+        // body.style.overflow = 'hidden';
+        setFastChat(true);
+    };
+
+    const clickCloseModalChat = () =>{
+        const modal = document.getElementById('modal');
+        modal.classList.remove('modal-light');
+        body.style.overflow = 'auto';
+        setFastChat(false);
+    };
+
+    const clickOpenModalPetition = () => {
+        setFastChat(false);
+        body.style.overflow = 'hidden';
+        setModalEl(<ModalPetition
+            closeModal={closeModal} 
+        />);
+        setModalOpen(true);
+    };
+
+    const closeModalFastChat = () => {
+        const modal = document.getElementById('modal');
+        modal.classList.remove('modal-light');
+        body.style.overflow = 'auto';
+        setFastChat(false);
+    };
+
+    const goProfile = () => {
+        setFastChat(false);
+        const modal = document.getElementById('modal');
+        modal.classList.remove('modal-light');
+        body.style.overflow = 'auto';
+        window.scrollTo({ top: 0 }); 
+        (props.avatar === 'avatar-example-bot.1e9be783.png') ? navigate('/tech-support') : navigate('/profile',  { state: {userName:'Shenderro' } });  
+    };
+
+    const goTovar = () => {
+        setFastChat(false);
+        const modal = document.getElementById('modal');
+        modal.classList.remove('modal-light');
+        body.style.overflow = 'auto';
+        window.scrollTo({ top: 0 }); 
+        navigate('/tovars',  { state: {userName:'Shenderro' } });
+    };
+
     return (
         <div className="layout-b-f flex justify-between mt-6 mb-6 w-full">
             <div>
@@ -92,11 +133,15 @@ function LayoutBtn(props) {
                     : null
                 }
             </div>
-            <button onClick={goMyMessages} className="btn layout-btn-openchat open-fast-chat rounded-full rounded-br-none w-14 h-14 sm:w-[65px] sm:h-[65px] flex items-center justify-center bg-gradient-primary shadow-2xl ">
+            <button onClick={clickOpenFastChat} className="btn layout-btn-openchat open-fast-chat rounded-full rounded-br-none w-14 h-14 sm:w-[65px] sm:h-[65px] flex items-center justify-center bg-gradient-primary shadow-2xl ">
                 <div className="btn-icon text-[#BDC6E0] w-[22px] h-[19px] [&amp;_svg]:w-full [&amp;_svg]:h-full text-white">
                     <img src="/img/icon-btn-icon-13.svg" alt="btn-icon"/>
                 </div>
             </button>
+            {fastChat ?
+                    <ModalChat closeModalFastChat={closeModalFastChat}  goTovar={goTovar} goProfile={goProfile} clickCloseModalChat={clickCloseModalChat} fastChat={fastChat} clickOpenModalPetition={clickOpenModalPetition}/>
+                : null
+            }
         </div>
     );
 }

@@ -199,7 +199,7 @@ function Registration(props) {
 
     return (
         <div className="h-screen z-[1000] fixed inset-x-0 inset-y-0 overflow-scroll flex justify-center">
-        <div className='h-fit w-full sm:w-[540px] bg-[#F7F7FC] rounded-3xl px-10 pb-[clamp(8px,2vh,40px)] pt-[clamp(8px,1vh,20px)]'>
+        <div className='h-fit w-full sm:w-[540px] bg-[#F7F7FC] rounded-3xl px-4 sm:px-10 pb-[clamp(8px,2vh,40px)] pt-[clamp(8px,1vh,20px)]'>
             <div className='flex justify-end'>
                 <button onClick={props.closeModal} className='p-0 hover:bg-[rgba(241,245,249,1)] rounded-full'>
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -212,14 +212,9 @@ function Registration(props) {
             <form className='mt-[-10px] mb-6'>
                 <h1 className='family-bold text-black font-bold text-[28px] mb-[clamp(10px,3vh,45px)]'>Регистрация</h1>
                 <div className='w-full relative h-[clamp(50px,8vh,70px)]'>
-                    <div className={`${errorName ? 'border-[#FF5343] border-[1px] border-solid' : null} containerTool input-wrapper px-6 pt-5 bg-white rounded-xl h-[clamp(50px,8vh,70px)] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)]`}>
-                        <input onChange={handleNameChange} value={name}  type="text" name="name" id='name' placeholder=" " className='input-label h-[clamp(30px,5vh,50px)] family-bold w-full outline-none text-black'/>
+                    <div className={`${errorName ? 'border-[#FF5343] border-[1px] border-solid' : null} containerTool input-wrapper px-6 pt-5 bg-white rounded-xl h-[70px] h-[clamp(50px,8vh,70px)] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)]`}>
+                        <input onChange={handleNameChange} value={name}  type="text" name="name" id='name' placeholder=" " className='input input-label h-[clamp(30px,5vh,50px)] family-bold w-full outline-none text-black'/>
                         <label htmlFor="name" className='label input-label text-[#CFD2EA]'>Имя пользователя</label>
-                        {/*                     
-                        <div className='containerTool'>
-                            <ToolTipComponent text='Я подсказка' customClass='toolTipCustom'/>
-                        </div>
-                        */}
                     </div>
                     {errorName ?
                         <div className="absolute bottom-0 left-0 w-full text-[#FF5343] text-[10px] leading-[12px] mt-1 relative z-10">Имя должно быть от 8 до 16 символов</div>
@@ -228,7 +223,7 @@ function Registration(props) {
                 </div>
                 <div className='w-full relative h-[clamp(50px,8vh,70px)]'>
                     <div className={`${errorEmail ? 'border-[#FF5343] border-[1px] border-solid' : null} input-wrapper px-6 pt-5 bg-white rounded-xl h-[clamp(50px,8vh,70px)] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mt-6`}>
-                        <input onChange={handleEmailChange} value={email} type="email" name="email" id='email'  placeholder=" " className='input-label family-bold h-[clamp(30px,5vh,50px)] w-full outline-none text-black'/>
+                        <input onChange={handleEmailChange} value={email} type="email" name="email" id='email'  placeholder=" " className='input input-label family-bold h-[clamp(30px,5vh,50px)] w-full outline-none text-black'/>
                         <label htmlFor="email" className='label input-label text-[#CFD2EA]'>Эл. почта</label>
                     </div>
                     {errorEmail ?
@@ -239,7 +234,7 @@ function Registration(props) {
                 <div className='w-full relative h-[clamp(50px,8vh,70px)]'>
                     <div className={`${errorPassword ? 'border-[#FF5343] border-[1px] border-solid' : null} input-wrapper px-6 pt-5 bg-white rounded-xl h-[clamp(50px,8vh,70px)] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mt-6 flex items-center justify-between`}>
                         <div className='w-full'>
-                            <input onChange={handlePasswordChange} value={password} type={passwordShown ? "text" : "password"} name="password" id='password'  placeholder=" " className='w-full input-label family-bold h-[clamp(30px,5vh,50px)] w-full outline-none text-black'/>
+                            <input onChange={handlePasswordChange} value={password} type={passwordShown ? "text" : "password"} name="password" id='password'  placeholder=" " className='input w-full input-label family-bold h-[clamp(30px,5vh,50px)] w-full outline-none text-black'/>
                             <label htmlFor="password" className='label input-label text-[#CFD2EA]'>Придумайте пароль</label>
                         </div>
                         <button onClick={togglePasswordVisiblity} className={`${visible} p-0 bg-inherit mb-4`}>
@@ -276,7 +271,7 @@ function Registration(props) {
                 <div className='w-full relative h-[clamp(50px,8vh,70px)]'>
                     <div className={`${errorPassword ? 'border-[#FF5343] border-[1px] border-solid' : null} input-wrapper px-6 pt-5 bg-white rounded-xl h-[clamp(50px,8vh,70px)] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mt-6 flex items-center justify-between`}>
                         <div className='w-full'>
-                            <input onChange={handlePasswordConfirmationChange} value={passwordConfirmation} type={passwordShown ? "text" : "password"} name="passwordConfirmation" id='passwordConfirmation'  placeholder=" " className='w-full input-label family-bold h-[clamp(30px,5vh,50px)] w-full outline-none text-black'/>
+                            <input onChange={handlePasswordConfirmationChange} value={passwordConfirmation} type={passwordShown ? "text" : "password"} name="passwordConfirmation" id='passwordConfirmation'  placeholder=" " className='w-full input input-label family-bold h-[clamp(30px,5vh,50px)] w-full outline-none text-black'/>
                             <label htmlFor="passwordConfirmation" className='label input-label text-[#CFD2EA]'>Повторите пароль</label>
                         </div>
                         <button onClick={togglePasswordVisiblity} className={`${visible} p-0 bg-inherit mb-4`}>
@@ -312,7 +307,7 @@ function Registration(props) {
                 </div>
                 <div className='w-full relative h-[clamp(50px,8vh,70px)]'>
                     <div className={`${errorSecretWord ? 'border-[#FF5343] border-[1px] border-solid' : null} input-wrapper px-6 pt-5 bg-white rounded-xl h-[clamp(50px,8vh,70px)] shadow-[0px_25px_35px_0px_rgba(226,227,243,0.65)] mt-6`}>
-                        <input onChange={handleSecretWordChange} value={secretWord} type="text" name="secretWord" id="secretWorld" placeholder=" " className='input-label family-bold h-[clamp(30px,5vh,50px)] w-full outline-none text-black'/>
+                        <input onChange={handleSecretWordChange} value={secretWord} type="text" name="secretWord" id="secretWorld" placeholder="" className='input input-label family-bold h-[clamp(30px,5vh,50px)] w-full outline-none text-black'/>
                         <label htmlFor="secretWorld" className='label input-label text-[#CFD2EA]'>Секретное слово (мин. 8 букв)</label>
                     </div>
                     {errorSecretWord ?
@@ -320,7 +315,6 @@ function Registration(props) {
                         : null
                     }
                 </div>
-                
                 <div className='flex gap-2 mt-[clamp(10px,1vh,30px)] mb-[clamp(20px,1vh,30px)]'>
                     <input onChange={handleAsseptChange} value={assept} type="checkbox" id="assent" name="assent" className={`${errorAssept ? 'error' : null} custom-checkbox_reg`}/>
                     <label htmlFor="assent" className='check text-sm sm:text-base text-[#9595AE]'>Я подтверждаю, что ознакомлен справилами сайта и пользовательским соглашением</label>
@@ -329,9 +323,9 @@ function Registration(props) {
                     <button id='submit' onClick={handleSubmit} disabled={isDisabled} className={`${isDisabled ? 'bg-[#D7DFF5]' : 'main_btn'} px-0 text-xs md:text-base rounded-xl xs:rounded-lg w-[230px] h-14 sm:h-[clamp(50px,7vh,70px)] text-white uppercase`}>Создать аккаунт</button>
                     <p className='family-bold text-xs sm:text-sm font-bold text-[#CFD2EA] uppercase'>или</p>
                     <div className='flex'>
-                        <button className='inst shadow-[0px_4px_15px_2px_rgba(249,181,68,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-1'></button>
-                        <button className='gmail shadow-[0px_4px_15px_2px_rgba(255,138,128,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-1'></button>
-                        <button className='p-vk shadow-[0px_4px_15px_2px_rgba(100,122,232,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-12 h-12 mr-1'></button>
+                        <button className='inst shadow-[0px_4px_15px_2px_rgba(249,181,68,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-10 sm:w-12 h-10 sm:h-12'></button>
+                        <button className='gmail shadow-[0px_4px_15px_2px_rgba(255,138,128,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-10 sm:w-12 h-10 sm:h-12 mr-1'></button>
+                        <button className='p-vk shadow-[0px_4px_15px_2px_rgba(100,122,232,0.45)] bg-no-repeat bg-cover bg-center p-0 rounded-full w-10 sm:w-12 h-10 sm:h-12 mr-1'></button>
                     </div>
                 </div>
             </form>

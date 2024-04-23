@@ -151,11 +151,13 @@ function Catalog() {
 
     // Функция для обновления объекта formValue
     const changeFormValue = (key, value) => {
-        (key in formValue) ? formValue[key] = value : formValue[key] = value;
+        const newFormValue = {};
+        (key in formValue) ? newFormValue[key] = value : newFormValue[key] = value;
        
         if(value === '') {
             delete formValue[`${key}`];
-        }
+        };
+        setFormValue(newFormValue);
     };
 
     //Отправка фильтра
@@ -291,7 +293,7 @@ function Catalog() {
                         </div>
                     </div>
                     <div className="pcg w-full">
-                        <div className={`${cardsViewDiv} pcg-grid view-grid grid gap-3 grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3`}>
+                        <div className={`${cardsViewDiv} pcg-grid view-grid grid gap-3 grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 min-[2550px]:grid-cols-4`}>
                             {
                                 (gamesItems.length !== 0 && gamesItems.items !== undefined) ? 
                                     

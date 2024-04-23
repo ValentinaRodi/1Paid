@@ -5,7 +5,7 @@ function Select(props) {
     const [modal, setModal] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalSet, setModalSet] = useState(false);
-    const [valueSelect, setValueSelect] = useState("Не выбрано");
+    const [valueSelect, setValueSelect] = useState(props.notChange ? props.notChange : "Не выбрано");
     const [rotate, setRotate] = useState("");
     
     //Для отображения Select категорий в Продать товар
@@ -18,7 +18,6 @@ function Select(props) {
                 setValueSelect("Не выбрано");
             };
         }
-        
     }, [props.arr]);
     
     const selectItem = (value) => {
@@ -46,6 +45,7 @@ function Select(props) {
         const handleClickOutside = (event) => {
             if (selectRef.current && !selectRef.current.contains(event.target)) {
                 setModal(false);
+                setRotate('');
             }
         };
     
@@ -65,11 +65,16 @@ function Select(props) {
                 <span><img className={rotate} src='/img/icon-arrow-down.svg' alt='arrow'/></span></div>
                 {modalOpen ?
                     <div className="select-items">
-                        {modalSet ?
-                            <div onClick={() => [selectItem('Не выбрано'), props.changeFormValue(props.keyValue,'')]} className="font-secondary-med text-base">Не выбрано</div>
-                            :
+                        {props.notChange ?
                             null
+                            :
+                            (modalSet ?
+                                <div onClick={() => [selectItem('Не выбрано'), props.changeFormValue(props.keyValue,'')]} className="font-secondary-med text-base">Не выбрано</div>
+                                :
+                                null
+                            )
                         }
+                        
                         {props.arr.map(item => (
                             <div
                                 key={uuid()}

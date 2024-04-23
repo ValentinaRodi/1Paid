@@ -7,14 +7,14 @@ import Title from '../../components/title/Title';
 
 function TopUsers() {
     
-    const arr = [1,2,3,4,5,6,7,8,9,10];
+    const arr = [1,2,3,4,5,6,7];
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
             <div className='w-full layout-main'>
                 <Title title='Топ Юзеров'/>
                 <PrslTop />
-                <div className='flex justify-center mt-3 flex-wrap gap-2'>
+                <div className='flex justify-center mt-3 flex-wrap 2xl:flex-nowrap gap-2'>
                     <TopBanner name='Santchezz' rank='1' tovar='342 819' money='10 000' moneyGet='118 523' userFoto='user_foto.png'/>
                     <TopBanner name='Santchezz' rank='2' tovar='342 819' money='5 000' moneyGet='118 523' userFoto='user_foto.png'/>
                     <TopBanner name='Santchezz' rank='3' tovar='342 819' money='1 000' moneyGet='118 523' userFoto='user_foto.png'/>

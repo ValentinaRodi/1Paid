@@ -33,6 +33,7 @@ function HeaderMain(props) {
     const [rotate, setRotate] = useState(false);
     const navigate = useNavigate();
     const [link, setLink] = useState(JSON.parse(localStorage.getItem('activeLink')) || ['nav-link-prim', 'nav-link', 'nav-link', 'nav-link', 'nav-link', 'nav-link']);
+    const [color, setColor] = useState('white');
 
     //Сохраняем в localStorage цвет выбранной ссылки
     const clickLink = (index) => {
@@ -211,8 +212,7 @@ function HeaderMain(props) {
     }, [modalEl]);
 
     const clickNotif = () => {
-        // Открываем новую страницу при нажатии ссылки
-        window.location.assign('/my-notifications');
+        navigate('/my-notifications');
     };
 
     const goSupport = () => {
@@ -231,13 +231,34 @@ function HeaderMain(props) {
     const openModalAddBalance = () => {
         body.style.overflow = 'hidden';
         setModalEl(<AddBalance
-            closeModal={closeModal}
+            closeModal={closeModal} title='Пополнение баланса'
         />);
         setModalOpen(true);
         setIsOpenMenu(false);
         setIsOpenNotif(false);
         setRotate(!rotate);
+        setIsOpenMenu2(false);
     };
+
+    const goMyMessages = () => {
+        setOpenMenu('');
+        if(!isAuthenticated) {
+            openAuthorization();
+        } else {
+            navigate('/my-messages');
+        };
+        window.scrollTo({ 
+            top: 0,  
+        }); 
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setColor((prevColor) => (prevColor === 'white' ? 'orange' : 'white'));
+        }, 5000);
+    
+        return () => clearInterval(interval);
+    }, []);
     
     return (
         <div className="layout-h">
@@ -247,19 +268,19 @@ function HeaderMain(props) {
                         <button onClick={props.closeLeftMenu} className={`h-openmenu ${props.leftMenuOpen}`}>
                             <span></span><span></span></button>
                         <nav className="nav flex mx-6 justify-between gap-x-5 gap-y-5 flex-wrap ">
-                            <Link to='/' id='link0' onClick={clickLink}
+                            <Link to='/' id='link0' onClick={() => clickLink(0)}
                                 className={`${link[0]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Главная</Link>
-                            <Link to='/top_users' id='link1' onClick={clickLink}
+                            <Link to='/top_users' id='link1' onClick={() => clickLink(1)}
                                 className={`${link[1]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Топ
                                 юзеров</Link>
-                            <Link to='/feedbacks' id='link2' onClick={clickLink}
+                            <Link to='/feedbacks' id='link2' onClick={() => clickLink(2)}
                                 className={`${link[2]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Отзывы</Link>
-                            <Link to='/guarantees' id='link3' onClick={clickLink}
+                            <Link to='/guarantees' id='link3' onClick={() => clickLink(3)}
                                 className={`${link[3]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Гарантии</Link>
-                            <Link to='/random-items' id='link4' onClick={clickLink}
+                            <Link to='/random-items' id='link4' onClick={() => clickLink(4)}
                                 className={`${link[4]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Случайные
                                 предметы</Link>
-                            <Link to='/forum' id='link5' onClick={clickLink}
+                            <Link to='/forum' id='link5' onClick={() => clickLink(5)}
                                 className={`${link[5]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Форум</Link>
                         </nav>
                         {!isAuthenticated ? (
@@ -276,17 +297,26 @@ function HeaderMain(props) {
                                 </button>
                             </div>
                         ) : (
-                            <div ref={menuRef} className="flex justify-between items-center gap-2">
+                            <div ref={menuRef} className="flex justify-between items-center gap-2 flex-shrink-0">
                                 <div className="h-notif flex-shrink-0">
                                     <div className="notif relative">
                                         <button onClick={toggleNotif}
                                                 className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer">
                                             <div className="btn-icon text-white">
-                                                <img src="/img/icon-btn-icon-2.svg" alt="btn-icon"/>
+                                                {/* <img src="/img/icon-btn-icon-2.svg" alt="btn-icon"/> */}
+                                                <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M15.9408 15.6692C15.9224 14.2496 15.095 12.9652 13.81 12.3615V8.33844C13.8552 5.57017 11.8412 3.19736 9.10231 2.79228C7.5611 2.59693 6.01061 3.07676 4.84915 4.10852C3.68768 5.14028 3.02844 6.6234 3.04078 8.1769V12.2307C1.54573 12.7335 0.535136 14.1304 0.525391 15.7077C0.53112 15.9575 0.638707 16.1941 0.823193 16.3626C1.00768 16.5311 1.25303 16.6168 1.50231 16.6H15.0254C15.2702 16.5979 15.5042 16.4987 15.6759 16.3242C15.8475 16.1496 15.9428 15.914 15.9408 15.6692ZM7.65622 4.36922C8.78797 4.1382 9.96362 4.42806 10.8583 5.15869C11.7529 5.88933 12.2718 6.98336 12.2716 8.13845V11.9846H4.5793V8.29999C4.53762 6.42405 5.82517 4.77922 7.65622 4.36922ZM2.18724 15.0615C2.45993 14.1469 3.30204 13.5208 4.25647 13.5231H12.2719C13.2254 13.5233 14.0662 14.1484 14.3411 15.0615H2.18724Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M9.19471 1.53846V0.769231C9.19471 0.344396 8.85032 0 8.42548 0C8.00065 0 7.65625 0.344396 7.65625 0.769231V1.53846C7.65625 1.9633 8.00065 2.30769 8.42548 2.30769C8.85032 2.30769 9.19471 1.9633 9.19471 1.53846Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M9.19471 16.9231V16.1539C9.19471 15.729 8.85032 15.3846 8.42548 15.3846C8.00065 15.3846 7.65625 15.729 7.65625 16.1539V16.9231C7.65625 17.3479 8.00065 17.6923 8.42548 17.6923C8.85032 17.6923 9.19471 17.3479 9.19471 16.9231Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M2.41047 2.91537C2.5549 3.061 2.75151 3.14291 2.95662 3.14291C3.16173 3.14291 3.35834 3.061 3.50277 2.91537C3.80102 2.61535 3.80102 2.13079 3.50277 1.83076L2.95662 1.28461C2.81218 1.13898 2.61557 1.05707 2.41047 1.05707C2.20536 1.05707 2.00875 1.13898 1.86431 1.28461C1.56606 1.58463 1.56606 2.06919 1.86431 2.36922L2.41047 2.91537Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M0.564318 6.3L1.33355 6.5C1.73731 6.59407 2.14298 6.35125 2.25083 5.95095C2.35869 5.55065 2.12991 5.1369 1.73355 5.01539L0.964318 4.81539C0.554469 4.7079 0.134873 4.9521 0.0258566 5.36154C-0.0821554 5.76906 0.157986 6.18759 0.564318 6.3Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M15.5416 6.55383L16.3108 6.35383C16.7072 6.23232 16.936 5.81856 16.8281 5.41827C16.7203 5.01797 16.3146 4.77515 15.9108 4.86922L15.1416 5.06922C14.7452 5.19073 14.5165 5.60449 14.6243 6.00478C14.7322 6.40508 15.1378 6.6479 15.5416 6.55383Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M13.7262 2.91537L14.2723 2.36922C14.5706 2.06919 14.5706 1.58463 14.2723 1.28461C14.1279 1.13898 13.9313 1.05707 13.7262 1.05707C13.521 1.05707 13.3244 1.13898 13.18 1.28461L12.6338 1.83076C12.3356 2.13079 12.3356 2.61535 12.6338 2.91537C12.7783 3.061 12.9749 3.14291 13.18 3.14291C13.3851 3.14291 13.5817 3.061 13.7262 2.91537Z" fill={color}/>
+                                                </svg>
                                             </div>
                                         </button>
                                         <div
-                                            className={isOpenNotif ? 'absolute top-16 right-[-97px] z-[100] rounded-xl bg-white w-[290px] py-6' : 'hidden'}>
+                                            className={isOpenNotif ? 'absolute top-16 shadow-2xl right-[-97px] z-[100] rounded-xl bg-white w-[290px] py-6' : 'hidden'}>
                                             <div
                                                 className="notif-h px-3 flex items-center justify-between flex-wrap gap-2.5 font-secondary-bold text-sm">
                                                 <div className="notif-heading text-black">
@@ -410,37 +440,33 @@ function HeaderMain(props) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="h-profile h-[64px] w-[320px] relative">
-                                    <div className="pmc py-1 h-14 rounded-full px-3 flex items-center gap-x-3 bg-white">
+                                <div className="h-profile h-[56px] relative flex-shrink-0">
+                                    <div className="pmc py-1 h-14 rounded-full px-3 flex items-center gap-x-2 bg-white">
                                         <div className="pmc-avatar overflow-hidden flex-shrink-0 rounded-full w-8 h-8">
                                             <img className="w-full h-full object-center object-contain"
                                                  src={`/img/${avatar}`} alt="user avatar"/>
                                         </div>
-                                        <div>
-                                            <div
-                                                className="pmc-chip-bar flex gap-x-3 gap-y-2 items-center lg:flex-wrap lg:ml-auto">
-                                                <a className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#DCF1C4]"
-                                                   href="#">
-                                                    <span
-                                                        className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{balance}PD</span>
-                                                </a>
-                                                <button onClick={openModalAddBalance}
-                                                     className="pmc-chip border rounded-full border-[#D2DFFB] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#D2DFFB]">
-                                                    <span
-                                                        className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{bonus}₽</span>
-                                                    <img className="pmc-chip-icon w-4 h-4"
-                                                         src="/img/icon-plus-blue.a12eb4f0.svg" alt="picture"/>
-                                                </button>
+                                        <div
+                                            className="pmc-chip-bar flex gap-x-3 gap-y-2 items-center flex-shrink-0">
+                                            <div className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 duration-200 "
+                                                >
+                                                <span
+                                                    className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{balance}PD</span>
                                             </div>
+                                            <button onClick={openModalAddBalance}
+                                                    className="pmc-chip flex-shrink-0 border border-solid rounded-full border-[#D2DFFB] px-2 py-1 flex items-center gap-x-2 hover:bg-[#D2DFFB]">
+                                                <div className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{bonus}₽</div>
+                                                <img className="pmc-chip-icon w-4 h-4" src="/img/icon-plus-blue.a12eb4f0.svg" alt="picture"/>
+                                            </button>
                                         </div>
                                         <button onClick={toggleMenu}
-                                                className="pmc-card-arrow bg-inherit h-profile-btn-open ml-auto text-[#D6D9EA] cursor-pointer hover:text-black">
+                                                className="pmc-card-arrow bg-inherit flex-shrink-0 w-[24px]  h-profile-btn-open text-[#D6D9EA] cursor-pointer hover:text-black">
                                             <img className={(rotate) ? "rotate-180" : ""}
                                                  src="/img/icon-pmc-card-arrow.svg" alt="navpin-plate-icon"/>
                                         </button>
                                     </div>
                                     <div
-                                        className={isOpenMenu ? "absolute top-16 z-[100] h-profile-content rounded-[22px] w-full py-3 bg-white shadow-sm overflow-hidden" : "hidden"}>
+                                        className={isOpenMenu ? "absolute top-16 z-[100] h-profile-content shadow-2xl rounded-[22px] w-full py-3 bg-white" : "hidden"}>
                                         <div className="np">
                                             <nav className="np-nav">
                                                 <Link to="/profile" onClick={toggleMenu}
@@ -668,11 +694,20 @@ function HeaderMain(props) {
                                         <button onClick={toggleNotif2}
                                                 className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer">
                                             <div className="btn-icon text-white">
-                                                <img src="/img/icon-btn-icon-2.svg" alt="btn-icon"/>
+                                                {/* <img src="/img/icon-btn-icon-2.svg" alt="btn-icon"/> */}
+                                                <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M15.9408 15.6692C15.9224 14.2496 15.095 12.9652 13.81 12.3615V8.33844C13.8552 5.57017 11.8412 3.19736 9.10231 2.79228C7.5611 2.59693 6.01061 3.07676 4.84915 4.10852C3.68768 5.14028 3.02844 6.6234 3.04078 8.1769V12.2307C1.54573 12.7335 0.535136 14.1304 0.525391 15.7077C0.53112 15.9575 0.638707 16.1941 0.823193 16.3626C1.00768 16.5311 1.25303 16.6168 1.50231 16.6H15.0254C15.2702 16.5979 15.5042 16.4987 15.6759 16.3242C15.8475 16.1496 15.9428 15.914 15.9408 15.6692ZM7.65622 4.36922C8.78797 4.1382 9.96362 4.42806 10.8583 5.15869C11.7529 5.88933 12.2718 6.98336 12.2716 8.13845V11.9846H4.5793V8.29999C4.53762 6.42405 5.82517 4.77922 7.65622 4.36922ZM2.18724 15.0615C2.45993 14.1469 3.30204 13.5208 4.25647 13.5231H12.2719C13.2254 13.5233 14.0662 14.1484 14.3411 15.0615H2.18724Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M9.19471 1.53846V0.769231C9.19471 0.344396 8.85032 0 8.42548 0C8.00065 0 7.65625 0.344396 7.65625 0.769231V1.53846C7.65625 1.9633 8.00065 2.30769 8.42548 2.30769C8.85032 2.30769 9.19471 1.9633 9.19471 1.53846Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M9.19471 16.9231V16.1539C9.19471 15.729 8.85032 15.3846 8.42548 15.3846C8.00065 15.3846 7.65625 15.729 7.65625 16.1539V16.9231C7.65625 17.3479 8.00065 17.6923 8.42548 17.6923C8.85032 17.6923 9.19471 17.3479 9.19471 16.9231Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M2.41047 2.91537C2.5549 3.061 2.75151 3.14291 2.95662 3.14291C3.16173 3.14291 3.35834 3.061 3.50277 2.91537C3.80102 2.61535 3.80102 2.13079 3.50277 1.83076L2.95662 1.28461C2.81218 1.13898 2.61557 1.05707 2.41047 1.05707C2.20536 1.05707 2.00875 1.13898 1.86431 1.28461C1.56606 1.58463 1.56606 2.06919 1.86431 2.36922L2.41047 2.91537Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M0.564318 6.3L1.33355 6.5C1.73731 6.59407 2.14298 6.35125 2.25083 5.95095C2.35869 5.55065 2.12991 5.1369 1.73355 5.01539L0.964318 4.81539C0.554469 4.7079 0.134873 4.9521 0.0258566 5.36154C-0.0821554 5.76906 0.157986 6.18759 0.564318 6.3Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M15.5416 6.55383L16.3108 6.35383C16.7072 6.23232 16.936 5.81856 16.8281 5.41827C16.7203 5.01797 16.3146 4.77515 15.9108 4.86922L15.1416 5.06922C14.7452 5.19073 14.5165 5.60449 14.6243 6.00478C14.7322 6.40508 15.1378 6.6479 15.5416 6.55383Z" fill={color}/>
+                                                    <path fillRule="evenodd" clipRule="evenodd" d="M13.7262 2.91537L14.2723 2.36922C14.5706 2.06919 14.5706 1.58463 14.2723 1.28461C14.1279 1.13898 13.9313 1.05707 13.7262 1.05707C13.521 1.05707 13.3244 1.13898 13.18 1.28461L12.6338 1.83076C12.3356 2.13079 12.3356 2.61535 12.6338 2.91537C12.7783 3.061 12.9749 3.14291 13.18 3.14291C13.3851 3.14291 13.5817 3.061 13.7262 2.91537Z" fill={color}/>
+                                                </svg>
                                             </div>
                                         </button>
                                         <div
-                                            className={isOpenNotif2 ? 'absolute z-[100] top-[62px] right-[-97px] rounded-xl bg-white w-[290px] py-6' : 'hidden'}>
+                                            className={isOpenNotif2 ? 'absolute z-[100] top-[62px] shadow-2xl right-[-97px] rounded-xl bg-white w-[290px] py-6' : 'hidden'}>
                                             <div
                                                 className="notif-h px-3 flex items-center justify-between flex-wrap gap-2.5 font-secondary-bold text-sm">
                                                 <div className="notif-heading text-black">
@@ -805,9 +840,9 @@ function HeaderMain(props) {
                                         </div>
                                     </button>
                                     <div
-                                        className={isOpenMenu2 ? 'absolute h-profile right-[-60px] top-16 z-[100] h-profile-content rounded-[22px] w-full py-3 bg-white shadow-sm overflow-hidden' : 'hidden'}>
+                                        className={isOpenMenu2 ? 'absolute h-profile w-[290px] right-[-60px] top-16 z-[100] h-profile-content rounded-[22px] py-3 bg-white shadow-2xl overflow-hidden' : 'hidden'}>
                                         <div
-                                            className="pmc py-1 h-14 rounded-full px-3 flex items-center gap-x-3 bg-white mb-4">
+                                            className="pmc py-1 h-14 rounded-full px-3 flex items-center justify-between gap-x-3 bg-white mb-4">
                                             <div className="pmc-avatar flex-shrink-0 rounded-full w-8 h-8">
                                                 <img className="w-full h-full object-center object-contain" src={avatar}
                                                      alt="user avatar"/>
@@ -816,18 +851,18 @@ function HeaderMain(props) {
                                                 {/* <div className="font-bold font-primary-bold">{name}</div> */}
                                                 <div
                                                     className="pmc-chip-bar flex gap-x-3 gap-y-2 items-center lg:flex-wrap lg:ml-auto">
-                                                    <a className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#DCF1C4]"
-                                                       href="#">
+                                                    <div className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 "
+                                                       >
                                                         <span
                                                             className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{bonus}PD</span>
-                                                    </a>
-                                                    <a className="pmc-chip border rounded-full border-[#D2DFFB] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#D2DFFB]"
-                                                       href="#">
+                                                    </div>
+                                                    <button onClick={openModalAddBalance} className="pmc-chip border rounded-full border-[#D2DFFB] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#D2DFFB]"
+                                                       >
                                                         <span
                                                             className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{balance}₽</span>
                                                         <img className="pmc-chip-icon w-4 h-4"
                                                              src="/img/icon-plus-blue.a12eb4f0.svg" alt="picture"/>
-                                                    </a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1094,8 +1129,8 @@ function HeaderMain(props) {
                         </button>
                     </div>
                 </div>
-                <div className="cm-f-bar mt-3 overflow-hidden flex w-[400px] h-auto rounded-xl border-[1px] border-solid border-[#C0C2DC59] flex-col">
-                    <button className="cm-f-bar-item bg-inherit h-12 flex items-center justify-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100 ">
+                <div className="cm-f-bar mt-8 overflow-hidden flex w-full min-[505px]:w-[400px] h-auto rounded-xl border-[1px] border-solid border-[#C0C2DC59] flex-col">
+                    <button onClick={goMyMessages} className="cm-f-bar-item bg-inherit h-12 flex items-center justify-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100 ">
                         <div className="cm-f-bar-item-icon flex-shrink-0">
                             <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M17.2727 5.10197H14.5455V3.28379C14.5455 1.77756 13.3244 0.556519 11.8182 0.556519H2.72727C1.22104 0.556519 0 1.77756 0 3.28379V8.73834C0 10.2446 1.22104 11.4656 2.72727 11.4656H4.13636L5.45455 12.9292V13.2565C5.45455 14.7628 6.67559 15.9838 8.18182 15.9838H11.4091L12.7818 17.5383C13.0407 17.8319 13.4132 18 13.8045 18C14.1959 18 14.5684 17.8319 14.8273 17.5383L16.2 15.9838H17.2727C18.779 15.9838 20 14.7628 20 13.2565V7.80197C19.985 6.3064 18.7684 5.1019 17.2727 5.10197ZM2.72727 9.64743C2.2252 9.64743 1.81818 9.24041 1.81818 8.73834V3.28379C1.81818 2.78171 2.2252 2.3747 2.72727 2.3747H11.8182C12.3203 2.3747 12.7273 2.78171 12.7273 3.28379V8.73834C12.7273 9.24041 12.3203 9.64743 11.8182 9.64743H8.11818L6.53636 11.4656L4.95455 9.64743H2.72727ZM17.2727 14.1929C17.7748 14.1929 18.1818 13.7859 18.1818 13.2838V7.84742C18.1818 7.34534 17.7748 6.93833 17.2727 6.93833H14.5455V8.75651C14.5455 10.2627 13.3244 11.4838 11.8182 11.4838H8.92727L7.55455 13.0383C7.4717 13.1321 7.37696 13.2146 7.27273 13.2838C7.27273 13.7859 7.67974 14.1929 8.18182 14.1929H12.2273L13.8091 16.0838L15.3909 14.1929H17.2727Z" fill="currentColor"></path>
