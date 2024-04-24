@@ -72,8 +72,7 @@ function AddProduct(props) {
             errors = true;
             setGameNameError('border-[#FF5343] border-[1px] border-solid');
         }
-        console.log('gameName:',gameName)
-        console.log('categName:',categName)
+
 
         if (!errors) {
             fetchFunc('/item/save', 'POST', formValue)
@@ -100,24 +99,11 @@ function AddProduct(props) {
 
     // Функция для обновления объекта formValue
     const changeFormValue = (key, value, blockId = null) => {
-        //console.log('formValue',formValue);
-        console.log('changeFormValue:');
-        console.log('key:', key);
-        console.log('value:', value);
-        // console.log('count:', count);
-        // console.log('index:', index);
 
         if (blockId === 0 || blockId === 1 || blockId === 2) {
-            // let body = {};
+
             body[blockId][key] = value;
-            console.log('BODY:', body);
-            console.log('formValue:', formValue);
-
             formValue['items'] = body;
-
-
-            // formValue[test[blockId] ] = "{"+key+ ":"+ value+"}";
-
 
         } else {
             switch (key) {
@@ -169,13 +155,28 @@ function AddProduct(props) {
         }
         ;
 
+        // запись названия категории для бэка (на англ.)
         if (formValue['category'] && categName !== formValue['category']) {
-            setCategName(formValue['category']);
+            // setCategName( formValue['category'] );
+            for (let game of gamesObj){
+
+                if (game['seo_name'] === formValue['game']){
+                    for (let category of game['categories']){
+
+                        if (category['name'] === formValue['category']){
+                            setCategName(category['seo_name'] );
+                            formValue['category'] = category['seo_name'];
+
+                        }
+                    }
+                }
+            }
+
             gamesObj.forEach(el => {
 
-                if (el.name === formValue['game']) {
+                if (el.seo_name === formValue['game']) {
                     el.categories.forEach(el => {
-                        if (el.name === formValue['category']) {
+                        if (el.seo_name === formValue['category']) {
 
                             //Получаем поля выбранной категории
                             fetch(`/field/get-list/${el.id}`, {
@@ -242,7 +243,8 @@ function AddProduct(props) {
                 const gamesArr = [];
 
                 data.games.forEach(el => {
-                    gamesArr.push(el.name);
+                    // gamesArr.push(el.name);
+                    gamesArr.push(el.seo_name);
                 });
 
                 if (gamesArr.length !== 0) {
@@ -279,7 +281,7 @@ function AddProduct(props) {
                                 return (
                                     <div key={item.id} className='w-[32%] '>
                                         <Select arr={item.value.split('|')} changeFormValue={changeFormValue}
-                                                keyValue={item.seo_name}
+                                                keyValue={item.name}
                                                 blockId={index}
                                                 name={item.seo_name}/>
                                     </div>
