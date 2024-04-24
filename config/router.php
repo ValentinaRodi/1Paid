@@ -25,15 +25,9 @@ return [
     'GET,HEAD forum' => 'main/index',
     'GET,HEAD contacts' => 'main/index',
     'GET,HEAD profile/edit' => 'main/index',
-<<<<<<< HEAD
     'GET,HEAD catalog/Warface/1-account' => 'main/index',
     'GET,HEAD profile' => 'main/profile',
     'GET,HEAD lending' => 'main/profile',
-=======
-//    'GET,HEAD catalog/Warface/1-account' => 'main/index', Правильный маршрут вот 'GET,HEAD catalog/<game>/<category>/<id>-<item>' => 'item/get',
-    'GET,HEAD profile' => 'profile/get',
->>>>>>> f1577abf8524f416473510023eb38e4838910c9a
-    // 'GET,HEAD profile/edit' => 'profile/get',
     'GET,HEAD csrf' => 'main/csrf',
     'GET,HEAD landing' => 'main/landing',
     'GET,HEAD logout' => 'main/logout',

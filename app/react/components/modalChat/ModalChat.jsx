@@ -87,7 +87,7 @@ function ModalChat(props) {
     
     
     return (
-        <div className='chat-h absolute right-9 bottom-[3px] flex items-start z-[1000]'>
+        <div className='chat-h chat-h-mob absolute right-0 sm:right-9 bottom-[3px] flex items-start z-[1000]'>
             <div className='w-full sm:w-[591px] bg-white rounded-lg h-screen max-h-[1000px] border border-solid border-[#E1E1F1]'>
                 <div className='w-full flex justify-center'>
                     <div className='flex justify-center items-center px-6 h-[22px] rounded-b-[20px] btn-primary bg-[linear-gradient(90deg,#8CD23C_0%,#417A00_100%)]'>
@@ -180,9 +180,9 @@ function ModalChat(props) {
                     : 
                     <div className="chat content-chat-h flex flex-col bg-white font-primary-med text-[#8FA0C3] w-full rounded-xl">
                         {!chat ?
-                            <div className="chat content-chat-h flex flex-col bg-white font-primary-med text-[#8FA0C3] w-full rounded-xl">
-                                <div className="fm flex flex-col bg-white font-primary-med text-[#8FA0C3] w-full rounded-xl py-6 ">
-                                    <div className='w-full border-b border-solid border-[#EAEEF4]'>
+                            <div className="chat content-chat-h flex flex-col bg-white font-primary-med text-[#8FA0C3] rounded-xl">
+                                <div className="fm flex flex-col bg-white font-primary-med text-[#8FA0C3] rounded-xl py-6 ">
+                                    <div className=' border-b border-solid border-[#EAEEF4]'>
                                         <div className="fm-head flex items-center font-primary-bold text-xs sm:text-sm mb-[22px] px-[22px] px-[22px]">
                                             <div className="fm-title font-secondary-bold text-black mr-[4px]">Сообщения</div>
                                             <span className="fm-new-count font-secondary-bold text-[#7AB23A]">(+4)</span>

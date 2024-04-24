@@ -667,7 +667,7 @@ function HeaderMain(props) {
             <div className="hm">
                 <div className="hm-inner px-5 lg:px-9 flex items-center justify-between">
                     <div className="hm-logo">
-                        <button onClick={goMain} className="logo bg-inherit w-[180px] 3xl:w-[150px] xl:w-[120px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
+                        <button onClick={goMain} className="logo bg-inherit w-[70px] sm:w-[120px] 3xl:w-[150px] ">
                             <img className="logo__dots lg:h-[100%] xl:w-1/2" src="/img/dots-1.82560447.svg"
                                  alt="1paid.ru"/>
                             <img className="logo-pic" src="/img/logo.7fb09570.svg" alt="1paid.ru"/>
@@ -675,15 +675,15 @@ function HeaderMain(props) {
                     </div>
                     <div className="hm-bar flex items-center gap-2.5">
                         {!isAuthenticated ? (
-                            <div className="flex gap-4">
+                            <div className="flex gap-4 items-center">
                                 <button
-                                    className="btn btn-secondary notif-btn rounded-full w-11 h-11 justify-center cursor-pointer lg:w-[50px] lg:h-[50px]">
+                                    className="btn btn-secondary notif-btn rounded-full w-10 h-10 justify-center cursor-pointer ">
                                     <div className="btn-icon">
                                         <img src="/img/icon-vk.svg" alt="btn-vk"/>
                                     </div>
                                 </button>
                                 <button onClick={props.openAuthorization}
-                                        className="btn btn-secondary text-white rounded-full w-[140px] h-[45px] lg:w-[160px] lg:h-[55px] justify-center cursor-pointer">
+                                        className="btn btn-secondary text-white rounded-full w-[68px] h-9 text-xs justify-center cursor-pointer">
                                     ВОЙТИ
                                 </button>
                             </div>
@@ -1030,10 +1030,10 @@ function HeaderMain(props) {
                             </div>
                         )}
                         <button onClick={openMenu}
-                                className="hm-btn-menu bg-inherit mmenu-open flex-shrink-0 w-[50px] h-[50px] flex justify-center items-center flex-col gap-4 cursor-pointer">
-                            <span className="w-[30px] h-[3px] bg-white rounded-full">
+                                className="hm-btn-menu bg-inherit mmenu-open flex-shrink-0 w-[40px] h-[50px] flex justify-center items-center flex-col gap-3 cursor-pointer">
+                            <span className="w-[25px] h-[3px] bg-white rounded-full">
                             </span>
-                            <span className="w-[30px] h-[3px] bg-white rounded-full">
+                            <span className="w-[25px] h-[3px] bg-white rounded-full">
                             </span>
                         </button>
                     </div>
@@ -1079,7 +1079,7 @@ function HeaderMain(props) {
                                 </div>
                             </div>
                             <div
-                                className="navpin-text text-sm uppercase ml-7 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">Продать
+                                className="navpin-text text-sm uppercase 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">Продать
                                 товар
                             </div>
                         </button>
@@ -1094,7 +1094,7 @@ function HeaderMain(props) {
                                 </div>
                             </div>
                             <div
-                                className="navpin-text text-sm uppercase ml-7 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">Закладки
+                                className="navpin-text text-sm uppercase 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">Закладки
                             </div>
                         </button>
                         <button onClick={goHistory}
@@ -1108,7 +1108,7 @@ function HeaderMain(props) {
                                 </div>
                             </div>
                             <div
-                                className="navpin-text text-sm uppercase ml-7 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">История
+                                className="navpin-text text-sm uppercase 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">История
                                 просмотра
                             </div>
                         </button>
@@ -1123,7 +1123,7 @@ function HeaderMain(props) {
                                 </div>
                             </div>
                             <div
-                                className="navpin-text text-sm uppercase ml-7 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">История
+                                className="navpin-text text-sm text-left uppercase 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">История
                                 покупок и продаж
                             </div>
                         </button>

@@ -38,7 +38,7 @@ function CardsGame() {
     }, []);
     
     useEffect(() => {
-        if(dataCards.length !== 0) {
+        if(dataCards && dataCards.length !== 0) {
             setGamesObj(Object.values(dataCards.games))
             if(dataCards.offset + 8 >= dataCards.count) {
                 setBtn(false);
@@ -389,20 +389,19 @@ function CardsGame() {
                     (arr.length > 0) ? (
                         arr.map(card => (
                             card.categories ?
-                                <div key={uuid()} className="gc relative overflow-hidden rounded-lg p-5 min-h-[195px]">
+                                <div key={uuid()} className="gc relative overflow-hidden rounded-lg p-3 sm:p-5 min-h-[195px]">
                                     <div className="gc-bg absolute z-[1] top-0 left-0 w-full h-full">
                                         <img className="relative z-[1] w-full h-full object-cover object-center" src={card.bg_image} alt="picture"/>
                                     </div>
-                                    <div className="gc-icon">
+                                    <div className="hidden sm:block gc-icon">
                                         <div className="gc-icon-pic overflow-hidden rounded-full w-10 h10 xl:w-16 xl:h-16 md:w-12 md:h-12">
                                             <img className="w-full h-full object-cover" src={card.icon} alt="Warface"/>
                                         </div>
                                     </div>
                                     <div className="gc-title">
-                                        <h3 className="font-secondary-bold text-2xl text-white xl:text-xl md:text-lg">{card.name}</h3>
+                                        <h3 className="font-secondary-bold text-lg sm:text-2xl text-white xl:text-xl md:text-lg">{card.name}</h3>
                                     </div>
-                                    <div className="gc-badges">
-                                    </div>
+                                    <div className="gc-badges"></div>
                                     <div className="gc-vplay flex flex-col items-center">
                                         <div className="gc-vplay-icon w-[42px] h-[42px] [&amp;_svg]:w-full md:w-[44px] md:h-[44px]">
                                             <img src={vplay} alt="gc-vplay-icon"/>
@@ -412,7 +411,7 @@ function CardsGame() {
                                     <div className="gc-tags-wrap ">
                                         <div className="gc-tags">
                                             {Object.values(card.categories).map((categ) => (
-                                                <div key={uuid()} className="gc-tags-item w-fit font-secondary-med text-sm text-white bg-inherit flex justify-start">{categ.name}</div>
+                                                <div key={uuid()} className="gc-tags-item w-fit font-secondary-med text-[10px] sm:text-sm text-white bg-inherit flex justify-start">{categ.name}</div>
                                             ))}
                                         </div>
                                     </div>

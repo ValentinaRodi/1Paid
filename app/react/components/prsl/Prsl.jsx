@@ -89,15 +89,15 @@ function Prsl() {
                     (components.length !== 0) ? (
                         components.map((component, index) => (
                             <SwiperSlide className="w-full h-full " key={uuid()}>
-                                <div className=" w-full flex items-center justify-between gap-4 ">
-                                    <div className="flex justify-start items-center gap-x-4 gap-y-2 flex-col min-[900px]:flex-row">
+                                <div className=" w-full flex items-center justify-between gap-0 min-[430px]:gap-4 flex-wrap min-[430px]:flex-nowrap">
+                                    <div className="w-full min-[430px]:w-auto flex justify-start items-center gap-x-4 gap-y-2 flex-col min-[900px]:flex-row">
                                         <div className="prsl-item-award-pic w-[180px] flex justify-center items-center max-[640px]:w-[100px] ">
                                             <img className="w-full" src="/img/raffle.161f3412.png" alt="raffle"/>
                                         </div>
                                         <div className="flex items-center gap-2">
-                                            <div className="relative flex-shrink-0 w-[77px] h-[77px] flex justify-center items-center ">
+                                            <div className="relative flex-shrink-0 w-16 h-16 sm:w-[77px] sm:h-[77px] flex justify-center items-center ">
                                                 <img className="w-full h-full" src="/img/icon-circle-progress.svg" alt="award"/>
-                                                <img className="absolute top-[25px] left-[25px] w-[24px] h-[27px]" src="/img/icon-game-rank.svg" alt="award"/>
+                                                <img className="absolute top-[20px] left-[20px] sm:top-[25px] sm:left-[25px] w-[24px] h-[27px]" src="/img/icon-game-rank.svg" alt="award"/>
                                             </div>
                                             <div className="">
                                                 <div className=" font-secondary-bold text-xs text-white sm:text-base">Аккаунт Warface</div>
@@ -105,7 +105,7 @@ function Prsl() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex justify-end min-[900px]:justify-between items-center gap-x-6 gap-y-2 flex-col-reverse min-[1780px]:flex-row">
+                                    <div className="w-full min-[430px]:w-auto flex justify-end min-[900px]:justify-between items-center gap-x-6 gap-y-2 flex-col-reverse min-[1780px]:flex-row">
                                         <button onClick={joinGiveAway} className="btn flex justify-center items-center btn-primary rounded h-7 sm:h-9 font-secondary-med text-[10px] text-white sm:text-[15px] sm:h-10 w-28 sm:w-[160px] 2xl:w-[186px]">Присоединиться</button>
                                         <div className="timer flex items-center">
                                             <TimerCircle timeNumber='24' timeString='часа' imgCircle='icon-circle-progress.svg'/>

@@ -31,7 +31,7 @@ function TimerCircle(props) {
             <div className="circle-progress mt-0" data-percent="60" data-measure="77" data-measure-640="44">
                 <img src={`/img/${props.imgCircle}`} alt="circle-progress"/>
             </div>
-            <div className="timer-item-inf absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
+            <div className="top-[-2px] sm:top-[-6px] left-0 absolute flex flex-col items-center justify-center  w-full h-full z-[1]">
                 <div className={`${props.color ? 'text-black mt-1' : 'text-white'} timer-value font-primary-med text-center text-sm leading-none sm:text-lg`}>{props.count ? count : props.timeNumber}</div>
                 {props.timeString ?
                     <div className="timer-value font-primary-bold text-center text-[9px] text-white/60 leading-none sm:text-[11px]">{props.timeString}</div>
