@@ -212,6 +212,8 @@ function HeaderMain(props) {
     }, [modalEl]);
 
     const clickNotif = () => {
+        setIsOpenNotif(false);
+        setIsOpenNotif2(false);
         navigate('/my-notifications');
     };
 
@@ -451,11 +453,11 @@ function HeaderMain(props) {
                                             <div className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 duration-200 "
                                                 >
                                                 <span
-                                                    className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{balance}PD</span>
+                                                    className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{balance ? balance : '000000'}PD</span>
                                             </div>
                                             <button onClick={openModalAddBalance}
                                                     className="pmc-chip flex-shrink-0 border border-solid rounded-full border-[#D2DFFB] px-2 py-1 flex items-center gap-x-2 hover:bg-[#D2DFFB]">
-                                                <div className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{bonus}₽</div>
+                                                <div className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{bonus ? bonus : '000000'}₽</div>
                                                 <img className="pmc-chip-icon w-4 h-4" src="/img/icon-plus-blue.a12eb4f0.svg" alt="picture"/>
                                             </button>
                                         </div>
@@ -822,8 +824,7 @@ function HeaderMain(props) {
                                                 </div>
                                             </div>
                                             <button onClick={clickNotif}
-                                                    className="notif-btnall mt-5 w-full border-b border-[#ECEDF7] py-1 flex justify-center duration-200 hover:bg-[#F6F9FF]"
-                                                    href="#">
+                                                    className="notif-btnall mt-5 w-full border-b border-[#ECEDF7] py-1 flex justify-center duration-200 hover:bg-[#F6F9FF]">
                                                 <div
                                                     className="btn-text font-primary-bold text-sm text-[#C5CFE4]">Показать
                                                     все

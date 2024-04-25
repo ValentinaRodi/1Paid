@@ -39,7 +39,7 @@ function NotificationItems(props) {
                     <img src="/img/icon-btn-icon-2.svg" alt="btn-icon"/>
                   </div>
                   <div className="nc-text font-secondary-bold text-base sm:text-lg text-[#1D222C] [&amp;_a]:text-[#1E61EB] sm:overflow-hidden sm:text-ellipsis sm:whitespace-nowrap">
-                      <button onClick={goProfile} className="bg-inherit text-[#1E61EB]">{props.userName}</button> ответил(а) в теме <button onClick={goForumTheme} className="bg-inherit text-[#1E61EB]" href="#">{props.theme}</button>
+                      <button onClick={goProfile} className="bg-inherit text-[#1E61EB]">{props.userName}</button> ответил(а) в теме <button onClick={goForumTheme} className="bg-inherit text-[#1E61EB] text-start">{props.theme}</button>
                   </div>
                   <div className="nc-date">
                     <div className="nc-date-label font-secondary-med text-xs text-[#969BA5]">Дата</div>

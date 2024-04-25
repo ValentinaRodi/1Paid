@@ -24,11 +24,13 @@ function MyMessages() {
     const clickMessages = () => {
         setTabClass(true);
         setTabItem(true);
+        setDeal(false);
     };
 
     const clickChat = () => {
         setTabClass(false);
         setTabItem(false);
+        setDeal(false);
     };
 
 
@@ -256,7 +258,7 @@ function MyMessages() {
                             : null
                         }
                     </div>
-                    <div className="smm-main flex min-[1440px]:hidden align-start justify-between w-full h-full gap-3">
+                    <div className="smm-main hidden min-[700px]:flex min-[1440px]:hidden align-start justify-between w-full h-full gap-3">
                         {tabItem ?
                             <div className="fm flex flex-col bg-white font-primary-med text-[#8FA0C3] w-full rounded-xl py-6 ">
                                 <div className='w-full border-b border-solid border-[#EAEEF4]'>
@@ -388,7 +390,7 @@ function MyMessages() {
                             </div>   
                         }
                         {deal ?
-                            <div className="smm-deal hidden min-[705px]:flex flex-col bg-white font-primary-med text-[#8FA0C3] min-w-[250px] max-w-[350px] w-full rounded-xl py-6">
+                            <div className="smm-deal flex-col bg-white font-primary-med text-[#8FA0C3] min-w-[250px] max-w-[350px] w-full rounded-xl py-6">
                                 <div className="smm-deal-head flex items-center justify-between font-primary-bold text-[14px] mb-[22px] px-[22px]">
                                     <div className="smm-deal-title font-secondary-bold text-black text-sm">Сделка</div>
                                     <div className="smm-deal-head-count font-secondary-bold text-[#C8D5ED]">(8)</div>
@@ -415,6 +417,168 @@ function MyMessages() {
                             </div>
                             : null
                         }
+                    </div>
+                    <div className="smm-main flex min-[700px]:hidden align-start justify-between w-full h-full gap-3">
+                        {tabItem ?
+                            <div className="fm flex flex-col bg-white font-primary-med text-[#8FA0C3] w-full rounded-xl py-4 sm:py-6 ">
+                                <div className='w-full border-b border-solid border-[#EAEEF4]'>
+                                    <div className="fm-head flex items-center font-primary-bold text-xs sm:text-sm mb-[22px] px-4 sm:px-[22px]">
+                                        <div className="fm-title font-secondary-bold text-black mr-[4px]">Сообщения</div>
+                                        <span className="fm-new-count font-secondary-bold text-[#7AB23A]">(+4)</span>
+                                        <span className="fm-count font-secondary-bold text-[#C8D5ED] ml-auto">(7)</span>
+                                    </div>
+                                </div>
+                                <div className="fm-list flex flex-col h-[750px] overflow-hidden overflow-y-scroll chat-scroll">
+                                    <ItemMessagesMy iconСheck='true' openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар. Привет, где-то вечером готов купить твой товар' time='10:42'/>
+                                    <ItemMessagesMy iconСheck='true' openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='11:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='12:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='13:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='14:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='10:42'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='10:42'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='10:42'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='11:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='12:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='13:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='14:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='10:42'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='10:42'/><ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='10:42'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='11:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='12:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='13:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='14:42' read='true'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='10:42'/>
+                                    <ItemMessagesMy openChat={openChat} avatar='avatar-example-1.efb6cc72.png' nameUser='Allice' message='Привет, где-то вечером готов купить твой товар' time='10:42'/>
+                                </div>
+                            </div>
+                            :
+                            (deal ?
+                                <div className="smm-deal flex-col bg-white font-primary-med text-[#8FA0C3] w-full rounded-xl py-4">
+                                    <div className="smm-deal-head flex items-center justify-between font-primary-bold text-[14px] mb-[22px] px-[22px]">
+                                        <div className="smm-deal-title font-secondary-bold text-black text-sm">Сделка</div>
+                                        <div className="smm-deal-head-count font-secondary-bold text-[#C8D5ED]">(8)</div>
+                                    </div>
+                                    <div className="smm-deal-list flex flex-col w-full">
+                                        {arr.length !== 0 ?
+                                            arr.map(item => {
+                                                return (
+                                                    <div key={uuid()} className="smm-deal-item flex items-center w-full p-[12px] cursor-pointer hover:bg-[#C8D5ED]/30">
+                                                        <div className="smm-deal-item-image flex-shrink-0 overflow-hidden w-[50px] h-[50px] mr-[12px] bg-white rounded-full">
+                                                            <img className="w-full h-full object-cover" src="/img/message-deal-item.e14abc38.png" alt="user"/>
+                                                        </div>
+                                                        <div className="smm-deal-item-info flex flex-col mr-[12px]">
+                                                            <div className="smm-deal-item-label text-black text-[13px] font-secondary-bold leading-normal">Пин-код Makmilan 1000 руб</div>
+                                                            <div className="smm-deal-item-description font-secondary-med text-sm">#16543</div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+                                            : null
+                                        }
+                                        
+                                    </div>
+                                </div>
+                                : 
+                                <div className="chat flex flex-wrap bg-white font-primary-med text-[#8FA0C3] w-full rounded-xl py-4">
+                                    <div className='w-full h-full'>
+                                        <div className='w-full border-b border-solid border-[#EAEEF4]'>
+                                            <div className="chat-head flex items-start text-sm sm:text-base mb-[22px] gap-3 px-3 sm:px-8">
+                                                <div className="chat-head-avatars flex items-center w-16">
+                                                    <div className="fm-message-avatar-wrapper flex-shrink-0 overflow-hidden relative bg-white rounded-full">
+                                                        <div className="fm-message-avatar flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 overflow-hidden rounded-full">
+                                                            <img className="sps-avatar-pic w-full h-full object-cover" src="/img/avatar-example-bot.1e9be783.png" alt="user"/>
+                                                        </div>
+                                                    </div>
+                                                    <div className="fm-message-avatar-wrapper p-1 flex-shrink-0 overflow-hidden relative bg-white rounded-full translate-x-[-40%]">
+                                                        <div className="fm-message-avatar flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 overflow-hidden rounded-full">
+                                                            <img className="sps-avatar-pic w-full h-full object-cover" src="/img/avatar-example-1.efb6cc72.png" alt="user"/>
+                                                        </div>
+                                                        <span className="fm-message-status block bg-gradient-secondary z-20 h-[8px] w-[8px] right-[7px] bottom-[7px] rounded-full border-0 border-white absolute"></span>
+                                                        <span className="fm-message-status block bg-white z-10 h-[16px] w-[16px] right-[3px] bottom-[3px] rounded-full border-0 border-white absolute"></span>
+                                                    </div>
+                                                </div>
+                                                <div className="chat-head-user flex flex-col">
+                                                    <div className="chat-head-username flex items-center gap-3">
+                                                        <div className='font-secondary-bold text-base text-black'>Allice, Support</div>
+                                                        <div className='flex items-center gap-2'>
+                                                            <button onClick={clickOpenModalPetition} className='bg-inherit'>
+                                                                <img src="/img/icon-focus.svg" alt="focus"/>
+                                                            </button>
+                                                            <button onClick={clickDeal} className='bg-inherit'>
+                                                                <img src="/img/icon-desktop.svg" alt="desktop"/> 
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex text-[#8FA0C3] w-full flex-wrap items-start font-primary-med text-xs sm:text-sm">
+                                                        <button onClick={goProfile} className='bg-inherit text-[#1E61EB]'>Allice</button> &nbsp;смотрит&nbsp; 
+                                                        <button onClick={goTovar} className='bg-inherit text-[#1E61EB]'>Warface 90 ранг, донат: 20</button>
+                                                        <button onClick={goTovar} className='bg-inherit text-[#1E61EB]'>сервер: ru.warface</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="chat-messages w-full flex flex-col flex-grow overflow-y-scroll text-[10px] text-xs px-3 sm:px-8 h-[570px] overflow-hidden overflow-y-scroll chat-scroll">
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?' date='true'/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой '/>
+                                            {(newDate) ? 
+                                                <div className="px-3 w-[86px] mx-auto py-1 mb-[18px] rounded-[34px] bg-[#0000000D] font-roboto text-[10px] sm:text-xs text-[#979797B2]">12.09.2019</div>
+                                                : null
+                                            }
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?' date='true'/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой '/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?'/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?'/>
+                                            <ChatMessageUser name='Shenderro' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой'/>
+                                            <ChatMessageUser name='Shenderro' tail='true' avatar='avatar-example-1.efb6cc72.png' time='22:23' text='Привет, как дела ?'/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?' date='true'/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой '/>
+                                            {(newDate) ? 
+                                                <div className="px-3 w-[86px] mx-auto py-1 mb-[18px] rounded-[34px] bg-[#0000000D] font-roboto text-[10px] sm:text-xs text-[#979797B2]">12.09.2019</div>
+                                                : null
+                                            }
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?' date='true'/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой '/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?'/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?'/>
+                                            <ChatMessageUser name='Shenderro' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой'/>
+                                            <ChatMessageUser name='Shenderro' tail='true' avatar='avatar-example-1.efb6cc72.png' time='22:23' text='Привет, как дела ?'/>   
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой '/>
+                                            {(newDate) ? 
+                                                <div className="px-3 w-[86px] mx-auto py-1 mb-[18px] rounded-[34px] bg-[#0000000D] font-roboto text-[10px] sm:text-xs text-[#979797B2]">12.09.2019</div>
+                                                : null
+                                            }
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?' date='true'/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой '/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?'/>
+                                            <ChatMessageMy avatar='avatar-example-bot.1e9be783.png' tail='true' icon='true' time='22:23' text='Привет, как дела ?'/>
+                                            <ChatMessageUser name='Shenderro' time='22:23' text='Привет, как дела ? ты когда решил покупать товар этот будешь. Давай завтра вечером в 19:00 я готов продать дома буду как раз и мы все сделаем с тобой'/>
+                                            <ChatMessageUser name='Shenderro' tail='true' avatar='avatar-example-1.efb6cc72.png' time='22:23' text='Привет, как дела ?'/>   
+                                        </div>
+                                        <div className="chat-form w-full self-end">
+                                            <div className="chat-notification flex items-center w-full py-4 px-3 sm:px-8 bg-[#EEF4FF]">
+                                                <span className="chat-notification-icon flex-shrink-0 flex justify-center items-center w-[25px] h-[26px] mr-[24px]">
+                                                    <img src='/img/icon-notification-feed.svg' alt="notification"/>
+                                                </span>
+                                                <span className="chat-notification-text font-secondary-bold text-xs sm:text-sm text-black">Заказ #59698658 открыт повторно.</span>
+                                            </div>
+                                            <div className='px-6 pt-6'>
+                                                <div className="chat-input flex items-center bg-white font-secondary-med p-4 border border-[#E4E9F4] rounded-xl w-full">
+                                                    <input className="font-secondary-med chat-input-input text-black w-full h-full outline-none placeholder:text-[#BAC9E5] text-sm sm:text-base" placeholder="Вставьте содержимое товара..."/>
+                                                    <button className="chat-input-btn flex-shrink-0 flex justify-center items-center w-[26px] h-[20px] mr-[24px]">
+                                                        <img className="fbc-avatar-pic w-full h-full object-cover" src='/img/icon-foto.svg' alt="foto"/>
+                                                    </button>
+                                                    <button className="flex-shrink-0 bg-inherit flex justify-center items-center w-[22px] h-[20px]">
+                                                        <img className="fbc-avatar-pic w-full h-full object-cover" src='/img/icon-send.svg' alt="send"/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            )
+                             
+                        }
+                        
                     </div>
                 </div>
             </div>

@@ -127,15 +127,15 @@ function MyFinance() {
                         <div className="fh-info flex justify-between items-center flex-wrap sm:flex-nowrap gap-4 sm:gap-6 rounded-lg bg-white p-4 sm:p-6 min-h-28">
                             <div className='flex gap-4 sm:gap-6 flex-shrink-0 w-full sm:w-auto justify-between'>
                                 <div className="fh-info-balance pr-4 sm:pr-6 border-none sm:border-r botder-solid border-[#DBE0ED]">
-                                    <div className="fh-info-balance-count font-bold font-secondary-bold text-xl sm:text-2xl text-black mb-1">8 163.50₽</div>
+                                    <div className="fh-info-balance-count font-bold font-secondary-bold text-base sm:text-2xl text-black mb-1">8 163.50₽</div>
                                     <div className="fh-info-balance-label font-secondary-med text-[#A6B6D4] text-xs sm:text-sm">Общий баланс</div>
                                 </div>
                                 <div className="fh-info-total ">
-                                    <div className="fh-info-total-count font-bold font-secondary-bold text-xl sm:text-2xl text-black mb-1 text-right">+163.50₽</div>
+                                    <div className="fh-info-total-count font-bold font-secondary-bold text-base sm:text-2xl text-black mb-1 text-right">+163.50₽</div>
                                     <SelectFinance arr={arr} keyValue='Time' changeFormValue={changeFormValue}/>
                                 </div>
                             </div>   
-                            <div className="flex items-center w-full sm:w-auto justify-between sm:justify-end flex-nowrap sm:flex-wrap gap-2 h-full">
+                            <div className="flex items-center w-full sm:w-auto justify-between sm:justify-end flex-wrap gap-2 h-full">
                                 <button onClick={addFunds} className="smt-tab-btn flex justify-center items-center font-secondary-bold text-xs sm:text-sm text-white bg-gradient-primary rounded-full h-8 sm:h-10 px-2 sm:px-4 min-w-[148px] sm:min-w-[170px] bg-gradient-primary-hover">Пополнить баланс</button>
                                 <button onClick={takeFunds} className="smt-tab-btn flex justify-center items-center font-secondary-bold text-xs sm:text-sm text-[#1E61EB] bg-white border border-solid border-[#1E61EB] rounded-full h-8 sm:h-10 px-2 sm:px-4 min-w-[148px] sm:min-w-[170px] hover:text-white hover:bg-[linear-gradient(37deg,#339cfc_0%,#0046d6_100%)]">Вывести средства</button>
                             </div>

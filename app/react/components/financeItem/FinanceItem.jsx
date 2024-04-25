@@ -2,60 +2,62 @@
 function FinanceItem(props) {
     
     return (
-        <div className="p-4 sm:p-6 font-secondary-bold rounded-xl flex justify-between items-center flex-wrap sm:flex-nowrap text-xs sm:text-sm text-[#1D222C] gap-0 sm:gap-2 bg-white">
+        <div className="p-4 sm:p-6 font-secondary-bold rounded-xl flex justify-between items-center flex-wrap sm:flex-nowrap text-[10px] sm:text-sm text-[#1D222C] gap-0 sm:gap-2 bg-white">
             <div className="">{props.name} #2{props.numOper}</div>
             <div className="flex items-center justify-start sm:justify-end w-full font-secondary-bold text-[#969BA5] gap-2 h-auto sm:h-full">
-                {props.balance === 'output' && props.stage === 'progress' ?
-                    <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
-                        <div>Ожидание</div>
-                        <div>{props.time} часов.</div>
-                    </div>
-                    : null
-                }
-                {props.balance === 'output' && props.stage === 'cancel' ?
-                    <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
-                        <div>Отменено</div>
-                    </div>
-                    : null
-                }
-                {props.balance === 'output' && props.stage === 'true' ?
-                    <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
-                        <div>Успешный вывод</div>
-                    </div>
-                    : null
-                }
-                {props.balance === 'add' && props.stage === 'true' ?
-                    <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
-                        <div>Попoлнено</div>
-                    </div>
-                    : null
-                }
-                {props.balance === 'add' && props.stage === 'progress' ?
-                    <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
-                        <div>Пополняется</div>
-                    </div>
-                    : null
-                }
-                {props.balance === 'outlay' ?
-                    <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
-                        <div>Расход</div>
-                    </div>
-                    : null
-                }
-                {props.balance === 'earn' ?
-                    <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
-                        <div>Заработано</div>
-                    </div>
-                    : null
-                }
-                {props.balance === 'return' ?
-                    <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
-                        <div>Возврат</div>
-                    </div>
-                    : null
-                }
-                <div className="flex items-center flex-shrink-0 h-full text-[#1D222C] font-bold pr-2 border-r border-solid border-[#DBE0ED]">{props.money} ₽</div>
-                <div className="flex items-center justify-end w-max text-[#1D222C] text-end h-full pr-2 border-r border-solid border-[#DBE0ED]">{props.data}</div>
+                <div className="flex items-center justify-between sm:justify-end w-full">
+                    {props.balance === 'output' && props.stage === 'progress' ?
+                        <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
+                            <div>Ожидание</div>
+                            <div>{props.time} часов.</div>
+                        </div>
+                        : null
+                    }
+                    {props.balance === 'output' && props.stage === 'cancel' ?
+                        <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
+                            <div>Отменено</div>
+                        </div>
+                        : null
+                    }
+                    {props.balance === 'output' && props.stage === 'true' ?
+                        <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
+                            <div>Успешный вывод</div>
+                        </div>
+                        : null
+                    }
+                    {props.balance === 'add' && props.stage === 'true' ?
+                        <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
+                            <div>Попoлнено</div>
+                        </div>
+                        : null
+                    }
+                    {props.balance === 'add' && props.stage === 'progress' ?
+                        <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
+                            <div>Пополняется</div>
+                        </div>
+                        : null
+                    }
+                    {props.balance === 'outlay' ?
+                        <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
+                            <div>Расход</div>
+                        </div>
+                        : null
+                    }
+                    {props.balance === 'earn' ?
+                        <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
+                            <div>Заработано</div>
+                        </div>
+                        : null
+                    }
+                    {props.balance === 'return' ?
+                        <div className="hidden sm:flex items-center justify-end flex-wrap gap-x-1.5 text-[#A6B6D4] pr-2 h-full border-r border-solid border-[#DBE0ED]">
+                            <div>Возврат</div>
+                        </div>
+                        : null
+                    }
+                    <div className="flex items-center flex-shrink-0 h-full text-[#1D222C] font-bold pr-2 border-r border-solid border-[#DBE0ED]">{props.money} ₽</div>
+                    <div className="flex items-center justify-end w-max text-[#1D222C] text-end h-full pr-2 border-r border-solid border-[#DBE0ED]">{props.data}</div>
+                </div>
                 {props.balance === 'output' && props.stage === 'progress' ?
                     <div className="flex items-center justify-end text-[#E22929] cursor-pointer">
                         <div className="rounded-full w-[24px] h-[24px] flex justify-end items-center text-[#E22929] pr-2">
@@ -115,16 +117,16 @@ function FinanceItem(props) {
                 }
                 {props.balance === 'outlay' ?
                     <div className="flex items-center justify-end text-[#E22929]">
-                        <div className="rounded-full flex justify-end items-center text-[#E22929] text-[50px]">
-                            -
+                        <div className="rounded-full flex justify-end items-center text-[#E22929]">
+                            <img src="/img/icons8-minus.png" alt='minus' />
                         </div>
                     </div>
                     : null
                 }
                 {props.balance === 'earn' ?
                     <div className="flex items-center justify-end ">
-                        <div className="rounded-full flex justify-end items-center text-[#8CD23C] text-[40px]">
-                            +
+                        <div className="rounded-full flex justify-end items-center text-[#8CD23C]">
+                            <img src="/img/icons8-plus.png" alt='plus' />
                         </div>
                     </div>
                     : null
