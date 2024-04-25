@@ -104,7 +104,7 @@ function FilterBlockMob(props) {
     const arr = ['Warface', 'New game', 'GTA', 'New game'];
   
     return (
-        <div className='absolute top-[90px] right-0 block min-[880px]:hidden z-[100] shadow-2xl w-[300px] bg-white p-[24px] rounded-lg'>
+        <div className='absolute top-[90px] right-[-15px] block min-[880px]:hidden z-[100] shadow-2xl w-[279px] bg-white p-[24px] rounded-lg'>
             <div className='flex justify-end'>
                 <button onClick={props.showFilter} className='p-0 bg-inherit hover:bg-[rgba(241,245,249,1)]'>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

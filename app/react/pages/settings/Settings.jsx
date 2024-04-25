@@ -73,9 +73,9 @@ function Settings() {
 
         let loggedInUser = localStorage.getItem('logged');
 
-        if (loggedInUser === null) {
-            window.location = '/';
-        };
+        // if (loggedInUser === null) {
+        //     window.location = '/';
+        // };
 
         if (loggedInUser) {
             setLoggedIn(true);

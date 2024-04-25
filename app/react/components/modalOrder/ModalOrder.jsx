@@ -147,7 +147,7 @@ function ModalOrder(props) {
     return (
         <div className="z-[100] h-screen fixed inset-x-0 inset-y-0 overflow-scroll flex justify-center pt-[2%] pb-[3%] px-[2%]">
             <div className='shadow-[0px_25px_35px_0px_#E2E3F3A6] h-fit w-full md:w-[758px] bg-white rounded-lg px-6 pb-6'>
-                    <div className='flex justify-end mb-5 pt-0 sm:pt-6'>
+                    <div className='flex justify-end mb-5 pt-0 sm:pt-6 mt-3'>
                         <button onClick={props.closeModal} className='p-0 bg-inherit hover:bg-[rgba(241,245,249,1)]'>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M18 6L6 18M6 6L18 18" stroke="#B8B8B8" strokeWidth="1.5" strokeLinecap="round"/>
@@ -156,10 +156,10 @@ function ModalOrder(props) {
                     </div>
                     <div  className='mt-[-10px]'>
                         <div className='flex justify-between flex-wrap gap-y-5 flex-[50%_50%] mb-4'>
-                            <div className='w-[49%]'>
+                            <div className='w-full sm:w-[49%]'>
                                 <Select arr={games} changeFormValue={changeFormValue} keyValue='Игра' name='Игра'/>
                             </div>
-                            <div className='w-[49%]'>
+                            <div className='w-full sm:w-[49%]'>
                                 <Select arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>   
                             </div>
                         </div>
@@ -169,12 +169,12 @@ function ModalOrder(props) {
                                     fields.map(item => {
                                         if(item.type === 'float') {
                                             return (
-                                                <Input key={uuid()} widht='w-[32%]' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
+                                                <Input key={uuid()} widht2='w-full' widht='w-[32%]' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
                                             )
                                         };
                                         if(item.type === 'options') {
                                             return (
-                                                <div key={item.id} className='w-[32%] '>
+                                                <div key={item.id} className='w-full sm:w-[32%] '>
                                                     <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
                                                 </div>
                                             )

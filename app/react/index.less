@@ -10010,7 +10010,7 @@ input[type="checkbox"] {
 .ocd::before {
     height: 100%;
     width: 100%;
-    left: -400px;
+    left: -32%;
     content: "";
     background: transparent url("../img/ocd-bg-2.png") no-repeat;
     background-size: initial;
@@ -10020,14 +10020,29 @@ input[type="checkbox"] {
 .ocd::after {
     height: 100%;
     width: 100%;
-    right: -420px;
+    right: -32%;
     content: "";
     background: transparent url(../img/ocd-bg-1.png) no-repeat;
     background-size: initial;
     background-position: bottom center;
     position: absolute;
 }
-
+@media (max-width: 466px) {
+.ocd {
+    position: relative;
+    overflow: hidden;
+}
+.ocd::before {
+    height: 0;
+    width: 0;
+    
+}
+.ocd::after {
+    height: 0;
+    width: 0;
+    
+}
+}
 
 .ocd-drum-btn {
     -webkit-box-shadow: 0px 15px 36px 14px rgba(255, 255, 255, 0.3);

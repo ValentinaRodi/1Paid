@@ -46,13 +46,6 @@ function CardsGame() {
         }
     }, [dataCards]);
 
-    // if(gamesObj.length > 0) {
-    //     gamesObj.map((card) => (
-    //         console.log('card',card)
-    //     ))
-        
-    // }
-
     const arr = [
         {
             "id": 3,

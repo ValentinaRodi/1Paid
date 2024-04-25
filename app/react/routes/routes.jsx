@@ -40,18 +40,18 @@ export const useRoutes = () => {
     fetch("/game/get", {
       method: "GET",
       headers: {
-          "X-Requested-With": "XMLHttpRequest",
-          "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/json",
       },
     })
     .then((res) => {
-        return res.json();
+      return res.json();
     })
     .then((data) => {
       setGames(Object.values(data.games));
     })
     .catch((error) => {
-        console.log(error);
+      console.log(error);
     });
 
   }, []);

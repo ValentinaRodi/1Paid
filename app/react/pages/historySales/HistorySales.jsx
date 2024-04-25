@@ -101,11 +101,11 @@ function HistorySales() {
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 mt-10 xl:mt-0">
             <div className="w-full layout-main">
                 <Title title='История покупок и продаж' search='true' viewCards='true' changeViewCards={changeViewCards} cardsViewImg={cardsViewImg}/>
-                <div className="flex items-start py-4 justify-between rounded-lg bg-white px-6 mb-3">
+                <div className="flex items-start py-4 justify-between rounded-lg bg-white px-6 mb-3 mt-3 sm:mt-0">
                     <div id="parent" className="nav-show pt-2 h-full w-full flex items-center justify-start">
                         <nav id="nav" className="nav-item pb-2.5 flex gap-x-6 flex-wrap gap-y-6">
-                            <div onClick={clickSales} className={`${(salesClass) ? 'nav-link-prim' : 'nav-link'} cursor-pointer nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>Мои покупки</div>
-                            <div onClick={clickPurchase} className={`${(!salesClass) ? 'nav-link-prim' : 'nav-link'} cursor-pointer nav-link-tab font-primary-bold text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>Мои продажи</div>
+                            <div onClick={clickSales} className={`${(salesClass) ? 'nav-link-prim' : 'nav-link'} cursor-pointer nav-link-tab font-primary-bold text-xs sm:text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>Мои покупки</div>
+                            <div onClick={clickPurchase} className={`${(!salesClass) ? 'nav-link-prim' : 'nav-link'} cursor-pointer nav-link-tab font-primary-bold text-xs sm:text-sm text-[#8A98B3] uppercase 3xl:text-xs lg:text-sm`}>Мои продажи</div>
                         </nav>
                     </div>
                 </div>

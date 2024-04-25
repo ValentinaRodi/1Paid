@@ -97,7 +97,7 @@ function Refs() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="srd-text bg-white rounded-xl flex flex-col gap-2 sm:gap-4 sm:gap-6 font-primary-med text-black p-4 sm:p-6 text-[11px] sm:text-[13px]">
+                            <div className="srd-text bg-white rounded-xl flex flex-col gap-2 sm:gap-4 sm:gap-6 font-primary-med text-black p-4 sm:p-6 text-[9px] sm:text-[13px]">
                                 <p>Реферальная система - "Зарабатывай с каждой покупки своего реферала от 1 до 7%. Например если ваш реферал совершил покупку на 1000р то вы получите 1% с его покупки, это 10DG<span className="text-[#FF0000]">*</span>. Бонусами DG можно оплачивать покупки до 100%</p>
                                 <p>Оплаченные покупки реферала бонусами DG не учитываются.</p>
                                 <p><span className="text-[#FF0000]">*</span>1DG = 1РУБ</p>

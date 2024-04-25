@@ -49,8 +49,8 @@ function OrderTable() {
                 <div className="flex items-start py-2 sm:py-4 justify-between rounded-lg bg-white px-4 sm:px-6 mb-3">
                     <div id="parent" className="nav-show pt-2 h-full w-full flex items-center justify-start">
                         <nav id="nav" className="nav-item pb-2.5 flex gap-x-4 sm:gap-x-6 flex-wrap gap-y-6">
-                            <div onClick={clickOrders} className={`${(tabClass) ? 'nav-link-prim' : 'nav-link'} cursor-pointer nav-link-tab font-primary-bold text-xs sm:text-sm text-[#8A98B3] uppercase`}>Мои заказы</div>
-                            <div onClick={clickMarket} className={`${(!tabClass) ? 'nav-link-prim' : 'nav-link'} cursor-pointer nav-link-tab font-primary-bold text-xs sm:text-sm text-[#8A98B3] uppercase`}>Биржа заказов</div>
+                            <div onClick={clickOrders} className={`${(tabClass) ? 'nav-link-prim' : 'nav-link'} cursor-pointer nav-link-tab font-primary-bold text-[10px] sm:text-sm text-[#8A98B3] uppercase`}>Мои заказы</div>
+                            <div onClick={clickMarket} className={`${(!tabClass) ? 'nav-link-prim' : 'nav-link'} cursor-pointer nav-link-tab font-primary-bold text-[10px] sm:text-sm text-[#8A98B3] uppercase`}>Биржа заказов</div>
                         </nav>
                     </div>
                 </div>

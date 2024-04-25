@@ -207,7 +207,7 @@ function Profile() {
                     <div className="spf-bar flex flex-col items-start w-full md:w-[290px] gap-3">
                         <div className='flex gap-3 flex-wrap sm:flex-nowrap'>
                             <div className="sps-bar w-full sm:w-auto flex flex-col items-start font-secondary-bold h-auto">
-                                <div className="sps-avatar self-center flex-shrink-0 w-[258px] h-[258px] mb-[12px] overflow-hidden rounded-[12px] relative">
+                                <div className="sps-avatar self-center flex-shrink-0 w-full sm:w-[258px] h-[258px] mb-[12px] overflow-hidden rounded-[12px] relative">
                                     <img className="sps-avatar-pic w-full h-full object-cover" src={blockUser ? 'img/block.jpg' : 'img/avatar-example-5.00d4721a.png'} alt="user" />
                                 </div>
                                 <div className="sps-user flex flex-col w-full font-secondary-bold">
@@ -323,12 +323,12 @@ function Profile() {
                                                         <img src="/img/icon-btn-icon-13.svg" alt="btn-icon"/>
                                                     </div>
                                                 </div>
-                                                <div className="nc-text font-secondary-bold text-base sm:text-lg text-[#1D222C] [&amp;_a]:text-[#1E61EB] sm:overflow-hidden sm:text-ellipsis sm:whitespace-nowrap">
+                                                <div className="nc-text font-secondary-bold text-sm sm:text-lg text-[#1D222C] [&amp;_a]:text-[#1E61EB] sm:overflow-hidden sm:text-ellipsis sm:whitespace-nowrap">
                                                     Бесплатная бесконечная
                                                 </div>
                                                 <div className="nc-date">
-                                                    <div className="nc-date-label font-secondary-med text-xs text-[#969BA5]">Дата</div>
-                                                    <div className="nc-date-value font-secondary-bold text-sm sm:text-base text-[#1D222C]">27.02.2020 15:34</div>
+                                                    <div className="nc-date-label font-secondary-med text-[10px] text-[#969BA5]">Дата</div>
+                                                    <div className="nc-date-value font-secondary-bold text-xs sm:text-base text-[#1D222C]">27.02.2020 15:34</div>
                                                 </div>
                                                 <button onClick={goForumTheme} className="nc-btn bg-inherit rounded-full w-11 h-11 border border-solid border-black/10 flex items-center justify-center hover:bg-black/5">
                                                     <div className="btn-icon">

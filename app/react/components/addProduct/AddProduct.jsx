@@ -32,6 +32,7 @@ function AddProduct(props) {
         if (title === '') {
           setError('border-[#FF5343] border-[1px] border-solid');
         } else {
+            props.closeModal();
             props.openModalUpTop();
         }
     };
@@ -217,11 +218,11 @@ function AddProduct(props) {
                     </button>
                 </div>
                 <div  className='mt-[-10px]'>
-                    <div className='flex justify-between flex-wrap gap-y-5 flex-[50%_50%] mb-4'>
-                        <div className='w-[49%]'>
+                    <div className='flex justify-between flex-col sm:flex-row gap-y-5 flex-[50%_50%] mb-4'>
+                        <div className='w-full sm:w-[49%]'>
                             <Select arr={games} changeFormValue={changeFormValue} keyValue='Игра' name='Игра'/>
                         </div>
-                        <div className='w-[49%]'>
+                        <div className='w-full sm:w-[49%]'>
                             <Select arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>   
                         </div>
                     </div>
@@ -231,19 +232,19 @@ function AddProduct(props) {
                                 fields.map(item => {
                                     if(item.type === 'float') {
                                         return (
-                                            <Input key={uuid()} widht='w-[32%]' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
+                                            <Input key={uuid()} widht2='w-full' widht='w-[32%]' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
                                         )
                                     };
                                     if(item.type === 'options') {
                                         return (
-                                            <div key={item.id} className='w-[32%] '>
+                                            <div key={item.id} className='w-full sm:w-[32%] '>
                                                 <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
                                             </div>
                                         )
                                     };
                                     if(item.type === 'options-check') {
                                         return (
-                                            <div key={item.id} className='w-[32%] '>
+                                            <div key={item.id} className='w-full sm:w-[32%] '>
                                                 <SelectCheck arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
                                             </div>
                                         )
