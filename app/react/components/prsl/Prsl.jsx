@@ -92,7 +92,7 @@ function Prsl() {
                                 <div className=" w-full flex items-center justify-between gap-0 min-[430px]:gap-4 flex-wrap min-[430px]:flex-nowrap">
                                     <div className="w-full min-[430px]:w-auto flex justify-start items-center gap-x-4 gap-y-2 flex-col min-[900px]:flex-row">
                                         <div className="prsl-item-award-pic w-[180px] flex justify-center items-center max-[640px]:w-[100px] ">
-                                            <img className="w-full" src="/img/raffle.161f3412.png" alt="raffle"/>
+                                            <img className="max-w-[180px] w-full" src="/img/raffle.161f3412.png" alt="raffle"/>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <div className="relative flex-shrink-0 w-16 h-16 sm:w-[77px] sm:h-[77px] flex justify-center items-center ">
