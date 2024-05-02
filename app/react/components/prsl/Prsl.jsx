@@ -94,7 +94,7 @@ function Prsl() {
                                         <div className="prsl-item-award-pic w-[180px] flex justify-center items-center max-[640px]:w-[100px] ">
                                             <img className="max-w-[180px] w-full" src="/img/raffle.161f3412.png" alt="raffle"/>
                                         </div>
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex items-center gap-4 min-[430px]:gap-2">
                                             <div className="relative flex-shrink-0 w-16 h-16 sm:w-[77px] sm:h-[77px] flex justify-center items-center ">
                                                 <img className="w-full h-full" src="/img/icon-circle-progress.svg" alt="award"/>
                                                 <img className="absolute top-[20px] left-[20px] sm:top-[25px] sm:left-[25px] w-[24px] h-[27px]" src="/img/icon-game-rank.svg" alt="award"/>

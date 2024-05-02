@@ -4,13 +4,15 @@ import uuid from 'react-uuid';
 import Input from '../Input';
 import InputRange from '../../components/inputRange/InputRange';
 import { createRoot } from "react-dom/client";
+import SelectCheck from '../selectCheck/SelectCheck';
+
 
 function ModalOrder(props) {
     const [title, setTitle] = useState('');
     const [error, setError] = useState('');
     const [typePin, setTypePin] = useState(["Тип 1", "Тип 2", "Тип 3"]);
     const [time, setTime] = useState(["Навсегда", "На год", "На месяц"]);
-    const [categ, setCateg] = useState(["Аккаунты", "Пин-коды", "Буст PM","Спецоперации"]);
+    const [categ, setCateg] = useState([]);
     const [formValue, setFormValue] = useState({});
    
     const [gamesObj, setGamesObj] = useState([]);
@@ -36,7 +38,79 @@ function ModalOrder(props) {
         };
     };
 
-    // Функция для обновления объекта formValue
+    // // Функция для обновления объекта formValue
+    // const changeFormValue = (key, value) => {
+    //     //console.log('formValue',formValue);
+        
+    //     (key in formValue) ? formValue[key] = value : formValue[key] = value;
+       
+    //     if(value === '') {
+    //         delete formValue[`${key}`];
+    //     }
+
+    //     if('Игра' in formValue && gameName !== formValue['Игра']) {
+    //         setGameName(formValue['Игра']);
+    //         setCateg(['Аккаунты', 'Пин-коды', 'Буст РМ', 'Спецоперации']);
+    //         // const categArr = [];
+
+    //         // gamesObj.forEach(el => {
+
+    //         //     if(el.name === formValue['Игра']) {
+    //         //         el.categories.forEach(el => {
+    //         //             categArr.push(el.name);
+    //         //         });
+    //         //     };
+    //         // });
+
+    //         // if(categArr.length !== 0) {
+    //         //     setCateg(categArr);
+    //         // };
+    //     };
+
+    //     if(formValue['Категория'] && categName !== formValue['Категория']) {
+    //         setCategName(formValue['Категория']);
+    //         gamesObj.forEach(el => {
+
+    //             if(el.name === formValue['Игра']) {
+    //                 el.categories.forEach(el => {
+    //                     if(el.name === formValue['Категория']) {
+                            
+    //                         //Получаем поля выбранной категории
+    //                         fetch(`/field/get-list/${el.id}`, {
+    //                             method: "GET",
+    //                             headers: {
+    //                                 "X-Requested-With": "XMLHttpRequest",
+    //                                 "Content-Type": "application/json",
+    //                             },
+    //                         })
+    //                         .then((res) => {
+    //                             return res.json();
+    //                         })
+    //                         .then((data) => {
+    //                             //console.log('data',data);
+    //                             setFields(data);
+    //                         })
+    //                         .catch((error) => {
+    //                             console.log(error);
+    //                         });
+    //                         return;
+    //                     };
+    //                 });
+    //             }
+    //         });
+    //     }; 
+        
+    //     if(!('Категория' in formValue)) {
+    //         setFields([]);
+    //     };
+
+    //     if(!('Игра' in formValue)) {
+    //         setFormValue({}); 
+    //         setCateg([]);
+    //         setFields([]);
+    //     };
+    // };
+
     const changeFormValue = (key, value) => {
         //console.log('formValue',formValue);
         
@@ -48,54 +122,87 @@ function ModalOrder(props) {
 
         if('Игра' in formValue && gameName !== formValue['Игра']) {
             setGameName(formValue['Игра']);
-            
-            const categArr = [];
+            setCateg(['Аккаунты', 'Пин-коды', 'Буст РМ', 'Спецоперации']);
+            // const categArr = [];
 
-            gamesObj.forEach(el => {
+            // gamesObj.forEach(el => {
 
-                if(el.name === formValue['Игра']) {
-                    el.categories.forEach(el => {
-                        categArr.push(el.name);
-                    });
-                };
-            });
+            //     if(el.name === formValue['Игра']) {
+            //         el.categories.forEach(el => {
+            //             categArr.push(el.name);
+            //         });
+            //     };
+            // });
 
-            if(categArr.length !== 0) {
-                setCateg(categArr);
-            };
+            // if(categArr.length !== 0) {
+            //     setCateg(categArr);
+            // };
         };
 
         if(formValue['Категория'] && categName !== formValue['Категория']) {
             setCategName(formValue['Категория']);
-            gamesObj.forEach(el => {
-
-                if(el.name === formValue['Игра']) {
-                    el.categories.forEach(el => {
-                        if(el.name === formValue['Категория']) {
-                            
-                            //Получаем поля выбранной категории
-                            fetch(`/field/get-list/${el.id}`, {
-                                method: "GET",
-                                headers: {
-                                    "X-Requested-With": "XMLHttpRequest",
-                                    "Content-Type": "application/json",
-                                },
-                            })
-                            .then((res) => {
-                                return res.json();
-                            })
-                            .then((data) => {
-                                //console.log('data',data);
-                                setFields(data);
-                            })
-                            .catch((error) => {
-                                console.log(error);
-                            });
-                            return;
-                        };
-                    });
+            setFields([
+                {
+                    "id": 1,
+                    "seo_name": "account_rating",
+                    "lang_id": 16,
+                    "type": "float",
+                    "value": "0",
+                    "created_at": null,
+                    "updated_at": null,
+                    "search": 0
+                },
+                {
+                    "id": 3,
+                    "seo_name": "options",
+                    "lang_id": 19,
+                    "type": "options",
+                    "value": "wf1|wf2|wf3",
+                    "created_at": "2024-02-01 23:58:34",
+                    "updated_at": "2024-02-01 23:58:34",
+                    "search": 0
+                },
+                {
+                    "id": 4,
+                    "seo_name": "options-check",
+                    "lang_id": 20,
+                    "type": "options-check",
+                    "value": "wf1|wf2|wf3",
+                    "created_at": "2024-02-02 00:33:21",
+                    "updated_at": "2024-02-02 00:33:21",
+                    "search": 1
                 }
-            });
+            ]);
+
+            // gamesObj.forEach(el => {
+
+            //     if(el.name === formValue['Игра']) {
+            //         el.categories.forEach(el => {
+            //             if(el.name === formValue['Категория']) {
+                            
+            //                 // //Получаем поля выбранной категории
+            //                 // fetch(`/field/get-list/${el.id}`, {
+            //                 //     method: "GET",
+            //                 //     headers: {
+            //                 //         "X-Requested-With": "XMLHttpRequest",
+            //                 //         "Content-Type": "application/json",
+            //                 //     },
+            //                 // })
+            //                 // .then((res) => {
+            //                 //     return res.json();
+            //                 // })
+            //                 // .then((data) => {
+            //                 //     //console.log('data',data);
+            //                 //     setFields(data);
+            //                 // })
+            //                 // .catch((error) => {
+            //                 //     console.log(error);
+            //                 // });
+            //                 return;
+            //             };
+            //         });
+            //     }
+            // });
         }; 
         
         if(!('Категория' in formValue)) {
@@ -111,39 +218,40 @@ function ModalOrder(props) {
 
     //Получаем список игр
     useEffect(() => {
+        setGames(['Warface', 'Game2', 'Game3']);
+        
+        // fetch("/game/get", {
+        //     method: "GET",
+        //     headers: {
+        //         "X-Requested-With": "XMLHttpRequest",
+        //         "Content-Type": "application/json",
+        //     },
+        // })
+        // .then((res) => {
+        //     return res.json();
+        // })
+        // .then((data) => {
+        //     //console.log('data',data)
+        //     if(data.games.length !== 0) {
+        //         setGamesObj(data.games);
+        //     }
 
-        fetch("/game/get", {
-            method: "GET",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json",
-            },
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            //console.log('data',data)
-            if(data.games.length !== 0) {
-                setGamesObj(data.games);
-            }
+        //     const gamesArr = [];
 
-            const gamesArr = [];
-
-            data.games.forEach(el => {
-                gamesArr.push(el.name);
-            });
+        //     data.games.forEach(el => {
+        //         gamesArr.push(el.name);
+        //     });
             
-            if(gamesArr.length !== 0) {
-                setGames(gamesArr);
-            } 
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        //     if(gamesArr.length !== 0) {
+        //         setGames(gamesArr);
+        //     } 
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
     }, []);
 
-
+    
     return (
         <div className="z-[100] h-screen fixed inset-x-0 inset-y-0 overflow-scroll flex justify-center pt-[2%] pb-[3%] px-[2%]">
             <div className='shadow-[0px_25px_35px_0px_#E2E3F3A6] h-fit w-full md:w-[758px] bg-white rounded-lg px-6 pb-6'>
@@ -176,6 +284,13 @@ function ModalOrder(props) {
                                             return (
                                                 <div key={item.id} className='w-full sm:w-[32%] '>
                                                     <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
+                                                </div>
+                                            )
+                                        }
+                                        if(item.type === 'options-check') {
+                                            return (
+                                                <div key={item.id} className='w-full sm:w-[32%] '>
+                                                    <SelectCheck arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
                                                 </div>
                                             )
                                         }
