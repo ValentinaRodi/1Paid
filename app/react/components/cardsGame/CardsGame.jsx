@@ -11,40 +11,94 @@ function CardsGame() {
     const [gamesObj, setGamesObj] = useState([]);
 
     useEffect(() => {
-
-        const jsonCards = document.getElementById('game-json'); 
+        setGamesObj(
+            [{
+                "id": 3,
+                // "seo_name": "Warface",
+                "new": 0,
+                "created_at": null,
+                "updated_at": null,
+                "name": "Warface",
+                "icon": "/img/icon-warface.svg",
+                "bg_image": "/img/game-card-bg-warface.9e636275.png",
+                "categories": [
+                    {
+                        "id": 1,
+                        "seo_name": "accwarface",
+                        "name": "Аккаунты"
+                    },
+                    {
+                        "id": 2,
+                        "seo_name": "accwarface",
+                        "name": "Пин-коды"
+                    },
+                    {
+                        "id": 3,
+                        "seo_name": "accwarface",
+                        "name": "Буст РМ"
+                    },
+                    {
+                        "id": 4,
+                        "seo_name": "accwarface",
+                        "name": "Спецоперации"
+                    },
+                    {
+                        "id": 5,
+                        "seo_name": "accwarface",
+                        "name": "Статистика"
+                    },
+                    {
+                        "id": 6,
+                        "seo_name": "accwarface",
+                        "name": "Кредиты"
+                    },
+                    {
+                        "id": 7,
+                        "seo_name": "accwarface",
+                        "name": "Достижения"
+                    },
+                    {
+                        "id": 8,
+                        "seo_name": "accwarface",
+                        "name": "Прочее"
+                    },
+                ]
+            }]
+        )
+        // const jsonCards = document.getElementById('game-json'); 
         
-        if(jsonCards) {
-            setDataCards(JSON.parse(jsonCards.textContent));
-        } else {
-        
-            fetch("/game/get", {
-                method: "GET",
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest",
-                    "Content-Type": "application/json",
-                },
-            })
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                setDataCards(data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        }
+        // if(jsonCards) {
+        //     setDataCards(JSON.parse(jsonCards.textContent));
+        // } else {
+            // fetch("/game/get", {
+            //     method: "GET",
+            //     headers: {
+            //         "X-Requested-With": "XMLHttpRequest",
+            //         "Content-Type": "application/json",
+            //     },
+            // })
+            // .then((res) => {
+            //     return res.json();
+            // })
+            // .then((data) => {
+            //     setDataCards(data);
+            // })
+            // .catch((error) => {
+            //     console.log(error);
+            // });
+        // }
     }, []);
     
-    useEffect(() => {
-        if(dataCards && dataCards.length !== 0) {
-            setGamesObj(Object.values(dataCards.games))
-            if(dataCards.offset + 8 >= dataCards.count) {
-                setBtn(false);
-            }
-        }
-    }, [dataCards]);
+    // useEffect(() => {
+    //     console.log(dataCards);
+    //     if(dataCards && dataCards.length !== 0) {
+    //         // setGamesObj(Object.values(dataCards.games))
+    //         setGamesObj(dataCards);
+    //         if(dataCards.offset + 8 >= dataCards.count) {
+    //             setBtn(false);
+    //         }
+    //     }
+    // }, [dataCards]);
 
     const arr = [
         {
@@ -360,18 +414,26 @@ function CardsGame() {
                                     </div>
                                     <div className="gc-tags-wrap">
                                         <div className="gc-tags">
-                                            {Object.values(card.categories).map((categ) => (
+                                            {/* {Object.values(card.categories).map((categ) => (
                                                 <Link to={`catalog/${card.seo_name}/${categ.seo_name}`} state={{ game: card.seo_name, category: categ.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item w-fit font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
+                                            ))} */}
+                                            {Object.values(card.categories).map((categ) => (
+                                                <Link to='catalog/Warface' state={{ game: card.seo_name, category: categ.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item w-fit font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
                                             ))}
                                         </div>
                                     </div>
                                     <div className="gc-btn rounded-full border border-solid border-white w-[160px] h-11 flex items-center justify-between bg-transparent">
                                         <div className="gc-btn-label flex-grow px-2 font-secondary-bold text-center text-xs text-white">Перейти</div>
-                                        <Link  to={`catalog/${card.seo_name}`} state={{ game: card.seo_name, category: card.categories[0].seo_name, categoryId: 1 }} className="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
+                                        <Link  to='catalog/Warface' state={{ game: card.seo_name, category: card.categories[0].seo_name, categoryId: 1 }} className="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
                                             <div className="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
                                                 <img src={btnIcon} alt="btn-icon"/>
                                             </div>
                                         </Link>
+                                        {/* <Link  to={`catalog/${card.seo_name}`} state={{ game: card.seo_name, category: card.categories[0].seo_name, categoryId: 1 }} className="gc-btn-subbtn btn btn-secondary flex-shrink-0 relative right-[-2px] rounded-full w-11 h-11 justify-center">
+                                            <div className="btn-icon text-white w-1/2 [&amp;_svg]:w-full">
+                                                <img src={btnIcon} alt="btn-icon"/>
+                                            </div>
+                                        </Link> */}
                                     </div>
                                 </div>
                             : null

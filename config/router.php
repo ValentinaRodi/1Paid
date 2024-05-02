@@ -26,7 +26,7 @@ return [
     'GET,HEAD contacts' => 'main/index',
     'GET,HEAD profile' => 'main/index',
     'GET,HEAD profile/edit' => 'main/index',
-    'GET,HEAD catalog/Warface/1-account' => 'main/index',
+    'GET,HEAD catalog/Warface' => 'main/index',
     //'GET,HEAD profile' => 'main/profile',
     'GET,HEAD lending' => 'main/profile',
     'GET,HEAD csrf' => 'main/csrf',

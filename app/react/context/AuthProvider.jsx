@@ -13,8 +13,8 @@ export const AuthProvider = ({ children }) => {
     (localStorage.getItem('logged')) ? isLogged = true : isLogged = false;
         
     // Используем хук useState для создания переменной isAuthenticated и функции setAuth для ее изменения
-    const [isAuthenticated, setAuth] = useState(isLogged);
-    //const [isAuthenticated, setAuth] = useState(true);
+    // const [isAuthenticated, setAuth] = useState(isLogged);
+    const [isAuthenticated, setAuth] = useState(true);
     // Возвращаем контекст провайдера, передавая значения isAuthenticated и setAuth в качестве значения контекста
     return (
         <AuthContext.Provider value={{ isAuthenticated, setAuth }}>

@@ -49,54 +49,87 @@ function AddProduct(props) {
 
         if('Игра' in formValue && gameName !== formValue['Игра']) {
             setGameName(formValue['Игра']);
-            
-            const categArr = [];
+            setCateg(['Аккаунты', 'Пин-коды', 'Буст РМ', 'Спецоперации']);
+            // const categArr = [];
 
-            gamesObj.forEach(el => {
+            // gamesObj.forEach(el => {
 
-                if(el.name === formValue['Игра']) {
-                    el.categories.forEach(el => {
-                        categArr.push(el.name);
-                    });
-                };
-            });
+            //     if(el.name === formValue['Игра']) {
+            //         el.categories.forEach(el => {
+            //             categArr.push(el.name);
+            //         });
+            //     };
+            // });
 
-            if(categArr.length !== 0) {
-                setCateg(categArr);
-            };
+            // if(categArr.length !== 0) {
+            //     setCateg(categArr);
+            // };
         };
 
         if(formValue['Категория'] && categName !== formValue['Категория']) {
             setCategName(formValue['Категория']);
-            gamesObj.forEach(el => {
-
-                if(el.name === formValue['Игра']) {
-                    el.categories.forEach(el => {
-                        if(el.name === formValue['Категория']) {
-                            
-                            //Получаем поля выбранной категории
-                            fetch(`/field/get-list/${el.id}`, {
-                                method: "GET",
-                                headers: {
-                                    "X-Requested-With": "XMLHttpRequest",
-                                    "Content-Type": "application/json",
-                                },
-                            })
-                            .then((res) => {
-                                return res.json();
-                            })
-                            .then((data) => {
-                                //console.log('data',data);
-                                setFields(data);
-                            })
-                            .catch((error) => {
-                                console.log(error);
-                            });
-                            return;
-                        };
-                    });
+            setFields([
+                {
+                    "id": 1,
+                    "seo_name": "account_rating",
+                    "lang_id": 16,
+                    "type": "float",
+                    "value": "0",
+                    "created_at": null,
+                    "updated_at": null,
+                    "search": 0
+                },
+                {
+                    "id": 3,
+                    "seo_name": "options",
+                    "lang_id": 19,
+                    "type": "options",
+                    "value": "wf1|wf2|wf3",
+                    "created_at": "2024-02-01 23:58:34",
+                    "updated_at": "2024-02-01 23:58:34",
+                    "search": 0
+                },
+                {
+                    "id": 4,
+                    "seo_name": "options-check",
+                    "lang_id": 20,
+                    "type": "options-check",
+                    "value": "wf1|wf2|wf3",
+                    "created_at": "2024-02-02 00:33:21",
+                    "updated_at": "2024-02-02 00:33:21",
+                    "search": 1
                 }
-            });
+            ]);
+
+            // gamesObj.forEach(el => {
+
+            //     if(el.name === formValue['Игра']) {
+            //         el.categories.forEach(el => {
+            //             if(el.name === formValue['Категория']) {
+                            
+            //                 // //Получаем поля выбранной категории
+            //                 // fetch(`/field/get-list/${el.id}`, {
+            //                 //     method: "GET",
+            //                 //     headers: {
+            //                 //         "X-Requested-With": "XMLHttpRequest",
+            //                 //         "Content-Type": "application/json",
+            //                 //     },
+            //                 // })
+            //                 // .then((res) => {
+            //                 //     return res.json();
+            //                 // })
+            //                 // .then((data) => {
+            //                 //     //console.log('data',data);
+            //                 //     setFields(data);
+            //                 // })
+            //                 // .catch((error) => {
+            //                 //     console.log(error);
+            //                 // });
+            //                 return;
+            //             };
+            //         });
+            //     }
+            // });
         }; 
         
         if(!('Категория' in formValue)) {
@@ -112,37 +145,40 @@ function AddProduct(props) {
 
     //Получаем список игр
     useEffect(() => {
+        setGames(['Warface', 'Game2', 'Game3']);
+        // fetch("/game/get", {
+        //     method: "GET",
+        //     headers: {
+        //         "X-Requested-With": "XMLHttpRequest",
+        //         "Content-Type": "application/json",
+        //     },
+        // })
+        // .then((res) => {
+        //     return res.json();
+        // })
+        // .then((data) => {
+        //     //console.log('data',data)
+        //     if(data.games.length !== 0) {
+        //         setGamesObj(data.games);
+        //     }
 
-        fetch("/game/get", {
-            method: "GET",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json",
-            },
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            //console.log('data',data)
-            if(data.games.length !== 0) {
-                setGamesObj(data.games);
-            }
+        //     const gamesArr = [];
 
-            const gamesArr = [];
-
-            data.games.forEach(el => {
-                gamesArr.push(el.name);
-            });
+        //     data.games.forEach(el => {
+        //         gamesArr.push(el.name);
+        //     });
             
-            if(gamesArr.length !== 0) {
-                setGames(gamesArr);
-            } 
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        //     if(gamesArr.length !== 0) {
+        //         setGames(gamesArr);
+        //     } 
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
     }, []);
+
+    useEffect(() => {
+    }, [fields]);
 
     const arrContent = ['Содержимое1', 'Содержимое2', 'Содержимое3', 'Содержимое4','Содержимое1', 'Содержимое2', 'Содержимое3', 'Содержимое4','Содержимое1', 'Содержимое2', 'Содержимое3', 'Содержимое4','Содержимое1', 'Содержимое2', 'Содержимое3', 'Содержимое4','Содержимое1', 'Содержимое2', 'Содержимое3', 'Содержимое4',]
 
@@ -153,19 +189,26 @@ function AddProduct(props) {
                     <img src="/img/icon-minus.svg" alt="minus"/>
                 </button>
             </div>
-            <div className='flex justify-between flex-wrap mb-6 gap-y-5 mt-[-15px]'>
+            <div className='flex justify-between flex-wrap mb-6 sm:gap-y-5 mt-[-15px]'>
                 {
                     (fields.length !== 0) ? (
                         fields.map(item => {
                             if(item.type === 'float') {
                                 return (
-                                    <Input key={uuid()} widht='w-[32%]' type='number' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
+                                    <Input key={uuid()} widht='w-full sm:w-[32%]' type='number' changeFormValue={changeFormValue} keyValue={item.seo_name} name={item.seo_name} value={item.value} />
                                 )
                             };
                             if(item.type === 'options') {
                                 return (
-                                    <div key={item.id} className='w-[32%] '>
+                                    <div key={item.id} className='w-full sm:w-[32%] mt-4 sm:mt-0'>
                                         <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_productAdd' + '-' + index} name={item.seo_name}/>
+                                    </div>
+                                )
+                            };
+                            if(item.type === 'options-check') {
+                                return (
+                                    <div key={item.id} className='w-full sm:w-[32%] '>
+                                        <SelectCheck arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
                                     </div>
                                 )
                             }
@@ -218,7 +261,7 @@ function AddProduct(props) {
                     </button>
                 </div>
                 <div  className='mt-[-10px]'>
-                    <div className='flex justify-between flex-col sm:flex-row gap-y-5 flex-[50%_50%] mb-4'>
+                    <div className='flex justify-between flex-col sm:flex-row sm:gap-y-5 flex-[50%_50%] mb-4'>
                         <div className='w-full sm:w-[49%]'>
                             <Select arr={games} changeFormValue={changeFormValue} keyValue='Игра' name='Игра'/>
                         </div>
@@ -226,7 +269,7 @@ function AddProduct(props) {
                             <Select arr={categ} changeFormValue={changeFormValue} keyValue='Категория' name='Категория'/>   
                         </div>
                     </div>
-                    <div className='flex justify-between flex-wrap gap-y-5 mt-[-15px]'>
+                    <div className='flex justify-between flex-wrap sm:gap-y-5 mt-[-15px]'>
                         {
                             (fields.length !== 0) ? (
                                 fields.map(item => {
@@ -237,7 +280,7 @@ function AddProduct(props) {
                                     };
                                     if(item.type === 'options') {
                                         return (
-                                            <div key={item.id} className='w-full sm:w-[32%] '>
+                                            <div key={item.id} className='w-full sm:w-[32%] mt-4 sm:mt-0'>
                                                 <Select arr={item.value.split('|')} changeFormValue={changeFormValue} keyValue={item.seo_name + '_product1' + '-' + item.id} name={item.seo_name}/>
                                             </div>
                                         )
@@ -264,7 +307,7 @@ function AddProduct(props) {
                         ) : (<div></div>)    
                     }
                     <div ></div>
-                    <div className='h-px w-full bg-[#E9EAF4] mb-6'></div>
+                    <div className='h-px w-full bg-[#E9EAF4] mb-4 sm:mb-6'></div>
                     <div>
                         <label htmlFor="title" className='block font-secondary-bold text-black font-bold text-xs mb-4'>Заголовок</label>
                         <input onChange={handleTitleChange} value={title} type="text" name="title" id='title' placeholder='Продам аккаунт' className={`${error} mb-5 font-secondary-bold placeholder:text-[#BAC9E5] text-[13px] rounded px-4 mb-2 border-solid border-red-error bg-[linear-gradient(0deg,rgba(206,208,232,0.25),rgba(206,208,232,0.25)),linear-gradient(0deg,#EAEBF8,#EAEBF8)] shadow-[0px_4px_35px_0px_#8E91B026] h-12 w-full outline-none text-black`}/>

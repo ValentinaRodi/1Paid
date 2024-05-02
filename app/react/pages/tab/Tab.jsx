@@ -20,8 +20,6 @@ function Tab() {
         (cardsViewDiv === '') ? setCardsViewDiv('_view-list') : setCardsViewDiv(''); 
     };
 
-    
-
     const arr = [0,1,2,3,4,5,6,7]
 
     return (

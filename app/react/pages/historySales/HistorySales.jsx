@@ -20,43 +20,45 @@ function HistorySales() {
 
     useEffect(() => {
 
-        //запрос на отображение мои покупки
-        fetch('/catalog/Warface/accwarface', {
-            method: "GET",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json",
-            },
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            //console.log(data);
-            setCardsSales(data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        setCardsSales([0]);
+        setCardsPurchase([0,1,2]);
+        // //запрос на отображение мои покупки
+        // fetch('/catalog/Warface/accwarface', {
+        //     method: "GET",
+        //     headers: {
+        //         "X-Requested-With": "XMLHttpRequest",
+        //         "Content-Type": "application/json",
+        //     },
+        // })
+        // .then((res) => {
+        //     return res.json();
+        // })
+        // .then((data) => {
+        //     //console.log(data);
+        //     setCardsSales(data);
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
 
-        //запрос на отображение мои продажи
-        fetch('/catalog/Warface/accwarface', {
-            method: "GET",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json",
-            },
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            //console.log(data);
-            setCardsPurchase(data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        // //запрос на отображение мои продажи
+        // fetch('/catalog/Warface/accwarface', {
+        //     method: "GET",
+        //     headers: {
+        //         "X-Requested-With": "XMLHttpRequest",
+        //         "Content-Type": "application/json",
+        //     },
+        // })
+        // .then((res) => {
+        //     return res.json();
+        // })
+        // .then((data) => {
+        //     //console.log(data);
+        //     setCardsPurchase(data);
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
         
     }, []);
 
@@ -114,22 +116,26 @@ function HistorySales() {
                         <div className={`${cardsViewDiv} pcg-grid view-grid grid gap-3 grid-cols-1 min-[525px]:grid-cols-2 min-[800px]:grid-cols-3 min-[1750px]:grid-cols-4`}>
                             {
                                 (cardView) ? 
-                                    (cardsSales.length !== 0 && cardsSales.items !== undefined) ?    
-                                        cardsSales.items.map((card) => {
+                                    (cardsSales.length !== 0) ?    
+                                        cardsSales.map((card) => {
                                             return (cardsView) ? 
-                                                <CardGame key={uuid()} notSale='true' private='true' new={card.new} rank={card.rank} id={card.id} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/> 
+                                                //<CardGame key={uuid()} notSale='true' private='true' new={card.new} rank={card.rank} id={card.id} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/> 
+                                                <CardGame key={uuid()} notSale='true' private='true' rank='4.8' id='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
                                             : 
-                                                <CardGameString key={uuid()} notSale='true' private='true' rank={card.rank} id='1' new={card.new} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/>  
+                                                //<CardGameString key={uuid()} notSale='true' private='true' rank={card.rank} id='1' new={card.new} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/>  
+                                                <CardGameString key={uuid()} notSale='true' private='true' rank='4.8' id='1' new='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
                                             }
                                         ) 
                                     : <div className='text-[#FF5343]'>not found</div>
                                 : 
-                                    (cardsPurchase.length !== 0 && cardsPurchase.items !== undefined) ?    
-                                        cardsSales.items.map((card) => {
+                                    (cardsPurchase.length !== 0) ?    
+                                        cardsSales.map((card) => {
                                             return (cardsView) ? 
-                                                <CardGame key={uuid()} new='1' rank={card.rank} id={card.id} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/> 
+                                                //<CardGame key={uuid()} new='1' rank={card.rank} id={card.id} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/> 
+                                                <CardGame key={uuid()} rank='4.8' id='1' new='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
                                             : 
-                                                <CardGameString key={uuid()} rank={card.rank} id='1' new={card.new} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/>  
+                                                //<CardGameString key={uuid()} rank={card.rank} id='1' new={card.new} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/>  
+                                                <CardGameString key={uuid()} rank='4.8' id='1' new='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
                                             }
                                         ) 
                                     : <div className='text-[#FF5343]'>not found</div>

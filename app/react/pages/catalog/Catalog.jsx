@@ -13,7 +13,48 @@ import listenForOutsideClick from "../../components/listenForOutsideClicks";
 
 function Catalog() {
     const [btn, setBtn] = useState(true);
-    const [gamesObj, setGamesObj] = useState([]);
+    const [gamesObj, setGamesObj] = useState([
+                    {
+                        "id": 1,
+                        "seo_name": "accwarface",
+                        "name": "Аккаунты"
+                    },
+                    {
+                        "id": 2,
+                        "seo_name": "accwarface",
+                        "name": "Пин-коды"
+                    },
+                    {
+                        "id": 3,
+                        "seo_name": "accwarface",
+                        "name": "Буст РМ"
+                    },
+                    {
+                        "id": 4,
+                        "seo_name": "accwarface",
+                        "name": "Спецоперации"
+                    },
+                    {
+                        "id": 5,
+                        "seo_name": "accwarface",
+                        "name": "Статистика"
+                    },
+                    {
+                        "id": 6,
+                        "seo_name": "accwarface",
+                        "name": "Кредиты"
+                    },
+                    {
+                        "id": 7,
+                        "seo_name": "accwarface",
+                        "name": "Достижения"
+                    },
+                    {
+                        "id": 8,
+                        "seo_name": "accwarface",
+                        "name": "Прочее"
+                    },
+                ]);
     const [gamesItems, setGamesItems] = useState([]);
     const [btnYet, setBtnYet] = useState('hidden');
     const [hiddenNav, setHiddenNav] = useState('overflow-hidden');
@@ -44,102 +85,119 @@ function Catalog() {
     const location = useLocation();
     const { game, category, categoryId, gamesObjAdd } = location.state;
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        //запрос на отображение категорий
-        fetch(`/catalog/${game}`, {
-            method: "GET",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json",
-            },
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
+    //     //запрос на отображение категорий
+    //     fetch(`/catalog/${game}`, {
+    //         method: "GET",
+    //         headers: {
+    //             "X-Requested-With": "XMLHttpRequest",
+    //             "Content-Type": "application/json",
+    //         },
+    //     })
+    //     .then((res) => {
+    //         return res.json();
+    //     })
+    //     .then((data) => {
             
-            //если переход из главной страницы, то пересобираем категории, чтоб вывелась первая та, которую выбрали
-            if(gamesObjAdd === undefined) {
-                // Находим индекс элемента с нужным id
-                const index = data.categories.findIndex(category => category.id === categoryId);
+    //         //если переход из главной страницы, то пересобираем категории, чтоб вывелась первая та, которую выбрали
+    //         if(gamesObjAdd === undefined) {
+    //             // Находим индекс элемента с нужным id
+    //             const index = data.categories.findIndex(category => category.id === categoryId);
 
-                // Если элемент с нужным id найден и он не является первым элементом
-                if (index !== -1 && index !== 0) {
-                    // Создаем новый массив на основе текущего categories
-                    const newCategories = [...data.categories];
+    //             // Если элемент с нужным id найден и он не является первым элементом
+    //             if (index !== -1 && index !== 0) {
+    //                 // Создаем новый массив на основе текущего categories
+    //                 const newCategories = [...data.categories];
 
-                    // Перемещаем элемент с нужным id на первую позицию
-                    newCategories.splice(0, 0, newCategories.splice(index, 1)[0]);
+    //                 // Перемещаем элемент с нужным id на первую позицию
+    //                 newCategories.splice(0, 0, newCategories.splice(index, 1)[0]);
 
-                    // Присваиваем новый массив категорий обратно в categories
-                    data.categories = newCategories;
+    //                 // Присваиваем новый массив категорий обратно в categories
+    //                 data.categories = newCategories;
                     
-                }
-                setGamesObj(data);
-            } else {
-                setGamesObj(gamesObjAdd);
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    //             }
+    //             setGamesObj(data);
+    //         } else {
+    //             setGamesObj(gamesObjAdd);
+    //         }
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     });
         
 
-        //запрос на отображение карточек (items) в выбранной категории
-        fetch(`/catalog/${game}/${category}`, {
-            method: "GET",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json",
-            },
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-           setGamesItems(data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    //     //запрос на отображение карточек (items) в выбранной категории
+    //     fetch(`/catalog/${game}/${category}`, {
+    //         method: "GET",
+    //         headers: {
+    //             "X-Requested-With": "XMLHttpRequest",
+    //             "Content-Type": "application/json",
+    //         },
+    //     })
+    //     .then((res) => {
+    //         return res.json();
+    //     })
+    //     .then((data) => {
+    //        setGamesItems(data);
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     });
 
-        //запрос на отображение фильтра в выбранной категории
-        fetch(`/field/get-list-filters/${categoryId}`, {
-            method: "GET",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/json",
-            },
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            //console.log('data',data);
-           setFilterObj(data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }, [categoryId]);
+    //     //запрос на отображение фильтра в выбранной категории
+    //     fetch(`/field/get-list-filters/${categoryId}`, {
+    //         method: "GET",
+    //         headers: {
+    //             "X-Requested-With": "XMLHttpRequest",
+    //             "Content-Type": "application/json",
+    //         },
+    //     })
+    //     .then((res) => {
+    //         return res.json();
+    //     })
+    //     .then((data) => {
+    //         //console.log('data',data);
+    //        setFilterObj(data);
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     });
+    // }, [categoryId]);
 
+    
+    //Определяем показывать кнопку "Еще" или нет для категорий
     useEffect(() => {
-        //Определяем показывать кнопку "Еще" или нет для категорий
-        const parentDiv = document.getElementById("parent");
-        const navDiv = document.getElementById("nav");
-        const allLinks = navDiv.querySelectorAll('a');
-        const parentRect = parentDiv.getBoundingClientRect();
-
-        allLinks.forEach(el => {
-            
-            const childRect = el.getBoundingClientRect();
-            
-            if(parentRect.bottom <= childRect.top) {
+        const handleResize = () => {
+            const parentDiv = document.getElementById("parent");
+            const navDiv = document.getElementById("nav");
+            const allLinks = navDiv.querySelectorAll('a');
+            const parentRect = parentDiv.getBoundingClientRect();
+    
+            let showBtn = true;
+    
+            allLinks.forEach(el => {
+                const childRect = el.getBoundingClientRect();
+                if(parentRect.bottom <= childRect.top) {
+                    showBtn = false;
+                }
+            });
+    
+            if (showBtn) {
+                setBtnYet('hidden');
+            } else {
                 setBtnYet('');
             }
-        });
+        };
+    
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Вызываем функцию при первоначальной загрузке страницы
+    
+        return () => {
+            window.removeEventListener('resize', handleResize); // Удаляем слушатель при размонтировании компонента
+        };
     }, []);
+    
 
     const openNav = () => {
         (hiddenNav === '') ? setHiddenNav('overflow-hidden') : setHiddenNav('');
@@ -197,16 +255,19 @@ function Catalog() {
         setFilterMob(!filterMob);
     };
 
+    const arrCard = [0,1,2];
+
     return (
         
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 mt-10 xl:mt-0">
             <div className="w-full layout-main relative">
-                <Title title={`Каталог ${game}`} viewCards='true' changeViewCards={changeViewCards} cardsViewImg={cardsViewImg} search='true'/>
+                {/* <Title title={`Каталог ${game}`} viewCards='true' changeViewCards={changeViewCards} cardsViewImg={cardsViewImg} search='true'/> */}
+                <Title title={`Каталог Warface`} viewCards='true' changeViewCards={changeViewCards} cardsViewImg={cardsViewImg} search='true'/>
                 <button onClick={showFilter} className='absolute top-[70px] sm:top-[22px] right-[55px] sm:right-[315px] flex-shrink-0 flex min-[880px]:hidden justify-center items-center w-11 h-11 rounded-full bg-[#e8eaf7] hover:bg-[#dcdff1]'>
                     <img className='w-[40%] sm:w-[50%]' src='/img/icon-filter.svg' alt='filter' />
                 </button>
                 {filterMob ?
-                    <div className='absolute top-[134px] sm:top-[85px] right-0 z-[100] block min-[880px]:hidden shadow-2xl w-[357px] bg-white p-[24px] rounded-lg'>
+                    <div className='absolute top-[134px] sm:top-[85px] right-0 z-[100] block min-[880px]:hidden shadow-2xl w-full max-w-[357px] bg-white p-[24px] rounded-lg'>
                         <div className='flex justify-end'>
                             <button onClick={showFilter} className='p-0 bg-inherit hover:bg-[rgba(241,245,249,1)]'>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -247,10 +308,17 @@ function Catalog() {
                 <div className="flex items-start py-6 justify-between rounded-lg bg-white px-6 mb-3">
                     <div id="parent" className={`${hiddenNav} nav-show pt-2 h-full w-full flex items-center justify-start`}>
                         <nav id="nav" className={`${heightNav} nav-item pb-2.5 flex gap-x-6 flex-wrap gap-y-6`}>
-                            {
+                            {/* {
                                 (gamesObj.length !== 0) ? (
                                     gamesObj.categories.map((categ) => (
                                         <Link to={`/catalog/${game}/${categ.seo_name}`} state={{ game: game,  category: categ.seo_name, categoryId: categ.id, gamesObjAdd: gamesObj }} key={uuid()} className={`${(categ.id === categoryId) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-xs sm:text-sm text-[#8A98B3] uppercase`}>{categ.name}</Link> 
+                                    ))
+                                ) : null
+                            } */}
+                            {
+                                (gamesObj.length !== 0) ? (
+                                    gamesObj.map((categ) => (
+                                        <Link to='#' state={{ game: game,  category: categ.seo_name, categoryId: categ.id, gamesObjAdd: gamesObj }} key={uuid()} className={`${(categ.id === categoryId) ? 'nav-link-prim' : 'nav-link'} nav-link-tab font-primary-bold text-xs sm:text-sm text-[#8A98B3] uppercase`}>{categ.name}</Link> 
                                     ))
                                 ) : null
                             }
@@ -294,7 +362,7 @@ function Catalog() {
                     </div>
                     <div className="pcg w-full">
                         <div className={`${cardsViewDiv} pcg-grid view-grid grid gap-3 grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 min-[2550px]:grid-cols-4`}>
-                            {
+                            {/* {
                                 (gamesItems.length !== 0 && gamesItems.items !== undefined) ? 
                                     
                                     gamesItems.items.map((card) => {
@@ -304,7 +372,18 @@ function Catalog() {
                                         <CardGameString key={uuid()} rank={card.rank} id='1' new={card.new} seoName={card.seo_name} icon='product-preview-1.fcb96f91.png' name={card.name} description={card.description} price={card.price}/> 
                                     }) 
                                 : <div className='text-[#FF5343]'></div>
-                            }
+                            } */}
+                            {
+                                arrCard.length !== 0 ? 
+                                    arrCard.map((card) => {
+                                        return (cardsView ? 
+                                            <CardGame key={uuid()} rank='4.8' id='1' new='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
+                                        : 
+                                            <CardGameString key={uuid()} rank='4.8' id='1' new='1' seoName='Makmilan Gr-23' icon='product-preview-1.fcb96f91.png' name='Makmilan Gr-23' description='Оружие в идеальном состоянии, прямо из завода.' price='120.00'/> 
+                                        )
+                                    }) 
+                                : <div className='text-[#FF5343]'></div>
+                            } 
                         </div>
                         {(!btn) ? null :
                             <div className="hidden sgc-f flex justify-center mt-10 ">
