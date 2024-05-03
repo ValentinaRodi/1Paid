@@ -152,10 +152,12 @@ class MainController extends Controller
         if (isset(Yii::$app->user->id)) {
             Yii::$app->user->logout();
         }
-
-        return $this->asJson([
-            'logged' => false,
-        ]);
+        if (Yii::$app->request->isAjax) {
+            return $this->asJson([
+                'logged' => false,
+            ]);
+        }
+        $this->redirect('/');
     }
 
     public function actionError()

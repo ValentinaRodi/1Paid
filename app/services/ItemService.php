@@ -3,7 +3,7 @@
 namespace app\services;
 
 use Yii;
-use app\models\{Field, File, Item, Lang};
+use app\models\{Field, File, Item, ItemTop, Lang};
 use app\services\{
 //CategoryService,
     FileService,
@@ -76,7 +76,7 @@ class ItemService
                 ->select(['item.id', 'item.seo_name', 'item.category_id', 'item.user_id', 'item.icon_id',
                     'item.new', 'item.sort', 'item.price', 'item.rank', 'item.description',
                     'item.created_at', 'item.updated_at', 'lang.russian', 'lang.english',
-                     'favorite.item_id as favorite'])
+                    'favorite.item_id as favorite'])
                 ->join('LEFT JOIN', 'favorite', 'favorite.item_id = item.id')
                 ->join('LEFT JOIN', 'lang', 'item.lang_id = lang.id')
                 ->where([
@@ -134,6 +134,68 @@ class ItemService
             return [
                 'success' => true,
                 'items_array' => self::getItems($items_id)
+            ];
+
+        } catch (ErrorException $error) {
+            var_dump($error);
+            return [
+                'success' => false,
+                'errors' => $error
+            ];
+        }
+    }
+
+    public static function getCurrentUserItems()
+    {
+        $user_id = Yii::$app->user->identity->id;
+
+
+        try {
+            $items = Item::find()
+                ->select(['item.id', 'item.seo_name', 'item.category_id', 'item.user_id', 'item.icon_id',
+                    'item.new', 'item.sort', 'item.price', 'item.rank', 'item.description',
+                    'item.created_at', 'item.updated_at', 'lang.russian', 'lang.english',
+                    'favorite.item_id as favorite'])
+                ->join('LEFT JOIN', 'favorite', 'favorite.item_id = item.id')
+                ->join('LEFT JOIN', 'lang', 'item.lang_id = lang.id')
+                ->where([
+                    'item.user_id' => $user_id
+                ])
+                ->orderBy(['sort' => SORT_DESC])
+                ->asArray()->all();
+
+
+            return [
+                'success' => true,
+                'items_array' => $items
+            ];
+
+        } catch (ErrorException $error) {
+            var_dump($error);
+            return [
+                'success' => false,
+                'errors' => $error
+            ];
+        }
+    }
+
+    public static function raiseToTheTop($game_id)
+    {
+        try {
+//            $item = Item::find()->where(['id' => $game_id]);
+            $sql = 'UPDATE item
+                        SET sort = 239
+             WHERE id=' . $game_id;
+
+            \Yii::$app->db->createCommand($sql)->execute();
+            $item_top = new ItemTop();
+            $item_top->user_id = Yii::$app->user->identity->id;
+            $item_top->game_id = $game_id;
+            $item_top->time = date('Y-m-d H:i:s');
+            $item_top->save();
+            return [
+                'success' => true,
+                'items_array' => $item_top->id
             ];
 
         } catch (ErrorException $error) {

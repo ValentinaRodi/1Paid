@@ -154,4 +154,48 @@ class ItemController extends Controller
 
     }
 
+    /**
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function actionGetCurrentUserItems()
+    {
+        if (Yii::$app->request->isAjax) {
+            $items = ItemService::getCurrentUserItems();
+            if ($items['success'] == true) {
+                return $this->asJson([
+                    'success' => true,
+                    'items_array' => $items['items_array']
+                ]);
+            }
+            return $this->asJson([
+                'success' => false,
+                'errors' => $items['errors'],
+            ]);
+        }
+        throw new \yii\web\NotFoundHttpException(404);
+
+    }
+
+    /**
+     * @throws \yii\web\NotFoundHttpException
+     */
+    public function actionTopItem()
+    {
+        if (Yii::$app->request->isAjax) {
+            $item_top = ItemService::raiseToTheTop(1);
+
+            if ($item_top['success'] == true) {
+                return $this->asJson([
+                    'success' => true,
+                    'top_item_id' => $item_top['items_array']
+                ]);
+            }
+            return $this->asJson([
+                'success' => false,
+                'errors' => $item_top['errors'],
+            ]);
+        }
+        throw new \yii\web\NotFoundHttpException(404);
+
+    }
 }
