@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import LayoutBtn from '../../components/LayoutBtn';
 import CardGameMin from '../../components/cardGame/CardGameMin';
 import Rating from '../../components/rating/Rating';
@@ -6,11 +6,18 @@ import uuid from 'react-uuid';
 import Pagination from '../../components/pagination/Pagination';
 import Title from "../../components/title/Title";
 import { useNavigate } from 'react-router-dom';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/less';
+import 'swiper/less/navigation';
+import 'swiper/less/pagination';
 
 function CardTovar() {
     const [tab, setTab] = useState([true, false, false]);
     const [donat, setDonat] = useState([true, false, false, false, false]);
     const navigate = useNavigate();
+    const components = [1,2,3,4,5,6,7,8,9];
+    const swiperRef = useRef();
 
     const clickTab = (index) => {
         const newTab = tab.map((item, i) => i === index ? true : false);
@@ -108,26 +115,45 @@ function CardTovar() {
                         <div className='font-secondary-med text-base sm:text-lg leading-[20px] sm:leading-[35px] text-black'>Лос-Сантос – некогда великолепный городок, попасть в который мечтали миллионы. <br/>Сегодня он стал просто пристанищем вышедших в тираж звезд. <br/>Здесь мало интересных событий и планомерно текущая жизнь.</div>
                         <div className='font-secondary-med leading-[20px] sm:leading-[35px] text-base sm:text-lg text-black'>Хотите отравить существование обеспеченных жителей и заставить забыть о покое всю местную полицию? <br/>Тогда вам стоит купить Grand Theft Auto V на steampay.com! То, что предложили в этой серии разработчики, гарантировано приведёт вас в неописуемый восторг. Так что не теряйте времени даром и начните играть прямо сейчас!</div>
                     </div>
-                    <div className="scd-main flex flex-col items-center w-full gap-3">
-                        <div className="ocr flex w-full font-secondary-bold bg-white rounded-2xl overflow-x-hidden item-wrapper ">
-                            <button className='absolute z-10 top-[42%] left-[8px] sm:left-[24px] w-9 sm:w-11 h-9 sm:h-11 rounded-full bg-white flex items-center justify-center'>
-                                <img src="/img/icon-arrow-left-2.svg" alt='to left'/>
-                            </button>
-                            <button className='absolute z-10 top-[42%] right-[8px] sm:right-[24px] w-[44px] h-[44px] rounded-full bg-white flex items-center justify-center'>
-                                <img src="/img/icon-arrow-right-2.svg" alt='to right'/>
-                            </button>
-                            <div className="ocr-lenta flex items-center">
-                                <div className="flex items-center w-full gap-2">
-                                    {
-                                        (arr.length !== 0) ? (
-                                            arr.map((item, index) => (
-                                                <div key={uuid()}  className='w-48 sm:w-[216px] h-48 sm:h-[216px] bg-[#E7E7E7] rounded-xl'></div>
-                                            ))
-                                        ) : null
-                                    }
-                                </div>
-                            </div>
-                        </div>         
+                    <div className="scd-main flex flex-col items-center w-full gap-3 relative">
+                        <Swiper
+                            loop={true}
+                            slidesPerView={1}
+                            onBeforeInit={(swiper) => {
+                                swiperRef.current = swiper;
+                            }}
+                            modules={[Navigation]}
+                            breakpoints={{
+                                400: {
+                                  slidesPerView: 2,
+                                },
+                                640: {
+                                  slidesPerView: 3,
+                                },
+                                768: {
+                                  slidesPerView: 4,
+                                },
+                                1536: {
+                                  slidesPerView: 5,
+                                },
+                                2150: {
+                                    slidesPerView: 6,
+                                }
+                              }}
+                            className='h-[190px] md:h-[216px] w-full'
+                            >
+                            {components.map((component, index) => (
+                                <SwiperSlide className="swiper-slide2" key={uuid()}>
+                                    <div className='h-full bg-[#E7E7E7] rounded-xl'></div>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                        <button onClick={() => swiperRef.current?.slidePrev()} className='absolute z-10 top-[42%] left-[8px] sm:left-[24px] w-9 sm:w-11 h-9 sm:h-11 rounded-full bg-white hidden min-[400px]:flex items-center justify-center'>
+                            <img src="/img/icon-arrow-left-2.svg" alt='to left'/>
+                        </button>
+                        <button onClick={() => swiperRef.current?.slideNext()} className='absolute z-10 top-[42%] right-[20px] sm:right-[36px] w-9 sm:w-11 h-9 sm:h-11 rounded-full bg-white hidden min-[400px]:flex items-center justify-center'>
+                            <img src="/img/icon-arrow-right-2.svg" alt='to right'/>
+                        </button>
                     </div>
                 </div>
                 <div className='bg-white rounded-xl w-full p-4 sm:p-6'>

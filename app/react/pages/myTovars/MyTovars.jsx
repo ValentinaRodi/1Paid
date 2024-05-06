@@ -186,7 +186,7 @@ function MyTovars() {
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 ">
             <div className="w-full layout-main relative">
-                <div className={(showDelModal) ? 'absolute top-0 right-0 w-56 rounded-md bg-white p-3 flex items-center justify-between' : 'hidden'}>
+                <div className={(showDelModal) ? 'absolute top-0 right-0 w-56 rounded-md bg-white pr-3 flex items-center justify-between' : 'hidden'}>
                     <div >
                         <TimerCircle count='5' color='black' onCloseModalDelTovar={onCloseModalDelTovar} imgCircle='icon-circle-progress.svg'/>
                     </div>

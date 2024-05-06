@@ -7,7 +7,7 @@ function RouletteDrum(props) {
     return (
         <div className="ocd flex bg-white rounded-2xl h-[345px] min-[466px]:h-[474px] justify-center items-center w-full font-secondary-bold">
             <div className="ocd-drum z-10 flex justify-center items-center bg-[#3B5AEF] w-[280px] h-[285px] min-[466px]:w-[426px] min-[466px]:h-[426px] rounded-full relative">
-                <div className="ocr-point flex-shrink-0  absolute top-0 left-[47%] z-10">
+                <div className="ocr-point flex-shrink-0  absolute top-[-1px] left-[45%] min-[466px]:left-[47%] z-10">
                     <img className="ocr-image-pic w-full h-full object-cover" src="/img/icon-roulette-white.svg" alt="arrow white"/>
                 </div>
                 <div className="ocd-drum-line block w-[269px] min-[466px]:w-[392px] h-[269px] min-[466px]:h-[392px] border-[8px] border-white/10 rounded-full absolute z-0"></div>
@@ -17,14 +17,14 @@ function RouletteDrum(props) {
                         <span className="text-base min-[466px]:text-xl font-secondary-bold font-bold">140₽</span>
                     </div>
                 </div>
-                <RouletteDrumItem top2='top-0' top='top-[12px]' left2='left-[38px]' left='left-[55px]' prize='50 PD'/>
-                <RouletteDrumItem top2='top-0' top='top-[12px]' left2='left-[-38px]' left='left-[-55px]' prize='500 PD'/>
-                <RouletteDrumItem bottom2='bottom-[-30px]' bottom='bottom-0' left2='left-[38px]' left='left-[55px]' prize='100 PD'/>
-                <RouletteDrumItem bottom2='bottom-[-30px]' bottom='bottom-0' left2='left-[-38px]' left='left-[-55px]' prize='10 PD'/>
-                <RouletteDrumItem top2='top-[57px]' top='top-[93px]' left2='left-[97px]' left='left-[139px]' prize='1000 PD'/>
-                <RouletteDrumItem top2='top-[57px]' top='top-[93px]' left2='left-[-97px]' left='left-[-139px]' prize='200 PD'/>
-                <RouletteDrumItem bottom2='bottom-[23px]' bottom='bottom-[86px]' left2='left-[92px]' left='left-[144px]' prize='2000 PD'/>
-                <RouletteDrumItem bottom2='bottom-[23px]' bottom='bottom-[86px]' left2='left-[-92px]' left='left-[-144px]' prize='20 PD'/>
+                <RouletteDrumItem class='top-left-left' prize='50 PD'/>
+                <RouletteDrumItem class='top-left-right' prize='500 PD'/>
+                <RouletteDrumItem class='center-bottom-left' prize='100 PD'/>
+                <RouletteDrumItem class='center-bottom-right' prize='10 PD'/>
+                <RouletteDrumItem class='center-top-left' prize='1000 PD'/>
+                <RouletteDrumItem class='center-top-right' prize='200 PD'/>
+                <RouletteDrumItem class='bottom-left-left' prize='2000 PD'/>
+                <RouletteDrumItem class='bottom-left-right' prize='20 PD'/>
             </div>
         </div>
     );

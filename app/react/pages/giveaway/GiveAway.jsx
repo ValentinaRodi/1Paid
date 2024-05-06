@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import LayoutBtn from '../../components/LayoutBtn';
 import uuid from 'react-uuid';
 import TopBanner from '../../components/topBanner/TopBanner';
+import { useNavigate  } from 'react-router-dom';
+import Title from '../../components/title/Title';
 
 function GiveAway() {
     const [registVk, setRegistVk] = useState(false);
     const [join, setJoin] = useState(false);
-    const [finish, setFinish] = useState(true);
-
+    const [finish, setFinish] = useState(false);
+    const navigate = useNavigate();
     
     const clickRegisterVk = () => {
         (!registVk) ? setRegistVk(true) : null;
@@ -17,27 +19,18 @@ function GiveAway() {
         (registVk) ? setJoin(true) : null;
     };
 
-    
+    const goProfile = () => {
+        navigate('/profile',  { state: {userName: 'Sansa' } });
+    };
 
     const arr = [1,2,3,4,5,6,7,8,9,10];
 
     return (
         <div className="flex flex-wrap content-between layout-b pb-4 min-w-0">
             <div className='w-full layout-main'>
-                <div className="sh flex justify-between items-center gap-x-3  mb-6">
-                    <div className="w-[252px] hidden">
-                        <img src="/img/icon-btn-13.svg" alt="btn-icon" className=""/>
-                    </div>
-                    <div className="sh-title ">
-                        <div >
-                            <h2 className="sh-title-text font-secondary-bold text-bold text-2xl text-black">Розыгрыш</h2>
-                            <div className="sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2 bg-gradient-primary">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div  className="sg-head flex items-end gap-3 justify-between">
-                    <div className='h-full bg-white rounded-xl flex flex-wrap min-[1910px]:flex-nowrap items-center grow justify-between p-5 gap-5 min-w-[780px]'>
+                <Title title='Розыгрыш'/>
+                <div  className="sg-head flex items-start gap-3 justify-between flex-col min-[1800px]:flex-row">
+                    <div className='h-full bg-white rounded-xl flex flex-wrap min-[1910px]:flex-nowrap items-center grow justify-between p-5 gap-3 w-full min-[1800px]:w-auto min-[1800px]:min-w-[780px]'>
                         <div className='flex gap-3'>
                             <div  className="sg-priz-pic flex-shrink-0 w-[65px] h-[65px] overflow-hidden mt-2">
                                 <img  className="sg-priz-pic w-full h-full object-cover" src="/img/giveaway-item.19f85331.png" alt="user"/>
@@ -47,7 +40,7 @@ function GiveAway() {
                                     <div  className="sg-priz-title font-secondary-bold text-black text-[13px]">Аккаунт Warface</div>
                                     <div  className="sg-priz-description font-secondary-med text-[10px] text-[#BEC1DB]">25 Ранг</div>
                                 </div>
-                                <div className="sg-text min-w-[215px] font-primary-med text-[14px] text-[#ACBAD8] leading-4">Чтобы принять участие Вы должны подписаться на наш ВК.</div>
+                                <div className="sg-text min-w-[170px] font-primary-med text-[14px] text-[#ACBAD8] leading-4">Чтобы принять участие Вы должны подписаться на наш ВК.</div>
                             </div>
                         </div>
                         {finish ?
@@ -142,46 +135,54 @@ function GiveAway() {
                         }
                         
                     </div>
-                    <div className='flex justify-between items-start bg-white rounded-xl h-[138px]'>
+                    <div className='flex justify-between items-start bg-white rounded-xl h-[138px] w-full min-[435px]:w-auto'>
                         <div className="h-full bg-[url('/img/user_foto.png')] bg-cover rounded-xl px-6 flex flex-col h-full pt-6">
-                            <div className='font-bold font-secondary-bold text-lg mb-2'>Santchezz</div>
-                            <div className='relative bg-gold rounded-[100px] px-2 h-[22px] font-bold font-secondary-bold text-white text-xs flex items-center justify-center'>
+                            <div className='font-bold font-secondary-bold text-sm sm:text-lg mb-2'>Santchezz</div>
+                            <div className='relative bg-gold rounded-[100px] px-2 py-[3px] text-center font-bold font-secondary-bold text-white text-[10px] sm:text-xs flex items-center justify-center'>
                                 Последний победитель
                                 <img className='opacity-20 block absolute top-1 left-[23px]' src='/img/shape.svg' alt='shape'/>
                             </div>
                         </div>
-                        <div className='border-x-solid border-x border-x-[#DBE0ED] px-4 flex flex-col mt-6 h-[67%]'>
-                            <div className='font-bold font-secondary-bold text-base mb-2'>342 819</div>
-                            <div className='font-bold font-secondary-bold text-[#B4BAD2] text-xs'>Открытых кейсов</div>
-                        </div>
-                        <div className='px-4 mt-6'>
-                            <div className='font-bold font-secondary-bold text-base mb-2 flex flex-col'>118 523₽</div>
-                            <div className='font-bold font-secondary-bold text-[#B4BAD2] text-xs'>Заработанно</div>
+                        <div className='h-full w-[50%] py-7  '>
+                            <div className='h-full flex justify-between gap-y-4 flex-col min-[435px]:flex-row border-x min-[435px]:border-none border-x-solid border-x-[#DBE0ED]'>
+                                <div className='border-x-solid border-0 min-[435px]:border-x border-x-[#DBE0ED] px-4 flex flex-col'>
+                                    <div className='font-bold font-secondary-bold text-xs sm:text-base mb-0 min-[435px]:mb-2'>342 819</div>
+                                    <div className='font-bold font-secondary-bold text-[#B4BAD2] text-[10px] sm:text-xs'>Открытых кейсов</div>
+                                </div>
+                                <div className='px-4'>
+                                    <div className='font-bold font-secondary-bold text-xs sm:text-base mb-0 min-[435px]:mb-2 flex flex-col'>118 523₽</div>
+                                    <div className='font-bold font-secondary-bold text-[#B4BAD2] text-[10px] sm:text-xs'>Заработанно</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {/* <TopBanner name='Santchezz' rank='1' tovar='342 819' money='10 000' moneyGet='118 523' userFoto='/img/user_foto.png'/>*/}
                 </div>
                 <div className="w-full mt-6">
-                    {join ?
-                        <div className="stu-total font-secondary-bold text-lg text-[#C5CFE4] gap-3 flex flex-col mb-3">Ваше место
-                            <div className="tuc rounded-xl p-6 flex items-center gap-4 bg-[#E7EAF2]">
-                                <div className="tuc-avatar font-secondary-bold text-lg text-[#1D222C] pr-6">#231322</div>
-                                <div className="tuc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                    <img className="tuc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
+                    {join || finish ?
+                        <div className="stu-total font-secondary-bold text-lg text-[#C5CFE4] gap-3 flex flex-col mb-3 ">Ваше место
+                            <div className="fbc-info flex-shrink-0 flex rounded-xl p-6 gap-3 bg-[#E7EAF2] flex items-center">
+                                <div className="w-[100px] tuc-avatar font-secondary-bold text-lg text-[#1D222C] pr-6">#231322</div>
+                                <div className="fbc-avatar flex-shrink-0 rounded-full w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] overflow-hidden ">
+                                    <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
                                 </div>
-                                <div className="tuc-username font-secondary-bold text-lg text-[#1D222C] ">Evhen_823</div>
+                                <div className="fbc-info-inner">
+                                    <button onClick={goProfile} className="fbc-username user-link bg-inherit font-secondary-bold text-sm sm:text-lg text-[#1D222C]">Evhen_823</button>
+                                </div>
                             </div>
                         </div>
                         : null
                     }
                     {finish ?
-                        <div className="stu-total min-w-[467px] font-secondary-bold text-lg text-[#C5CFE4] gap-3 flex flex-col mb-3">Победитель
-                            <div className="tuc rounded-xl p-6 flex items-center gap-4 bg-white">
-                                <div className="tuc-avatar font-secondary-bold text-lg text-gradient-blue pr-6">#3213</div>
-                                <div className="tuc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
-                                    <img className="tuc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
+                        <div className="stu-total w-full font-secondary-bold text-lg text-[#C5CFE4] gap-3 flex flex-col mb-3">Победитель
+                            <div className="fbc-info flex-shrink-0 flex gap-3 tuc rounded-xl p-6 flex items-center bg-white">
+                                <div className="w-[100px] text-gradient-blue tuc-avatar font-secondary-bold text-lg text-[#1D222C] pr-6">#231322</div>
+                                <div className="fbc-avatar flex-shrink-0 rounded-full w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] overflow-hidden ">
+                                    <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
                                 </div>
-                                <div className="tuc-username font-secondary-bold text-lg text-gradient-blue">Santchezz</div>
+                                <div className="fbc-info-inner">
+                                    <button onClick={goProfile} className="text-gradient-blue mt-1 fbc-username user-link bg-inherit font-secondary-bold text-sm sm:text-lg text-[#1D222C]">Santchezz</button>
+                                </div>
                             </div>
                         </div>
                         :null
@@ -193,11 +194,19 @@ function GiveAway() {
                                 arr.map((item, index) => {
                                     return (
                                         <div key={uuid()} className="tuc rounded-xl p-6 flex items-center gap-4 bg-white ">
-                                            <div className="tuc-avatar font-secondary-bold text-lg text-[#1D222C]  pr-6">#{index+1}</div>
-                                            <div className="tuc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
+                                            <div className="w-[100px] tuc-avatar font-secondary-bold text-lg text-[#1D222C] pr-0 sm:pr-6">#{index+1}</div>
+                                            <div className="fbc-info flex-shrink-0 flex gap-3 ">
+                                                <div className="fbc-avatar flex-shrink-0 rounded-full w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] overflow-hidden ">
+                                                    <img className="fbc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
+                                                </div>
+                                                <div className="fbc-info-inner">
+                                                    <button onClick={goProfile} className="mt-2.5 fbc-username user-link bg-inherit font-secondary-bold text-sm sm:text-lg text-[#1D222C]">Sansa</button>
+                                                </div>
+                                            </div>
+                                            {/* <div className="tuc-avatar flex-shrink-0 rounded-full w-[50px] h-[50px] overflow-hidden ">
                                                 <img className="tuc-avatar-pic w-full h-full object-cover" src="/img/avatar-example-4.6cd623f4.png" alt="user"/>
                                             </div>
-                                            <div className="tuc-username font-secondary-bold text-lg text-[#1D222C] ">Sansa</div>
+                                            <div className="tuc-username font-secondary-bold text-lg text-[#1D222C] ">Sansa</div> */}
                                         </div>
                                     )
                                 })

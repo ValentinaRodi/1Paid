@@ -74,7 +74,7 @@ function Prsl() {
                 modules={[Navigation, Pagination, Autoplay]}
                 speed={800}
                 spaceBetween={141}
-                className='min-h-[100px] w-full px-6 sm:px-[80px] min-[900px]:px-[100px] min-[1600px]:px-[141px] pb-[33px] min-[1780px]:pb-0 pt-[26px] min-[1780px]:pt-[10px]'
+                className='min-h-[100px] w-full '
                 style={{
                     "--swiper-pagination-bullet-horizontal-gap": "20px",
                     "--swiper-pagination-color": "#fff",
@@ -88,7 +88,7 @@ function Prsl() {
                 {
                     (components.length !== 0) ? (
                         components.map((component, index) => (
-                            <SwiperSlide className="w-full h-full " key={uuid()}>
+                            <SwiperSlide className="w-full h-full px-6 sm:px-[80px] min-[900px]:px-[100px] min-[1600px]:px-[141px] pb-[33px] min-[1780px]:pb-0 pt-[26px] min-[1780px]:pt-[10px]" key={uuid()}>
                                 <div className=" w-full flex items-center justify-between gap-0 min-[430px]:gap-4 flex-wrap min-[430px]:flex-nowrap">
                                     <div className="w-full min-[430px]:w-auto flex justify-start items-center gap-x-4 gap-y-2 flex-col min-[900px]:flex-row">
                                         <div className="prsl-item-award-pic w-[180px] flex justify-center items-center max-[640px]:w-[100px] ">

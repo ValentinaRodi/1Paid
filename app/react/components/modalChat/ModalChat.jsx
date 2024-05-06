@@ -41,9 +41,6 @@ function ModalChat(props) {
         const pageHeight = document.querySelector('.layout-page').getBoundingClientRect().height;
         const chatHeight = document.querySelector('.chat-h');
         chatHeight.style.height = pageHeight + "px";
-        console.log('tab',tab);
-        console.log('chat', chat);
-        console.log('deal',deal);
 
         if(tab) {
             document.querySelector('.chat-messages').style.height = pageHeight - 410 + "px";
@@ -87,7 +84,7 @@ function ModalChat(props) {
     
     
     return (
-        <div className='chat-h chat-h-mob absolute right-0 sm:right-9 bottom-[3px] flex items-start z-[1000]'>
+        <div className='chat-h chat-h-mob absolute  bottom-[3px] flex items-start justify-end z-[1000]'>
             <div className='w-full sm:w-[591px] bg-white rounded-lg h-screen max-h-[1000px] border border-solid border-[#E1E1F1]'>
                 <div className='w-full flex justify-center'>
                     <div className='flex justify-center items-center px-6 h-[22px] rounded-b-[20px] btn-primary bg-[linear-gradient(90deg,#8CD23C_0%,#417A00_100%)]'>

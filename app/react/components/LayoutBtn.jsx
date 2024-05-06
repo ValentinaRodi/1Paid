@@ -37,6 +37,8 @@ function LayoutBtn(props) {
         body.style.overflow = 'auto';
         setModalOpen(false);
         setModalEl('');
+        const modal = document.getElementById('modal');
+        modal.classList.remove('modal-light');
     };
 
     const openRegistration = () => {

@@ -95,13 +95,13 @@ function CardGameString(props) {
                 <div className="pc-subtitle mt-1 font-secondary-bold font-bold text-xs text-[#A6B1C7]">{props.description}</div>
             </Link> */}
             <div onClick={goTovar} className="pc-preview flex justify-center items-center cursor-pointer">
-                <div className="w-[60px] sm:w-[120px] h-[60px] sm:h-[120px]">
+                <div className="w-[50px] h-[50px]">
                     <img className={`${props.private ? 'opacity-40' : null} pc-preview-pic w-full`} src={`/img/${props.icon}`} alt="picture"/>
                 </div>
             </div>
             <div onClick={goTovar} className="pc-info cursor-pointer">
                 <div className={`${props.private ? 'opacity-40' : null} pc-title font-secondary-bold font-bold text-[13px] text-black`}>{props.name}</div>
-                <div className="pc-subtitle mt-1 font-secondary-bold font-bold text-xs text-[#A6B1C7]">{props.description}</div>
+                <div className="pc-subtitle font-secondary-bold font-bold text-[10px] leading-3 text-[#A6B1C7]">{props.description}</div>
             </div>
             <div className="pc-subinfo text-[#A6B1C7] flex flex-col gap-1 sm:gap-2">
                 <div className="pc-subinfo-value font-secondary-med text-[10px]">Тип: Оружие</div>
@@ -127,7 +127,7 @@ function CardGameString(props) {
                             <div className="pc-total-inf flex flex-nowrap md:flex-wrap gap-x-[5px] flex">
                                 <div className="text-[#BEC1DB] font-secondary-bold text-xs">Цена</div>
                                 {props.priceDouble === 'true' 
-                                    ?   <div className='font-secondary-bold font-bold text-xs w-max md:w-auto flex flex-col sm:flex-row gap-x-2'>
+                                    ?   <div className='font-secondary-bold font-bold text-xs w-max md:w-auto flex flex-col min-[1835px]:flex-row gap-x-2'>
                                             <div className='flex-shrink-0'>от {props.price1} ₽</div>
                                             <div className='flex-shrink-0'>до {props.price2} ₽</div>
                                         </div>
