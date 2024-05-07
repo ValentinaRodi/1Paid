@@ -38,7 +38,7 @@ function ProfileEdit(props) {
 
 
     return (
-        <div className="layout-b pb-4 px-9 3xl:px-4 min-w-0 px-5 ">
+        <div className="layout-b pb-4 px-9 3xl:px-4 min-w-0 px-5 flex flex-col justify-between">
             <div className="relative sps layout-main">
                 <Title title='Настройки профиля'/>
                 <div className="sps-main bg-none lg:bg-white flex flex-wrap gap-3 lg:flex-nowrap w-full rounded-xl">
@@ -96,7 +96,7 @@ function ProfileEdit(props) {
                             </button>
                         </div>
                     </div>
-                    <div className="bg-white py-4 lg:py-6 pr-4 lg:pr-6 sps-form flex flex-col w-full pl-4 lg:pl-6 lg:pl-[56px] rounded-xl border-none lg:border-l border-solid border-[#DBE0ED]">
+                    <div className="bg-white py-4 lg:py-6 pr-4 lg:pr-6 sps-form flex flex-col w-full pl-4 lg:pl-6 lg:pl-[56px] border-none lg:border-l border-solid border-[#DBE0ED]">
                             <div className="sps-fields grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-[64px]">
                                 <div className="input-wrapper flex flex-col font-secondary-bold text-black">
                                     <label className="input-label mb-2 sm:mb-4 text-xs sm:text-sm">Имя пользователя</label>
