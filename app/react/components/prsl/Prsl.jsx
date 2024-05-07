@@ -63,7 +63,7 @@ function Prsl() {
     }, [modalEl]);
 
     return (
-        <div id="prsl" className="prsl relative rounded-md min-h-[100px] flex justify-between items-center mt-1 min-[640px]:mt-6 min-[1200px]:mt-0 mb-8">
+        <div id="prsl" className="prsl relative rounded-md min-h-[100px] flex justify-between items-center mt-6 min-[1200px]:mt-0 mb-0 sm:mb-8">
             <Swiper
                 loop={true}
                 onBeforeInit={(swiper) => {

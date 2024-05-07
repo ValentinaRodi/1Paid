@@ -30,7 +30,7 @@ function Title(props) {
                     :null
                 }
                 {props.search ?
-                    <div className="sh-bar flex items-center gap-2 2md:w-full 2md:flex-row-reverse">
+                    <div className="mt-6 sm:mt-0 sh-bar flex items-center gap-2 2md:w-full 2md:flex-row-reverse">
                         <div className="sh-search rounded-full h-[50px] px-6 max-w-[270px] w-full flex items-center bg-[#E8EAF7] 2md:max-w-none 2md:flex-grow 2md:h-10 2md:px-3">
                             <button className="sh-search-icon bg-inherit flex-shrink-0 w-4 h-full [&amp;_svg]:w-full flex justify-center items-center text-[#B8BACF] duration-100 hover:text-black">
                                 <img src="/img/icon-sh-search-icon.svg" alt="sh-search-icon"/>
