@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import vplay from '../../../../web/img/icon-gc-vplay-icon.svg';
 import btnIcon from '../../../../web/img/icon-btn-icon-11.svg';
 import uuid from 'react-uuid';
 import { Link, useLocation } from 'react-router-dom';
@@ -396,21 +395,21 @@ function CardsGame() {
                                     <div className="gc-bg absolute z-[1] top-0 left-0 w-full h-full">
                                         <img className="relative z-[1] w-full h-full object-cover object-center" src={card.bg_image} alt="picture"/>
                                     </div>
-                                    <div className="gc-icon">
+                                    <div className="hidden sm:block gc-icon">
                                         <div className="gc-icon-pic overflow-hidden rounded-full w-10 h10 xl:w-16 xl:h-16 md:w-12 md:h-12">
                                             <img className="w-full h-full object-cover" src={card.icon} alt="Warface"/>
                                         </div>
                                     </div>
                                     <div className="gc-title">
-                                        <h3 className="font-secondary-bold text-2xl text-white xl:text-xl md:text-lg">{card.name}</h3>
+                                        <h3 className="font-secondary-bold text-lg sm:text-2xl text-white ">{card.name}</h3>
                                     </div>
                                     <div className="gc-badges">
                                     </div>
                                     <div className="gc-vplay cursor-pointer flex flex-col items-center">
                                         <div className="gc-vplay-icon w-[42px] h-[42px] [&amp;_svg]:w-full md:w-[44px] md:h-[44px]">
-                                            <img src={vplay} alt="gc-vplay-icon"/>
+                                            <img src="img/icon-gc-vplay-icon.svg" alt="gc-vplay-icon"/>
                                         </div>
-                                        <div className="gc-vplay-label font-secondary-bold text-center text-[10px] text-white md:hidden">Video</div>
+                                        <div className="gc-vplay-label font-secondary-bold text-center text-[10px] text-white">Video</div>
                                     </div>
                                     <div className="gc-tags-wrap">
                                         <div className="gc-tags">
@@ -418,7 +417,7 @@ function CardsGame() {
                                                 <Link to={`catalog/${card.seo_name}/${categ.seo_name}`} state={{ game: card.seo_name, category: categ.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item w-fit font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
                                             ))} */}
                                             {Object.values(card.categories).map((categ) => (
-                                                <Link to='catalog/Warface' state={{ game: card.seo_name, category: categ.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item w-fit font-secondary-med text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
+                                                <Link to='catalog/Warface' state={{ game: card.seo_name, category: categ.seo_name, categoryId: categ.id }} key={uuid()} className="gc-tags-item w-fit font-secondary-med text-[10px] sm:text-sm text-white hover:text-white/75 bg-inherit flex justify-start">{categ.name}</Link>
                                             ))}
                                         </div>
                                     </div>
@@ -454,14 +453,14 @@ function CardsGame() {
                                         </div>
                                     </div>
                                     <div className="gc-title">
-                                        <h3 className="font-secondary-bold text-lg sm:text-2xl text-white xl:text-xl md:text-lg">{card.name}</h3>
+                                        <h3 className="font-secondary-bold text-lg sm:text-2xl text-white ">{card.name}</h3>
                                     </div>
                                     <div className="gc-badges"></div>
                                     <div className="gc-vplay flex flex-col items-center">
                                         <div className="gc-vplay-icon w-[42px] h-[42px] [&amp;_svg]:w-full md:w-[44px] md:h-[44px]">
-                                            <img src={vplay} alt="gc-vplay-icon"/>
+                                            <img src="img/icon-gc-vplay-icon.svg" alt="gc-vplay-icon"/>
                                         </div>
-                                        <div className="gc-vplay-label font-secondary-bold text-center text-[10px] text-white md:hidden">Video</div>
+                                        <div className="gc-vplay-label font-secondary-bold text-center text-[10px] text-white">Video</div>
                                     </div>
                                     <div className="gc-tags-wrap ">
                                         <div className="gc-tags">

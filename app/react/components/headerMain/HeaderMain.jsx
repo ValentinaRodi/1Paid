@@ -855,12 +855,12 @@ function HeaderMain(props) {
                                                     <div className="pmc-chip  border rounded-full border-[#DCF1C4] px-2 py-1 flex items-center gap-x-2 "
                                                        >
                                                         <span
-                                                            className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{bonus}PD</span>
+                                                            className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{bonus ? bonus : '000000'}PD</span>
                                                     </div>
                                                     <button onClick={openModalAddBalance} className="pmc-chip border rounded-full border-[#D2DFFB] px-2 py-1 flex items-center gap-x-2 duration-200 hover:bg-[#D2DFFB]"
                                                        >
                                                         <span
-                                                            className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{balance}₽</span>
+                                                            className="font-bold font-primary-bold text-xs text-black whitespace-nowrap">{balance ? balance : '000000'}₽</span>
                                                         <img className="pmc-chip-icon w-4 h-4"
                                                              src="/img/icon-plus-blue.a12eb4f0.svg" alt="picture"/>
                                                     </button>
