@@ -31,6 +31,11 @@ import Forum from '../pages/forum/Forum';
 import Contacts from '../pages/contacts/Сontacts';
 import Chat from '../pages/chat/Chat';
 import LendingPage from '../pages/lending/Lending';
+import ForumThemes from '../pages/forumThemes/ForumThemes';
+import ForumRules from '../pages/forumRules/ForumRules';
+import ForumRulesTheme from '../pages/forumRulesTheme/ForumRulesTheme';
+import ForumGame from '../pages/forumGame/ForumGame';
+import ForumThemeInfo from '../pages/forumThemeInfo/ForumThemeInfo';
 
 export const useRoutes = () => {
   const [games, setGames] = useState('');
@@ -71,8 +76,14 @@ export const useRoutes = () => {
       <Route path='/catalog/Warface/1-account' element={<CardTovar />} />
       <Route path='/contacts' element={<Contacts />} />
       <Route path='/lending' element={<LendingPage />} />
-      <Route path='/forum' element={<Forum />} />
       
+      <Route path='/forum' element={<Forum />} />
+      <Route path='/forum/themes' element={<ForumThemes />} />
+      <Route path='/forum/Warface' element={<ForumGame />} />
+      <Route path='/forum/rules_forum' element={<ForumRules />} />
+      <Route path='/forum/rules_themes' element={<ForumRulesTheme />} />
+      <Route path='/forum/Warface/private_account' element={<ForumThemeInfo />} />
+
       <Route element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<Settings />} />

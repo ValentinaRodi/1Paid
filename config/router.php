@@ -22,10 +22,17 @@ return [
     'GET,HEAD giveaway' => 'main/index',
     'GET,HEAD roulette' => 'main/index',
     'GET,HEAD chat' => 'main/index',
-    'GET,HEAD forum' => 'main/index',
     'GET,HEAD contacts' => 'main/index',
     'GET,HEAD profile' => 'main/index',
     'GET,HEAD profile/edit' => 'main/index',
+    
+    'GET,HEAD forum' => 'main/index',
+    'GET,HEAD forum/themes' => 'main/index',
+    'GET,HEAD forum/Warface' => 'main/index',
+    'GET,HEAD forum/rules_forum' => 'main/index',
+    'GET,HEAD forum/rules_themes' => 'main/index',
+    'GET,HEAD forum/Warface/private_account' => 'main/index',
+    
     'GET,HEAD catalog/Warface' => 'main/index',
     //'GET,HEAD profile' => 'main/profile',
     'GET,HEAD lending' => 'main/profile',

@@ -19,7 +19,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 function App() {
   const routes = useRoutes();
-  const { setAuth } = useAuth();
+  const { setAuth, isForum, } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
@@ -31,7 +31,7 @@ function App() {
   const [leftMenuDisplay, setleftMenuDisplay] = useState('');
   const [modalUpTop, setModalUpTop] = useState(false);
   const [lending, setLending] = useState(true);
-
+  
   const changeOrient = () => {
     if(orient === '') {
       setOrient('_lf-row');
@@ -121,7 +121,7 @@ function App() {
     
   //   if (isLoading) {
   //       return null;
-  //   }
+  // }
 
   const clickUpTop = () => {
     setModalUpTop(true);
@@ -160,18 +160,29 @@ function App() {
   //   navigate('/forum');
   // };
 
+  
   return (
     <div>
       {/* <LendingPage /> */}
-      <div className={`layout-grid ${orient}`}>
-        <LeftMenu leftMenuDisplay={leftMenuDisplay} clickUpTop={clickUpTop}/> 
+      <div className={`${isForum ? null : 'layout-grid'} ${orient}`}>
+        {isForum ?
+          null
+          : <LeftMenu leftMenuDisplay={leftMenuDisplay} clickUpTop={clickUpTop}/> 
+        }
         <div id='layout-page' className={`layout-page ${orient}`}>
-          <LayoutColRow changeOrient={changeOrient} orient={orient}/>
-          <HeaderMain closeLeftMenu={closeLeftMenu} leftMenuOpen={leftMenuOpen} openAuthorization={openAuthorization} />
+          {isForum ?
+            null
+            : <LayoutColRow changeOrient={changeOrient} orient={orient}/>
+          }
+          <HeaderMain closeLeftMenu={closeLeftMenu} leftMenuOpen={leftMenuOpen} openAuthorization={openAuthorization}/>
           {routes}
         </div>
       </div>
-      <FooterMain />
+      {isForum ?
+          null
+          : <FooterMain />
+        }
+      
       {modalUpTop ?
           <div className='absolute top-[110px] right-[0] min-[397px]:right-[22px] sm:right-[35px] bg-[linear-gradient(90deg,#8cd23c_0%,#417a00_100%)] rounded-xl p-3'>
               <p className='font-secondary-bold text-xs sm:text-sm text-white'>Товар успешно поднят</p>

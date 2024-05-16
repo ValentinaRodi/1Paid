@@ -33,7 +33,6 @@ function MyMessages() {
         setDeal(false);
     };
 
-
     const openChat = () => {
         setChat(true);
         setTabClass(!tabClass);
