@@ -21,7 +21,7 @@ function Forum(props) {
         setForum(true);
     }, []);
 
-    const arrGame = ['Warface','Counter-Strike: Global Offensive','Grand Theft Auto V', 'World of Tanks','Dota 2','Steam','Fortnite','Еще игры']
+    const arrGame = ['Warface','Counter-Strike: Global Offensive','Grand Theft Auto V', 'World of Tanks','Dota 2','Steam','Fortnite']
     const arrSite = ['Предложения по сайту', 'Баги/Доработка'];
 
     const goThemes = () => {
@@ -69,6 +69,7 @@ function Forum(props) {
                                 })
                                 : null
                             }
+                            <ForumGameItem title='Еще игры' gameAll='true'/> 
                         </div> 
                         <div className='rounded-lg bg-white pb-6'>
                             <div className='text-[#2E2E2E] flex items-center px-9 font-secondary-bold text-xs sm:text-sm h-[80px] border-b border-solid border-[#E0E3F2]'>Сайт</div>
