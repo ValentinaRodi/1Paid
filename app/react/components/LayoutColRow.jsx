@@ -227,15 +227,10 @@ function LayoutColRow(props) {
 
     //высчитываем высоту ленты по высоте контента
     useEffect(() => {
-        const headerHeight = document.querySelector('.layout-h');
-        const mainHeight = document.querySelector('.layout-main');
-
-        if(headerHeight && mainHeight) {
-            headerHeight.getBoundingClientRect().height;
-            mainHeight.getBoundingClientRect().height;
-            const totalHeight = headerHeight + mainHeight;
-            document.querySelector('.lf-feed').style.height = totalHeight + "px";
-        }
+        const headerHeight = document.querySelector('.layout-h').getBoundingClientRect().height;
+        const mainHeight = document.querySelector('.layout-main').getBoundingClientRect().height;
+        const totalHeight = headerHeight + mainHeight;
+        document.querySelector('.lf-feed').style.height = totalHeight + "px";
     }, []);
 
     const deleteHeightBlock = () => {

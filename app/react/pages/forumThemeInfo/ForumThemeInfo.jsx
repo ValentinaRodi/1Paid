@@ -18,6 +18,19 @@ function ForumThemeInfo(props) {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const [like, setLike] = useState(14567);
+    const [clicked, setClicked] = useState(false);
+
+    const clickLike = () => {
+      if (clicked) {
+        setLike(14567);
+      } else {
+        setLike(like + 1);
+      }
+      setClicked(!clicked);
+    };
+    
+
     const [modalEl, setModalEl] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
     const body = document.querySelector('body');
@@ -160,9 +173,11 @@ function ForumThemeInfo(props) {
     };
 
     return (
-        <div className="flex flex-wrap content-between col-[span_2_/_span_3] row-[span_-1_/_span_-2] pb-4 min-w-0 h-full">
-            <div className='w-full layout-main '>
-                <div className='w-full flex gap-2 md:gap-0 justify-center md:justify-between flex-col md:flex-row items-start md:items-center bg-white h-[120px] md:h-[85px] px-6 sm:px-12 min-[1400px]:px-[calc(50%-650px)]'>
+        <div className="flex flex-wrap content-between layout-b mb-24 min-w-0 ">
+            <div className="w-full layout-main relative">
+                <div className="sfb ">            
+                <div className='w-full layout-main '>
+                <div className='w-full mt-4 flex gap-5 md:gap-0 justify-center md:justify-between flex-col md:flex-row items-start md:items-center bg-none min-[1200px]:bg-white h-[120px] md:h-[85px] px-0 min-[1200px]:px-4'>
                     <div className='flex items-center gap-3'>
                         <Link to='/forum' className="font-secondary-bold text-[#B8BACF] text-sm sm:text-base">Форум</Link>
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -183,7 +198,7 @@ function ForumThemeInfo(props) {
                         </div>
                     </div>
                 </div>
-                <div className='flex-col-reverse sm:flex-row px-6 sm:px-12 min-[1400px]:px-[calc(50%-650px)] flex justify-between items-center pt-9'>
+                <div className='flex-col-reverse sm:flex-row flex justify-between items-center pt-0 min-[1200px]:pt-9'>
                     <div className={(showDelModal) ? 'absolute top-0 right-[310px] z-10 w-56 rounded-md bg-white pr-3 flex items-center justify-between' : 'hidden'}>
                         <div >
                             <TimerCircle count='5' color='black' onCloseModalDelTovar={onCloseModalDelTovar} imgCircle='icon-circle-progress.svg'/>
@@ -210,7 +225,7 @@ function ForumThemeInfo(props) {
                         </button>
                     </div>
                 </div>
-                <div className='flex-col min-[950px]:flex-row px-6 sm:px-12 min-[1400px]:px-[calc(50%-650px)] flex justify-between items-start gap-6'>
+                <div className='flex-col min-[950px]:flex-row flex justify-between items-start gap-6'>
                     <div className='w-full min-[950px]:w-[71%] flex flex-col gap-6'>
                         <div className='pb-0 sm:pb-6 min-h-[330px]'>
                             <div className='px-9 bg-white rounded-t-lg flex items-center justify-between min-h-[80px] border-b border-solid border-[#E0E3F2]'>
@@ -225,12 +240,12 @@ function ForumThemeInfo(props) {
                                         <div>Дата и автор</div>
                                         <div>1 Ноя 2019 <span className='text-[#FF3F3F] underline'>admin</span></div>
                                     </div>
-                                    <button className='btn flex items-center justify-center gap-1 sm:gap-2 h-[34px] sm:h-[44px] w-[80px] sm:w-[110px] rounded-[100px] font-secondary-bold text-white text-xs sm:text-sm bg-[#FF5252] shadow-[0_8px_13px_0px_#FF525280]'>
+                                    <button onClick={clickLike} className='btn flex items-center justify-center gap-1 sm:gap-2 h-[34px] sm:h-[44px] w-[80px] sm:w-[110px] rounded-[100px] font-secondary-bold text-white text-xs sm:text-sm bg-[#FF5252] shadow-[0_8px_13px_0px_#FF525280]'>
                                         <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path fillRule="evenodd" clipRule="evenodd" d="M1 7.56C0.447715 7.56 0 8.00771 0 8.56V16.56C0 17.1123 0.447715 17.56 1 17.56C1.55228 17.56 2 17.1123 2 16.56V8.56C2 8.00771 1.55228 7.56 1 7.56Z" fill="white"/>
                                             <path fillRule="evenodd" clipRule="evenodd" d="M16 6H10.72L9.4 2.05C8.99191 0.827603 7.84871 0.00241094 6.56 0H6C4.34315 0 3 1.34315 3 3V15C3 16.6569 4.34315 18 6 18H13.33C13.9791 18 14.6107 17.7895 15.13 17.4L17.8 15.4C18.5554 14.8334 19 13.9443 19 13V9C19 7.34315 17.6569 6 16 6ZM17 13C17 13.3148 16.8518 13.6111 16.6 13.8L13.93 15.8C13.7569 15.9298 13.5464 16 13.33 16H6C5.44772 16 5 15.5523 5 15V3C5 2.44772 5.44772 2 6 2H6.56C6.98992 1.99889 7.37243 2.27269 7.51 2.68L9.01 7.18C9.1699 7.66879 9.62572 7.99956 10.14 8H16C16.5523 8 17 8.44771 17 9V13Z" fill="white"/>
                                         </svg>
-                                        14 567
+                                        {like.toLocaleString()}
                                     </button>
                                 </div>
                             </div>
@@ -257,9 +272,11 @@ function ForumThemeInfo(props) {
                     </div>
                 </div>
             </div>
-            <div className='px-9 w-full'>
+        </div>
+        </div>
+       
                 <LayoutBtn />
-            </div>
+            
         </div>
     );
 }

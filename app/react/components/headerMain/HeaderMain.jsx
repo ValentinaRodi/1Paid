@@ -38,7 +38,7 @@ function HeaderMain(props) {
 
     //Сохраняем в localStorage цвет выбранной ссылки
     const clickLink = (index) => {
-        const newLink = link.map((item, i) => (index === 5 ? (i === index ? 'nav-link-prim-forum' : 'nav-link nav-link-forum') : (i === index ? 'nav-link-prim' : 'nav-link')));
+        const newLink = link.map((item, i) => i === index ? 'nav-link-prim' : 'nav-link');
         setLink(newLink);
         localStorage.setItem('activeLink', JSON.stringify(newLink));
     };
@@ -259,41 +259,34 @@ function HeaderMain(props) {
         const interval = setInterval(() => {
             setColor((prevColor) => (prevColor === 'white' ? 'orange' : 'white'));
         }, 5000);
-    
+
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className={`${isForum ? "bg-[url('/img/BG.png')] min-h-[200px] min-[400px]:min-h-[250px] min-[500px]:min-h-[310px] relative px-6 sm:px-12 min-[1400px]:px-[calc(50%-650px)] col-[2_/_span_3] row-[1_/_span_2] pt-2.5 pb-9" : 'layout-h'} `}>
+        <div className='layout-h'>
             <div className="">
                 <div className="h-wrapper">
                     <header className="h justify-between">
-                        {isForum ?
-                            <div className="cm-h-inner flex justify-between items-center">
-                                <button  onClick={() => {goMain(); setForum(false); clickLink(0)}} className="logo bg-inherit w-[180px] 3xl:w-[150px] xl:w-[120px] lg:w-auto lg:flex-shrink-1 lg:basis-[130px]">
-                                    <img className="logo__dots lg:h-[100%] xl:w-1/2" src="/img/dots-1.82560447.svg" alt="1paid.ru"/>
-                                    <img className="logo-pic" src="/img/logo.7fb09570.svg" alt="1paid.ru"/>
-                                </button>
-                            </div>
-                            : 
+                        
                             <button onClick={props.closeLeftMenu} className={`h-openmenu ${props.leftMenuOpen}`}>
                             <span></span><span></span>
                             </button>
-                        }
+                        
                         <nav className="nav flex mx-6 justify-between gap-x-5 gap-y-5 flex-wrap ">
-                            <Link to='/' id='link0' onClick={() => {clickLink(0); setForum(false)}}
+                            <Link to='/' id='link0' onClick={() => {clickLink(0)}}
                                 className={`${link[0]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Главная</Link>
-                            <Link to='/top_users' id='link1' onClick={() => {clickLink(1); setForum(false)}}
+                            <Link to='/top_users' id='link1' onClick={() => {clickLink(1)}}
                                 className={`${link[1]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Топ
                                 юзеров</Link>
-                            <Link to='/feedbacks' id='link2' onClick={() => {clickLink(2); setForum(false)}}
+                            <Link to='/feedbacks' id='link2' onClick={() => {clickLink(2)}}
                                 className={`${link[2]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Отзывы</Link>
-                            <Link to='/guarantees' id='link3' onClick={() => {clickLink(3); setForum(false)}}
+                            <Link to='/guarantees' id='link3' onClick={() => {clickLink(3)}}
                                 className={`${link[3]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Гарантии</Link>
-                            <Link to='/random-items' id='link4' onClick={() => {clickLink(4); setForum(false)}}
+                            <Link to='/random-items' id='link4' onClick={() => {clickLink(4)}}
                                 className={`${link[4]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Случайные
                                 предметы</Link>
-                            <Link to='/forum' id='link5' onClick={() => {clickLink(5); setForum(true); setForumOpen(true)}}
+                            <Link to='/forum' id='link5' onClick={() => {clickLink(5)}}
                                 className={`${link[5]} font-primary-bold text-sm text-[#8A98B3] uppercase`}>Форум</Link>
                         </nav>
                         {!isAuthenticated ? (
@@ -482,7 +475,7 @@ function HeaderMain(props) {
                                         className={isOpenMenu ? "absolute top-16 z-[100] h-profile-content shadow-2xl rounded-[22px] w-full py-3 bg-white" : "hidden"}>
                                         <div className="np">
                                             <nav className="np-nav">
-                                                <Link to="/profile" onClick={() => {toggleMenu(); setForum(false); clickLink(0)}}
+                                                <Link to="/profile" onClick={() => {toggleMenu(); clickLink(0)}}
                                                       className=" np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -499,7 +492,7 @@ function HeaderMain(props) {
                                                         профиль
                                                     </div>
                                                 </Link>
-                                                <Link to='/my-tovars' onClick={() => {toggleMenu(); setForum(false)}}
+                                                <Link to='/my-tovars' onClick={() => {toggleMenu()}}
                                                       className="np-nav-item w-full h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -516,7 +509,7 @@ function HeaderMain(props) {
                                                         товары
                                                     </div>
                                                 </Link>
-                                                <Link to='/order-table' onClick={() => {toggleMenu(); setForum(false)}}
+                                                <Link to='/order-table' onClick={() => {toggleMenu()}}
                                                       className="np-nav-item w-full h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -533,7 +526,7 @@ function HeaderMain(props) {
                                                         заказов
                                                     </div>
                                                 </Link>
-                                                <Link to='/my-achievements' onClick={() => {toggleMenu(); setForum(false)}}
+                                                <Link to='/my-achievements' onClick={() => {toggleMenu()}}
                                                       className="np-nav-item w-full h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -567,7 +560,7 @@ function HeaderMain(props) {
                                                         className="np-nav-label font-primary-med text-sm text-[#8a98b3] duration-200 group-hover:text-[#0C0C0C]">Достижения
                                                     </div>
                                                 </Link>
-                                                <Link to='/profile/edit' onClick={() => {toggleMenu(); setForum(false)}}
+                                                <Link to='/profile/edit' onClick={() => {toggleMenu()}}
                                                       className="np-nav-item w-full h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -587,7 +580,7 @@ function HeaderMain(props) {
                                                         className="np-nav-label font-primary-med text-sm text-[#8a98b3] duration-200 group-hover:text-[#0C0C0C]">Настройки
                                                     </div>
                                                 </Link>
-                                                <Link to='/my-finance' onClick={() => {toggleMenu(); setForum(false)}}
+                                                <Link to='/my-finance' onClick={() => {toggleMenu()}}
                                                       className="np-nav-item w-full h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -604,7 +597,7 @@ function HeaderMain(props) {
                                                         и вывод
                                                     </div>
                                                 </Link>
-                                                <Link to='/refs' onClick={() => {toggleMenu(); setForum(false)}}
+                                                <Link to='/refs' onClick={() => {toggleMenu()}}
                                                       className="np-nav-item w-full h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -677,10 +670,10 @@ function HeaderMain(props) {
                     </header>
                 </div>
             </div>
-            <div className={isForum ? 'h-[80px] block min-[1200px]:hidden' : 'hm'}>
+            <div className='hm'>
                 <div className="hm-inner px-5 lg:px-9 flex items-center justify-between">
                     <div className="hm-logo">
-                        <button onClick={() => {goMain(); setForum(false); clickLink(0)}} className="logo bg-inherit w-[70px] sm:w-[120px] 3xl:w-[150px] ">
+                        <button onClick={() => {goMain(); clickLink(0)}} className="logo bg-inherit w-[70px] sm:w-[120px] 3xl:w-[150px] ">
                             <img className="logo__dots lg:h-[100%] xl:w-1/2" src="/img/dots-1.82560447.svg"
                                  alt="1paid.ru"/>
                             <img className="logo-pic" src="/img/logo.7fb09570.svg" alt="1paid.ru"/>
@@ -834,7 +827,7 @@ function HeaderMain(props) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button onClick={() => {clickNotif(); setForum(false)}}
+                                            <button onClick={() => {clickNotif()}}
                                                     className="notif-btnall mt-5 w-full border-b border-[#ECEDF7] py-1 flex justify-center duration-200 hover:bg-[#F6F9FF]">
                                                 <div
                                                     className="btn-text font-primary-bold text-sm text-[#C5CFE4]">Показать
@@ -880,7 +873,7 @@ function HeaderMain(props) {
                                         </div>
                                         <div className="np">
                                             <nav className="np-nav">
-                                                <Link to="/profile" onClick={() => {toggleMenu2(); setForum(false); clickLink(0)}}
+                                                <Link to="/profile" onClick={() => {toggleMenu2(); clickLink(0)}}
                                                       className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF] bg-inherit w-full">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -897,7 +890,7 @@ function HeaderMain(props) {
                                                         профиль
                                                     </div>
                                                 </Link>
-                                                <Link to='/my-tovars' onClick={() => {toggleMenu2(); setForum(false); clickLink(0)}}
+                                                <Link to='/my-tovars' onClick={() => {toggleMenu2(); clickLink(0)}}
                                                       className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF] bg-inherit w-full">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -914,7 +907,7 @@ function HeaderMain(props) {
                                                         товары
                                                     </div>
                                                 </Link>
-                                                <Link to='/order-table' onClick={() => {toggleMenu2(); setForum(false); clickLink(0)}}
+                                                <Link to='/order-table' onClick={() => {toggleMenu2(); clickLink(0)}}
                                                       className="np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF] bg-inherit">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -931,7 +924,7 @@ function HeaderMain(props) {
                                                         заказов
                                                     </div>
                                                 </Link>
-                                                <Link to='/my-achievements' onClick={() => {toggleMenu2(); setForum(false); clickLink(0)}}
+                                                <Link to='/my-achievements' onClick={() => {toggleMenu2(); clickLink(0)}}
                                                       className="np-nav-item w-full h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF] bg-inherit">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -964,7 +957,7 @@ function HeaderMain(props) {
                                                         className="np-nav-label font-primary-med text-sm text-[#8a98b3] duration-200 group-hover:text-[#0C0C0C]">Достижения
                                                     </div>
                                                 </Link>
-                                                <Link to='/profile/edit' onClick={() => {toggleMenu2(); setForum(false); clickLink(0)}}
+                                                <Link to='/profile/edit' onClick={() => {toggleMenu2(); clickLink(0)}}
                                                       className="bg-inherit w-full np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -984,7 +977,7 @@ function HeaderMain(props) {
                                                         className="np-nav-label font-primary-med text-sm text-[#8a98b3] duration-200 group-hover:text-[#0C0C0C]">Настройки
                                                     </div>
                                                 </Link>
-                                                <Link to='/my-finance' onClick={() => {toggleMenu2(); setForum(false); clickLink(0)}}
+                                                <Link to='/my-finance' onClick={() => {toggleMenu2(); clickLink(0)}}
                                                       className="bg-inherit w-full np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -1001,7 +994,7 @@ function HeaderMain(props) {
                                                         и вывод
                                                     </div>
                                                 </Link>
-                                                <Link to='/refs' onClick={() => {toggleMenu2(); setForum(false); clickLink(0)}}
+                                                <Link to='/refs' onClick={() => {toggleMenu2(); clickLink(0)}}
                                                       className="bg-inherit w-full np-nav-item h-11 px-6 flex items-center gap-x-3 group duration-200 hover:bg-[#F6F9FF]">
                                                     <div
                                                         className="np-nav-icon flex-shrink-0 w-4 flex justify-center [&amp;_svg]:max-w-full">
@@ -1062,25 +1055,25 @@ function HeaderMain(props) {
                 <div className="mmenu-nav flex gap-x-4">
                     <nav
                         className="nav flex  mr-2 gap-x-5 gap-y-5 flex-wrap mx-4 3xl:gap-x-2.5 lg:flex-col lg:items-start lg:gap-y-8">
-                        <Link to='/' onClick={() => {closeMenu(); setForum(false)}}
+                        <Link to='/' onClick={() => {closeMenu()}}
                             className="nav-link-hed nav-link nav-link-prim-hed font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Главная</Link>
-                        <Link to='/top_users' onClick={() => {closeMenu(); setForum(false)}}
+                        <Link to='/top_users' onClick={() => {closeMenu()}}
                             className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Топ
                             юзеров</Link>
-                        <Link to='/feedbacks' onClick={() => {closeMenu(); setForum(false)}}
+                        <Link to='/feedbacks' onClick={() => {closeMenu()}}
                             className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase  lg:text-white/30">Отзывы</Link>
-                        <Link to='/guarantees' onClick={() => {closeMenu(); setForum(false)}}
+                        <Link to='/guarantees' onClick={() => {closeMenu()}}
                             className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Гарантии</Link>
-                        <Link to='/random-items' onClick={() => {closeMenu(); setForum(false)}}
+                        <Link to='/random-items' onClick={() => {closeMenu()}}
                             className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Случайные
                             предметы</Link>
-                        <Link to='/forum' onClick={() => {closeMenu(); setForum(true)}}
+                        <Link to='/forum' onClick={() => {closeMenu()}}
                             className="nav-link-hed nav-link font-primary-bold text-sm text-[#8A98B3] uppercase lg:text-white/30">Форум</Link>
                     </nav>
                 </div>
                 <div className="mmenu-pnav pt-8 max-w-[400px]">
                     <div className="navpin">
-                        <button onClick={() => {sellProduct(); setForum(false)}}
+                        <button onClick={() => {sellProduct()}}
                                 className="navpin-item mt-[30px] first-of-type:mt-0 3xl:mt-4 bg-inherit w-full">
                             <div className="navpin-plate">
                                 <img className="navpin-plate-pic" src="/img/link-pin-plate.6d928d3b.svg" alt="dots"/>
@@ -1095,7 +1088,7 @@ function HeaderMain(props) {
                                 товар
                             </div>
                         </button>
-                        <button onClick={() => {goTab(); setForum(false)}}
+                        <button onClick={() => {goTab()}}
                                 className="navpin-item mt-[30px] first-of-type:mt-0 3xl:mt-4 bg-inherit w-full">
                             <div className="navpin-plate">
                                 <img className="navpin-plate-pic" src="/img/link-pin-plate.6d928d3b.svg" alt="dots"/>
@@ -1109,7 +1102,7 @@ function HeaderMain(props) {
                                 className="navpin-text text-sm uppercase 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">Закладки
                             </div>
                         </button>
-                        <button onClick={() => {goHistory(); setForum(false)}}
+                        <button onClick={() => {goHistory()}}
                                 className="navpin-item mt-[30px] first-of-type:mt-0 3xl:mt-4 bg-inherit w-full ">
                             <div className="navpin-plate">
                                 <img className="navpin-plate-pic" src="/img/link-pin-plate.6d928d3b.svg" alt="dots"/>
@@ -1124,7 +1117,7 @@ function HeaderMain(props) {
                                 просмотра
                             </div>
                         </button>
-                        <button onClick={() => {goHistorySales(); setForum(false)}}
+                        <button onClick={() => {goHistorySales()}}
                                 className="navpin-item mt-[30px] first-of-type:mt-0 3xl:mt-4  bg-inherit w-full ">
                             <div className="navpin-plate">
                                 <img className="navpin-plate-pic" src="/img/link-pin-plate.6d928d3b.svg" alt="dots"/>
@@ -1142,7 +1135,7 @@ function HeaderMain(props) {
                     </div>
                 </div>
                 <div className="cm-f-bar mt-8 overflow-hidden flex w-full min-[505px]:w-[400px] h-auto rounded-xl border-[1px] border-solid border-[#C0C2DC59] flex-col">
-                    <button onClick={() => {goMyMessages(); setForum(false)}} className="cm-f-bar-item bg-inherit h-12 flex items-center justify-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100 ">
+                    <button onClick={() => {goMyMessages()}} className="cm-f-bar-item bg-inherit h-12 flex items-center justify-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100 ">
                         <div className="cm-f-bar-item-icon flex-shrink-0">
                             <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M17.2727 5.10197H14.5455V3.28379C14.5455 1.77756 13.3244 0.556519 11.8182 0.556519H2.72727C1.22104 0.556519 0 1.77756 0 3.28379V8.73834C0 10.2446 1.22104 11.4656 2.72727 11.4656H4.13636L5.45455 12.9292V13.2565C5.45455 14.7628 6.67559 15.9838 8.18182 15.9838H11.4091L12.7818 17.5383C13.0407 17.8319 13.4132 18 13.8045 18C14.1959 18 14.5684 17.8319 14.8273 17.5383L16.2 15.9838H17.2727C18.779 15.9838 20 14.7628 20 13.2565V7.80197C19.985 6.3064 18.7684 5.1019 17.2727 5.10197ZM2.72727 9.64743C2.2252 9.64743 1.81818 9.24041 1.81818 8.73834V3.28379C1.81818 2.78171 2.2252 2.3747 2.72727 2.3747H11.8182C12.3203 2.3747 12.7273 2.78171 12.7273 3.28379V8.73834C12.7273 9.24041 12.3203 9.64743 11.8182 9.64743H8.11818L6.53636 11.4656L4.95455 9.64743H2.72727ZM17.2727 14.1929C17.7748 14.1929 18.1818 13.7859 18.1818 13.2838V7.84742C18.1818 7.34534 17.7748 6.93833 17.2727 6.93833H14.5455V8.75651C14.5455 10.2627 13.3244 11.4838 11.8182 11.4838H8.92727L7.55455 13.0383C7.4717 13.1321 7.37696 13.2146 7.27273 13.2838C7.27273 13.7859 7.67974 14.1929 8.18182 14.1929H12.2273L13.8091 16.0838L15.3909 14.1929H17.2727Z" fill="currentColor"></path>
@@ -1151,7 +1144,7 @@ function HeaderMain(props) {
                         <div className="cm-f-bar-item-label font-secondary-bold text-xs ">Мои Сообщения</div>
                     </button>
                     <div className="cm-f-bar-sep w-full h-[1px] flex-shrink-0 bg-[#C0C2DC59] "></div>
-                    <button onClick={() => {goSupport(); setForum(false)}} className="cm-f-bar-item bg-inherit h-12 flex items-center justify-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100">
+                    <button onClick={() => {goSupport()}} className="cm-f-bar-item bg-inherit h-12 flex items-center justify-center gap-x-2 px-2 text-[#A1AEC8] hover:bg-slate-100">
                         <div className="cm-f-bar-item-icon flex-shrink-0">
                             <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M17.2727 4.33194H16.3636C16.1681 4.33414 15.9732 4.35545 15.7818 4.39557C14.7435 2.13731 12.4855 0.690216 10 0.690216C7.51449 0.690216 5.25645 2.13731 4.21818 4.39557C4.02678 4.35545 3.83191 4.33414 3.63636 4.33194H2.72727C1.22104 4.33194 0 5.55298 0 7.05921V10.6956C0 12.2018 1.22104 13.4228 2.72727 13.4228H3.63636C5.14259 13.4228 6.36364 12.2018 6.36364 10.6956V7.05921C6.35858 6.45136 6.15061 5.86263 5.77273 5.38648C6.45841 3.65157 8.13451 2.51175 10 2.51175C11.8655 2.51175 13.5416 3.65157 14.2273 5.38648C13.8494 5.86263 13.6414 6.45136 13.6364 7.05921V10.6956C13.6364 12.2018 14.8574 13.4228 16.3636 13.4228H17.2727C18.779 13.4228 20 12.2018 20 10.6956V7.05921C20 5.55298 18.779 4.33194 17.2727 4.33194ZM4.54545 10.6956C4.54545 11.1977 4.13844 11.6047 3.63636 11.6047H2.72727C2.2252 11.6047 1.81818 11.1977 1.81818 10.6956V7.05923C1.81818 6.55716 2.2252 6.15014 2.72727 6.15014H3.63636C4.13844 6.15014 4.54545 6.55716 4.54545 7.05923V10.6956ZM17.2727 11.6047C17.7748 11.6047 18.1818 11.1977 18.1818 10.6956V7.05923C18.1818 6.55716 17.7748 6.15014 17.2727 6.15014H16.3636C15.8616 6.15014 15.4545 6.55716 15.4545 7.05923V10.6956C15.4545 11.1977 15.8616 11.6047 16.3636 11.6047H17.2727Z" fill="currentColor"></path>
@@ -1161,7 +1154,7 @@ function HeaderMain(props) {
                     </button>
                 </div>
             </div>
-            {isForum ?
+            {/* {isForum ?
                 <div className="absolute bottom-0 left-0 w-full">
                     <div className="flex justify-center">
                         <img className="w-1/4 sm:w-auto h-1/4 sm:h-auto" src="img/eugene-je-1.png" alt="eugene-je-1.png" />
@@ -1170,7 +1163,7 @@ function HeaderMain(props) {
                     </div>
                 </div>
             : null
-            }
+            } */}
         </div>
     );
 };

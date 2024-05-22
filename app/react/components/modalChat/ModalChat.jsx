@@ -14,6 +14,7 @@ function ModalChat(props) {
     const [tab, setTab] = useState(true);
     const [deal, setDeal] = useState(false);
 
+
     const scrollToTop = () => { 
         window.scrollTo({ 
             top: 0,  
@@ -71,7 +72,13 @@ function ModalChat(props) {
         };
     }, [tab, chat, deal]);
 
-    
+    useEffect(() => {
+        window.scrollTo({ 
+            top: 10000,  
+            behavior: 'smooth'
+        }); 
+    }, []);
+
     const openChat = () => {
         setChat(true);
     };

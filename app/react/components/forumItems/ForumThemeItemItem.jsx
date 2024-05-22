@@ -21,6 +21,7 @@ function ForumThemeItemItem(props) {
     const body = document.querySelector('body');
 
     const closeModal = () => {
+        document.getElementById('modal').classList.remove('modal_view');
         body.style.overflow = 'auto';
         setModalOpen(false);
         setModalEl('');
@@ -142,10 +143,51 @@ function ForumThemeItemItem(props) {
         props.cliclShowDelModal();
     };
 
+    const [checked, setChecked] = useState(false);
+
+    const changeCheck = () => {
+        setChecked(!checked);
+        clickLike();
+    };
+
+    const [like, setLike] = useState(14567);
+    const [clicked, setClicked] = useState(false);
+
+    const clickLike = () => {
+      if (clicked) {
+        setLike(14567);
+      } else {
+        setLike(like + 1);
+      }
+      setClicked(!clicked);
+    };
+
+    const goProfile = () => {
+        navigate('/profile',  { state: {userName:'Alexey_Smirnov' } });
+    };
+
+    const [modalUpTop, setModalUpTop] = useState(false);
+
+    const clickUpTop = () => {
+        document.getElementById('modal').classList.remove('modal_view');
+        body.style.overflow = 'auto';
+        setModalOpen(false);
+        setModalUpTop(true);
+    };
+
+    useEffect(() => {
+        if (modalUpTop) {
+            setTimeout(() => {
+                setModalUpTop(false);
+            }, 2000);
+        }
+    }, [modalUpTop, setModalUpTop]);
+
+
     return (
         <div className='px-9 rounded-lg bg-white pt-10 pb-10 flex flex-col sm:flex-row justify-between gap-6 h-full'>
             <div className="shrink-0 flex flex-wrap flex-row sm:flex-col justify-between sm:justify-start items-center gap-x-2 sm:gap-x-0">
-                <div className='flex flex-row sm:flex-col gap-x-2'>
+                <div onClick={goProfile} className='cursor-pointer flex flex-row sm:flex-col gap-x-2'>
                     <div className="shrink-0 flex flex-row sm:flex-col items-center overflow-hidden whitespace-nowrap text-ellipsis">
                         <div className="null fm-message-avatar-wrapper flex-shrink-0 overflow-hidden relative rounded-full p-1.5">
                             <div className="fm-message-avatar flex-shrink-0 w-[50px] h-[50px] overflow-hidden rounded-full">
@@ -177,7 +219,7 @@ function ForumThemeItemItem(props) {
                     <img src="/img/start.svg" alt="user"/>
                 }
                 {props.top ?
-                    <button className='mt-2 flex items-center justify-center gap-2 w-[80px] sm:w-[95px] h-[30px] sm:h-[36px] btn rounded-[100px] btn-secondary font-secondary-bold text-white text-xs sm:text-sm'>
+                    <button onClick={clickUpTop} className='mt-2 flex items-center justify-center gap-2 w-[80px] sm:w-[95px] h-[30px] sm:h-[36px] btn rounded-[100px] btn-secondary font-secondary-bold text-white text-xs sm:text-sm'>
                         <div>В Топ</div>
                         <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd" d="M11.0096 8.36642L6.70942 0.9487C6.4792 0.548752 6.05287 0.302246 5.59139 0.302246C5.12991 0.302246 4.70358 0.548752 4.47335 0.9487L0.173223 8.36642C-0.0537989 8.75909 -0.0579305 9.24213 0.162342 9.63862C0.382615 10.0351 0.794925 10.2868 1.24826 10.3015L9.84852 10.3015C10.3172 10.3176 10.7577 10.0781 10.999 9.67592C11.2403 9.27379 11.2443 8.7724 11.0096 8.36642ZM2.81901 8.15142L5.61409 3.31377L8.40918 8.15142L2.81901 8.15142Z" fill="white"/>
@@ -232,12 +274,20 @@ function ForumThemeItemItem(props) {
                     </button>
                     {props.like ?
                         <div className='flex items-center justify-end gap-2'>
-                            <div>
-                                <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.85602 9.00832L9.00827 13.1606L13.1605 9.00832L15.519 6.64984C16.6656 5.50323 16.6656 3.6442 15.519 2.49759C14.3724 1.35098 12.5134 1.35098 11.3667 2.49759L9.00827 4.87268L6.64979 2.5142C5.50318 1.36759 3.64415 1.36759 2.49754 2.5142C1.35093 3.66081 1.35093 5.51984 2.49754 6.66645L4.85602 9.00832ZM10.1709 1.34326C11.9619 -0.447752 14.8657 -0.447752 16.6567 1.34326C18.4478 3.13426 18.4478 6.03806 16.6567 7.82907L15.4775 9.0083L9.0083 15.4941L2.52249 9.0083L1.34326 7.82907C-0.447752 6.03806 -0.447752 3.13426 1.34326 1.34326C3.13426 -0.447752 6.03806 -0.447752 7.82907 1.34326L9.0083 2.52249L10.1709 1.34326Z" fill="#D4DBE9"/>
-                                </svg>
+                            <div className="pc-ibar flex justify-end items-center flex-wrap gap-3">
+                                <label className="pc-btn-like">
+                                    <input name="like" type="checkbox" checked={checked} onChange={changeCheck}/>
+                                    <div className="btn-icon btn-icon-none-shadow">
+                                        <svg width="18" height="16" className="_default" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M4.85602 9.00832L9.00827 13.1606L13.1605 9.00832L15.519 6.64984C16.6656 5.50323 16.6656 3.6442 15.519 2.49759C14.3724 1.35098 12.5134 1.35098 11.3667 2.49759L9.00827 4.87268L6.64979 2.5142C5.50318 1.36759 3.64415 1.36759 2.49754 2.5142C1.35093 3.66081 1.35093 5.51984 2.49754 6.66645L4.85602 9.00832ZM10.1709 1.34326C11.9619 -0.447752 14.8657 -0.447752 16.6567 1.34326C18.4478 3.13426 18.4478 6.03806 16.6567 7.82907L15.4775 9.0083L9.0083 15.4941L2.52249 9.0083L1.34326 7.82907C-0.447752 6.03806 -0.447752 3.13426 1.34326 1.34326C3.13426 -0.447752 6.03806 -0.447752 7.82907 1.34326L9.0083 2.52249L10.1709 1.34326Z" fill="#D4DBE9"/>
+                                        </svg>
+                                        <svg className="_checked" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M12.5717 1.5605C14.7284 -0.520167 18.2251 -0.520167 20.3817 1.5605C22.5384 3.64117 22.5384 7.0146 20.3817 9.09527L18.9617 10.4652L11.1717 18L3.36172 10.4652L1.94172 9.09527C-0.214949 7.0146 -0.214949 3.64117 1.94172 1.5605C4.09839 -0.520167 7.59505 -0.520167 9.75172 1.5605L11.1717 2.93046L12.5717 1.5605Z" fill="currentColor" />
+                                        </svg>
+                                    </div>
+                                </label>
                             </div>
-                            <p className='font-secondary-bold text-sm text-[#D4DBE9]'>14 567</p>
+                            <p className='font-secondary-bold text-sm text-[#D4DBE9]'>{like.toLocaleString()}</p>
                         </div>
                         :
                         <div className=' text-end text-[#CDD6E6] text-[11px] '>Последнее редактирование: 15 Июн 2021</div>
@@ -264,6 +314,13 @@ function ForumThemeItemItem(props) {
                     : null
                 }
             </div>
+            {modalUpTop ?
+                <div className='absolute top-[25px] right-[0] bg-[linear-gradient(90deg,#8cd23c_0%,#417a00_100%)] rounded-xl p-3'>
+                    <p className='font-secondary-bold text-xs sm:text-sm text-white'>Тема успешно поднята</p>
+                    <p className='font-secondary-bold text-xs sm:text-sm text-white'>Следующая тема может быть поднята через 4 часа</p>
+                </div>
+                : null
+            }
         </div>                 
     );
 }

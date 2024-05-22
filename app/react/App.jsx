@@ -164,25 +164,19 @@ function App() {
   return (
     <div>
       {/* <LendingPage /> */}
-      <div className={`${isForum ? null : 'layout-grid'} ${orient}`}>
-        {isForum ?
-          null
-          : <LeftMenu leftMenuDisplay={leftMenuDisplay} clickUpTop={clickUpTop}/> 
-        }
+      <div className={`layout-grid ${orient}`}>
+        <LeftMenu leftMenuDisplay={leftMenuDisplay} clickUpTop={clickUpTop}/> 
         <div id='layout-page' className={`layout-page ${orient}`}>
-          {isForum ?
-            null
-            : <LayoutColRow changeOrient={changeOrient} orient={orient}/>
-          }
+        <LayoutColRow changeOrient={changeOrient} orient={orient}/>
           <HeaderMain closeLeftMenu={closeLeftMenu} leftMenuOpen={leftMenuOpen} openAuthorization={openAuthorization}/>
           {routes}
         </div>
       </div>
-      {isForum ?
+      <FooterMain />
+      {/* {isForum ?
           null
-          : <FooterMain />
-        }
-      
+          : 
+        } */}
       {modalUpTop ?
           <div className='absolute top-[110px] right-[0] min-[397px]:right-[22px] sm:right-[35px] bg-[linear-gradient(90deg,#8cd23c_0%,#417a00_100%)] rounded-xl p-3'>
               <p className='font-secondary-bold text-xs sm:text-sm text-white'>Товар успешно поднят</p>
