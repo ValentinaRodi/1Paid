@@ -94,12 +94,12 @@ function CardGameString(props) {
                 <div className="pc-title font-bold font-secondary-bold text-[13px] text-black">{props.name}</div>
                 <div className="pc-subtitle mt-1 font-secondary-bold font-bold text-xs text-[#A6B1C7]">{props.description}</div>
             </Link> */}
-            <div onClick={goTovar} className="pc-preview flex justify-center items-center cursor-pointer">
+            <div onClick={openChat} className="pc-preview flex justify-center items-center cursor-pointer">
                 <div className="w-[50px] h-[50px]">
                     <img className={`${props.private ? 'opacity-40' : null} pc-preview-pic w-full`} src={`/img/${props.icon}`} alt="picture"/>
                 </div>
             </div>
-            <div onClick={goTovar} className="pc-info cursor-pointer">
+            <div onClick={openChat} className="pc-info cursor-pointer">
                 <div className={`${props.private ? 'opacity-40' : null} pc-title font-secondary-bold font-bold text-[13px] text-black`}>{props.name}</div>
                 <div className="pc-subtitle font-secondary-bold font-bold text-[10px] leading-3 text-[#A6B1C7]">{props.description}</div>
             </div>

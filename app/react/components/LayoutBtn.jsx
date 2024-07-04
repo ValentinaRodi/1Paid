@@ -134,7 +134,7 @@ function LayoutBtn(props) {
                     : null
                 }
             </div>
-            <button onClick={clickOpenFastChat} className="layout-btn-openchat open-fast-chat rounded-full rounded-br-none w-14 h-14 sm:w-[65px] sm:h-[65px] flex items-center justify-center bg-gradient-primary shadow-2xl fixed right-[32px] bottom-0 z-[1000]">
+            <button onClick={clickOpenFastChat} className="mt-9 mb-4 layout-btn-openchat open-fast-chat rounded-full rounded-br-none w-14 h-14 sm:w-[65px] sm:h-[65px] flex items-center justify-center bg-gradient-primary shadow-2xl fixed right-[32px] bottom-0 z-[1000]">
                 <div className="btn-icon text-[#BDC6E0] w-[22px] h-[19px] [&amp;_svg]:w-full [&amp;_svg]:h-full text-white">
                     <img src="/img/icon-btn-icon-13.svg" alt="btn-icon"/>
                 </div>

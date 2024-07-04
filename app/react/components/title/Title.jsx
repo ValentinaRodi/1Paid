@@ -4,7 +4,7 @@ function Title(props) {
     return (
 
         <div className="sh w-full flex justify-between gap-x-3 items-center mb-0 sm:mb-6">
-            <div className="h-[85px] flex items-center justify-between w-full sm:w-auto">
+            <div className="min-h-[85px] flex items-center justify-between w-full sm:w-auto ">
                 <div>
                     <h2 className="sh-title-text font-secondary-bold text-bold text-lg sm:text-2xl text-black">{props.title}</h2>
                     <div className={`${props.green ? 'bg-gradient-secondary' : 'bg-gradient-primary'} sh-title-line mt-2 rounded-full w-9 h-1 2md:mt-2`}></div>

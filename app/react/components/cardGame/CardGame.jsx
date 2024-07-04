@@ -63,7 +63,7 @@ function CardGame(props) {
     };
 
     const goTovar = () => {
-        navigate('/tovars',  { state: {userName:props.name } });
+        navigate('/tovar',  { state: {userName:props.name } });
     };
 
     return (
@@ -130,12 +130,12 @@ function CardGame(props) {
                 </div>
             </Link> */}
             <div className='pc-link w-full'>
-                <div onClick={goTovar} className="pc-preview flex justify-center items-center mb-3 cursor-pointer">
+                <div onClick={openChat} className="pc-preview flex justify-center items-center mb-3 cursor-pointer">
                     <div className="pc-preview-inner max-w-[80px] h-[80px]">
                         <img className={`${props.private ? 'opacity-40' : null} pc-preview-pic w-full`} src={`/img/${props.icon}`} alt="picture"/>
                     </div>
                 </div>
-                <div onClick={goTovar} className="pc-info cursor-pointer">
+                <div onClick={openChat} className="pc-info cursor-pointer">
                     <div className={`${props.private ? 'opacity-40' : null} pc-title font-secondary-bold font-bold text-[13px] text-black`}>{props.name}</div>
                     <div className="pc-subtitle mt-1 font-secondary-med text-xs text-[#A6B1C7] 3sm:text-[10px]">{props.description}</div>
                 </div>

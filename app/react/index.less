@@ -10689,3 +10689,78 @@ form {
 .swiper-slide2 {
     padding-right: 12px !important;
 }
+
+
+.lf-change-buy {
+    height: 41px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background: #ced5e7;
+    border-radius: 40px;
+}
+
+.lf-change-item-buy {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.lf-change-item-buy:nth-of-type(1) {
+    border-radius: 40px;
+}
+
+.lf-change-item-buy:nth-of-type(2) {
+    border-radius: 40px;
+}
+
+.lf-change-buy input[type="radio"] {
+    display: none;
+}
+
+.lf-change-buy input[type="radio"]:checked + .lf-change-btn-buy {
+    background: linear-gradient(37deg, #339cfc 0%, #0046d6 100%);
+    background: linear-gradient(
+        37deg,
+        var(--color-primary-gradient-1) 0%,
+        var(--color-primary-gradient-2) 100%
+    );
+    color: #ffffff;
+    color: var(--color-white);
+}
+
+.lf-change-btn-buy {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background: transparent;
+    color: #7f8ca5;
+    padding: 0 15px;
+}
+
+.sfb-btn-open {
+    position: fixed;
+    z-index: 10;
+    bottom: 16px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.bg {
+    background: linear-gradient(36.87deg, #B139FE 18.57%, #1E61EB 80.26%);
+}

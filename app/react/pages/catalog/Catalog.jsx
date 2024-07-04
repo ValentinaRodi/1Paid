@@ -257,15 +257,37 @@ function Catalog() {
 
     const arrCard = [0,1,2];
 
+    const [checkedBuy, setCheckedBuy] = useState(true);
+
+    const changeCheckBuy = () => {
+        setCheckedBuy(!checkedBuy);
+    };
+
     return (
         
-        <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 mt-10 xl:mt-0">
+        <div className="flex flex-wrap content-between layout-b pb-4 min-w-0 ">
             <div className="w-full layout-main relative">
                 {/* <Title title={`Каталог ${game}`} viewCards='true' changeViewCards={changeViewCards} cardsViewImg={cardsViewImg} search='true'/> */}
                 <Title title={`Каталог Warface`} viewCards='true' changeViewCards={changeViewCards} cardsViewImg={cardsViewImg} search='true'/>
-                <button onClick={showFilter} className='absolute top-[70px] sm:top-[22px] right-[55px] sm:right-[315px] flex-shrink-0 flex min-[880px]:hidden justify-center items-center w-11 h-11 rounded-full bg-[#e8eaf7] hover:bg-[#dcdff1]'>
+                <button onClick={showFilter} className='absolute top-[94px] sm:top-[22px] right-[55px] sm:right-[315px] flex-shrink-0 flex min-[880px]:hidden justify-center items-center w-11 h-11 rounded-full bg-[#e8eaf7] hover:bg-[#dcdff1]'>
                     <img className='w-[40%] sm:w-[50%]' src='/img/icon-filter.svg' alt='filter' />
                 </button>
+                <div className="w-[220px] mb-5 mt-0 sm:mt-[-30px]">
+                    <div className="lf-change-buy">
+                        <label className="lf-change-item-buy">
+                            <input type="radio" name="lf_type-buy" value="1" onChange={changeCheckBuy} checked={(checkedBuy) ? "checked" : ""} />
+                            <div className="lf-change-btn-buy">
+                                <div className="lf-change-icon">Купить</div>
+                            </div>
+                        </label>
+                        <label className="lf-change-item-buy">
+                            <input type="radio" name="lf_type-buy" value="1" onChange={changeCheckBuy} checked={(checkedBuy) ? "" : "checked"}/>
+                            <div className="lf-change-btn-buy">
+                                <div className="lf-change-icon">Продать</div>
+                            </div>
+                        </label>
+                    </div>   
+                </div>
                 {filterMob ?
                     <div className='absolute top-[134px] sm:top-[85px] right-0 z-[100] block min-[880px]:hidden shadow-2xl w-full max-w-[357px] bg-white p-[24px] rounded-lg'>
                         <div className='flex justify-end'>

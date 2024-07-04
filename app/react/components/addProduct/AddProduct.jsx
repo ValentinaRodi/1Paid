@@ -250,6 +250,12 @@ function AddProduct(props) {
 
     };
 
+    const [checkedBuy, setCheckedBuy] = useState(true);
+
+    const changeCheckBuy = () => {
+        setCheckedBuy(!checkedBuy);
+    };
+
     return (
         <div className="h-screen z-[1000] fixed inset-x-0 inset-y-0 overflow-scroll flex justify-center pt-[2%] pb-[3%] px-[2%]">
             <div className='shadow-[0px_25px_35px_0px_#E2E3F3A6] h-fit w-full md:w-[758px] bg-white rounded-lg px-6 pb-6'>
@@ -259,6 +265,22 @@ function AddProduct(props) {
                             <path d="M18 6L6 18M6 6L18 18" stroke="#B8B8B8" strokeWidth="1.5" strokeLinecap="round"/>
                         </svg>
                     </button>
+                </div>
+                <div className="w-[280px] mb-5 mt-0 sm:mt-[-30px]">
+                    <div className="lf-change-buy">
+                        <label className="lf-change-item-buy">
+                            <input type="radio" name="lf_type-want" value="1" onChange={changeCheckBuy} checked={(checkedBuy) ? "checked" : ""} />
+                            <div className="lf-change-btn-buy">
+                                <div className="lf-change-icon">Хочу купить</div>
+                            </div>
+                        </label>
+                        <label className="lf-change-item-buy">
+                            <input type="radio" name="lf_type-buy-want" value="1" onChange={changeCheckBuy} checked={(checkedBuy) ? "" : "checked"}/>
+                            <div className="lf-change-btn-buy">
+                                <div className="lf-change-icon">Хочу продать</div>
+                            </div>
+                        </label>
+                    </div>   
                 </div>
                 <div  className='mt-[-10px]'>
                     <div className='flex justify-between flex-col sm:flex-row sm:gap-y-5 flex-[50%_50%] mb-4'>

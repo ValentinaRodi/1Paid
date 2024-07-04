@@ -89,6 +89,11 @@ function ModalChat(props) {
 
     const arr =[0,1,2,3,4,5,6];
     
+    const [orderClicked, setOrderClicked] = useState(false);
+
+    const handlerClickOrder = () => {
+        setOrderClicked(!orderClicked);
+    };
     
     return (
         <div className='chat-h chat-h-mob absolute  bottom-[3px] flex items-start justify-end z-[1000]'>
@@ -155,6 +160,7 @@ function ModalChat(props) {
                                     <div className="chat-tech-types flex items-center text-center bg-[#E9EDF5] hover:bg-[#D1D5DB] text-black py-2 px-2 sm:px-4 rounded-full cursor-pointer">Форум</div>
                                     <div className="chat-tech-types flex items-center text-center bg-[#E9EDF5] hover:bg-[#D1D5DB] text-black py-2 px-2 sm:px-4 rounded-full cursor-pointer">Нашел ошибку</div>
                                     <div className="chat-tech-types flex items-center text-center bg-[#E9EDF5] hover:bg-[#D1D5DB] text-black py-2 px-2 sm:px-4 rounded-full cursor-pointer">Другое</div>
+                                    <div onClick={handlerClickOrder} className={`${orderClicked ? 'bg-[#D1D5DB]' : 'bg-[#E9EDF5]'} chat-tech-types flex items-center text-center hover:bg-[#D1D5DB] text-black py-2 px-2 sm:px-4 rounded-full cursor-pointer`}>{orderClicked ? 'Отменить заказ' : 'Заказать товар'}</div>
                                 </div>
                             </div>
                             <div className="w-full h-px bg-[#EAEEF4]"></div>

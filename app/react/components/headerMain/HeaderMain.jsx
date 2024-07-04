@@ -292,9 +292,9 @@ function HeaderMain(props) {
                         {!isAuthenticated ? (
                             <div className="flex gap-4">
                                 <button
-                                    className="btn btn-primary rounded-full w-11 h-11 justify-center cursor-pointer lg:w-[50px] lg:h-[50px]">
+                                    className="btn bg shadow-lg text-white text-xl rounded-full w-11 h-11 justify-center cursor-pointer lg:w-[50px] lg:h-[50px]">
                                     <div className="btn-icon">
-                                        <img src="/img/icon-vk.svg" alt="btn-vk"/>
+                                        <img className="w-[30px]" src="/img/telegram-svgrepo-com.svg" alt="btn-tg"/>
                                     </div>
                                 </button>
                                 <button onClick={props.openAuthorization}
@@ -683,9 +683,9 @@ function HeaderMain(props) {
                         {!isAuthenticated ? (
                             <div className="flex gap-4 items-center">
                                 <button
-                                    className="btn btn-secondary notif-btn rounded-full w-10 h-10 justify-center cursor-pointer ">
+                                    className="btn bg shadow-lg text-white text-xl rounded-full w-10 h-10 justify-center cursor-pointer">
                                     <div className="btn-icon">
-                                        <img src="/img/icon-vk.svg" alt="btn-vk"/>
+                                        <img className="w-[25px]" src="/img/telegram-svgrepo-com.svg" alt="btn-vk"/>
                                     </div>
                                 </button>
                                 <button onClick={props.openAuthorization}
@@ -1084,8 +1084,7 @@ function HeaderMain(props) {
                                 </div>
                             </div>
                             <div
-                                className="navpin-text text-sm uppercase 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">Продать
-                                товар
+                                className="navpin-text text-sm uppercase 3xl:text-xs 3xl:ml-4 xl:ml-2 xl:text-[10px] lg:text-xs">
                             </div>
                         </button>
                         <button onClick={() => {goTab()}}

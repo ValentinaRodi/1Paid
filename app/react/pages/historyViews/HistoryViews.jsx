@@ -57,7 +57,7 @@ function HistoryViews() {
     // }
 
     const goTovar = () => {
-        navigate('/tovars');
+        navigate('/chat',  { state: {name:'Оружие', description:'Оружие в идеальном состоянии, прямо из завода.', price:'1000', newCard:'new', rank:'4.8' } });
     };
 
     const arr = [0,1,2,3,4,5,6];

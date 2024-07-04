@@ -3,7 +3,6 @@
 return [
     'GET,HEAD' => 'main/index',
     'GET,HEAD my-notifications' => 'main/index',
-    'GET,HEAD tovars' => 'main/index',
     'GET,HEAD my-tovars' => 'main/index',
     'GET,HEAD my-finance' => 'main/index',
     'GET,HEAD order-table' => 'main/index',

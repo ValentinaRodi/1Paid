@@ -212,7 +212,7 @@ function LeftMenu(props) {
                                             </svg>
                                         </div>
                                     </div>
-                                    <div className="navpin-text text-left uppercase ml-7 text-xs 2xl:text-sm">Продать товар</div>
+                                    <div className="navpin-text text-left uppercase ml-7 text-xs 2xl:text-sm">Создать объявление</div>
                                 </button>
                                 <button onClick={goTab} className="navpin-item mt-4 first-of-type:mt-0 xl:mt-[30px] bg-inherit w-full">
                                     <div className="navpin-plate"><img className="navpin-plate-pic" src="/img/link-pin-plate.6d928d3b.svg" alt="dots"/>
